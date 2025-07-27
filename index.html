@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auracenter - A New Era of Fitness</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 overflow-hidden"> 
+    <!-- Header stays exactly the same -->
+    <header class="fixed top-0 w-full z-50 fade-in-up header-height">
+        <div class="flex h-full">
+            <!-- Logo Section (20%) -->
+            <div class="logo-section flex items-center justify-center w-1/5 lg:w-1/6">
+                <div class="flex items-center space-x-2 lg:space-x-3">
+                    <img src="./assets/2.png" 
+                         alt="Auracenter Logo" 
+                         class="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 rounded-lg object-contain">
+                </div>
+            </div>
+            
+            <!-- Navigation Section (80%) -->
+            <div class="nav-section header-bg backdrop-blur-sm flex justify-between items-center px-2 sm:px-4 lg:px-8 flex-1">
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white p-2" id="mobileMenuBtn">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+                
+                <!-- Centered Navigation -->
+                <div class="hidden md:flex flex-1 justify-center">
+                    <nav class="flex items-baseline space-x-4 lg:space-x-8">
+                        <a href="#" class="nav-link text-white hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
+                        <a href="about.html" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="#classes" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
+                        <a href="#blog" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="4">Blog</a>
+                    </nav>
+                </div>
+                
+                <!-- Get Started Button -->
+                <div>
+                    <button class="bg-green-500 hover:bg-green-600 text-white px-3 lg:px-4 py-2 rounded-lg text-xs lg:text-sm font-medium transition-colors">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu md:hidden absolute top-full left-0 w-full bg-slate-800 backdrop-blur-sm border-t border-gray-700 hidden">
+            <nav class="px-4 py-4 space-y-2">
+                <a href="#" class="nav-link block text-white hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
+                <a href="#about" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
+                <a href="#classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
+                <a href="#blog" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="4">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- NEW: Page Container -->
+    <div class="page-container">
+        <!-- Page 1: Hero Section (your existing content moved here) -->
+        <section class="page page-1 active" data-page="1">
+            <div class="hero-background absolute inset-0"></div>
+            <div class="content-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+                <div class="hero-content flex flex-col lg:flex-row items-center justify-between h-full py-8 lg:py-16">
+                    <!-- Left Content -->
+                    <div class="flex-1 max-w-2xl z-10 relative text-center mb-8 lg:mb-0">
+                        <h1 class="hero-title text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 lg:mb-6 fade-in-up fade-in-up-delay-1">
+                            Auracenter - A New Era <br>
+                            <span class="text-green-400">of Fitness</span>
+                        </h1>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up fade-in-up-delay-3">
+                            <button class="bg-green-500 hover:bg-green-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Monitors Container -->
+                    <div class="monitors-container fade-in-up fade-in-up-delay-4">
+                        <!-- Heart Rate Monitor -->
+                        <div class="heart-monitor">
+                            <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
+                                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
+                                
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-1">
+                                        <div class="w-2 h-2 bg-red-500 rounded-full blink-dot"></div>
+                                        <span class="text-white text-xs font-medium">LIVE</span>
+                                        <i data-lucide="heart" class="w-3 h-3 text-red-500 fill-red-500 heart-pulse"></i>
+                                    </div>
+                                    <div class="text-xs text-gray-400">BPM</div>
+                                </div>
+                                
+                                <div class="flex items-baseline gap-1 mb-2">
+                                    <span class="text-white text-xl lg:text-2xl font-bold monitor-text" id="heartRate">128</span>
+                                    <span class="text-gray-400 text-xs">AVG</span>
+                                </div>
+                                
+                                <div class="relative h-8 lg:h-12 w-full overflow-hidden">
+                                    <canvas id="ecgCanvas" class="w-full h-full"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Workout Tracker -->
+                        <div class="workout-monitor">
+                            <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
+                                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
+                                
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-gray-400 text-xs font-medium">SAT 7</span>
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-white text-lg font-bold time-blink" id="clockTime">09:09</span>
+                                        <i data-lucide="clock" class="w-3 h-3 text-gray-400"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative h-12">
+                                    <svg class="w-full h-full" viewBox="0 0 180 48">
+                                        <path d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20"
+                                              fill="none" 
+                                              stroke="#4ade80" 
+                                              stroke-width="2" 
+                                              class="workout-progress-path"/>
+                                        
+                                        <circle r="3" fill="#4ade80" class="progress-dot-moving">
+                                            <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite"/>
+                                            <animateMotion dur="3s" repeatCount="indefinite">
+                                                <mpath href="#workoutPath"/>
+                                            </animateMotion>
+                                        </circle>
+                                        
+                                        <path id="workoutPath" d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20" fill="none"/>
+                                    </svg>
+                                    
+                                    <div class="absolute bottom-0 left-0 right-0 flex justify-between items-end px-1">
+                                        <div class="w-1 bg-green-500 rounded-full activity-bar-1"></div>
+                                        <div class="w-1 bg-red-500 rounded-full activity-bar-2"></div>
+                                        <div class="w-1 bg-green-500 rounded-full activity-bar-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: About Section -->
+        <section class="page page-2" data-page="2">
+            <div class="about-background absolute inset-0"></div>
+            <div class="content-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+                <div class="about-content flex items-center justify-center h-full">
+                    <div class="about-box glass-effect rounded-3xl p-8 lg:p-12 max-w-4xl mx-auto text-center">
+                        <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6">
+                            Welcome to Auracenter
+                        </h2>
+                        <p class="text-lg lg:text-xl text-gray-200 leading-relaxed">
+                            Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by 
+                            offering premium facilities, expert guidance, and a supportive environment. As one of 
+                            Jeddah's first luxury gyms for women
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+		<!-- Page 3: Classes Section -->
+		<section class="page page-3" data-page="3">
+			<div class="classes-background absolute inset-0"></div>
+			<div class="content-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+				<div class="classes-content flex items-center justify-center h-full">
+					<div class="classes-box glass-effect rounded-3xl p-8 lg:p-12 max-w-4xl mx-auto text-center">
+						<h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6">
+							We're Here to Serve You Well
+						</h2>
+					
+					</div>
+				</div>
+			</div>
+		</section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

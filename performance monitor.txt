@@ -1,0 +1,206 @@
+HTML:
+<!-- Performance Monitor -->
+                    <div class="performance-monitor">
+                        <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
+                            <!-- Screen reflection effect -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
+                            
+                            <!-- Header -->
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-gray-400 text-xs font-medium">PERFORMANCE</span>
+                                <i data-lucide="trending-up" class="w-3 h-3 text-green-400"></i>
+                            </div>
+                            
+                            <!-- Performance chart -->
+                            <div class="relative h-8 lg:h-12">
+                                <canvas id="performanceCanvas" class="w-full h-full"></canvas>
+                            </div>
+                            
+                            <!-- Stats -->
+                            <div class="flex justify-between text-xs text-gray-400 mt-1">
+                                <span>Zone 2</span>
+                                <span>85%</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+CSS:
+
+.performance-monitor {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    width: 100%;
+}
+
+.performance-monitor:hover {
+    transform: scale(1.03) translateY(-3px);
+    z-index: 30;
+}
+
+.performance-monitor:hover .monitor-screen {
+    border-color: var(--primary-blue);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(59, 130, 246, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+
+--primary-blue: #3b82f6;
+
+
+#performanceCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+@keyframes floatPerformance {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-6px) rotate(0.5deg); 
+    }
+}
+
+
+.performance-monitor {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+
+
+
+
+
+JS:
+
+// Remove from config object:
+progress: {
+    base: 75,
+    increment: 0.5,
+    updateInterval: 2000
+}
+
+// Remove from state object:
+progressPercent: this.config.progress.base,
+
+// Remove from animations object:
+performance: null,
+
+// Remove entire method:
+initPerformanceAnimation() {
+    const canvas = document.getElementById('performanceCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let animationOffset = 0;
+    let animationId;
+
+    // Set canvas size
+    const resizeCanvas = () => {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        
+        ctx.scale(dpr, dpr);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+    };
+
+    resizeCanvas();
+
+    // Performance chart drawing
+    const drawPerformance = () => {
+        if (!this.state.isVisible) {
+            animationId = requestAnimationFrame(drawPerformance);
+            return;
+        }
+
+        const rect = canvas.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw performance bars
+        const barWidth = width / 12;
+        const maxHeight = height * 0.8;
+        
+        ctx.fillStyle = '#3b82f6';
+        
+        for (let i = 0; i < 12; i++) {
+            const x = i * barWidth + barWidth * 0.2;
+            const barHeight = Math.sin((i + animationOffset * 0.1) * 0.5) * maxHeight * 0.3 + maxHeight * 0.5;
+            const y = height - barHeight;
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, y, 0, height);
+            gradient.addColorStop(0, '#3b82f6');
+            gradient.addColorStop(1, '#1e40af');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(x, y, barWidth * 0.6, barHeight);
+        }
+        
+        animationOffset += 0.5;
+        animationId = requestAnimationFrame(drawPerformance);
+    };
+
+    this.animations.performance = {
+        draw: drawPerformance,
+        resize: resizeCanvas,
+        stop: () => cancelAnimationFrame(animationId)
+    };
+
+    drawPerformance();
+}
+
+// Remove from initCanvasAnimations():
+this.initPerformanceAnimation();
+
+// Remove from setupMonitorInteractions() - update selector:
+// Change from:
+const monitors = document.querySelectorAll('.heart-monitor, .workout-monitor, .performance-monitor');
+// To:
+const monitors = document.querySelectorAll('.heart-monitor, .workout-monitor');
+
+// Remove from resizeCanvases():
+if (this.animations.performance?.resize) {
+    this.animations.performance.resize();
+}
+
+// Remove from destroy():
+if (this.animations.performance?.stop) {
+    this.animations.performance.stop();
+}
+
+// Remove progress bar related code:
+// Progress bar animation (for performance monitor if exists)
+const progressBar = document.getElementById('progressBar');
+if (progressBar) {
+    this.animations.intervals.set('progress', setInterval(() => {
+        if (!this.state.isVisible) return;
+        
+        this.state.progressPercent = Math.min(100, this.state.progressPercent + this.config.progress.increment);
+        this.updateProgressBar();
+    }, this.config.progress.updateInterval));
+}
+
+// Remove updateProgressBar method:
+updateProgressBar() {
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) {
+        progressBar.style.width = `${this.state.progressPercent}%`;
+    }
+}

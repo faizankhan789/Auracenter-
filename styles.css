@@ -1,0 +1,1595 @@
+/* ==========================================================================
+   Auracenter Fitness Website - Responsive Styles
+   ========================================================================== */
+
+/* CSS Custom Properties */
+:root {
+    --primary-green: #4ade80;
+    --primary-red: #ef4444;
+    --primary-orange: #fb923c;
+    --bg-dark: #000000;
+    --bg-gray: #1e293b;
+    --border-gray: #374151;
+    --text-white: #ffffff;
+    --text-gray: #d1d5db;
+    --header-height: 64px;
+    --header-height-mobile: 56px;
+    
+    /* Responsive breakpoints */
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --desktop-lg: 1280px;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Almarai', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-feature-settings: 'kern' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Page Load Animations
+   ========================================================================== */
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-up-delay-1 { animation-delay: 0.2s; }
+.fade-in-up-delay-3 { animation-delay: 0.6s; }
+.fade-in-up-delay-4 { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Header Styles
+   ========================================================================== */
+
+.header-height {
+    height: var(--header-height);
+}
+
+.logo-section {
+    background-color: #D6CEC9;
+    backdrop-filter: blur(8px);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.nav-section {
+    background-color: rgba(30, 41, 59, 0.95);
+    transition: all 0.3s ease;
+}
+
+.header-bg {
+    background-color: rgba(30, 41, 59, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu {
+    transition: all 0.3s ease;
+    transform: translateY(-100%);
+}
+
+.mobile-menu.active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+}
+
+.hero-background {
+    /* Your background image - make sure the path is correct */
+    background-image: url('./assets/1.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: creates parallax effect */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.hero-background::before {
+    content: '';
+    position: absolute;
+    top: 10vh;
+    left: -25vw;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./assets/3.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    z-index: 2;
+	
+}
+
+
+.content-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - var(--header-height));
+    text-align: center;
+    gap: 2rem;
+}
+
+.hero-title {
+   
+    line-height: 1.1;
+    font-weight: 700;
+	
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   Monitor Styles - Fully Responsive
+   ========================================================================== */
+
+.monitors-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 20;
+    width: 100%;
+    max-width: clamp(150px, 18vw, 220px);
+    margin: 0;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.heart-monitor,
+.workout-monitor {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    width: 100%;
+}
+
+.monitor-screen {
+    background: var(--bg-dark);
+    border-radius: clamp(6px, 1.5vw, 12px); /* Reduced border radius */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.4), /* Reduced shadow */
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: clamp(0.375rem, 1.5vw, 0.875rem); /* Reduced padding */
+    width: 100%;
+    height: auto;
+    min-height: clamp(45px, 9vw, 85px); /* Reduced from 120px to 85px */
+    aspect-ratio: 16/9; /* Slightly more compact ratio */
+}
+
+.monitor-text {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    font-size: clamp(0.65rem, 2vw, 1rem); /* Reduced font size */
+}
+
+/* Monitor Hover Effects */
+.heart-monitor:hover,
+.workout-monitor:hover,{
+    transform: scale(1.03) translateY(-3px); /* Reduced scale and movement */
+    z-index: 30;
+}
+
+.heart-monitor:hover .monitor-screen {
+    border-color: var(--primary-red);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(239, 68, 68, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.workout-monitor:hover .monitor-screen {
+    border-color: var(--primary-green);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(74, 222, 128, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   Monitor Animations
+   ========================================================================== */
+
+.heart-pulse {
+    animation: heartPulse 1s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+    0%, 100% { 
+        transform: scale(1); 
+        color: var(--text-white); 
+    }
+    50% { 
+        transform: scale(1.1); 
+        color: var(--primary-red); 
+    }
+}
+
+.blink-dot {
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.2); 
+        opacity: 0.7;
+    }
+}
+
+.time-blink {
+    animation: timeBlink 2s ease-in-out infinite;
+}
+
+@keyframes timeBlink {
+    0%, 90%, 100% { opacity: 1; }
+    95% { opacity: 0.5; }
+}
+
+.heart-monitor,
+.workout-monitor
+ {
+    margin: 0;
+    flex: none;
+}
+
+
+/* ==========================================================================
+   Canvas Styles
+   ========================================================================== */
+
+#ecgCanvas,
+ {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Mobile Phones (up to 480px) */
+@media (max-width: 480px) {
+    :root {
+        --header-height: var(--header-height-mobile);
+    }
+    
+    .header-height {
+        height: var(--header-height-mobile);
+    }
+    
+    .hero-section {
+        padding-top: var(--header-height-mobile);
+    }
+    
+    .hero-content {
+        min-height: calc(100vh - var(--header-height-mobile));
+        padding: 1rem 0;
+        gap: 1.5rem;
+    }
+    
+    .content-container {
+        padding: 0 0.75rem;
+    }
+    
+    .monitors-container {
+        max-width: 140px; /* Reduced from 180px */
+        gap: 0.375rem;
+    }
+    
+    .monitor-screen {
+        min-height: 45px; /* Reduced from 60px */
+        border-radius: 6px;
+        padding: 0.375rem; /* Reduced padding */
+    }
+    
+    /* Make text smaller on mobile */
+    .text-xs { font-size: 0.55rem !important; }
+    .text-sm { font-size: 0.65rem !important; }
+    .text-lg { font-size: 0.8rem !important; }
+    .text-xl { font-size: 0.9rem !important; }
+    .text-2xl { font-size: 1rem !important; }
+
+ 
+    .hero-title {
+     
+        margin-bottom: 0.75rem;
+    }
+    
+}
+
+/* Tablets (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .hero-content {
+        gap: 1.75rem;
+    }
+    
+.monitors-container {
+        max-width: 180px; /* Reduced from 220px */
+        gap: 0.5rem;
+    }
+    
+    .monitor-screen {
+        min-height: 60px; /* Reduced from 75px */
+        border-radius: 8px;
+    }
+}
+/* For mobile - keep centered but with equal gaps */
+@media (max-width: 768px) {
+    .monitors-container {
+        max-width: 140px;
+        gap: 0.75rem;
+        margin: 0 auto;
+    }
+}
+
+
+/* Desktop Small (769px to 1023px) */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .hero-content {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+    
+    .monitors-container {
+        position: relative;
+        max-width: 180px;
+        gap: 1rem; /* Equal gap */
+        flex-shrink: 0;
+        margin-left: auto; /* Push to right side */
+        margin-right: 1rem;
+    }
+    
+    .monitor-screen {
+        min-height: 70px; /* Reduced from 90px */
+        border-radius: 10px;
+    }
+}
+
+/* Desktop Large (1024px to 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .hero-content {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+    }
+    
+.monitors-container {
+        position: fixed; /* Keep them fixed on scroll */
+        top: 20%; /* Position from top */
+        right: 2rem; /* Distance from right edge */
+        max-width: 200px;
+        gap: 1.25rem; /* Consistent gap */
+        margin: 0; /* Reset margins when using fixed positioning */
+    }
+    
+    .monitor-screen {
+        min-height: 75px; /* Reduced from 100px */
+        border-radius: 12px;
+    }
+}
+
+/* Desktop Extra Large (1280px and up) */
+@media (min-width: 1280px) {
+    .hero-content {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4rem;
+    }
+    
+    .monitors-container {
+        right: 3rem; /* More space from edge on larger screens */
+        max-width: 220px;
+        gap: 1.5rem; /* Slightly larger gap for bigger screens */
+    }
+    
+    .monitor-screen {
+        min-height: 80px; /* Reduced from 110px */
+        border-radius: 14px;
+    
+}
+}
+
+/* Ultra Wide (1920px and up) */
+@media (min-width: 1920px) {
+    .monitors-container {
+        right: 5rem; /* Even more space on ultra-wide */
+        gap: 1.75rem;
+    }
+    
+    .content-container {
+        max-width: 1600px;
+    }
+}
+
+/* ==========================================================================
+   Landscape Orientation (Mobile)
+   ========================================================================== */
+
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-content {
+        flex-direction: row;
+        min-height: calc(100vh - var(--header-height-mobile));
+        padding: 0.5rem 0;
+    }
+    
+    .monitors-container {
+        position: relative;
+        max-width: 200px;
+        gap: 0.5rem;
+    }
+    
+    .monitor-screen {
+        padding: 0.5rem;
+        min-height: 60px;
+    }
+    
+}
+
+/* ==========================================================================
+   Accessibility & High Contrast
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    .monitor-screen {
+        border-width: 2px;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .text-gray-400 {
+        color: #d1d5db;
+    }
+    
+    .hero-background::before {
+        opacity: 0.9;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .hero-content {
+        animation: none;
+    }
+    
+    .fade-in-up {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+@media (min-width: 769px) and (max-width: 1200px) {
+    .hero-content .flex-1 {
+        max-width: calc(100% - 250px); /* Leave space for monitors */
+        margin-right: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .monitors-container,
+    .mobile-menu,
+    button {
+        display: none !important;
+    }
+    
+    .hero-section {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .hero-title {
+        color: black !important;
+    }
+}
+
+/* ==========================================================================
+   Performance Optimizations
+   ========================================================================== */
+
+/* GPU Acceleration for animations */
+.heart-monitor,
+.workout-monitor,
+.monitor-screen {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Optimize font loading */
+@font-face {
+    font-family: 'Almarai';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
+/* ADD THIS TO THE END OF YOUR styles.css FILE */
+
+/* Bouncing keyframes */
+@keyframes monitorBounce {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes monitorFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    33% {
+        transform: translateY(-5px);
+    }
+    66% {
+        transform: translateY(3px);
+    }
+}
+
+/* Apply bouncing to monitors */
+.heart-monitor {
+    animation: monitorBounce 2s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.workout-monitor {
+    animation: monitorFloat 2.5s ease-in-out infinite;
+    animation-delay: 0.7s;
+    position: relative;
+    left: -30px; /* Move to left */
+}
+
+/* Keep existing animations working */
+.heart-pulse {
+    animation: heartPulse 1s ease-in-out infinite !important;
+}
+
+.blink-dot {
+    animation: blink 1s ease-in-out infinite !important;
+}
+
+.time-blink {
+    animation: timeBlink 2s ease-in-out infinite !important;
+}
+
+/* Fixed hover effects */
+.heart-monitor:hover,
+.workout-monitor:hover {
+    animation-play-state: paused;
+    transform: scale(1.03) translateY(-3px);
+    z-index: 30;
+}
+/* ==========================================================================
+   Center Text Without Affecting Monitors
+   ========================================================================== */
+
+/* Ensure text content is always centered */
+.hero-content .flex-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Override the desktop layout to keep monitors separate */
+@media (min-width: 769px) {
+    .hero-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center; /* Center the whole content */
+        gap: 4rem;
+    }
+    
+    /* Keep text centered but give it proper space */
+    .hero-content .flex-1 {
+        flex: 1;
+        max-width: none;
+        margin-right: 2rem; /* Space between text and monitors */
+    }
+    
+    /* Ensure monitors stay in their fixed position */
+    .monitors-container {
+        position: absolute !important;
+        right: 2rem !important;
+        flex-shrink: 0;
+        z-index: 30;
+    }
+}
+
+@media (min-width: 1024px) {
+    .monitors-container {
+        right: 3rem !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .monitors-container {
+        right: 4rem !important;
+    }
+}
+/* Hero Background Transitions */
+.hero-background {
+    transition: all 0.8s ease-in-out;
+    opacity: 0;
+    transform: scale(1.05);
+}
+
+.hero-background::before {
+    transition: all 1s ease-in-out 0.3s;
+    opacity: 0;
+    transform: translateX(-50px);
+}
+/* Loaded state */
+.hero-background.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.hero-background.loaded::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+/* Make sure hero content is initially hidden when not loaded */
+.page-1:not(.loaded) .hero-content .flex-1 {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.page-1:not(.loaded) .hero-title {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.page-1:not(.loaded) .monitors-container {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Loaded state */
+body.loaded .hero-background {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body.loaded .hero-background::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+/* ==========================================================================
+   Full Page Sections - No Scroll
+   ========================================================================== */
+
+body {
+    overflow: hidden !important;
+    height: 100vh;
+}
+
+.page-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    visibility: hidden; /* ADD THIS - hide non-active pages completely */
+}
+
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 2;
+    visibility: visible; /* ADD THIS - show only active pages */
+}
+.page * {
+    transform: translateZ(0);
+}
+
+
+
+
+/* About Section */
+
+/* 1. REPLACE your .page-2 .content-container with this: */
+.page-2 .content-container {
+    padding-top: 0; /* Remove top padding */
+    min-height: 100vh; /* Full viewport height */
+    margin-top: 0; /* REMOVE margin-top to overlap header */
+    position: relative;
+    display: block;
+    z-index: 10;
+}
+
+/* 2. UPDATE the about-background to cover full viewport: */
+.page-2 .about-background {
+    background-image: url('./assets/4.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh; /* CHANGE: Full viewport height */
+    top: 0; /* CHANGE: Start from very top */
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+/* 3. UPDATE the overlay to cover full background: */
+.page-2 .about-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Cover entire background */
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+}
+
+/* 4. KEEP existing about-content positioning (this stays the same): */
+.page-2 .about-content {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    width: auto;
+    height: auto;
+    z-index: 10;
+}
+
+
+
+.about-box {
+    background: #CCE5E1; /* Your requested color */
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+    width: 100%; /* Take full available width */
+    max-width: clamp(300px, 40vw, 600px); /* Responsive sizing */
+    padding: clamp(1rem, 3vw, 2rem); /* Responsive padding */
+    border-radius: clamp(0.75rem, 2vw, 1.5rem); /* Responsive border radius */
+}
+.about-box h2 {
+    color: #1f2937 !important;
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive font */
+    margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.about-box p {
+    color: #374151 !important;
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem); /* Responsive font */
+    line-height: 1.6;
+}
+
+/* 4. TABLET RESPONSIVE (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .page-2 .about-content {
+        bottom: 3rem;
+        left: 3rem;
+        right: 3rem;
+    }
+    
+    .about-box {
+        max-width: 500px; /* Larger on tablets */
+    }
+}
+
+/* 5. MOBILE RESPONSIVE (up to 768px) */
+@media (max-width: 768px) {
+    .page-2 .about-content {
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem; /* Full width on mobile */
+    }
+    
+    .about-box {
+        max-width: none; /* Full width on mobile */
+        padding: 1.5rem;
+    }
+    
+    .about-box h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .about-box p {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* 6. SMALL MOBILE (up to 480px) */
+@media (max-width: 480px) {
+    .page-2 .about-content {
+        bottom: 0.75rem;
+        left: 0.75rem;
+        right: 0.75rem;
+    }
+    
+    .about-box {
+        padding: 1rem;
+        border-radius: 0.75rem;
+    }
+    
+    .about-box h2 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.75rem;
+    }
+    
+    .about-box p {
+        font-size: 0.85rem !important;
+        line-height: 1.5;
+    }
+}
+
+/* 7. LARGE DESKTOP (1280px and up) */
+@media (min-width: 1280px) {
+    .page-2 .about-content {
+        bottom: 4rem;
+        left: 4rem;
+        right: auto; /* Reset right constraint */
+        max-width: 700px; /* Larger max-width for big screens */
+    }
+    
+    .about-box {
+        max-width: 700px;
+        padding: 2.5rem;
+    }
+    
+    .about-box h2 {
+        font-size: 2.5rem !important;
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-box p {
+        font-size: 1.125rem !important;
+    }
+}
+
+/* 8. ULTRA WIDE (1920px and up) */
+@media (min-width: 1920px) {
+    .page-2 .about-content {
+        bottom: 5rem;
+        left: 5rem;
+        max-width: 800px;
+    }
+    
+    .about-box {
+        max-width: 800px;
+        padding: 3rem;
+    }
+}
+
+/* 9. LANDSCAPE MOBILE */
+@media (max-height: 600px) and (orientation: landscape) {
+    .page-2 .about-content {
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+    }
+    
+    .about-box {
+        padding: 1rem;
+    }
+    
+    .about-box h2 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .about-box p {
+        font-size: 0.875rem !important;
+    }
+}
+/* ==========================================================================
+   Classes Section (Page 3) - GUARANTEED SHARP CORNERS
+   ========================================================================== */
+
+/* Classes page background */
+.page-3 .content-container {
+    padding-top: 0;
+    min-height: 100vh;
+    margin-top: 0;
+    position: relative;
+    display: block;
+    z-index: 10;
+}
+
+.page-3 .classes-background {
+    background-image: url('./assets/5.jpg');
+    background-size: cover;
+    background-position: center 15%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+.page-3 .classes-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+.page-3 .classes-content {
+    position: absolute;
+    top: auto;
+    right: 2rem;
+    bottom: 2rem;
+    left: auto;
+    width: 600px;
+    height: auto;
+    z-index: 10;
+    padding: 2rem 1rem;
+}
+
+.classes-box {
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        -10px 0 30px rgba(0, 0, 0, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+    width: 100%;
+    max-width: none;
+    padding: 2rem;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+
+.classes-box h2 {
+    color: #ffffff !important;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-radius: 0 !important;
+}
+
+.classes-box p {
+    color: #d1d5db !important;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    border-radius: 0 !important;
+}
+
+/* TABLET RESPONSIVE (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .page-3 .classes-content {
+        width: 500px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .classes-box {
+        padding: 2rem;
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+    }
+    
+    .classes-box h2 {
+        font-size: 1.8rem;
+    }
+    
+    .classes-box p {
+        font-size: 0.95rem;
+    }
+}
+
+/* MOBILE RESPONSIVE (up to 768px) */
+@media (max-width: 768px) {
+    .page-3 .classes-content {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+    }
+    
+    .classes-box {
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+        padding: 1.5rem;
+        max-width: none;
+    }
+    
+    .classes-box h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .classes-box p {
+        font-size: 0.95rem !important;
+    }
+}
+
+/* SMALL MOBILE (up to 480px) */
+@media (max-width: 480px) {
+    .page-3 .classes-content {
+        padding: 0.75rem;
+    }
+    
+    .classes-box {
+        padding: 1.25rem;
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+    }
+    
+    .classes-box h2 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.75rem;
+    }
+    
+    .classes-box p {
+        font-size: 0.85rem !important;
+        line-height: 1.5;
+    }
+}
+
+/* LARGE DESKTOP (1280px and up) */
+@media (min-width: 1280px) {
+    .page-3 .classes-content {
+        width: 700px;
+        padding: 3rem 1.5rem;
+    }
+    
+    .classes-box {
+        padding: 3rem;
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+    }
+    
+    .classes-box h2 {
+        font-size: 2.5rem !important;
+        margin-bottom: 2rem;
+    }
+    
+    .classes-box p {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* ULTRA WIDE (1920px and up) */
+@media (min-width: 1920px) {
+    .page-3 .classes-content {
+        width: 800px;
+        padding: 4rem 2rem;
+    }
+    
+    .classes-box {
+        padding: 3.5rem;
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+    }
+}
+
+/* LANDSCAPE MOBILE */
+@media (max-height: 600px) and (orientation: landscape) {
+    .page-3 .classes-content {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+    }
+    
+    .classes-box {
+        padding: 1rem;
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+    }
+    
+    .classes-box h2 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .classes-box p {
+        font-size: 0.875rem !important;
+    }
+}
+
+/* Hover effect for the sidebar */
+.classes-box:hover {
+    transform: translateX(-5px);
+    box-shadow: 
+        -15px 0 40px rgba(0, 0, 0, 0.4),
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+
+/* FORCE SHARP CORNERS - Nuclear option */
+.page-3 * {
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+/* ==========================================================================
+   ABOUT US PAGE STYLES - ADD TO EXISTING styles.css
+   ========================================================================== */
+
+/* About Hero Section */
+.about-hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    overflow: hidden;
+}
+
+/* Background Image */
+.about-hero-background {
+    /* REPLACE WITH YOUR BACKGROUND IMAGE PATH */
+    background-image: url('./assets/6.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.about-hero-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 2;
+}
+
+/* Left Overlay Image (Woman with weights) */
+.about-left-image {
+    /* REPLACE WITH YOUR LEFT IMAGE PATH */
+    background-image: url('./assets/7.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 600px;
+    height: 6000px;
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    z-index: 10;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideInLeft 1.2s ease-out 0.5s forwards;
+}
+
+/* Right Overlay Image (Circular design) */
+.about-right-image {
+    /* REPLACE WITH YOUR RIGHT IMAGE PATH */
+    background-image: url('./assets/8.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 10%;
+    right: 8%;
+    z-index: 15;
+    opacity: 0;
+    transform: scale(0.8) rotate(-10deg);
+    animation: slideInRight 1.2s ease-out 0.8s forwards;
+}
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* About Hero Content */
+.about-hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - var(--header-height));
+}
+
+/* Main Content Box */
+.about-content-box {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 25;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.8s ease-out;
+}
+
+.about-content-box.loaded {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* About Badge */
+.about-badge {
+    margin-bottom: 2rem;
+}
+
+/* Main Title */
+.about-main-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+}
+
+/* Description */
+.about-description {
+    margin-bottom: 2.5rem;
+}
+
+.about-description p {
+    color: #4b5563;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    line-height: 1.7;
+}
+
+/* CTA Button */
+.about-cta button {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+/* Additional Sections */
+.about-values-section {
+    background-color: var(--bg-gray);
+}
+
+.back-to-home-section {
+    background-color: rgba(30, 41, 59, 1);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN FOR ABOUT PAGE
+   ========================================================================== */
+
+/* Mobile Phones (up to 480px) */
+@media (max-width: 480px) {
+    .about-hero-section {
+        padding-top: var(--header-height-mobile);
+    }
+    
+    .about-hero-content {
+        min-height: calc(100vh - var(--header-height-mobile));
+        padding: 2rem 0;
+    }
+    
+    .about-content-box {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+        border-radius: 16px;
+    }
+    
+    .about-left-image {
+        width: 250px;
+        height: 400px;
+        left: -10%;
+        top: 20%;
+    }
+    
+    .about-right-image {
+        width: 200px;
+        height: 200px;
+        right: -5%;
+        top: 60%;
+    }
+    
+    .about-badge {
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-main-title {
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-description {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Tablets (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .about-content-box {
+        padding: 2.5rem 2rem;
+        max-width: 500px;
+    }
+    
+    .about-left-image {
+        width: 300px;
+        height: 480px;
+        left: 2%;
+        top: 18%;
+    }
+    
+    .about-right-image {
+        width: 250px;
+        height: 250px;
+        right: 5%;
+        top: 15%;
+    }
+}
+
+/* Desktop Small (769px to 1023px) */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .about-content-box {
+        max-width: 550px;
+        padding: 3rem 2.5rem;
+    }
+    
+    .about-left-image {
+        width: 350px;
+        height: 550px;
+        left: 3%;
+        top: 15%;
+    }
+    
+    .about-right-image {
+        width: 280px;
+        height: 280px;
+        right: 6%;
+        top: 12%;
+    }
+}
+
+/* Desktop Large (1024px to 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .about-left-image {
+        width: 380px;
+        height: 580px;
+        left: 4%;
+        top: 12%;
+    }
+    
+    .about-right-image {
+        width: 300px;
+        height: 300px;
+        right: 7%;
+        top: 10%;
+    }
+}
+
+/* Desktop Extra Large (1280px and up) */
+@media (min-width: 1280px) {
+    .about-content-box {
+        padding: 3.5rem 3rem;
+    }
+    
+    .about-left-image {
+        width: 400px;
+        height: 600px;
+        left: 5%;
+        top: 15%;
+    }
+    
+    .about-right-image {
+        width: 300px;
+        height: 300px;
+        right: 8%;
+        top: 10%;
+    }
+}
+
+/* Landscape Orientation (Mobile) */
+@media (max-height: 600px) and (orientation: landscape) {
+    .about-hero-content {
+        min-height: calc(100vh - var(--header-height-mobile));
+        padding: 1rem 0;
+    }
+    
+    .about-content-box {
+        padding: 1.5rem;
+        max-width: 450px;
+    }
+    
+    .about-left-image {
+        width: 200px;
+        height: 300px;
+        left: 2%;
+        top: 25%;
+    }
+    
+    .about-right-image {
+        width: 150px;
+        height: 150px;
+        right: 3%;
+        top: 20%;
+    }
+    
+    .about-main-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .about-description {
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-description p {
+        font-size: 0.875rem;
+    }
+}
+
+/* Performance optimizations for about page */
+.about-left-image,
+.about-right-image,
+.about-content-box {
+    will-change: transform;
+    transform: translateZ(0);
+}
