@@ -810,201 +810,208 @@ body {
 
 /* About Section */
 
-/* 1. REPLACE your .page-2 .content-container with this: */
-.page-2 .content-container {
-    padding-top: 0; /* Remove top padding */
-    min-height: 100vh; /* Full viewport height */
-    margin-top: 0; /* REMOVE margin-top to overlap header */
-    position: relative;
-    display: block;
-    z-index: 10;
-}
+/* ==========================================================================
+   PAGE 2 - FINAL CSS FOR LEFT-ATTACHED BOX WITH SHARP EDGES
+   ========================================================================== */
 
-/* 2. UPDATE the about-background to cover full viewport: */
+
+
+/* Background setup */
 .page-2 .about-background {
     background-image: url('./assets/4.jpg');
     background-size: cover;
     background-position: center 20%;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100vh; /* CHANGE: Full viewport height */
-    top: 0; /* CHANGE: Start from very top */
+    height: 100vh;
+    top: 0;
     position: absolute;
     left: 0;
     z-index: 1;
 }
 
-/* 3. UPDATE the overlay to cover full background: */
 .page-2 .about-background::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Cover entire background */
+    height: 100%;
     background: rgba(255, 255, 255, 0.5);
     z-index: 2;
 }
-
-/* 4. KEEP existing about-content positioning (this stays the same): */
-.page-2 .about-content {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    right: 2rem;
-    width: auto;
-    height: auto;
+.page-2 .about-box {
+    position: absolute !important;
+    bottom: 5% !important;
+    left: 0 !important;
     z-index: 10;
-}
-
-
-
-.about-box {
-    background: #CCE5E1; /* Your requested color */
+    
+    /* Styling */
+    background: #CCE5E1;
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     
-    width: 100%; /* Take full available width */
-    max-width: clamp(300px, 40vw, 600px); /* Responsive sizing */
-    padding: clamp(1rem, 3vw, 2rem); /* Responsive padding */
-    border-radius: clamp(0.75rem, 2vw, 1.5rem); /* Responsive border radius */
+    /* INCREASED WIDTH - Changed from clamp(300px, 50vw, 600px) */
+    width: clamp(800px, 120vw, 1200px);
+    
+    /* DECREASED HEIGHT - Reduced padding to make box shorter */
+    padding: clamp(1.5rem, 2.5vw, 2rem); /* Reduced from clamp(1.5rem, 3vw, 2.5rem) */
+    
+    /* Optional: Set max-height to control height more strictly */
+    max-height: 200px; /* Add this if you want a strict height limit */
+    overflow: hidden; /* Add this if using max-height */
+    
+    /* SHARP EDGES */
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    
+    /* Remove left border for full attachment */
+    border-left: none !important;
+    
+    /* Reset any margins/padding that could create gaps */
+    margin: 0 !important;
 }
-.about-box h2 {
+
+.page-2 .about-box h2 {
     color: #1f2937 !important;
-    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive font */
-    margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
+    font-size: clamp(1.2rem, 3vw, 2rem); /* Reduced from clamp(1.5rem, 4vw, 2.5rem) */
+    margin-bottom: clamp(0.5rem, 1.5vw, 1rem); /* Reduced from clamp(0.75rem, 2vw, 1.5rem) */
+    text-align: left;
+    line-height: 1.2; /* Tighter line height */
 }
 
-.about-box p {
+.page-2 .about-box p {
     color: #374151 !important;
-    font-size: clamp(0.875rem, 2.5vw, 1.125rem); /* Responsive font */
-    line-height: 1.6;
+    font-size: clamp(0.8rem, 2vw, 1rem); /* Reduced from clamp(0.875rem, 2.5vw, 1.125rem) */
+    line-height: 1.4; /* Reduced from 1.6 */
+    text-align: left;
+    margin: 0; /* Remove any default margins */
 }
 
-/* 4. TABLET RESPONSIVE (768px to 1024px) */
+/* TABLET RESPONSIVE (768px to 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
-    .page-2 .about-content {
-        bottom: 3rem;
-        left: 3rem;
-        right: 3rem;
-    }
-    
-    .about-box {
-        max-width: 500px; /* Larger on tablets */
+    .page-2 .about-box {
+        width: clamp(800px, 100vw, 1050px) !important; /* Increased from clamp(400px, 45vw, 500px) */
+        padding: clamp(1rem, 2vw, 1.5rem) !important;
+        max-height: 180px;
+        border-radius: 0 !important;
+        border-left: none !important;
+        margin: 0 !important;
+		bottom: 5% !important;
     }
 }
 
-/* 5. MOBILE RESPONSIVE (up to 768px) */
+/* MOBILE RESPONSIVE (up to 768px) */
 @media (max-width: 768px) {
-    .page-2 .about-content {
-        bottom: 1rem;
-        left: 1rem;
-        right: 1rem; /* Full width on mobile */
+    .page-2 .about-box {
+        width: 100% !important;
+		bottom: 5% !important;
+        padding: 1rem; /* Reduced from 1.5rem */
+        max-height: 150px; /* Strict height control on mobile */
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+        margin: 0 !important;
+        overflow-y: auto; /* Allow scrolling if content is too tall */
     }
     
-    .about-box {
-        max-width: none; /* Full width on mobile */
-        padding: 1.5rem;
+    .page-2 .about-box h2 {
+        font-size: 2rem !important; /* Reduced from 1.5rem */
+        margin-bottom: 0.5rem; /* Reduced from 1rem */
     }
     
-    .about-box h2 {
-        font-size: 1.5rem !important;
-        margin-bottom: 1rem;
-    }
-    
-    .about-box p {
-        font-size: 0.9rem !important;
+    .page-2 .about-box p {
+        font-size: 0.7rem !important; /* Reduced from 0.9rem */
+        line-height: 1.3;
     }
 }
 
-/* 6. SMALL MOBILE (up to 480px) */
+/* SMALL MOBILE (up to 480px) */
 @media (max-width: 480px) {
-    .page-2 .about-content {
-        bottom: 0.75rem;
-        left: 0.75rem;
-        right: 0.75rem;
+    .page-2 .about-box {
+        width: 100% !important;
+        padding: 0.75rem; /* Reduced from 1rem */
+        max-height: 120px;
+		bottom: 5% !important;
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
     }
     
-    .about-box {
-        padding: 1rem;
-        border-radius: 0.75rem;
+    .page-2 .about-box h2 {
+        font-size: 1rem !important; /* Reduced from 1.25rem */
+        margin-bottom: 0.5rem; /* Reduced from 0.75rem */
     }
     
-    .about-box h2 {
-        font-size: 1.25rem !important;
-        margin-bottom: 0.75rem;
-    }
-    
-    .about-box p {
-        font-size: 0.85rem !important;
-        line-height: 1.5;
+    .page-2 .about-box p {
+        font-size: 0.8rem !important; /* Reduced from 0.85rem */
+        line-height: 1.3;
     }
 }
 
-/* 7. LARGE DESKTOP (1280px and up) */
+/* LARGE DESKTOP (1280px and up) */
 @media (min-width: 1280px) {
-    .page-2 .about-content {
-        bottom: 4rem;
-        left: 4rem;
-        right: auto; /* Reset right constraint */
-        max-width: 700px; /* Larger max-width for big screens */
+    .page-2 .about-box {
+        width: clamp(1000px, 90vw, 1500px) !important; /* Increased from clamp(500px, 40vw, 700px) */
+        padding: 2rem; /* Reduced from 3rem */
+        max-height: 220px;
+        border-radius: 0 !important;
+        border-left: none !important;
+		bottom: 5% !important;
     }
     
-    .about-box {
-        max-width: 700px;
-        padding: 2.5rem;
+    .page-2 .about-box h2 {
+        font-size: 2.5rem !important; /* Reduced from 2.5rem */
+        margin-bottom: 1rem; /* Reduced from 2rem */
     }
     
-    .about-box h2 {
-        font-size: 2.5rem !important;
-        margin-bottom: 1.5rem;
-    }
-    
-    .about-box p {
-        font-size: 1.125rem !important;
+    .page-2 .about-box p {
+        font-size: 1.3rem !important; /* Reduced from 1.125rem */
     }
 }
 
-/* 8. ULTRA WIDE (1920px and up) */
+/* ULTRA WIDE (1920px and up) */
 @media (min-width: 1920px) {
-    .page-2 .about-content {
-        bottom: 5rem;
-        left: 5rem;
-        max-width: 800px;
-    }
-    
-    .about-box {
-        max-width: 800px;
-        padding: 3rem;
+    .page-2 .about-box {
+        width: clamp(1200px, 95vw, 1700px) !important; /* Increased from clamp(600px, 35vw, 800px) */
+        padding: 3rem; /* Reduced from 3.5rem */
+        max-height: 250px;
+        border-radius: 0 !important;
+        border-left: none !important;
+		bottom: 5% !important;
     }
 }
 
-/* 9. LANDSCAPE MOBILE */
+/* LANDSCAPE MOBILE */
 @media (max-height: 600px) and (orientation: landscape) {
-    .page-2 .about-content {
-        bottom: 1rem;
-        left: 1rem;
-        right: 1rem;
+    .page-2 .about-box {
+        width: 100% !important;
+        padding: 0.75rem; /* Reduced from 1rem */
+        max-height: 100px;
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
     }
     
-    .about-box {
-        padding: 1rem;
+    .page-2 .about-box h2 {
+        font-size: 1rem !important; /* Reduced from 1.25rem */
+        margin-bottom: 0.25rem; /* Reduced from 0.5rem */
     }
     
-    .about-box h2 {
-        font-size: 1.25rem !important;
-        margin-bottom: 0.5rem;
-    }
-    
-    .about-box p {
-        font-size: 0.875rem !important;
+    .page-2 .about-box p {
+        font-size: 0.8rem !important; /* Reduced from 0.875rem */
+        line-height: 1.2;
     }
 }
 /* ==========================================================================
-   Classes Section (Page 3) - GUARANTEED SHARP CORNERS
+   PAGE 3 - CLASSES BOX MODIFIED TO MATCH PAGE 2 DIMENSIONS
    ========================================================================== */
 
 /* Classes page background */
@@ -1041,71 +1048,79 @@ body {
     z-index: 2;
 }
 
+/* MODIFIED CLASSES CONTENT - RIGHT ATTACHED WITH SAME DIMENSIONS AS PAGE 2 */
 .page-3 .classes-content {
-    position: absolute;
-    top: auto;
-    right: 2rem;
-    bottom: 2rem;
-    left: auto;
-    width: 600px;
-    height: auto;
+    position: absolute !important;
+    bottom: 5% !important; /* Same as Page 2 */
+    right: 0 !important;   /* Attached to right side instead of left */
+    left: auto !important;
     z-index: 10;
-    padding: 2rem 1rem;
+    
+    /* Remove old positioning */
+    top: auto !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important; /* Remove padding from container */
 }
 
 .classes-box {
-    background: rgba(30, 41, 59, 0.95);
+    /* Styling with new color */
+    background: #70809B !important; /* Changed color as requested */
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 
-        -10px 0 30px rgba(0, 0, 0, 0.3),
+        -20px 0 40px rgba(0, 0, 0, 0.3), /* Left shadow since it's right-attached */
         0 20px 40px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     
-    width: 100%;
-    max-width: none;
-    padding: 2rem;
+    /* SAME WIDTH AS PAGE 2 */
+    width: clamp(800px, 120vw, 1200px) !important;
+    
+    /* SAME HEIGHT CONTROL AS PAGE 2 */
+    padding: clamp(1.5rem, 2.5vw, 2rem) !important;
+    max-height: 200px !important;
+    overflow: hidden !important;
+    
+    /* SHARP EDGES */
     border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
+    
+    /* Remove RIGHT border for full attachment to right side */
+    border-right: none !important;
+    
+    /* Reset margins */
+    margin: 0 !important;
+    max-width: none !important;
 }
 
 .classes-box h2 {
     color: #ffffff !important;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
+    font-size: clamp(1.2rem, 3vw, 2rem) !important; /* Same as Page 2 */
+    margin-bottom: clamp(0.5rem, 1.5vw, 1rem) !important; /* Same as Page 2 */
+    text-align: left !important; /* Changed from center to left */
+    line-height: 1.2 !important; /* Same as Page 2 */
     border-radius: 0 !important;
 }
 
 .classes-box p {
     color: #d1d5db !important;
-    font-size: 1rem;
-    line-height: 1.6;
-    text-align: center;
+    font-size: clamp(0.8rem, 2vw, 1rem) !important; /* Same as Page 2 */
+    line-height: 1.4 !important; /* Same as Page 2 */
+    text-align: left !important; /* Changed from center to left */
+    margin: 0 !important; /* Same as Page 2 */
     border-radius: 0 !important;
 }
 
 /* TABLET RESPONSIVE (768px to 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
-    .page-3 .classes-content {
-        width: 500px;
-        padding: 1.5rem 1rem;
-    }
-    
     .classes-box {
-        padding: 2rem;
+        width: clamp(800px, 100vw, 1050px) !important; /* Same as Page 2 */
+        padding: clamp(1rem, 2vw, 1.5rem) !important;
+        max-height: 180px !important;
         border-radius: 0 !important;
-        -webkit-border-radius: 0 !important;
-        -moz-border-radius: 0 !important;
-    }
-    
-    .classes-box h2 {
-        font-size: 1.8rem;
-    }
-    
-    .classes-box p {
-        font-size: 0.95rem;
+        border-right: none !important;
+        margin: 0 !important;
     }
 }
 
@@ -1114,91 +1129,86 @@ body {
     .page-3 .classes-content {
         top: auto;
         right: 0;
-        bottom: 0;
+        bottom: 5% !important; /* Same as Page 2 */
         left: 0;
         width: 100%;
         height: auto;
-        padding: 1rem;
+        padding: 0; /* Remove padding */
     }
     
     .classes-box {
+        width: 100% !important;
+        padding: 1rem !important; /* Same as Page 2 */
+        max-height: 150px !important; /* Same as Page 2 */
         border-radius: 0 !important;
-        -webkit-border-radius: 0 !important;
-        -moz-border-radius: 0 !important;
-        padding: 1.5rem;
-        max-width: none;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+        margin: 0 !important;
+        overflow-y: auto !important;
     }
     
     .classes-box h2 {
-        font-size: 1.5rem !important;
-        margin-bottom: 1rem;
+        font-size: 2rem !important; /* Same as Page 2 mobile */
+        margin-bottom: 0.5rem !important;
     }
     
     .classes-box p {
-        font-size: 0.95rem !important;
+        font-size: 0.7rem !important; /* Same as Page 2 mobile */
+        line-height: 1.3;
     }
 }
 
 /* SMALL MOBILE (up to 480px) */
 @media (max-width: 480px) {
-    .page-3 .classes-content {
-        padding: 0.75rem;
-    }
-    
     .classes-box {
-        padding: 1.25rem;
+        padding: 0.75rem !important; /* Same as Page 2 */
+        max-height: 120px !important; /* Same as Page 2 */
         border-radius: 0 !important;
-        -webkit-border-radius: 0 !important;
-        -moz-border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
     }
     
     .classes-box h2 {
-        font-size: 1.25rem !important;
-        margin-bottom: 0.75rem;
+        font-size: 1rem !important; /* Same as Page 2 */
+        margin-bottom: 0.5rem !important;
     }
     
     .classes-box p {
-        font-size: 0.85rem !important;
-        line-height: 1.5;
+        font-size: 0.8rem !important; /* Same as Page 2 */
+        line-height: 1.3;
     }
 }
 
 /* LARGE DESKTOP (1280px and up) */
 @media (min-width: 1280px) {
-    .page-3 .classes-content {
-        width: 700px;
-        padding: 3rem 1.5rem;
-    }
-    
     .classes-box {
-        padding: 3rem;
+        width: clamp(1000px, 90vw, 1500px) !important; /* Same as Page 2 */
+        padding: 2rem !important; /* Same as Page 2 */
+        max-height: 220px !important; /* Same as Page 2 */
         border-radius: 0 !important;
-        -webkit-border-radius: 0 !important;
-        -moz-border-radius: 0 !important;
+        border-right: none !important;
     }
     
     .classes-box h2 {
-        font-size: 2.5rem !important;
-        margin-bottom: 2rem;
+        font-size: 2.5rem !important; /* Same as Page 2 */
+        margin-bottom: 1rem !important;
     }
     
     .classes-box p {
-        font-size: 1.2rem !important;
+        font-size: 1.3rem !important; /* Same as Page 2 */
     }
 }
 
 /* ULTRA WIDE (1920px and up) */
 @media (min-width: 1920px) {
-    .page-3 .classes-content {
-        width: 800px;
-        padding: 4rem 2rem;
-    }
-    
     .classes-box {
-        padding: 3.5rem;
+        width: clamp(1200px, 95vw, 1700px) !important; /* Same as Page 2 */
+        padding: 3rem !important; /* Same as Page 2 */
+        max-height: 250px !important; /* Same as Page 2 */
         border-radius: 0 !important;
-        -webkit-border-radius: 0 !important;
-        -moz-border-radius: 0 !important;
+        border-right: none !important;
     }
 }
 
@@ -1206,42 +1216,44 @@ body {
 @media (max-height: 600px) and (orientation: landscape) {
     .page-3 .classes-content {
         top: auto;
-        bottom: 0;
+        bottom: 5% !important; /* Same as Page 2 */
         left: 0;
         right: 0;
         width: 100%;
         height: auto;
-        padding: 1rem;
+        padding: 0;
     }
     
     .classes-box {
-        padding: 1rem;
+        padding: 0.75rem !important; /* Same as Page 2 */
+        max-height: 100px !important; /* Same as Page 2 */
         border-radius: 0 !important;
-        -webkit-border-radius: 0 !important;
-        -moz-border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
     }
     
     .classes-box h2 {
-        font-size: 1.25rem !important;
-        margin-bottom: 0.5rem;
+        font-size: 1rem !important; /* Same as Page 2 */
+        margin-bottom: 0.25rem !important;
     }
     
     .classes-box p {
-        font-size: 0.875rem !important;
+        font-size: 0.8rem !important; /* Same as Page 2 */
+        line-height: 1.2;
     }
 }
 
-/* Hover effect for the sidebar */
+/* Hover effect for the right-attached sidebar */
 .classes-box:hover {
-    transform: translateX(-5px);
+    transform: translateX(-5px); /* Move left on hover since it's right-attached */
     box-shadow: 
-        -15px 0 40px rgba(0, 0, 0, 0.4),
+        -25px 0 50px rgba(0, 0, 0, 0.4), /* Enhanced left shadow */
         0 25px 50px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.25);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 0 !important;
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
+    border-right: none !important;
 }
 
 /* FORCE SHARP CORNERS - Nuclear option */
