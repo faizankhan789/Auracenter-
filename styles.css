@@ -405,7 +405,8 @@ body {
     }
     
     .monitors-container {
-        position: relative;
+        position: absolute;
+        top: 40%;
         max-width: 180px;
         gap: 1rem; /* Equal gap */
         flex-shrink: 0;
@@ -429,9 +430,9 @@ body {
         gap: 3rem;
     }
     
-.monitors-container {
-        position: fixed; /* Keep them fixed on scroll */
-        top: 20%; /* Position from top */
+    .monitors-container {
+        position: absolute; /* Keep them fixed on scroll */
+        top: 40%; /* Position from top */
         right: 2rem; /* Distance from right edge */
         max-width: 200px;
         gap: 1.25rem; /* Consistent gap */
@@ -470,6 +471,8 @@ body {
 /* Ultra Wide (1920px and up) */
 @media (min-width: 1920px) {
     .monitors-container {
+        top: 40%;
+        position: absolute;
         right: 5rem; /* Even more space on ultra-wide */
         gap: 1.75rem;
     }
@@ -1058,7 +1061,7 @@ body {
     
     /* Remove old positioning */
     top: auto !important;
-    width: auto !important;
+    width: 90% !important;
     height: auto !important;
     padding: 0 !important; /* Remove padding from container */
 }
