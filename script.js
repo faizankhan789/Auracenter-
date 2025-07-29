@@ -22,7 +22,7 @@ class FitnessHeroAnimations {
             isTablet: window.innerWidth >= 768 && window.innerWidth < 1024
         };
 		this.currentPage = 1;
-		this.totalPages = 3;
+		this.totalPages = 4;
 		this.isTransitioning = false;
 		this.wheelThreshold = 30;
 		this.wheelDelta = 0;
@@ -296,6 +296,21 @@ if (pageNumber === 3) {
         classesBox.style.transform = 'translateY(50px) scale(0.95)';
     }
 }
+// Add this after Page 3 handling
+if (pageNumber === 4) {
+    const strengthText = pageEl.querySelector('.strength-text');
+    const strengthImages = pageEl.querySelector('.strength-images');
+    
+    if (strengthText) {
+        strengthText.style.opacity = '0';
+        strengthText.style.transform = 'translateX(50px) scale(0.95)';
+    }
+    
+    if (strengthImages) {
+        strengthImages.style.opacity = '0';
+        strengthImages.style.transform = 'translateX(-50px) scale(0.95)';
+    }
+}
 }
 
 /**
@@ -390,6 +405,29 @@ if (pageNumber === 3) {
             classesBox.style.opacity = '1';
             classesBox.style.transform = 'translateY(0) scale(1)';
         }, 300);
+    }
+}
+// Add this after Page 3 handling
+// CORRECT - These match your HTML classes!
+// THIS IS CORRECT - It shows the content with animation!
+if (pageNumber === 4) {
+    const strengthText = pageEl.querySelector('.strength-text');
+    const strengthImages = pageEl.querySelector('.strength-images');
+    
+    if (strengthImages) {
+        setTimeout(() => {
+            strengthImages.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            strengthImages.style.opacity = '1';  // ✅ Shows it
+            strengthImages.style.transform = 'translateX(0) scale(1)';  // ✅ Moves to position
+        }, 200);
+    }
+    
+    if (strengthText) {
+        setTimeout(() => {
+            strengthText.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            strengthText.style.opacity = '1';  // ✅ Shows it
+            strengthText.style.transform = 'translateX(0) scale(1)';  // ✅ Moves to position
+        }, 400);
     }
 }
 }
@@ -916,230 +954,3 @@ if ('performance' in window) {
         }, 0);
     });
 }
-// ==========================================================================
-// ABOUT PAGE FUNCTIONALITY - ADD TO EXISTING script.js
-// ==========================================================================
-
-/**
- * About Page Integration Class
- */
-class AboutPageIntegration {
-    constructor() {
-        this.isAboutPage = document.querySelector('.about-hero-section') !== null;
-        
-        if (this.isAboutPage) {
-            this.init();
-        }
-    }
-
-    init() {
-        this.setupAboutPageAnimations();
-        this.setupAboutPageInteractions();
-        console.log('✅ About page functionality integrated');
-    }
-
-    /**
-     * Setup About page specific animations
-     */
-    setupAboutPageAnimations() {
-        // Wait for page load then start animations
-        setTimeout(() => {
-            this.startAboutAnimations();
-        }, 500);
-
-        // Intersection Observer for about content
-        this.setupAboutIntersectionObserver();
-    }
-
-    /**
-     * Start About page animations
-     */
-    startAboutAnimations() {
-        const contentBox = document.querySelector('.about-content-box');
-        const leftImage = document.querySelector('.about-left-image');
-        const rightImage = document.querySelector('.about-right-image');
-
-        // Animate content box
-        if (contentBox) {
-            setTimeout(() => {
-                contentBox.classList.add('loaded');
-            }, 200);
-        }
-
-        // Images are already animated via CSS animations
-        // But we can add additional effects here if needed
-        
-        console.log('🎬 About page animations started');
-    }
-
-    /**
-     * Setup intersection observer for about page
-     */
-    setupAboutIntersectionObserver() {
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (entry.target.classList.contains('about-content-box')) {
-                            entry.target.classList.add('loaded');
-                        }
-                        
-                        // Add parallax effect for non-mobile devices
-                        if (window.innerWidth > 768) {
-                            this.addParallaxEffect();
-                        }
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            // Observe about content
-            const aboutElements = document.querySelectorAll('.about-content-box, .about-values-section');
-            aboutElements.forEach(el => observer.observe(el));
-        }
-    }
-
-    /**
-     * Add parallax effect for about page
-     */
-    addParallaxEffect() {
-        if (window.innerWidth <= 768) return; // Skip on mobile
-
-        window.addEventListener('scroll', () => {
-            const scrollY = window.pageYOffset;
-            const heroBackground = document.querySelector('.about-hero-background');
-            const leftImage = document.querySelector('.about-left-image');
-            const rightImage = document.querySelector('.about-right-image');
-            
-            if (heroBackground) {
-                heroBackground.style.transform = `translateY(${scrollY * 0.5}px)`;
-            }
-            
-            if (leftImage) {
-                leftImage.style.transform = `translateY(${scrollY * 0.3}px)`;
-            }
-            
-            if (rightImage) {
-                rightImage.style.transform = `translateY(${scrollY * 0.2}px) rotate(${scrollY * 0.1}deg)`;
-            }
-        });
-    }
-
-    /**
-     * Setup About page interactions
-     */
-    setupAboutPageInteractions() {
-        // Back to Home button smooth transition
-        const backToHomeBtn = document.querySelector('.back-to-home-section a');
-        if (backToHomeBtn) {
-            backToHomeBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Smooth transition effect
-                document.body.style.opacity = '0';
-                document.body.style.transition = 'opacity 0.3s ease-out';
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 300);
-            });
-        }
-
-        // Explore More button interaction
-        const exploreMoreBtn = document.querySelector('.about-cta button');
-        if (exploreMoreBtn) {
-            exploreMoreBtn.addEventListener('click', () => {
-                // Scroll to values section or add your custom logic
-                const valuesSection = document.querySelector('.about-values-section');
-                if (valuesSection) {
-                    valuesSection.scrollIntoView({ 
-                        behavior: 'smooth' 
-                    });
-                }
-            });
-        }
-
-        // Enhanced button hover effects
-        this.setupAboutButtonEffects();
-    }
-
-    /**
-     * Setup button hover effects for about page
-     */
-    setupAboutButtonEffects() {
-        const buttons = document.querySelectorAll('.about-cta button, .back-to-home-section a');
-        
-        buttons.forEach(button => {
-            button.addEventListener('mouseenter', () => {
-                if (window.innerWidth > 768) {
-                    button.style.transform = 'translateY(-3px) scale(1.02)';
-                    button.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
-                    button.style.transition = 'all 0.3s ease';
-                }
-            });
-            
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = '';
-                button.style.boxShadow = '';
-            });
-
-            // Add click ripple effect
-            button.addEventListener('click', (e) => {
-                this.createRippleEffect(e, button);
-            });
-        });
-    }
-
-    /**
-     * Create ripple effect on button click
-     */
-    createRippleEffect(event, button) {
-        const ripple = document.createElement('span');
-        const rect = button.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = event.clientX - rect.left - size / 2;
-        const y = event.clientY - rect.top - size / 2;
-        
-        ripple.style.cssText = `
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            left: ${x}px;
-            top: ${y}px;
-            width: ${size}px;
-            height: ${size}px;
-            pointer-events: none;
-        `;
-        
-        button.style.position = 'relative';
-        button.style.overflow = 'hidden';
-        button.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    }
-}
-
-// Initialize About page integration
-document.addEventListener('DOMContentLoaded', () => {
-    new AboutPageIntegration();
-});
-
-// Add ripple animation CSS via JavaScript
-const rippleCSS = `
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-`;
-
-const style = document.createElement('style');
-style.textContent = rippleCSS;
-document.head.appendChild(style);
