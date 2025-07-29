@@ -1,0 +1,17 @@
+{
+  "name": "auracenter",
+  "version": "1.0.0",
+  "description": "Auracenter static website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "build": "echo 'No build needed for static site'"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "keywords": ["static", "html", "css", "javascript"],
+  "author": "",
+  "license": "MIT"
+}
