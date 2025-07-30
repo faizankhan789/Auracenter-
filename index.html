@@ -1,227 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auracenter - A New Era of Fitness</title>
-    
     <!-- Preload critical resources -->
     <link rel="preload" href="styles.css" as="style">
     <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lenis Smooth Scrolling -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
-    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-gray-900 overflow-hidden"> 
+  </head>
+  <body class="bg-gray-900 overflow-hidden">
     <!-- Header stays exactly the same -->
     <header class="fixed top-0 w-full z-50 fade-in-up header-height">
-        <div class="flex h-full">
-            <!-- Logo Section (20%) -->
-            <div class="logo-section flex items-center justify-center w-1/5 lg:w-1/6">
-                <div class="flex items-center space-x-2 lg:space-x-3">
-                    <img src="./assets/2.png" 
-                         alt="Auracenter Logo" 
-                         class="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 rounded-lg object-contain">
-                </div>
-            </div>
-            
-            <!-- Navigation Section (80%) -->
-            <div class="nav-section header-bg backdrop-blur-sm flex justify-between items-center px-2 sm:px-4 lg:px-8 flex-1">
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-white p-2" id="mobileMenuBtn">
-                    <i data-lucide="menu" class="w-5 h-5"></i>
-                </button>
-                
-                <!-- Centered Navigation -->
-                <div class="hidden md:flex flex-1 justify-center">
-                    <nav class="flex items-baseline space-x-4 lg:space-x-8">
-                        <a href="#" class="nav-link text-white hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
-                        <a href="#about" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
-                        <a href="#classes" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
-                        <a href="#strength" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="4">Strength</a>
-                    </nav>
-                </div>
-                
-                <!-- Get Started Button -->
-                <div>
-                    <button class="bg-green-500 hover:bg-green-600 text-white px-3 lg:px-4 py-2 rounded-lg text-xs lg:text-sm font-medium transition-colors">
-                        Get Started
-                    </button>
-                </div>
-            </div>
+      <div class="flex h-full">
+        <!-- Logo Section (20%) -->
+        <div class="logo-section flex items-center justify-center w-1/5 lg:w-1/6">
+          <div class="flex items-center space-x-2 lg:space-x-3">
+            <img src="./assets/2.png" alt="Auracenter Logo" class="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 rounded-lg object-contain">
+          </div>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu md:hidden absolute top-full left-0 w-full bg-slate-800 backdrop-blur-sm border-t border-gray-700 hidden">
-            <nav class="px-4 py-4 space-y-2">
-                <a href="#" class="nav-link block text-white hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
-                <a href="#about" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
-                <a href="#classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
-                <a href="#strength" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="4">Strength</a>
+        <!-- Navigation Section (80%) -->
+        <div class="nav-section header-bg backdrop-blur-sm flex justify-between items-center px-2 sm:px-4 lg:px-8 flex-1">
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden text-white p-2" id="mobileMenuBtn">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <!-- Centered Navigation -->
+          <div class="hidden md:flex flex-1 justify-center">
+            <nav class="flex items-baseline space-x-4 lg:space-x-8">
+              <a href="#" class="nav-link text-white hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
+              <a href="#about" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
+              <a href="#classes" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
+              <a href="#strength" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="4">Strength</a>
+              <a href="#our-classes" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="5">Our Classes</a>
             </nav>
+          </div>
+          <!-- Get Started Button -->
+<div>
+  <button class="bg-[#CCE5E1] hover:bg-[#b8dcd6] text-[#111B2A] px-3 lg:px-4 py-2 rounded-lg text-xs lg:text-sm font-medium transition-colors">
+    Get Started
+  </button>
+</div>
+
         </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu md:hidden absolute top-full left-0 w-full bg-slate-800 backdrop-blur-sm border-t border-gray-700 hidden">
+        <nav class="px-4 py-4 space-y-2">
+          <a href="#" class="nav-link block text-white hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
+          <a href="#about" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
+          <a href="#classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
+          <a href="#strength" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="4">Strength</a>
+          <a href="#our-classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="5">Our Classes</a>
+        </nav>
+      </div>
     </header>
-
-    <!-- NEW: Page Container -->
+    <!-- Page Container -->
     <div class="page-container">
-        <!-- Page 1: Hero Section -->
-        <section class="page page-1 active" data-page="1">
-            <div class="hero-background absolute inset-0"></div>
-            <div class="content-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-                <div class="hero-content flex flex-col lg:flex-row items-center justify-between h-full py-8 lg:py-16">
-                    <!-- Left Content -->
-                    <div class="flex-1 max-w-2xl z-10 relative text-center mb-8 lg:mb-0">
-                        <h1 class="hero-title text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 lg:mb-6 fade-in-up fade-in-up-delay-1">
-                            Auracenter - A New Era <br>
-                            <span class="text-green-400">of Fitness</span>
-                        </h1>
-                        
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up fade-in-up-delay-3">
-                            <button class="bg-green-500 hover:bg-green-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105">
-                                Learn More
-                            </button>
-                        </div>
+      <!-- Page 1: Hero Section -->
+      <section class="page page-1 active" data-page="1">
+        <div class="hero-background absolute inset-0"></div>
+        <div class="content-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div class="hero-content flex flex-col lg:flex-row items-center justify-between h-full py-8 lg:py-16">
+            <!-- Left Content -->
+            <div class="flex-1 max-w-2xl z-10 relative text-center mb-8 lg:mb-0">
+              <h1 class="hero-title text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 lg:mb-6 fade-in-up fade-in-up-delay-1"> Auracenter - A New Era <br>
+                <span class="text-white-400">of Fitness</span>
+              </h1>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up fade-in-up-delay-3">
+                <button class="bg-white hover:bg-green-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105"> Learn More </button>
+              </div>
+            </div>
+            <!-- Enhanced Monitors Container -->
+            <div class="monitors-container fade-in-up fade-in-up-delay-4">
+              <!-- Heart Rate Monitor -->
+              <div class="heart-monitor">
+                <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
+                  <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-1">
+                      <div class="w-2 h-2 bg-red-500 rounded-full blink-dot"></div>
+                      <span class="text-white text-xs font-medium">LIVE</span>
+                      <i data-lucide="heart" class="w-3 h-3 text-red-500 fill-red-500 heart-pulse"></i>
                     </div>
-
-                    <!-- Enhanced Monitors Container -->
-                    <div class="monitors-container fade-in-up fade-in-up-delay-4">
-                        <!-- Heart Rate Monitor -->
-                        <div class="heart-monitor">
-                            <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
-                                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
-                                
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="flex items-center gap-1">
-                                        <div class="w-2 h-2 bg-red-500 rounded-full blink-dot"></div>
-                                        <span class="text-white text-xs font-medium">LIVE</span>
-                                        <i data-lucide="heart" class="w-3 h-3 text-red-500 fill-red-500 heart-pulse"></i>
-                                    </div>
-                                    <div class="text-xs text-gray-400">BPM</div>
-                                </div>
-                                
-                                <div class="flex items-baseline gap-1 mb-2">
-                                    <span class="text-white text-xl lg:text-2xl font-bold monitor-text" id="heartRate">128</span>
-                                    <span class="text-gray-400 text-xs">AVG</span>
-                                </div>
-                                
-                                <div class="relative h-8 lg:h-12 w-full overflow-hidden">
-                                    <canvas id="ecgCanvas" class="w-full h-full"></canvas>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Workout Tracker -->
-                        <div class="workout-monitor">
-                            <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
-                                <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
-                                
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="text-gray-400 text-xs font-medium">SAT 7</span>
-                                    <div class="flex items-center gap-1">
-                                        <span class="text-white text-lg font-bold time-blink" id="clockTime">09:09</span>
-                                        <i data-lucide="clock" class="w-3 h-3 text-gray-400"></i>
-                                    </div>
-                                </div>
-                                
-                                <div class="relative h-12">
-                                    <svg class="w-full h-full" viewBox="0 0 180 48">
-                                        <path d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20"
-                                              fill="none" 
-                                              stroke="#4ade80" 
-                                              stroke-width="2" 
-                                              class="workout-progress-path"/>
-                                        
-                                        <circle r="3" fill="#4ade80" class="progress-dot-moving">
-                                            <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite"/>
-                                            <animateMotion dur="3s" repeatCount="indefinite">
-                                                <mpath href="#workoutPath"/>
-                                            </animateMotion>
-                                        </circle>
-                                        
-                                        <path id="workoutPath" d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20" fill="none"/>
-                                    </svg>
-                                    
-                                    <div class="absolute bottom-0 left-0 right-0 flex justify-between items-end px-1">
-                                        <div class="w-1 bg-green-500 rounded-full activity-bar-1"></div>
-                                        <div class="w-1 bg-red-500 rounded-full activity-bar-2"></div>
-                                        <div class="w-1 bg-green-500 rounded-full activity-bar-3"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="text-xs text-gray-400">BPM</div>
+                  </div>
+                  <div class="flex items-baseline gap-1 mb-2">
+                    <span class="text-white text-xl lg:text-2xl font-bold monitor-text" id="heartRate">128</span>
+                    <span class="text-gray-400 text-xs">AVG</span>
+                  </div>
+                  <div class="relative h-8 lg:h-12 w-full overflow-hidden">
+                    <canvas id="ecgCanvas" class="w-full h-full"></canvas>
+                  </div>
+                </div>
+              </div>
+              <!-- Workout Tracker -->
+              <div class="workout-monitor">
+                <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
+                  <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-gray-400 text-xs font-medium">SAT 7</span>
+                    <div class="flex items-center gap-1">
+                      <span class="text-white text-lg font-bold time-blink" id="clockTime">09:09</span>
+                      <i data-lucide="clock" class="w-3 h-3 text-gray-400"></i>
                     </div>
+                  </div>
+                  <div class="relative h-12">
+                    <svg class="w-full h-full" viewBox="0 0 180 48">
+                      <path d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20" fill="none" stroke="#4ade80" stroke-width="2" class="workout-progress-path" />
+                      <circle r="3" fill="#4ade80" class="progress-dot-moving">
+                        <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite" />
+                        <animateMotion dur="3s" repeatCount="indefinite">
+                          <mpath href="#workoutPath" />
+                        </animateMotion>
+                      </circle>
+                      <path id="workoutPath" d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20" fill="none" />
+                    </svg>
+                    <div class="absolute bottom-0 left-0 right-0 flex justify-between items-end px-1">
+                      <div class="w-1 bg-green-500 rounded-full activity-bar-1"></div>
+                      <div class="w-1 bg-red-500 rounded-full activity-bar-2"></div>
+                      <div class="w-1 bg-green-500 rounded-full activity-bar-3"></div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
-
-        <!-- Page 2: About Section -->
-        <section class="page page-2" data-page="2">
-            <div class="about-background absolute inset-0"></div>
-            
-            <!-- SIMPLIFIED STRUCTURE - Remove the nested containers -->
-            <div class="about-box">
-                <h2>Welcome to Auracenter</h2>
-                <p>
-                    Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by 
-                    offering premium facilities, expert guidance, and a supportive environment. As one of 
-                    Jeddah's first luxury gyms for women
-                </p>
-            </div>
-        </section>
-        
-        <!-- Page 3: Classes Section -->
-        <section class="page page-3" data-page="3">
-            <div class="classes-background absolute inset-0"></div>
-            
-            <!-- SIMPLIFIED STRUCTURE - Remove conflicting centering classes -->
-            <div class="classes-content">
-                <div class="classes-box">
-                    <h2>We're Here to Serve You Well</h2>
-                </div>
-            </div>
-        </section>
-
-        <!-- Page 4: Your Strength Section -->
-<!-- Page 4: Your Strength Section -->
-<section class="page page-4" data-page="4">
-    <div class="strength-background absolute inset-0"></div>
-    
-    <div class="strength-content">
-        <!-- Left side - Two independent images -->
-        <div class="strength-images">
-            <img src="./assets/8.png" alt="Woman exercising" class="woman-image-large">
-            <img src="./assets/7.png" alt="Woman exercising" class="woman-image-small">
+          </div>
         </div>
-        
-        <!-- Right side - Text directly on background -->
-        <div class="strength-text">
-            <div class="strength-header">
-                <button class="about-btn">ABOUT US</button>
-            </div>
+      </section>
+      <!-- Page 2: About Section -->
+      <section class="page page-2" data-page="2">
+        <div class="about-background absolute inset-0"></div>
+        <div class="about-box">
+          <h2>Welcome to Auracenter</h2>
+          <p> Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, and a supportive environment. As one of Jeddah's first luxury gyms for women </p>
+        </div>
+      </section>
+      <!-- Page 3: Classes Section -->
+      <section class="page page-3" data-page="3">
+        <div class="classes-background absolute inset-0"></div>
+        <div class="classes-content">
+          <div class="classes-box">
+            <h2>We're Here to Serve You Well</h2>
+          </div>
+        </div>
+      </section>
+      <!-- Page 4: Your Strength Section -->
+      <!-- Page 4: Your Strength Section - CORRECTED HTML -->
+      <section class="page page-4" data-page="4">
+        <div class="strength-background absolute inset-0"></div>
+        <div class="strength-content">
+          <!-- Images positioned OUTSIDE any container - directly in strength-content -->
+          <!-- Image 8 (assets/8.png) - Main woman image -->
+          <img src="./assets/8.png" alt="Woman exercising" class="woman-image-large">
+          <!-- Image 7 (assets/7.png) - Circular image -->
+          <img src="./assets/7.png" alt="Woman exercising" class="woman-image-small">
+          <div class="strength-header" style="margin-top: 7vh; text-align: center;">
+            <button class="about-btn" style="font-size: 1rem; padding: 0.75rem 2rem; border-radius: 9px;"> ABOUT US </button>
+          </div>
+          <!-- Text content -->
+          <div class="strength-text">
             <h2>Your Strength. Our Vision.</h2>
-            <p>
-                Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by 
-                offering premium facilities, expert guidance, & a supportive environment. As one of Jeddah's 
-                first luxury gyms for women, we promote a healthy lifestyle and positive social space. Our 
-                two branches – Aura Luxury (North Obhur) and Aura Elite (Corniche) – provide more than just 
-                fitness; they're a second home for our members.
-            </p>
+            <p> Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, & a supportive environment. As one of Jeddah's first luxury gyms for women, we promote a healthy lifestyle and positive social space. Our two branches – Aura Luxury (North Obhur) and Aura Elite (Corniche) – provide more than just fitness; they're a second home for our members. </p>
             <button class="explore-btn">Explore More</button>
+          </div>
         </div>
-    </div>
-</section>
-</section>
-    </div>
+      </section>
+      <!-- Page 5: Our Classes & Facilities (Merged - 6 Images with Hover Cards) -->
+      <section class="page page-5" data-page="5">
+        <div class="absolute top-[1vh] left-1/2 transform -translate-x-1/2 text-center z-10">
+          <h1 class="inline-block bg-[#CCE5E1] text-2xl font-bold text-black px-4 py-2 rounded-md"> OUR CLASSES </h1>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black mt-3 whitespace-nowrap"> FITNESS CLASSES FOR EVERY GOAL </h1>
+        </div>
+        <div class="horizontal-scroll-wrapper">
+          <div class="horizontal-scroll-content">
+            <!-- Block 1: Power Yoga -->
+            <div class="image-block group">
+              <img src="./assets/9.jpg" alt="Power Yoga class" class="image-block-img transition-all duration-500 hover:scale-105">
+              <div class="hover-card">
+                <h3 class="text-xl font-bold mb-3 text-white">Power Yoga</h3>
+                <ul class="space-y-2 text-sm text-gray-200">
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Flexibility
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Breath control
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Stress relief
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Block 2: Cardio Blast -->
+            <div class="image-block group">
+              <img src="./assets/10.jpg" alt="Cardio workout" class="image-block-img transition-all duration-500 hover:scale-105">
+              <div class="hover-card">
+                <h3 class="text-xl font-bold mb-3 text-white">Personal Training</h3>
+                <ul class="space-y-2 text-sm text-gray-200">
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> 1-on-1 coaching
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Custom plans
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Goal tracking
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Block 3: Core Pilates -->
+            <div class="image-block group">
+              <img src="./assets/11.jpg" alt="Pilates class" class="image-block-img transition-all duration-500 hover:scale-105">
+              <div class="hover-card">
+                <h3 class="text-xl font-bold mb-3 text-white">Stretch & Recovery</h3>
+                <ul class="space-y-2 text-sm text-gray-200">
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Deep stretching
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Muscle release
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> LInjury prevention
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Block 4: Weight Training -->
+            <div class="image-block group">
+              <img src="./assets/12.jpg" alt="Weight training area" class="image-block-img transition-all duration-500 hover:scale-105">
+              <div class="hover-card">
+                <h3 class="text-xl font-bold mb-3 text-white">Weight Lifting</h3>
+                <ul class="space-y-2 text-sm text-gray-200">
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Strength training
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Form guidance
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Women-focused
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Block 5: Aquatic Center -->
+            <div class="image-block group">
+              <img src="./assets/13.jpg" alt="Swimming pool" class="image-block-img transition-all duration-500 hover:scale-105">
+              <div class="hover-card">
+                <h3 class="text-xl font-bold mb-3 text-white">Cardio & Strength</h3>
+                <ul class="space-y-2 text-sm text-gray-200">
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> HIIT sessions
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Fat burn
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Endurance
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Block 6: Premium Amenities -->
+            <div class="image-block group">
+              <img src="./assets/14.jpg" alt="Premium amenities" class="image-block-img transition-all duration-500 hover:scale-105">
+              <div class="hover-card">
+                <h3 class="text-xl font-bold mb-3 text-white">Dance Fitness</h3>
+                <ul class="space-y-2 text-sm text-gray-200">
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Fun workouts
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> High energy
+                  </li>
+                  <li class="flex items-start">
+                    <span class="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Cultural vibes
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Add this to your HTML file after Page 5 section and before the closing </div> of page-container -->
 
+<!-- Page 6: Mission & Vision Section -->
+<!-- Add this to your HTML file after Page 5 section and before the closing </div> of page-container -->
+
+<!-- Page 6: Mission & Vision Section -->
+<!-- Add this to your HTML file after Page 5 section and before the closing </div> of page-container -->
+
+<!-- Page 6: Mission & Vision Section -->
+<!-- Add this to your HTML file after Page 5 section and before the closing </div> of page-container -->
+
+<!-- Page 6: Mission & Vision Section -->
+<section class="page page-6" data-page="6">
+  <!-- Image 1: Mission - Direct on background -->
+  <img src="./assets/mission.jpg" alt="Mission" class="direct-image mission-img">
+  
+  <!-- Image 2: Vision - Direct on background -->
+  <img src="./assets/vision.jpg" alt="Vision" class="direct-image vision-img">
+</section>
+    </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
