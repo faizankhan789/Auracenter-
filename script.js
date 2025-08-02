@@ -46,6 +46,7 @@ class FitnessHeroAnimations {
     init() {
         this.checkPerformance();
         this.initPageTransitions();
+        this.initHeaderVisibility();
         this.initLucideIcons();
         this.setupEventListeners();
         this.setupMobileMenu();
@@ -255,6 +256,17 @@ class FitnessHeroAnimations {
         
         console.log(`🔄 Starting transition from page ${this.currentPage} to page ${pageNumber}`);
         this.isTransitioning = true;
+        // Header visibility control
+const header = document.querySelector('header');
+if (header) {
+    if (pageNumber === 1) {
+        // Show header on page 1
+        header.classList.remove('hidden');
+    } else {
+        // Hide header on other pages
+        header.classList.add('hidden');
+    }
+}
         
         const oldPageNumber = this.currentPage;
         // Only page 5 now has horizontal scrolling
@@ -335,6 +347,19 @@ class FitnessHeroAnimations {
             targetLink.classList.add('text-white');
         });
     }
+    /**
+ * Initialize header visibility based on current page
+ */
+initHeaderVisibility() {
+    const header = document.querySelector('header');
+    if (header) {
+        if (this.currentPage === 1) {
+            header.classList.remove('hidden');
+        } else {
+            header.classList.add('hidden');
+        }
+    }
+}
 
     /**
      * Reset page animations to their initial state
@@ -383,18 +408,13 @@ class FitnessHeroAnimations {
                 block.style.transform = 'translateY(50px) scale(0.95)';
             });
         }
-        if (pageNumber === 6) {
-        const missionCard = pageEl.querySelector('.mission-card');
-        const visionCard = pageEl.querySelector('.vision-card');
-        if (missionCard) { 
-            missionCard.style.opacity = '0'; 
-            missionCard.style.transform = 'translateX(-50px) scale(0.95)'; 
-        }
-        if (visionCard) { 
-            visionCard.style.opacity = '0'; 
-            visionCard.style.transform = 'translateX(50px) scale(0.95)'; 
-        }
-    }
+if (pageNumber === 6) {
+    const galleryBlocks = pageEl.querySelectorAll('.gallery-block');
+    galleryBlocks.forEach(block => {
+        block.style.opacity = '0';
+        block.style.transform = 'translateY(50px) scale(0.9)';
+    });
+}
     }
 
     /**
@@ -458,26 +478,17 @@ class FitnessHeroAnimations {
                 }, 300 + index * 100); // Staggered animation for 6 blocks
             });
         }
-        if (pageNumber === 6) {
-        const missionCard = pageEl.querySelector('.mission-card');
-        const visionCard = pageEl.querySelector('.vision-card');
-        
-        if (missionCard) { 
-            setTimeout(() => { 
-                missionCard.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; 
-                missionCard.style.opacity = '1'; 
-                missionCard.style.transform = 'translateX(0) scale(1)'; 
-            }, 200); 
-        }
-        
-        if (visionCard) { 
-            setTimeout(() => { 
-                visionCard.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; 
-                visionCard.style.opacity = '1'; 
-                visionCard.style.transform = 'translateX(0) scale(1)'; 
-            }, 400); 
-        }
-    }
+if (pageNumber === 6) {
+    const galleryBlocks = pageEl.querySelectorAll('.gallery-block');
+    
+    galleryBlocks.forEach((block, index) => {
+        setTimeout(() => {
+            block.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            block.style.opacity = '1';
+            block.style.transform = 'translateY(0) scale(1)';
+        }, 300 + index * 300); // Staggered animation: first block at 300ms, second at 600ms
+    });
+}
     }
     setupMissionVisionInteractions() {
     const cards = document.querySelectorAll('.mission-card, .vision-card');
@@ -504,6 +515,55 @@ class FitnessHeroAnimations {
         });
     });
 }
+// Replace the existing setupPage6HoverCards method in your JavaScript with this updated version:
+
+// Replace your setupPage6HoverCards() method with this simplified version:
+
+// Clean version - replace your setupPage6HoverCards() with this:
+
+setupPage6HoverCards() {
+    const galleryBlocks = document.querySelectorAll('.gallery-block.group');
+    const galleryBlock1 = document.querySelector('.gallery-block-1');
+    const galleryBlock2 = document.querySelector('.gallery-block-2');
+    
+    if (!galleryBlock1 || !galleryBlock2) {
+        console.error('❌ Gallery blocks not found!');
+        return;
+    }
+    
+    // Basic hover functionality for all blocks
+    galleryBlocks.forEach(block => {
+        const hoverCard = block.querySelector('.hover-card');
+        const image = block.querySelector('.gallery-image');
+        
+        if (!hoverCard || !image) return;
+        
+        // Touch support for mobile
+        block.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            block.classList.add('touch-active');
+        });
+        
+        block.addEventListener('touchend', () => {
+            setTimeout(() => {
+                block.classList.remove('touch-active');
+            }, 3000);
+        });
+    });
+    
+    // Gallery shift for Block 2 (like Page 5 last image)
+    galleryBlock2.addEventListener('mouseenter', () => {
+        galleryBlock1.classList.add('shift-left');
+        galleryBlock2.classList.add('shift-left');
+    });
+    
+    galleryBlock2.addEventListener('mouseleave', () => {
+        galleryBlock1.classList.remove('shift-left');
+        galleryBlock2.classList.remove('shift-left');
+    });
+    
+    console.log('✅ Page 6 gallery shift initialized');
+}
     
 
     /**
@@ -519,75 +579,116 @@ class FitnessHeroAnimations {
     /**
      * Setup event listeners
      */
-    setupEventListeners() {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.onPageLoad());
-        } else {
-            this.onPageLoad();
-        }
-        window.addEventListener('resize', this.debounce(() => this.onResize(), 250));
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => this.onResize(), 100);
-        });
-        document.addEventListener('visibilitychange', () => this.onVisibilityChange());
-        this.setupMonitorInteractions();
-        this.setupNavigationLinks();
-        this.setupMissionVisionInteractions();
-        this.setupSmoothScroll();
-        this.setupIntersectionObserver();
-        this.setupHoverCardInteractions(); // New method for hover cards
+setupEventListeners() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.onPageLoad());
+    } else {
+        this.onPageLoad();
     }
+    window.addEventListener('resize', this.debounce(() => this.onResize(), 250));
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => this.onResize(), 100);
+    });
+    document.addEventListener('visibilitychange', () => this.onVisibilityChange());
+    this.setupMonitorInteractions();
+    this.setupNavigationLinks();
+    this.setupMissionVisionInteractions();
+    this.setupPage6HoverCards(); // ✅ Keep this
+    this.setupSmoothScroll();
+    this.setupIntersectionObserver();
+    this.setupHoverCardInteractions();
+}
 
     /**
      * Setup hover card interactions for enhanced UX
      */
-    setupHoverCardInteractions() {
-        const imageBlocks = document.querySelectorAll('.image-block.group');
+   // Add this modification to your setupHoverCardInteractions function
+// Replace the existing gallery shift functionality with this:
+
+// STEP 1: Remove the DUPLICATE setupHoverCardInteractions() function at the bottom of your file (lines ~646-718)
+// STEP 2: Keep only this version inside your class:
+
+setupHoverCardInteractions() {
+    const imageBlocks = document.querySelectorAll('.image-block.group');
+    
+    imageBlocks.forEach(block => {
+        const hoverCard = block.querySelector('.hover-card');
+        const image = block.querySelector('.image-block-img');
         
-        imageBlocks.forEach(block => {
-            const hoverCard = block.querySelector('.hover-card');
-            const image = block.querySelector('.image-block-img');
-            
-            if (!hoverCard || !image) return;
-            
-            // Mouse enter
-            block.addEventListener('mouseenter', () => {
-                // Add additional visual effects
+        if (!hoverCard || !image) return;
+        
+        // Mouse enter
+        block.addEventListener('mouseenter', () => {
+            // Add additional visual effects only on desktop
+            if (window.innerWidth > 768) {
                 block.style.transform = 'translateY(-10px) scale(1.02)';
-                
-                // Enhance the hover card animation
-                setTimeout(() => {
-                    const listItems = hoverCard.querySelectorAll('li');
-                    listItems.forEach((item, index) => {
-                        item.style.animationDelay = `${0.1 + index * 0.1}s`;
-                    });
-                }, 100);
-            });
+            }
             
-            // Mouse leave
-            block.addEventListener('mouseleave', () => {
-                block.style.transform = '';
-                
-                // Reset list item animations
+            // Enhance the hover card animation
+            setTimeout(() => {
                 const listItems = hoverCard.querySelectorAll('li');
-                listItems.forEach(item => {
-                    item.style.animationDelay = '';
+                listItems.forEach((item, index) => {
+                    item.style.animationDelay = `${0.1 + index * 0.1}s`;
                 });
-            });
+            }, 100);
+        });
+        
+        // Mouse leave
+        block.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 768) {
+                block.style.transform = '';
+            }
             
-            // Touch support for mobile
-            block.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                block.classList.add('touch-active');
-            });
-            
-            block.addEventListener('touchend', () => {
-                setTimeout(() => {
-                    block.classList.remove('touch-active');
-                }, 2000); // Show for 2 seconds on touch
+            // Reset list item animations
+            const listItems = hoverCard.querySelectorAll('li');
+            listItems.forEach(item => {
+                item.style.animationDelay = '';
             });
         });
+        
+        // Touch support for mobile
+        block.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            block.classList.add('touch-active');
+        });
+        
+        block.addEventListener('touchend', () => {
+            setTimeout(() => {
+                block.classList.remove('touch-active');
+            }, 2000); // Show for 2 seconds on touch
+        });
+    });
+
+    // Gallery shift functionality - ONLY for desktop (window width > 768px)
+    const lastImageBlock = document.querySelector('.page-5 .image-block:last-child');
+    const scrollContent = document.querySelector('.page-5 .horizontal-scroll-content');
+
+    if (lastImageBlock && scrollContent) {
+        // Only add gallery shift for desktop
+        const handleGalleryShift = () => {
+            if (window.innerWidth > 768) {
+                lastImageBlock.addEventListener('mouseenter', () => {
+                    scrollContent.classList.add('shift-for-last-image');
+                });
+                
+                lastImageBlock.addEventListener('mouseleave', () => {
+                    scrollContent.classList.remove('shift-for-last-image');
+                });
+            }
+        };
+
+        // Initial setup
+        handleGalleryShift();
+        
+        // Re-setup on window resize
+        window.addEventListener('resize', () => {
+            // Remove existing listeners and re-setup based on screen size
+            setTimeout(handleGalleryShift, 100);
+        });
+        
+        console.log('✅ Gallery shift for last image initialized (desktop only)');
     }
+}
 
     /**
      * Setup navigation links to work with page transitions
@@ -676,6 +777,7 @@ class FitnessHeroAnimations {
     onPageLoad() {
         this.initCanvasAnimations();
         this.startClockUpdate();
+        this.initHeaderVisibility();
         document.body.classList.add('loaded');
         const page1 = document.querySelector('.page-1');
         if (page1 && this.currentPage === 1) {
@@ -945,82 +1047,3 @@ if ('performance' in window) {
         }, 0);
     });
 }
-/**
- * Setup hover card interactions for enhanced UX
- */
-setupHoverCardInteractions() 
-{
-    const imageBlocks = document.querySelectorAll('.image-block.group');
-    
-    imageBlocks.forEach(block => {
-        const hoverCard = block.querySelector('.hover-card');
-        const image = block.querySelector('.image-block-img');
-        
-        if (!hoverCard || !image) return;
-        
-        // Mouse enter
-        block.addEventListener('mouseenter', () => {
-            // Add additional visual effects
-            block.style.transform = 'translateY(-10px) scale(1.02)';
-            
-            // Enhance the hover card animation
-            setTimeout(() => {
-                const listItems = hoverCard.querySelectorAll('li');
-                listItems.forEach((item, index) => {
-                    item.style.animationDelay = `${0.1 + index * 0.1}s`;
-                });
-            }, 100);
-        });
-        
-        // Mouse leave
-        block.addEventListener('mouseleave', () => {
-            block.style.transform = '';
-            
-            // Reset list item animations
-            const listItems = hoverCard.querySelectorAll('li');
-            listItems.forEach(item => {
-                item.style.animationDelay = '';
-            });
-        });
-        
-        // Touch support for mobile
-        block.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            block.classList.add('touch-active');
-        });
-        
-        block.addEventListener('touchend', () => {
-            setTimeout(() => {
-                block.classList.remove('touch-active');
-            }, 2000); // Show for 2 seconds on touch
-        });
-    });
-
-    // Gallery shift functionality for last image
-    const lastImageBlock = document.querySelector('.page-5 .image-block:last-child');
-    const scrollContent = document.querySelector('.page-5 .horizontal-scroll-content');
-
-    if (lastImageBlock && scrollContent) {
-        lastImageBlock.addEventListener('mouseenter', () => {
-            scrollContent.classList.add('shift-for-last-image');
-        });
-        
-        lastImageBlock.addEventListener('mouseleave', () => {
-            scrollContent.classList.remove('shift-for-last-image');
-        });
-        
-        // Touch support for mobile gallery shift
-        lastImageBlock.addEventListener('touchstart', () => {
-            scrollContent.classList.add('shift-for-last-image');
-        });
-        
-        lastImageBlock.addEventListener('touchend', () => {
-            setTimeout(() => {
-                scrollContent.classList.remove('shift-for-last-image');
-            }, 2000); // Keep shift for 2 seconds on touch
-        });
-        
-        console.log('✅ Gallery shift for last image initialized');
-    }
-}
-

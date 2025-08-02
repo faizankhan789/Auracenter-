@@ -58,6 +58,27 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* Enhanced header visibility control */
+header {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+header.hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* Ensure header stays above everything */
+header {
+  z-index: 100 !important;
+  position: fixed !important;
+  top: 0 !important;
+  width: 100% !important;
+}
 
 /* ==========================================================================
    Page Load Animations
@@ -1022,6 +1043,9 @@ body {
 /* Page 4 Styles - COMPLETE CSS WITH IMAGE CONTENT MOVED 10% RIGHT */
 /* Page 4 Styles - COMPLETE CSS WITH IMAGE CONTENT MOVED 10% RIGHT */
 
+/* ==========================================================================
+   PAGE 4 - COMPLETE CSS - YOUR STRENGTH SECTION (LARGE IMAGE LEFT-BOTTOM)
+   ========================================================================== */
 /* Page 4 Styles - COMPLETE CSS WITH IMAGES MOVED 20% RIGHT USING TRANSFORM */
 .page-4 {
   padding-top: var(--header-height) !important;
@@ -1741,93 +1765,142 @@ body {
   }
 }
 
+/* Add these styles to your existing CSS - Mobile flip animation changes only */
+
+/* Mobile-specific flip animation styles */
 @media (max-width: 768px) {
-  .page-5 {
-    padding-top: var(--header-height-mobile) !important;
-  }
-
-  .horizontal-scroll-wrapper {
-    height: calc(100vh - var(--header-height-mobile));
-    top: var(--header-height-mobile);
-  }
-
-  .horizontal-scroll-content {
-    padding: 0 1.5rem;
-    gap: 1.5rem;
-    /* Maintain 10% upward movement */
-    transform: translateY(-10%);
-  }
-
+  /* Add perspective to the image block container for 3D flip effect */
   .image-block {
-    width: 70vw;
-    height: 75vh;
-    max-width: 300px;
-    max-height: 400px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
   }
 
+  /* Image styling for flip - acts as front face */
+  .image-block-img {
+    backface-visibility: hidden;
+    transition: transform 0.6s ease-in-out;
+    transform-origin: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Hover card positioning for flip - acts as back face */
   .hover-card {
-    padding: 1.25rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    transition: transform 0.6s ease-in-out;
+    
+    /* Reset mobile-specific positioning */
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    
+    /* Center content for mobile */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
+  /* On hover/touch - flip the image back and card front */
+  .group:hover .image-block-img,
+  .group.touch-active .image-block-img {
+    transform: rotateY(-180deg);
+  }
+
+  .group:hover .hover-card,
+  .group.touch-active .hover-card {
+    transform: rotateY(0deg);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Disable the sliding animation for mobile */
+  .group:hover .hover-card {
+    transform: rotateY(0deg) !important; /* Override the sliding transform */
+  }
+
+  /* Completely disable gallery shift for mobile since we're using flip */
+  .horizontal-scroll-content.shift-for-last-image {
+    transform: translateY(-10%) !important; /* Keep original position */
+  }
+
+  /* Disable the last image shift behavior completely on mobile */
+  .image-block:last-child:hover .hover-card,
+  .image-block:last-child.touch-active .hover-card {
+    transform: rotateY(0deg) !important; /* Only flip, no sliding */
+  }
+
+  /* Ensure last image doesn't trigger gallery shift on mobile */
+  .image-block:last-child {
+    will-change: transform; /* Optimize for flip animation only */
+  }
+
+  /* Prevent any conflicting transforms on the last image block */
+  .image-block:last-child:hover,
+  .image-block:last-child.touch-active {
+    transform: translateY(-10px) scale(1.02) !important; /* Standard hover effect only */
+  }
+
+  /* Ensure hover card content is readable on mobile */
   .hover-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+  }
+
+  .hover-card ul {
+    text-align: left !important;
+    max-width: 100% !important;
   }
 
   .hover-card li {
-    font-size: 0.875rem;
-    margin-bottom: 0.75rem;
-  }
-
-  /* Mobile image fitting */
-  .image-block-img {
-    object-fit: cover;
-    object-position: center;
+    justify-content: flex-start !important;
+    font-size: 0.875rem !important;
+    margin-bottom: 0.75rem !important;
   }
 }
 
+/* For very small mobile screens */
 @media (max-width: 480px) {
-  .horizontal-scroll-content {
-    padding: 0 1rem;
-    gap: 1rem;
-    /* Maintain 10% upward movement */
-    transform: translateY(-10%);
-  }
-
-  .image-block {
-    width: 80vw;
-    height: 70vh;
-    max-width: 280px;
-    max-height: 350px;
-  }
-
   .hover-card {
-    padding: 1rem;
+    padding: 1rem !important;
   }
 
   .hover-card h3 {
-    font-size: 1.125rem;
-    margin-bottom: 0.875rem;
+    font-size: 1.125rem !important;
+    margin-bottom: 0.875rem !important;
   }
 
   .hover-card li {
-    font-size: 0.8rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .hover-card li span {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.75rem;
-  }
-
-  /* Small mobile image fitting */
-  .image-block-img {
-    object-fit: cover;
-    object-position: center;
+    font-size: 0.8rem !important;
+    margin-bottom: 0.6rem !important;
   }
 }
 
+/* Landscape mobile orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hover-card {
+    padding: 1rem !important;
+  }
+
+  .hover-card h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .hover-card li {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+}
 @media (min-width: 1280px) {
   .page-5 {
     padding-top: var(--header-height) !important;
@@ -1877,47 +1950,6 @@ body {
   }
 }
 
-@media (max-height: 600px) and (orientation: landscape) {
-  .page-5 {
-    padding-top: var(--header-height-mobile) !important;
-  }
-
-  .horizontal-scroll-wrapper {
-    height: calc(100vh - var(--header-height-mobile));
-    top: var(--header-height-mobile);
-  }
-
-  .horizontal-scroll-content {
-    /* Adjust upward movement for landscape mode */
-    transform: translateY(-8%);
-  }
-
-  .image-block {
-    width: clamp(200px, 35vw, 250px);
-    height: calc(90vh - var(--header-height-mobile));
-    max-height: 300px;
-  }
-
-  .hover-card {
-    padding: 1rem;
-  }
-
-  .hover-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .hover-card li {
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Landscape image fitting */
-  .image-block-img {
-    object-fit: cover;
-    object-position: center;
-  }
-}
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
@@ -2009,157 +2041,626 @@ body {
   opacity: 1;
 }
 /* ==========================================================================
-   PAGE 6 - MISSION & VISION SECTION
+   PAGE 6 - SIMPLE GALLERY WITH GREY BACKGROUND - INDEPENDENT IMAGES
    ========================================================================== */
+/* ==========================================================================
+   PAGE 6 - GALLERY WITH HOVER CARDS (Same as Page 5 System)
+   ========================================================================== */
+/* ==========================================================================
+   PAGE 6 - GALLERY WITH HOVER CARDS (Same as Page 5 System)
+   ========================================================================== */
+/* ==========================================================================
+   PAGE 6 - GALLERY WITH HOVER CARDS (Same as Page 5 System)
+   ========================================================================== */
+/* Import Tajwal Font */
+@import url('https://fonts.googleapis.com/css2?family=Tajwal:wght@400;500;700;800&display=swap');
 
 /* ==========================================================================
-   PAGE 6 - MISSION & VISION SECTION (Same layout as Page 5, but 2 images)
+   CENTRALIZED FONT VARIABLES - CHANGE FONTS HERE FOR ALL SCREENS
    ========================================================================== */
+:root {
+  /* Font Family */
+  --primary-font: "Tajwal", "Almarai", sans-serif;
+  
+  /* Gallery Block 1 Font Properties */
+  --block1-heading-weight: 800;
+  --block1-heading-letter-spacing: 0.06em;
+  --block1-content-weight: 500;
+  --block1-content-line-height: 1.6;
+  
+  /* Gallery Block 2 Font Properties */
+  --block2-heading-weight: 700;
+  --block2-heading-letter-spacing: 0.04em;
+  --block2-content-weight: 700;
+  --block2-content-line-height: 1.5;
+  
+  /* Font Colors */
+  --text-color: #15273F;
+  
+  /* Default Font Sizes (Mobile First) */
+  --block1-heading-size: 1.15rem;
+  --block1-content-size: 0.85rem;
+  --block2-heading-size: 1.15rem;
+  --block2-content-size: 0.85rem;
+  
+  /* Default Spacing */
+  --block1-heading-margin: 0.9rem;
+  --block2-heading-margin: 0.8rem;
+  
+  /* Default Image and Card Dimensions */
+  --gallery-block-width: 85vw;
+  --gallery-block-height: 45vh;
+  --card-padding: 1rem;
+}
+
+/* Mobile Portrait (Base - up to 480px) */
+@media (max-width: 480px) {
+  :root {
+    --block1-heading-size: 1.15rem;
+    --block1-content-size: 0.85rem;
+    --block2-heading-size: 1.15rem;
+    --block2-content-size: 0.85rem;
+    --block1-heading-margin: 0.9rem;
+    --block2-heading-margin: 0.8rem;
+    --block1-content-weight: 500;
+    --block1-content-line-height: 1.5;
+    --block2-content-weight: 500;
+    --block2-content-line-height: 1.5;
+    --gallery-block-width: 85vw;
+    --gallery-block-height: 45vh;
+    --card-padding: 1rem;
+  }
+}
+
+/* Small Mobile (below 375px) */
+@media (max-width: 375px) {
+  :root {
+    --gallery-block-width: 90vw;
+    --gallery-block-height: 40vh;
+    --card-padding: 0.8rem;
+    --block1-heading-size: 1rem;
+    --block1-content-size: 0.75rem;
+    --block2-heading-size: 1rem;
+    --block2-content-size: 0.75rem;
+    --block1-heading-margin: 0.5rem;
+    --block2-heading-margin: 0.5rem;
+  }
+}
+
+/* Mobile Landscape (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  :root {
+    --block1-heading-size: 1.2rem;
+    --block1-content-size: 0.85rem;
+    --block2-heading-size: 1.2rem;
+    --block2-content-size: 0.85rem;
+    --block1-heading-margin: 0.9rem;
+    --block2-heading-margin: 0.8rem;
+    --block1-content-weight: 600;
+    --block2-content-weight: 600;
+    --gallery-block-width: 35vw;
+    --gallery-block-height: 80vh;
+    --card-padding: 1rem;
+  }
+}
+
+/* Tablet Portrait (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --block1-heading-size: 1.5rem;
+    --block1-content-size: 1rem;
+    --block2-heading-size: 1.5rem;
+    --block2-content-size: 1rem;
+    --block1-heading-margin: 1.2rem;
+    --block2-heading-margin: 1rem;
+    --block1-content-weight: 600;
+    --block2-content-weight: 600;
+    --gallery-block-width: 30vw;
+    --gallery-block-height: 80vh;
+    --card-padding: 1.2rem 1.5rem;
+  }
+}
+
+/* Standard Desktop (1024px - 1399px) */
+@media (min-width: 1024px) and (max-width: 1399px) {
+  :root {
+    --block1-heading-size: clamp(1.4rem, 4vw, 1.8rem);
+    --block1-content-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    --block2-heading-size: clamp(1.4rem, 4vw, 1.8rem);
+    --block2-content-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    --block1-heading-margin: 1.3rem;
+    --block2-heading-margin: 1.1rem;
+    --gallery-block-width: 30vw;
+    --gallery-block-height: 85vh;
+    --card-padding: 1.2rem 1.5rem;
+  }
+}
+
+/* Large Desktop (1400px and above) */
+@media (min-width: 1400px) {
+  :root {
+    --block1-heading-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    --block1-content-size: clamp(1rem, 1.5vw, 1.3rem);
+    --block2-heading-size: clamp(1.5rem, 4vw, 1.9rem);
+    --block2-content-size: clamp(1rem, 2.6vw, 1.2rem);
+    --block1-heading-margin: 1.6rem;
+    --block2-heading-margin: 1.4rem;
+    --gallery-block-width: 33vw;
+    --gallery-block-height: 108vh;
+    --card-padding: 1.5rem 2rem;
+  }
+}
+
+/* Landscape Orientation (Small Height) */
+@media (max-height: 600px) and (orientation: landscape) {
+  :root {
+    --block1-heading-size: 0.95rem;
+    --block1-content-size: 0.8rem;
+    --block2-heading-size: 0.95rem;
+    --block2-content-size: 0.8rem;
+    --block1-heading-margin: 0.7rem;
+    --block2-heading-margin: 0.6rem;
+    --block1-content-weight: 500;
+    --block1-content-line-height: 1.4;
+    --block2-content-weight: 500;
+    --block2-content-line-height: 1.4;
+    --gallery-block-width: 40vw;
+    --gallery-block-height: 90vh;
+    --card-padding: 0.8rem 1rem;
+  }
+}
 
 /* ==========================================================================
-   PAGE 6 - IMAGES DIRECTLY ON BACKGROUND (NO CONTAINERS)
+   BASE STYLES
    ========================================================================== */
 
-/* ==========================================================================
-   PAGE 6 - IMAGES DIRECTLY ON BACKGROUND (NO CONTAINERS)
-   ========================================================================== */
-
+/* Page 6 Background Color */
 .page-6 {
-  background-color: #d1ccc7; /* Gray background color */
-  padding-top: var(--header-height) !important;
-  width: 100%;
-  height: 100vh;
+  background: #f2eeeb !important;
   position: relative;
   overflow: hidden;
 }
 
-/* Mission Image - Positioned directly on background */
-.mission-img {
+/* Gallery container */
+.gallery-blocks-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gallery Block Containers */
+.gallery-block {
   position: absolute;
-  left: clamp(5vw, 15vw, 20vw);
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(250px, 30vw, 400px);
-  height: clamp(300px, 50vh, 500px);
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.3s ease;
+  overflow: visible;
+  border-radius: 0%;
+  box-shadow: none;
+  transition: none;
+  cursor: pointer;
+  z-index: 2;
+  contain: style;
+  width: var(--gallery-block-width);
+  height: var(--gallery-block-height);
+}
+
+/* Simple z-index layering */
+.gallery-block-1 {
   z-index: 2;
 }
 
-/* Vision Image - Positioned directly on background */
-.vision-img {
-  position: absolute;
-  right: clamp(5vw, 15vw, 20vw);
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(250px, 30vw, 400px);
-  height: clamp(300px, 50vh, 500px);
+.gallery-block-2 {
+  z-index: 3;
+}
+
+/* When hovering, only increase z-index for card layering */
+.gallery-block-1:hover {
+  z-index: 20;
+}
+
+.gallery-block-2:hover {
+  z-index: 20;
+}
+
+/* Gallery Images */
+.gallery-block .gallery-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.3s ease;
-  z-index: 2;
+  transition: none;
+  border-radius: 0%;
+  position: relative;
+  z-index: 3;
+  
+  filter: 
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))
+    drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2))
+    drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15))
+    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.1)) !important;
 }
 
-/* Hover effects */
-.direct-image:hover {
-  transform: translateY(-50%) scale(1.02);
+.gallery-block:hover .gallery-image {
+  z-index: 20;
 }
 
-/* Responsive Design - Direct positioning */
-@media (max-width: 1024px) {
-  .page-6 {
-    padding-top: var(--header-height) !important;
-  }
-
-  .mission-img {
-    left: clamp(3vw, 10vw, 15vw);
-    width: clamp(220px, 32vw, 350px);
-    height: clamp(280px, 45vh, 420px);
-  }
-
-  .vision-img {
-    right: clamp(3vw, 10vw, 15vw);
-    width: clamp(220px, 32vw, 350px);
-    height: clamp(280px, 45vh, 420px);
-  }
+/* SHARED HOVER CARD BASE STYLES */
+.gallery-block .hover-card {
+  position: absolute;
+  background: #AAABAB;
+  border-radius: 0%;
+  border: none;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: -1;
+  pointer-events: none;
+  box-shadow: none;
+  
+  box-sizing: border-box !important;
+  font-family: var(--primary-font) !important;
+  padding: var(--card-padding) !important;
 }
 
-@media (max-width: 768px) {
-  .page-6 {
-    padding-top: var(--header-height-mobile) !important;
-  }
-
-  .mission-img {
-    left: 50%;
-    top: 30%;
-    transform: translateX(-50%) translateY(-50%);
-    width: clamp(200px, 60vw, 280px);
-    height: clamp(250px, 30vh, 350px);
-  }
-
-  .vision-img {
-    left: 50%;
-    top: 70%;
-    right: auto;
-    transform: translateX(-50%) translateY(-50%);
-    width: clamp(200px, 60vw, 280px);
-    height: clamp(250px, 30vh, 350px);
-  }
-
-  .direct-image:hover {
-    transform: translateX(-50%) translateY(-50%) scale(1.02);
-  }
-}
-
-@media (max-width: 480px) {
-  .mission-img {
-    width: clamp(180px, 70vw, 250px);
-    height: clamp(220px, 25vh, 300px);
-  }
-
-  .vision-img {
-    width: clamp(180px, 70vw, 250px);
-    height: clamp(220px, 25vh, 300px);
-  }
-}
-
-@media (min-width: 1280px) {
-  .mission-img {
-    left: clamp(8vw, 18vw, 25vw);
-    width: clamp(300px, 28vw, 420px);
-    height: clamp(380px, 55vh, 520px);
-  }
-
-  .vision-img {
-    right: clamp(8vw, 18vw, 25vw);
-    width: clamp(300px, 28vw, 420px);
-    height: clamp(380px, 55vh, 520px);
-  }
-}
-
-/* Page Transition Animations - Updated for direct images */
-.page-6:not(.active) .mission-img {
+/* GALLERY BLOCK 1 HOVER CARD STYLES */
+.gallery-block-1 .hover-card h3 {
+  color: var(--text-color) !important;
+  font-family: var(--primary-font) !important;
+  font-size: var(--block1-heading-size) !important;
+  font-weight: var(--block1-heading-weight) !important;
+  margin-bottom: var(--block1-heading-margin) !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+  letter-spacing: var(--block1-heading-letter-spacing) !important;
   opacity: 0;
-  transform: translateY(-50%) translateX(-50px);
 }
 
-.page-6:not(.active) .vision-img {
+.gallery-block-1 .hover-card .mission-content,
+.gallery-block-1 .hover-card .vision-content {
+  color: var(--text-color) !important;
+  font-family: var(--primary-font) !important;
+  font-size: var(--block1-content-size) !important;
+  line-height: var(--block1-content-line-height) !important;
+  font-weight: var(--block1-content-weight) !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
   opacity: 0;
-  transform: translateY(-50%) translateX(50px);
 }
 
-.page-6.active .direct-image {
+.gallery-block-1 .hover-card .mission-content .first-word,
+.gallery-block-1 .hover-card .vision-content .first-word {
+  font-family: var(--primary-font) !important;
+  font-size: var(--block1-heading-size) !important;
+  font-weight: var(--block1-heading-weight) !important;
+  letter-spacing: var(--block1-heading-letter-spacing) !important;
+  color: var(--text-color) !important;
+}
+
+/* GALLERY BLOCK 2 HOVER CARD STYLES - USING BLOCK 1 FONT STYLES */
+.gallery-block-2 .hover-card h3 {
+  color: var(--text-color) !important;
+  font-family: var(--primary-font) !important;
+  font-size: var(--block1-heading-size) !important;
+  font-weight: var(--block1-heading-weight) !important;
+  margin-bottom: var(--block1-heading-margin) !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+  letter-spacing: var(--block1-heading-letter-spacing) !important;
+  opacity: 0;
+}
+
+.gallery-block-2 .hover-card .mission-content,
+.gallery-block-2 .hover-card .vision-content {
+  color: var(--text-color) !important;
+  font-family: var(--primary-font) !important;
+  font-size: var(--block1-content-size) !important;
+  line-height: var(--block1-content-line-height) !important;
+  font-weight: var(--block1-content-weight) !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0;
+}
+
+.gallery-block-2 .hover-card .mission-content .first-word,
+.gallery-block-2 .hover-card .vision-content .first-word {
+  font-family: var(--primary-font) !important;
+  font-size: var(--block1-heading-size) !important;
+  font-weight: var(--block1-heading-weight) !important;
+  letter-spacing: var(--block1-heading-letter-spacing) !important;
+  color: var(--text-color) !important;
+}
+
+/* Remove old list styling */
+.gallery-block .hover-card ul,
+.gallery-block .hover-card li,
+.gallery-block .hover-card li span {
+  display: none !important;
+}
+
+/* Show content on hover */
+.gallery-block:hover .hover-card h3,
+.gallery-block:hover .hover-card .mission-content,
+.gallery-block:hover .hover-card .vision-content {
   opacity: 1;
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.page-6.active .mission-img {
-  transform: translateY(-50%) translateX(0);
-  transition-delay: 0.2s;
+/* ==========================================================================
+   RESPONSIVE DESIGN - COMPLETE POSITIONING AND SIZING
+   ========================================================================== */
+
+/* Mobile Portrait (Base - up to 480px) */
+@media (max-width: 480px) {
+  .gallery-blocks-container {
+    flex-direction: column;
+    padding: 2rem 0;
+    height: auto;
+    min-height: 100vh;
+    gap: 2rem;
+  }
+  
+  .gallery-block-1,
+  .gallery-block-2 {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    margin: 0 auto;
+  }
+  
+  .gallery-block .hover-card {
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+  }
+  
+  .gallery-block:hover .hover-card {
+    width: 100%;
+    height: 100%;
+    transform: translateY(0%);
+  }
 }
 
-.page-6.active .vision-img {
-  transform: translateY(-50%) translateX(0);
-  transition-delay: 0.4s;
+/* Mobile Landscape (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .gallery-block-1 {
+    top: 10%;
+    left: 10%;
+  }
+  
+  .gallery-block-2 {
+    top: 10%;
+    right: 10%;
+    left: auto;
+  }
+  
+  .gallery-block .hover-card {
+    top: 10%;
+    left: 0%;
+    width: 100%;
+    height: 80%;
+  }
+  
+  .gallery-block-1:hover .hover-card {
+    width: 200%;
+    height: 85%;
+    transform: translateX(0%);
+  }
+  
+  .gallery-block-2:hover .hover-card {
+    width: 200%;
+    height: 85%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Tablet Portrait (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gallery-block-1 {
+    top: 10%;
+    left: calc(50% - 35vw);
+  }
+  
+  .gallery-block-2 {
+    top: 10%;
+    left: calc(50% + 5vw);
+  }
+  
+  .gallery-block .hover-card {
+    top: 15%;
+    left: 0%;
+    width: 100%;
+    height: 70%;
+  }
+  
+  .gallery-block-1 .hover-card {
+    padding-left: 60% !important;
+  }
+  
+  .gallery-block-2 .hover-card {
+    padding-left: 60% !important;
+  }
+  
+  .gallery-block-1:hover .hover-card {
+    width: 180%;
+    height: 75%;
+    transform: translateX(0%);
+  }
+  
+  .gallery-block-2:hover .hover-card {
+    width: 180%;
+    height: 75%;
+    transform: translateX(-45%);
+  }
+}
+
+/* Standard Desktop (1024px - 1399px) */
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .gallery-block-1 {
+    top: 5%;
+    left: calc(50% - 35vw);
+  }
+  
+  .gallery-block-2 {
+    top: 5%;
+    left: calc(50% + 5vw);
+  }
+  
+  .gallery-block-1 .hover-card {
+    top: 20%;
+    left: 10%;
+    width: 100%;
+    height: 60%;
+    padding-left: 70% !important;
+  }
+  
+  .gallery-block-2 .hover-card {
+    top: 20%;
+    left: 0%;
+    width: 100%;
+    height: 60%;
+    padding-left: 70% !important;
+  }
+  
+  .gallery-block-1:hover .hover-card {
+    width: 170%;
+    height: 70%;
+    transform: translateX(0%);
+  }
+  
+  .gallery-block-2:hover .hover-card {
+    width: 170%;
+    height: 70%;
+    transform: translateX(-40%);
+  }
+}
+
+/* Large Desktop (1400px and above) */
+@media (min-width: 1400px) {
+  .gallery-block-1 {
+    top: 0%;
+    left: calc(50% - 33vw);
+    width: 25vw;
+    height: 90vh;
+  }
+
+  .gallery-block-2 {
+    top: 0%;
+    left: calc(50% + 3vw);
+    width: 25vw;
+    height: 90vh;
+  }
+  
+  .gallery-block-1 .hover-card {
+    top: 25%;
+    left: 0%;
+    width: 100%;
+    height: 50%;
+    padding-left: 120% !important;
+  }
+  
+  .gallery-block-2 .hover-card {
+    top: 25%;
+    left: 0%;
+    width: 100%;
+    height: 70%;
+    padding-left: 110% !important;
+  }
+  
+  .gallery-block-1:hover .hover-card {
+    width: 220%;
+    height: 80%;
+    transform: translateX(0%);
+    z-index: 5;
+  }
+  
+  .gallery-block-2:hover .hover-card {
+    width: 200%;
+    height: 80%;
+    transform: translateX(0%);
+    z-index: 5;
+  }
+}
+
+/* Landscape Orientation (Small Height) */
+@media (max-height: 600px) and (orientation: landscape) {
+  .gallery-block-1 {
+    top: 5%;
+    left: 5%;
+  }
+  
+  .gallery-block-2 {
+    top: 5%;
+    right: 5%;
+    left: auto;
+  }
+  
+  .gallery-block .hover-card {
+    top: 10%;
+    left: 0%;
+    width: 100%;
+    height: 80%;
+    padding-left: 50% !important;
+  }
+  
+  .gallery-block-1:hover .hover-card {
+    width: 150%;
+    transform: translateX(0%);
+  }
+  
+  .gallery-block-2:hover .hover-card {
+    width: 150%;
+    transform: translateX(-33%);
+  }
+}
+
+/* Performance optimizations */
+.gallery-block,
+.gallery-block .gallery-image,
+.gallery-block .hover-card {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  contain: layout style;
+}
+
+/* Gallery shift functionality - responsive */
+.page-6 .gallery-blocks-container.shift-for-card-overflow {
+  transform: translateX(-15vw);
+  transition: transform 0.6s ease-out;
+}
+
+@media (max-width: 1023px) {
+  .page-6 .gallery-blocks-container.shift-for-card-overflow {
+    transform: translateX(-10vw);
+  }
+}
+
+@media (max-width: 767px) {
+  .page-6 .gallery-blocks-container.shift-for-card-overflow {
+    transform: translateX(0);
+  }
+}
+
+.gallery-block-1.shift-left,
+.gallery-block-2.shift-left {
+  transform: translateX(-10vw) !important;
+  transition: transform 0.6s ease-out !important;
+}
+
+@media (max-width: 767px) {
+  .gallery-block-1.shift-left,
+  .gallery-block-2.shift-left {
+    transform: translateX(0) !important;
+  }
 }
