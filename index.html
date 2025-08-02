@@ -73,7 +73,7 @@
                 <span class="text-white-400">of Fitness</span>
               </h1>
               <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up fade-in-up-delay-3">
-                <button class="bg-white hover:bg-green-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105"> Learn More </button>
+                <button class="bg-white hover:bg-white-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105"> Learn More </button>
               </div>
             </div>
             <!-- Enhanced Monitors Container -->
@@ -151,7 +151,7 @@
         </div>
       </section>
       <!-- Page 4: Your Strength Section -->
-      <!-- Page 4: Your Strength Section - CORRECTED HTML -->
+
       <section class="page page-4" data-page="4">
         <div class="strength-background absolute inset-0"></div>
         <div class="strength-content">
@@ -171,6 +171,7 @@
           </div>
         </div>
       </section>
+
       <!-- Page 5: Our Classes & Facilities (Merged - 6 Images with Hover Cards) -->
       <section class="page page-5" data-page="5">
         <div class="absolute top-[1vh] left-1/2 transform -translate-x-1/2 text-center z-10">
@@ -290,26 +291,28 @@
           </div>
         </div>
       </section>
-      <!-- Add this to your HTML file after Page 5 section and before the closing </div> of page-container -->
-
-<!-- Page 6: Mission & Vision Section -->
-<!-- Add this to your HTML file after Page 5 section and before the closing </div> of page-container -->
-
-<!-- Page 6: Mission & Vision Section -->
-<!-- Add this to your HTML file after Page 5 section and before the closing </div> of page-container -->
-
-<!-- Page 6: Mission & Vision Section -->
-<!-- Add this to your HTML file after Page 5 section and before the closing </div> of page-container -->
-
-<!-- Page 6: Mission & Vision Section -->
+<!-- Page 6: Gallery with Hover Cards - UPDATED STRUCTURE -->
+<!-- Page 6: Gallery with Hover Cards - UPDATED STRUCTURE -->
 <section class="page page-6" data-page="6">
-  <!-- Image 1: Mission - Direct on background -->
-  <img src="./assets/mission.jpg" alt="Mission" class="direct-image mission-img">
   
-  <!-- Image 2: Vision - Direct on background -->
-  <img src="./assets/vision.jpg" alt="Vision" class="direct-image vision-img">
-</section>
+  <!-- Image 1 Container with Hover Card -->
+  <div class="gallery-block gallery-block-1 group">
+    <img src="./assets/15.png" alt="Gallery Image 1" class="gallery-image gallery-image-1">
+    <div class="hover-card">
+      <h3>OUR MISSION</h3>
+      <p class="mission-content"><span class="first-word">To</span> help women understand that physical fitness is crucial for healthy mind and body.<br> <br>To provide a comfortable and pleasant environment for women to continue their healthy and fitness journey.</p>
     </div>
+  </div>
+  
+  <!-- Image 2 Container with Hover Card -->
+  <div class="gallery-block gallery-block-2 group">
+    <img src="./assets/16.png" alt="Gallery Image 2" class="gallery-image gallery-image-2">
+    <div class="hover-card">
+      <h3>OUR VISION</h3>
+      <p class="vision-content"><span class="first-word">To</span> inspire and empower women in Saudi Arabia to lead healthier, happier lives by providing world-class fitness experiences in an environment of luxury, support, and community—contributing to the goals of Vision 2030.</p>
+    </div>
+  </div>
+</section>
     <script src="script.js"></script>
   </body>
 </html>
