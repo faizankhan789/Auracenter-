@@ -1,318 +1,743 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auracenter - A New Era of Fitness</title>
-    <!-- Preload critical resources -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body class="bg-gray-900 overflow-hidden">
-    <!-- Header stays exactly the same -->
-    <header class="fixed top-0 w-full z-50 fade-in-up header-height">
-      <div class="flex h-full">
-        <!-- Logo Section (20%) -->
-        <div class="logo-section flex items-center justify-center w-1/5 lg:w-1/6">
-          <div class="flex items-center space-x-2 lg:space-x-3">
-            <img src="./assets/2.png" alt="Auracenter Logo" class="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 rounded-lg object-contain">
-          </div>
-        </div>
-        <!-- Navigation Section (80%) -->
-        <div class="nav-section header-bg backdrop-blur-sm flex justify-between items-center px-2 sm:px-4 lg:px-8 flex-1">
-          <!-- Mobile Menu Button -->
-          <button class="md:hidden text-white p-2" id="mobileMenuBtn">
-            <i data-lucide="menu" class="w-5 h-5"></i>
-          </button>
-          <!-- Centered Navigation -->
-          <div class="hidden md:flex flex-1 justify-center">
-            <nav class="flex items-baseline space-x-4 lg:space-x-8">
-              <a href="#" class="nav-link text-white hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
-              <a href="#about" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
-              <a href="#classes" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
-              <a href="#strength" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="4">Strength</a>
-              <a href="#our-classes" class="nav-link text-gray-300 hover:text-green-400 px-2 lg:px-3 py-2 text-sm font-medium transition-colors" data-page="5">Our Classes</a>
-            </nav>
-          </div>
-          <!-- Get Started Button -->
-<div>
-  <button class="bg-[#CCE5E1] hover:bg-[#b8dcd6] text-[#111B2A] px-3 lg:px-4 py-2 rounded-lg text-xs lg:text-sm font-medium transition-colors">
-    Get Started
-  </button>
-</div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Auracenter - A New Era of Fitness</title>
+        <!-- Preload critical resources -->
+        <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+        <!-- Tailwind -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.8/dist/lenis.css">
+        <style>
+            :root {
+                --primary-red: #ef4444;
+                --text-white: #ffffff;
+                --primary-green: #4ade80;
+            }
+            @keyframes blink {
+                0%,
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.2);
+                    opacity: 0.7;
+                }
+            }
+            @keyframes heartPulse {
+                0%,
+                100% {
+                    transform: scale(1);
+                    color: var(--text-white);
+                }
+                50% {
+                    transform: scale(1.1);
+                    color: var(--primary-red);
+                }
+            }
+            @keyframes monitorBounce {
+                0%,
+                100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-8px);
+                }
+            }
+            @keyframes monitorFloat {
+                0%,
+                100% {
+                    transform: translateY(0px);
+                }
+                33% {
+                    transform: translateY(-5px);
+                }
+                66% {
+                    transform: translateY(3px);
+                }
+            }
+            @keyframes timeBlink {
+                0%,
+                90%,
+                100% {
+                    opacity: 1;
+                }
+                95% {
+                    opacity: 0.5;
+                }
+            }
+            @media (max-width: 640px) {
+                .page-1 {
+                    background-size: 180% 100%;
+                }
+                .hover-card { perspective: 800px;}
+                .card__content {transform-style: preserve-3d;}
+                .hover-card:hover .card__content {transform: rotateY(.5turn);}
+                .card__front,
+                .card__back { backface-visibility: hidden;}
+                .card__back{ transform: rotateY(.5turn);}
+            }
+            .page {
+                position: absolute;
+                width: 100vw;
+                height: 100vh;
+            }
+            #page-container {
+                width: 100%;
+                min-height: 100vh; 
+                position: relative;
+                overflow: hidden;
+            }
+            .page-1 {
+                background-image: url("./assets/1.png");
+                background-size: 100% 100%;
+            }
+            body {
+                font-family: "Almarai", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            }
+            .header-height {
+                height: 10vh;
+            }
+            .logo-section {
+                background-color: #d6cec9;
+            }
+            .blink-dot {
+                animation: blink 1s ease-in-out infinite;
+            }
+            .heart-pulse {
+                animation: heartPulse 1s ease-in-out infinite;
+            }
+            .heart-monitor {
+                animation: monitorBounce 2s ease-in-out infinite;
+                animation-delay: 0s;
+            }
+            .workout-monitor {
+                animation: monitorFloat 2.5s ease-in-out infinite;
+                animation-delay: 0.7s;
+                position: relative;
+            }
+            .time-blink {
+              animation: timeBlink 2s ease-in-out infinite;
+            }
 
-        </div>
-      </div>
-      <!-- Mobile Menu -->
-      <div class="mobile-menu md:hidden absolute top-full left-0 w-full bg-slate-800 backdrop-blur-sm border-t border-gray-700 hidden">
-        <nav class="px-4 py-4 space-y-2">
-          <a href="#" class="nav-link block text-white hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
-          <a href="#about" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
-          <a href="#classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
-          <a href="#strength" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="4">Strength</a>
-          <a href="#our-classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="5">Our Classes</a>
-        </nav>
-      </div>
-    </header>
-    <!-- Page Container -->
-    <div class="page-container">
-      <!-- Page 1: Hero Section -->
-      <section class="page page-1 active" data-page="1">
-        <div class="hero-background absolute inset-0"></div>
-        <div class="content-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-          <div class="hero-content flex flex-col lg:flex-row items-center justify-between h-full py-8 lg:py-16">
-            <!-- Left Content -->
-            <div class="flex-1 max-w-2xl z-10 relative text-center mb-8 lg:mb-0">
-              <h1 class="hero-title text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 lg:mb-6 fade-in-up fade-in-up-delay-1"> Auracenter - A New Era <br>
-                <span class="text-white-400">of Fitness</span>
-              </h1>
-              <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up fade-in-up-delay-3">
-                <button class="bg-white hover:bg-white-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105"> Learn More </button>
-              </div>
-            </div>
-            <!-- Enhanced Monitors Container -->
-            <div class="monitors-container fade-in-up fade-in-up-delay-4">
-              <!-- Heart Rate Monitor -->
-              <div class="heart-monitor">
-                <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
-                  <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
-                  <div class="flex items-center justify-between mb-2">
-                    <div class="flex items-center gap-1">
-                      <div class="w-2 h-2 bg-red-500 rounded-full blink-dot"></div>
-                      <span class="text-white text-xs font-medium">LIVE</span>
-                      <i data-lucide="heart" class="w-3 h-3 text-red-500 fill-red-500 heart-pulse"></i>
-                    </div>
-                    <div class="text-xs text-gray-400">BPM</div>
-                  </div>
-                  <div class="flex items-baseline gap-1 mb-2">
-                    <span class="text-white text-xl lg:text-2xl font-bold monitor-text" id="heartRate">128</span>
-                    <span class="text-gray-400 text-xs">AVG</span>
-                  </div>
-                  <div class="relative h-8 lg:h-12 w-full overflow-hidden">
-                    <canvas id="ecgCanvas" class="w-full h-full"></canvas>
-                  </div>
+            .heart-monitor:hover {
+                cursor: pointer;
+                border: 1px solid var(--primary-red);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(239, 68, 68, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            }
+            .workout-monitor:hover {
+                cursor: pointer;
+                border: 1px solid var(--primary-green);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(74, 222, 128, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            }
+
+            .heart-monitor:hover,
+            .workout-monitor:hover {
+                animation-play-state: paused;
+                transform: scale(1.2) translateY(-3px);
+            }
+            .page-2 {
+                background-image: url("./assets/4.jpg");
+                background-size: cover;
+                background-position: center 20%;
+                background-repeat: no-repeat;
+            }
+            .about-box {
+                background: #cce5e1;
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                width: 90svw;
+                height: auto;
+            }
+            .page-3 {
+                background-image: url("./assets/5.jpg");
+                background-size: cover;
+                background-position: center 15%;
+                background-repeat: no-repeat;
+            }
+            .classes-box {
+                background: #70809b !important;
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: -20px 0 40px rgba(0, 0, 0, 0.3), 0 20px 40px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                width: 90svw;
+                height: auto;
+            }
+            .page-4 {
+                background-image: url("./assets/6.png");
+                background-size: cover;
+            }
+            .page-5 {
+                background: linear-gradient(to bottom,
+                    #f2eeeb 50%,
+                    #d9cec5 50%
+                );
+            }
+            
+
+</style>
+    </head>
+    <body class="bg-gray-900">
+        <header data-animation-class="fade-in-up" class="opacity-0 w-full header-height">
+            <div class="flex h-full">
+                <!-- Logo Section (20%) -->
+                <div class="logo-section flex items-center justify-center w-[15%]">
+                    <img src="./assets/2.png" alt="Auracenter Logo" class="h-12 w-12 object-contain">
                 </div>
-              </div>
-              <!-- Workout Tracker -->
-              <div class="workout-monitor">
-                <div class="monitor-screen bg-black rounded-2xl relative overflow-hidden shadow-2xl border border-gray-800">
-                  <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
-                  <div class="flex items-center justify-between mb-3">
-                    <span class="text-gray-400 text-xs font-medium">SAT 7</span>
-                    <div class="flex items-center gap-1">
-                      <span class="text-white text-lg font-bold time-blink" id="clockTime">09:09</span>
-                      <i data-lucide="clock" class="w-3 h-3 text-gray-400"></i>
+                <!-- Navigation Section (80%) -->
+                <div class="nav-section flex justify-between items-center px-4 flex-1">
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden text-white p-2" id="mobileMenuBtn">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                <!-- Centered Navigation -->
+                    <div class="hidden md:flex flex-1 justify-center">
+                        <nav class="flex items-baseline space-x-4 lg:space-x-8">
+                        <a href="#" class="nav-link text-white hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
+                        <a href="#about" class="nav-link text-gray-300 hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
+                        <a href="#classes" class="nav-link text-gray-300 hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
+                        <a href="#strength" class="nav-link text-gray-300 hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="4">Strength</a>
+                        <a href="#our-classes" class="nav-link text-gray-300 hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="5">Our Classes</a>
+                        </nav>
                     </div>
-                  </div>
-                  <div class="relative h-12">
-                    <svg class="w-full h-full" viewBox="0 0 180 48">
-                      <path d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20" fill="none" stroke="#4ade80" stroke-width="2" class="workout-progress-path" />
-                      <circle r="3" fill="#4ade80" class="progress-dot-moving">
-                        <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite" />
-                        <animateMotion dur="3s" repeatCount="indefinite">
-                          <mpath href="#workoutPath" />
-                        </animateMotion>
-                      </circle>
-                      <path id="workoutPath" d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20" fill="none" />
-                    </svg>
-                    <div class="absolute bottom-0 left-0 right-0 flex justify-between items-end px-1">
-                      <div class="w-1 bg-green-500 rounded-full activity-bar-1"></div>
-                      <div class="w-1 bg-red-500 rounded-full activity-bar-2"></div>
-                      <div class="w-1 bg-green-500 rounded-full activity-bar-3"></div>
-                    </div>
-                  </div>
+                    <!-- Get Started Button -->
+                    <button class="bg-[#CCE5E1] hover:bg-[#b8dcd6] text-[#111B2A] px-6 py-2 rounded-lg text-sm font-bold transition-colors">
+                        Get Started
+                    </button>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <!-- Page 2: About Section -->
-      <section class="page page-2" data-page="2">
-        <div class="about-background absolute inset-0"></div>
-        <div class="about-box">
-          <h2>Welcome to Auracenter</h2>
-          <p> Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, and a supportive environment. As one of Jeddah's first luxury gyms for women </p>
-        </div>
-      </section>
-      <!-- Page 3: Classes Section -->
-      <section class="page page-3" data-page="3">
-        <div class="classes-background absolute inset-0"></div>
-        <div class="classes-content">
-          <div class="classes-box">
-            <h2>We're Here to Serve You Well</h2>
-          </div>
-        </div>
-      </section>
-      <!-- Page 4: Your Strength Section -->
+            <!-- Mobile Menu -->
+            <div class="mobile-menu md:hidden absolute top-full left-0 w-full bg-slate-800 backdrop-blur-sm border-t border-gray-700 hidden">
+                <nav class="px-4 py-4 space-y-2">
+                    <a href="#" class="nav-link block text-white hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="1">Home</a>
+                    <a href="#about" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="2">About</a>
+                    <a href="#classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="3">Classes</a>
+                    <a href="#strength" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="4">Strength</a>
+                    <a href="#our-classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 text-sm font-medium transition-colors" data-page="5">Our Classes</a>
+                </nav>
+            </div>
+        </header>
+        <div id="page-container">
+                       <!-- Page 1: Landing Page -->
+            <div class="flex-col md:flex-row flex justify-around bg-no-repeat page page-1" id="page-1">
+                <div class="flex flex-col md:flex-row">
+                    <!-- <div class="hidden md:block bg-[#c6bfbb] absolute bottom-[10%] left-[5%]" id="page1Back"></div> -->
+                    <img id="page1Img" src="./assets/3.png" data-animation-class="fade-in-left" class="fixed self-center md:relative w-auto h-auto md:w-[35vw] object-contain" alt="Page 1">
+                    <div data-animation-class="fade-in-up" class="flex flex-col justify-center items-center opacity-0 md:relative md:right-[5%] md:top-[-50px] mt-8 md-pt-0 ">
+                        <h1 class="text-lg md:text-4xl font-bold text-white mb-4 text-center pin-text"> Auracenter - A New Era <br />of Fitness</h1>        
+                        <button id="learnMore" class="bg-white hover:bg-white-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div data-animation-class="fade-in-up" class="flex flex-col md:relative md:top-[30%] items-center" id="monitors">
+                    <div class="heart-monitor rounded-2xl bg-black shadow-2xl w-[200px]">
+                        <div class=" px-4 pt-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-1">
+                            <div class="w-2 h-2 bg-red-500 rounded-full blink-dot"></div>
+                            <span class="text-white text-xs font-medium">LIVE</span>
+                            <i data-lucide="heart" class="w-3 h-3 text-red-500 fill-red-500 heart-pulse"></i>
+                            </div>
+                            <div class="text-xs text-gray-400">BPM</div>
+                        </div>
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-white text-xl lg:text-2xl font-bold monitor-text" id="heartRate">128</span>
+                            <span class="text-gray-400 text-xs">AVG</span>
+                        </div>
+                        <div class="relative h-8 lg:h-12 w-full">
+                            <canvas id="ecgCanvas" class="w-full h-full"></canvas>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="workout-monitor rounded-2xl bg-black shadow-2xl mt-4 w-[200px] left-[0px] md:left-[-30%]">
+                        <div class=" px-4 pt-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-gray-400 text-xs font-medium">SAT 7</span>
+                            <div class="flex items-center gap-1">
+                            <span class="text-white text-lg font-bold time-blink" id="clockTime">09:09</span>
+                            <i data-lucide="clock" class="w-3 h-3 text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div class="relative h-14">
+                            <svg class="w-full h-full" viewBox="0 0 180 48">
+                            <path d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20" fill="none" stroke="#4ade80" stroke-width="2" class="workout-progress-path" />
+                            <circle r="3" fill="#4ade80" class="progress-dot-moving">
+                                <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite" />
+                                <animateMotion dur="3s" repeatCount="indefinite">
+                                <mpath href="#workoutPath" />
+                                </animateMotion>
+                            </circle>
+                            <path id="workoutPath" d="M 10 35 Q 45 10, 80 25 Q 115 40, 150 15 Q 170 10, 170 20" fill="none" />
+                            </svg>
+                            <div class="absolute bottom-0 left-0 right-0 flex justify-between items-end px-1">
+                            <div class="w-1 bg-green-500 rounded-full activity-bar-1"></div>
+                            <div class="w-1 bg-red-500 rounded-full activity-bar-2"></div>
+                            <div class="w-1 bg-green-500 rounded-full activity-bar-3"></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page 2: About Section -->
+            <div class="flex-col md:flex-row flex justify-around bg-no-repeat page page-2" id="page-2">
+                <div class="absolute inset-0 bg-white/50 pointer-events-none h-[80svh]"></div>
+                <div data-animation-class="fade-in-up" class="opacity-0 about-box z-[1] px-4 pt-4 pb-20 absolute bottom-10 left-0" style="color: #182A41;">
+                    <h2 class="font-bold text-2xl md:text-4xl mb-2">Welcome to Auracenter</h2>
+                    <p class="text-base md:text-xl">Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, and a supportive environment. As one of Jeddah's first luxury gyms for women </p>
+                </div>
+            </div>
+            
+            <!-- Page 3: Classes Section -->
+            <div class="flex-col md:flex-row flex justify-around bg-no-repeat page page-3" id="page-3">
+                <div class="absolute inset-0 bg-white/20 pointer-events-none h-[100svh]"></div>
+                <div data-animation-class="fade-in-up" class="opacity-0 classes-box px-4 py-10 absolute bottom-[15%] right-0" style="color:#F7F7F7">
+                    <h2 class="font-bold text-xl md:text-4xl mb-2">We're Here to Serve You Well</h2>
+                </div>
+            </div>
 
-      <section class="page page-4" data-page="4">
-        <div class="strength-background absolute inset-0"></div>
-        <div class="strength-content">
-          <!-- Images positioned OUTSIDE any container - directly in strength-content -->
-          <!-- Image 8 (assets/8.png) - Main woman image -->
-          <img src="./assets/8.png" alt="Woman exercising" class="woman-image-large">
-          <!-- Image 7 (assets/7.png) - Circular image -->
-          <img src="./assets/7.png" alt="Woman exercising" class="woman-image-small">
-          <div class="strength-header" style="margin-top: 7vh; text-align: center;">
-            <button class="about-btn" style="font-size: 1rem; padding: 0.75rem 2rem; border-radius: 9px;"> ABOUT US </button>
-          </div>
-          <!-- Text content -->
-          <div class="strength-text">
-            <h2>Your Strength. Our Vision.</h2>
-            <p> Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, & a supportive environment. As one of Jeddah's first luxury gyms for women, we promote a healthy lifestyle and positive social space. Our two branches – Aura Luxury (North Obhur) and Aura Elite (Corniche) – provide more than just fitness; they're a second home for our members. </p>
-            <button class="explore-btn">Explore More</button>
-          </div>
+            <!-- Page 4: Your Strength Section -->
+            <div class="flex-col flex items-center bg-no-repeat page page-4" id="page-4">
+                <button data-animation-class="fade-in-up" class="bg-[#182a41] px-4 py-2 rounded-lg font-semibold mt-8 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md" style="color: #DAECE9">
+                    ABOUT US
+                </button>
+                <!-- Text content -->
+                <div data-animation-class="fade-in-up" class="flex flex-col md:flex-row my-8 justify-center md:justify-between items-center h-full">
+                    <img src="./assets/7.png" alt="Woman exercising" class="absolute md:relative left-0 top-0 md:bottom-0 md:mr-20 opacity-20 md:opacity-100">
+                    <div class="mx-8 text-justify">
+                        <h2 class="font-bold text-3xl mb-2">Your Strength. Our Vision.</h2>
+                        <p class="text-lg md:text-lg"> Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, & a supportive environment. As one of Jeddah's first luxury gyms for women, we promote a healthy lifestyle and positive social space. Our two branches – Aura Luxury (North Obhur) and Aura Elite (Corniche) – provide more than just fitness; they're a second home for our members. </p>
+                        <div class="flex justify-center">
+                            <button class="bg-[#182a41] px-4 py-2 rounded-lg text-white font-semibold mt-8 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md text-center">Explore More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-col flex bg-no-repeat page page-5" id="page-5">
+                <div data-animation-class="fade-in-up" class="flex flex-col items-center">
+                    <h1 class="bg-[#CCE5E1] text-xl  font-bold text-black px-4 py-2 rounded-md mt-8">OUR CLASSES</h1>
+                    <h1 class="text-xl md:text-4xl font-bold text-black mt-8 text-center">FITNESS CLASSES FOR EVERY GOAL</h1>
+                </div>
+                <div class="flex flex-nowrap w-max space-x-4 mt-8 classes-container space-x-4">
+                </div>
+                <div class="flex justify-between mx-8 mt-8" id="sliderIcons">
+                    <img src="./assets/back-icon.png" alt="Back" id="backIcon" class="h-8 w-12 cursor-pointer" />
+                    <img src="./assets/back-icon.png" alt="Back" id="forwardIcon" class="h-8 w-12 cursor-pointer rotate-180" />
+                </div>
+            </div>
         </div>
-      </section>
 
-      <!-- Page 5: Our Classes & Facilities (Merged - 6 Images with Hover Cards) -->
-      <section class="page page-5" data-page="5">
-        <div class="absolute top-[1vh] left-1/2 transform -translate-x-1/2 text-center z-10">
-          <h1 class="inline-block bg-[#CCE5E1] text-2xl font-bold text-black px-4 py-2 rounded-md"> OUR CLASSES </h1>
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black mt-3 whitespace-nowrap"> FITNESS CLASSES FOR EVERY GOAL </h1>
-        </div>
-        <div class="horizontal-scroll-wrapper">
-          <div class="horizontal-scroll-content">
-            <!-- Block 1: Power Yoga -->
-            <div class="image-block group">
-              <img src="./assets/9.jpg" alt="Power Yoga class" class="image-block-img transition-all duration-500 hover:scale-105">
-              <div class="hover-card">
-                <h3 class="text-xl font-bold mb-3 text-white">Power Yoga</h3>
-                <ul class="space-y-2 text-sm text-gray-200">
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Flexibility
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Breath control
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Stress relief
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- Block 2: Cardio Blast -->
-            <div class="image-block group">
-              <img src="./assets/10.jpg" alt="Cardio workout" class="image-block-img transition-all duration-500 hover:scale-105">
-              <div class="hover-card">
-                <h3 class="text-xl font-bold mb-3 text-white">Personal Training</h3>
-                <ul class="space-y-2 text-sm text-gray-200">
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> 1-on-1 coaching
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Custom plans
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Goal tracking
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- Block 3: Core Pilates -->
-            <div class="image-block group">
-              <img src="./assets/11.jpg" alt="Pilates class" class="image-block-img transition-all duration-500 hover:scale-105">
-              <div class="hover-card">
-                <h3 class="text-xl font-bold mb-3 text-white">Stretch & Recovery</h3>
-                <ul class="space-y-2 text-sm text-gray-200">
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Deep stretching
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Muscle release
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-purple-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> LInjury prevention
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- Block 4: Weight Training -->
-            <div class="image-block group">
-              <img src="./assets/12.jpg" alt="Weight training area" class="image-block-img transition-all duration-500 hover:scale-105">
-              <div class="hover-card">
-                <h3 class="text-xl font-bold mb-3 text-white">Weight Lifting</h3>
-                <ul class="space-y-2 text-sm text-gray-200">
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Strength training
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Form guidance
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Women-focused
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- Block 5: Aquatic Center -->
-            <div class="image-block group">
-              <img src="./assets/13.jpg" alt="Swimming pool" class="image-block-img transition-all duration-500 hover:scale-105">
-              <div class="hover-card">
-                <h3 class="text-xl font-bold mb-3 text-white">Cardio & Strength</h3>
-                <ul class="space-y-2 text-sm text-gray-200">
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> HIIT sessions
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Fat burn
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Endurance
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- Block 6: Premium Amenities -->
-            <div class="image-block group">
-              <img src="./assets/14.jpg" alt="Premium amenities" class="image-block-img transition-all duration-500 hover:scale-105">
-              <div class="hover-card">
-                <h3 class="text-xl font-bold mb-3 text-white">Dance Fitness</h3>
-                <ul class="space-y-2 text-sm text-gray-200">
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Fun workouts
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> High energy
-                  </li>
-                  <li class="flex items-start">
-                    <span class="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></span> Cultural vibes
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-<!-- Page 6: Gallery with Hover Cards - UPDATED STRUCTURE -->
-<!-- Page 6: Gallery with Hover Cards - UPDATED STRUCTURE -->
-<section class="page page-6" data-page="6">
-  
-  <!-- Image 1 Container with Hover Card -->
-  <div class="gallery-block gallery-block-1 group">
-    <img src="./assets/15.png" alt="Gallery Image 1" class="gallery-image gallery-image-1">
-    <div class="hover-card">
-      <h3>OUR MISSION</h3>
-      <p class="mission-content"><span class="first-word">To</span> help women understand that physical fitness is crucial for healthy mind and body.<br> <br>To provide a comfortable and pleasant environment for women to continue their healthy and fitness journey.</p>
-    </div>
-  </div>
-  
-  <!-- Image 2 Container with Hover Card -->
-  <div class="gallery-block gallery-block-2 group">
-    <img src="./assets/16.png" alt="Gallery Image 2" class="gallery-image gallery-image-2">
-    <div class="hover-card">
-      <h3>OUR VISION</h3>
-      <p class="vision-content"><span class="first-word">To</span> inspire and empower women in Saudi Arabia to lead healthier, happier lives by providing world-class fitness experiences in an environment of luxury, support, and community—contributing to the goals of Vision 2030.</p>
-    </div>
-  </div>
-</section>
-    <script src="script.js"></script>
-  </body>
+        <script src="https://unpkg.com/lenis@1.3.8/dist/lenis.min.js"></script> 
+        <!-- Lucide Icons -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+        <script>
+            lucide.createIcons();
+            let timeline;
+            function goBack() {
+                tl.play(2); // Play from 2s
+                setTimeout(() => {
+                    tl.pause(); // Pause after approx. 2s of playback (4s total time)
+                }, 2000); 
+            }
+            class FitnessHeroAnimations {
+                constructor() {
+                     this.config = {
+                        heartRate: {
+                            base: 128,
+                            variation: 8,
+                            updateInterval: 1200
+                        }
+                    };
+                    this.tl = null
+                    this.cards = [
+                    {
+                        imageSrc: './assets/9.jpg',
+                        title: 'Power Yoga',
+                        listItems: ['Flexibility', 'Breath Control', 'Stress Relief']
+                    },
+                    {
+                        imageSrc: './assets/10.jpg',
+                        title: 'Weight Lifting',
+                        listItems: ['Strength Training', 'Form Guidance', 'Women Focused']
+                    },
+                    {
+                        imageSrc: './assets/11.jpg',
+                        title: 'Personal Training',
+                        listItems: ['1-on-1 Coaching', 'Custom Plans', 'Goal Tracking']
+                    },
+                    {
+                        imageSrc: './assets/12.jpg',
+                        title: 'Cardio & Strength',
+                        listItems: ['Hit Sessions', 'Fat Burn', 'Endurance']
+                    },
+                    {
+                        imageSrc: './assets/13.jpg',
+                        title: 'Strength & Recovery',
+                        listItems: ['Deep Stretching', 'Muscle Release', 'Injury Prevention']
+                    },
+                    {
+                        imageSrc: './assets/14.jpg',
+                        title: 'Dance Fitness',
+                        listItems: ['Fun workouts', 'High energy', 'Cultural vibes']
+                    }
+                    ];
+                    this.lenis = null;
+                    this.state = {
+                        heartRate: this.config.heartRate.base,
+                        isVisible: true,
+                    };
+        
+                    // Animation controllers
+                    this.animations = {
+                        ecg: null,
+                        intervals: new Map(),
+                    };
+
+                    // Initialize
+                    this.init();
+                }
+                addClassCard({ imageSrc, title, listItems, index }) {
+                    const container = document.querySelector('.classes-container');
+                    if (!container) return;
+
+                    const card = document.createElement('div');
+                    card.className = 'hover-card w-[50vw] md:w-[30vw] h-[50vh] md:hover:z-[4] cursor-pointer group flex-shrink-0';
+
+                    card.innerHTML = `
+                        <div class="card__content relative transition-transform duration-1000 w-full h-full">    
+                            <img src="${imageSrc}" alt="${title}" class="card__front absolute z-[1] md:group-hover:z-[3] w-full h-full object-cover object-center ease-in-out rounded-none transition-all duration-800 md:group-hover:scale-[1.05]">                
+                            <div class="card__back md:group-hover:transform md:group-hover:translate-x-[85%]  md:group-hover:z-[2] h-full w-full absolute top-0 left-0 bg-[#c7b6a8] md:translate-x-0 transition-transform transition-opacity duration-600 ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-transform will-change-opacity cursor-pointer flex flex-col justify-center items-center">
+                                <h3 class="text-center text-3xl font-bold mb-3 text-black">${title}</h3>
+                                <ul class="space-y-2 text-lg text-black">
+                                ${listItems.map(item => `
+                                    <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-black rounded-full mt-2 mr-3"></span> ${item}
+                                    </li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                }
+
+
+                setupMobileMenu() {
+                    const btn = document.getElementById('mobileMenuBtn');
+                    const menu = document.querySelector('.mobile-menu');
+                    if (!btn || !menu) return;
+
+                    const toggleMenu = (show) => {
+                        menu.classList.toggle('hidden', !show);
+                        setTimeout(() => menu.classList.toggle('active', show), show ? 10 : 300);
+                        document.body.classList.toggle('no-scroll', show);
+                    };
+
+                    btn.addEventListener('click', () => {
+                        toggleMenu(!menu.classList.contains('active'));
+                    });
+
+                    document.addEventListener('click', (e) => {
+                        if (!btn.contains(e.target) && !menu.contains(e.target) && menu.classList.contains('active')) {
+                            toggleMenu(false);
+                        }
+                    });
+                }
+                init() {
+                    this.setupMobileMenu();
+                    this.startClockUpdate();
+                    this.initECGAnimation();
+                    this.addClassesCard();
+                    this.setUpLenis();
+                    this.setUpGSAP();
+                    this.observeFadeInElementsWithScrollTrigger();
+
+                    // this.setViewportVars();
+                    // this.setUpResize();                    
+                }
+                addClassesCard() {
+                    this.cards.forEach(card => this.addClassCard(card));
+                }
+                setUpResize() {
+                    window.addEventListener('resize', this.setViewportVars);
+                }
+                gsapWithMobile(isMobile) { 
+                    const cardWidthVW = isMobile ? 50 : 30;
+                    const cardMarginPx = 16;
+                    const vw = window.innerWidth / 100;
+                    const cardWidth = (cardWidthVW * vw + cardMarginPx)
+                    const totalWidth = this.cards.length * cardWidth;
+                    const visibleNumber = window.innerWidth / cardWidth
+                    const cards = gsap.utils.toArray(".hover-card")
+                    const visibleCards = cards.slice(0, Math.ceil(visibleNumber));
+
+                    const fullTimeline = gsap.timeline();
+                    fullTimeline
+                    // Page 1 animation
+                    .to('#page1Img, #monitors, #learnMore', { opacity: 0, duration: 1 })
+                    .to('.pin-text', {
+                        scale: 2,
+                        duration: 1,
+                        ...(isMobile ? { yPercent: 300 } : {})
+                    }, 
+                    "-=0.5")
+                    // Slide in page 2 and page 3
+                    .to(".page-2", { xPercent: 0, duration: 1 })  // animate into view
+                    .to(".page-3", { xPercent: 0, duration: 1 }) // animate into view
+                    .to(".page-4", { yPercent: 0, duration: 1 }) // animate into view
+                    .to(".page-5", { yPercent: 0, duration: 1 })
+                    .to('#sliderIcons', { opacity: 1, duration: 1 })
+                    .to(".classes-container", {
+                        x: 10,
+                        opacity: 1,
+                        duration: 1,
+                        ease: "power2.out"
+                    })
+                    .to(visibleCards , {
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.6,
+                        stagger: 0.5,
+                        ease: "power2.out"
+                    }, "-=0.8")
+                    .to(".classes-container", {
+                        x: -totalWidth * 0.8,
+                        ease: "none",
+                        duration: this.cards.length / 2
+                    });
+                    gsap.set(".page-2", { xPercent: -100 });
+                    gsap.set(".page-3", { xPercent: 100 });
+                    gsap.set(".page-4", { yPercent: 100 });
+                    gsap.set(".page-5", { yPercent: 100 });
+                    gsap.set("#sliderIcons", {opacity: 0 });
+                    gsap.set(".classes-container", {x: totalWidth, opacity: 0 });
+                    gsap.set(visibleCards, {x: 100, opacity: 0 });
+                    ScrollTrigger.create({
+                        animation: fullTimeline,
+                        trigger: "#page-container",
+                        start: "top top",
+                        end: "+=5000", // enough scroll space
+                        scrub: true,
+                        pin: true,
+                        anticipatePin: 1,
+                        // markers: true
+                    });
+                    this.tl = fullTimeline
+                }
+                setUpGSAP () {
+                    gsap.registerPlugin(ScrollTrigger);
+                    gsap.defaults({ease: "none", duration: 2});
+                    
+                    let mm = gsap.matchMedia();
+                    mm.add("(max-width: 640px)", () => this.gsapWithMobile(true));
+                    mm.add("(min-width: 641px)", () => this.gsapWithMobile(false));
+                 
+                 
+                    window.addEventListener('load', () => {
+                      ScrollTrigger.refresh();
+                    });
+                }
+
+                setUpLenis() {
+                    this.lenis = new Lenis({
+                        duration: 1.2,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                          smooth: true
+
+                    });
+
+                    // Update ScrollTrigger to use Lenis's scroll events
+                    this.lenis.on('scroll', ScrollTrigger.update);
+                    gsap.ticker.add((time) => this.lenis.raf(time * 1000));
+                    requestAnimationFrame(this.raf);
+                }
+                
+
+                // Function to smoothly scroll
+                raf = (time) => {
+                    this.lenis.raf(time);
+                    requestAnimationFrame(this.raf);
+                }
+                /**
+                 * Setup intersection observer for performance
+                 */
+                observeFadeInElementsWithScrollTrigger() {
+                   const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                        const el = entry.target;
+                        const animation = el.getAttribute('data-animation-class');
+
+                        // Common from-state
+                        let fromVars = {
+                            opacity: entry.isIntersecting ? 0 : 1,
+                            ease: 'power3.out',
+                            duration: 1
+                        };
+
+                        if (animation === 'fade-in-up') {
+                            fromVars.y = 50;
+                        } else if (animation === 'fade-in-down') {
+                            fromVars.y = -50;
+                        } else if (animation === 'fade-in-left') {
+                            fromVars.x = -50;
+                        } else if (animation === 'fade-in-right') {
+                            fromVars.x = 50;
+                        }
+
+                        if (entry.isIntersecting) {
+                            // Animate into view
+                            gsap.to(el, {
+                                opacity: 1,
+                                x: 0,
+                                y: 0,
+                                duration: fromVars.duration,
+                                ease: fromVars.ease
+                            });
+                        } else {
+                            // Animate out of view
+                            gsap.to(el, {
+                                opacity: 0,
+                                x: fromVars.x || 0,
+                                y: fromVars.y || 0,
+                                duration: fromVars.duration,
+                                ease: fromVars.ease
+                            });
+                        }
+                        });
+                    },
+                    {
+                        threshold: 0.7 // Triggers when 30% in/out of view
+                    }
+                    );
+
+                    // Attach observer to all animated elements
+                    document.querySelectorAll('[data-animation-class]').forEach((el) => {
+                        observer.observe(el);
+                    });
+
+                }
+                
+                setViewportVars() {
+                    const vh = window.innerHeight;
+                    const vw = window.innerWidth;
+                    document.documentElement.style.setProperty('--vh', `${vh}px`);
+                    document.documentElement.style.setProperty('--vw', `${vw}px`);
+
+                }
+
+                /**
+                 * Initialize ECG Animation
+                 */
+                initECGAnimation() {
+                    const canvas = document.getElementById('ecgCanvas');
+                    if (!canvas) return;
+
+                    const ctx = canvas.getContext('2d');
+                    let animationOffset = 0;
+                    let animationId;
+
+                    const resizeCanvas = () => {
+                        const rect = canvas.getBoundingClientRect();
+                        const dpr = window.devicePixelRatio || 1;
+                        canvas.width = rect.width * dpr;
+                        canvas.height = rect.height * dpr;
+                        ctx.scale(dpr, dpr);
+                        canvas.style.width = rect.width + 'px';
+                        canvas.style.height = rect.height + 'px';
+                    };
+                    resizeCanvas();
+
+                    const drawECG = () => {
+                        if (!this.state.isVisible) {
+                            animationId = requestAnimationFrame(drawECG);
+                            return;
+                        }
+                        const rect = canvas.getBoundingClientRect();
+                        const width = rect.width;
+                        const height = rect.height;
+                        const centerY = height / 2;
+                        ctx.clearRect(0, 0, width, height);
+                        ctx.strokeStyle = '#ef4444';
+                        ctx.lineWidth = 1.5;
+                        ctx.shadowBlur = 8;
+                        ctx.shadowColor = '#ef4444';
+                        ctx.beginPath();
+                        for (let x = 0; x < width; x += 2) {
+                            let y = centerY;
+                            const relX = (x + animationOffset) % 120;
+                            if (relX < 10) { y = centerY; } 
+                            else if (relX < 15) { y = centerY - Math.sin((relX - 10) * Math.PI / 5) * 4; } 
+                            else if (relX < 20) { y = centerY; } 
+                            else if (relX < 22) { y = centerY + (relX - 20) * 2; } 
+                            else if (relX < 25) { y = centerY + 4 - (relX - 22) * 10; } 
+                            else if (relX < 28) { y = centerY - 26 + (relX - 25) * 10; } 
+                            else if (relX < 30) { y = centerY + 4 - (relX - 28) * 2; } 
+                            else if (relX < 45) { y = centerY - Math.sin((relX - 30) * Math.PI / 15) * 6; } 
+                            else { y = centerY; }
+                            if (x === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+                        }
+                        ctx.stroke();
+                        ctx.strokeStyle = '#ef444440';
+                        ctx.lineWidth = 3;
+                        ctx.stroke();
+                        animationOffset += 2;
+                        animationId = requestAnimationFrame(drawECG);
+                    };
+                    this.animations.ecg = { draw: drawECG, resize: resizeCanvas, stop: () => cancelAnimationFrame(animationId) };
+                    drawECG();
+                }
+            
+                /**
+                 * Start clock update
+                 */
+                startClockUpdate() {
+                    const updateClock = () => {
+                        const now = new Date();
+                        const hours = String(now.getHours()).padStart(2, '0');
+                        const minutes = String(now.getMinutes()).padStart(2, '0');
+                        this.updateElement('clockTime', `${hours}:${minutes}`);
+                    };
+                    updateClock();
+                    this.animations.intervals.set('clock', setInterval(updateClock, 1000));
+                }
+
+                /**
+                 * Update element content safely
+                 */
+                updateElement(id, value) {
+                    const element = document.getElementById(id);
+                    if (element) { element.textContent = value; }
+                }
+            }
+            
+            document.addEventListener('DOMContentLoaded', () => {
+                const fitnessHero = new FitnessHeroAnimations();
+                window.fitnessHero = fitnessHero;
+                document.getElementById("forwardIcon").addEventListener('click', () => {
+                    const now = window.fitnessHero.tl.time();
+                    window.fitnessHero.tl.tweenFromTo(now, now + 1);
+                });
+                document.getElementById("backIcon").addEventListener('click', () => {
+                    const now = window.fitnessHero.tl.time();
+                    window.fitnessHero.tl.tweenFromTo(now, now - 1);
+                });
+            });
+
+ </script>
+    </body>
 </html>
