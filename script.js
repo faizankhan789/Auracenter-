@@ -295,10 +295,16 @@ class FitnessHeroAnimations {
                     ease: "power2.out",
                     transformOrigin: "center"
                 });
-
-
             }
             fullTimeline.to(".page-7", { yPercent: 0, duration: 0.5 })
+            .to(".page-8", { yPercent: 0, duration: 0.5 })
+            .to("#event-1", { y: "-27vh", duration: 0.5 })
+            .to("#event-2", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
+            .to("#event-3", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
+
+            .to("#event-6", { y: "-27vh", duration: 0.5 })
+            .to("#event-7", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
+            .to("#event-8", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
 
         gsap.set(".page-2", { xPercent: -100 });
         gsap.set(".page-3", { xPercent: 100 });
@@ -307,6 +313,8 @@ class FitnessHeroAnimations {
         gsap.set(".page-6", { yPercent: 100 });
         gsap.set(".visionMission", { opacity: 0 });
         gsap.set(".page-7", { yPercent: 100 });
+        gsap.set(".page-8", { yPercent: 100 });
+
         ScrollTrigger.create({
             animation: fullTimeline,
             trigger: "#page-container",
