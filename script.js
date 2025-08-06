@@ -132,11 +132,10 @@ class FitnessHeroAnimations {
         const visibleCards = cards.slice(0, Math.ceil(visibleNumber));
         const cardContents = gsap.utils.toArray(".card__back")
         fullTimeline
-        .to('#sliderIcons', { opacity: 1, duration: 0.5 })
             .to(".classes-container", {
                 x: 10,
                 opacity: 1,
-                duration: 1,
+                duration: isMobile ? 1 : 0.5,
                 ease: "power2.out"
             })
             .to(visibleCards , {
@@ -264,13 +263,13 @@ class FitnessHeroAnimations {
                 // Rotate mission card to 180 after 0.5s
                 .to("#missionCard", {
                     rotationY: 180,
-                    duration: 0.5,
+                    duration: 1,
                     ease: "power2.out",
                     transformOrigin: "center"
                 })
 
                 // Wait 3 seconds (add a dummy tween)
-                .to({}, { duration: 2 })
+                .to({}, { duration: 3 })
 
                 // Rotate mission card back to 0
                 .to("#missionCard", {
@@ -282,13 +281,13 @@ class FitnessHeroAnimations {
                 // Rotate vision card to 180
                 .to("#visionCard", {
                     rotationY: 180,
-                    duration: 0.5,
+                    duration: 1,
                     ease: "power2.out",
                     transformOrigin: "center"
                 })
 
                 // Wait 3 seconds
-                .to({}, { duration: 2 })
+                .to({}, { duration: 3 })
                 // Rotate vision card back to 0
                 .to("#visionCard", {
                     rotationY: 0,
@@ -338,10 +337,10 @@ class FitnessHeroAnimations {
 
     setUpLenis() {
         const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        smoothTouch: true // ⬅️ optional, useful for mobile/touchpad
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            smoothTouch: true // ⬅️ optional, useful for mobile/touchpad
         });
 
         // 4. Listen for scroll events from Lenis to update ScrollTrigger
@@ -349,7 +348,7 @@ class FitnessHeroAnimations {
 
         // 5. Ensure the browser's native scroll is disabled
         gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
+            lenis.raf(time * 1000);
         });
 
     }
@@ -516,22 +515,4 @@ class FitnessHeroAnimations {
 document.addEventListener('DOMContentLoaded', () => {
     const fitnessHero = new FitnessHeroAnimations();
     window.fitnessHero = fitnessHero;
-    document.getElementById("forwardIcon").addEventListener('click', () => {
-        const now = window.fitnessHero.tl.time();
-        const rewindTo = Math.max(0, now + 5); // clamp to 0
-        gsap.to(window.fitnessHero.tl, {
-            time: rewindTo,
-            duration: 1,
-            ease: "none"
-        });
-    });
-    document.getElementById("backIcon").addEventListener('click', () => {
-        const now = window.fitnessHero.tl.time();
-        const rewindTo = Math.max(0, now - 5); // clamp to 0
-        gsap.to(window.fitnessHero.tl, {
-            time: rewindTo,
-            duration: 1,
-            ease: "none"
-        });
-    });
 });
