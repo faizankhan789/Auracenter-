@@ -60,6 +60,8 @@
     .page-1 {
         background-size: 180% 100%;
     }
+}
+@media (max-width: 1023px) {
     .hover-card { perspective: 800px;}
     .card__content {transform-style: preserve-3d;}
     .hover-card:hover .card__content {transform: rotateY(.5turn);}
@@ -72,6 +74,10 @@
     width: 100vw;
     height: 100vh;
 }
+/* body, html {
+  overflow: hidden;
+  height: 100%;
+} */
 #page-container {
     width: 100%;
     min-height: 100vh; 
@@ -158,7 +164,7 @@ body {
     width: 90svw;
     height: auto;
 }
-.page-4 {
+.page-4, .page-7 {
     background-image: url("./assets/6.png");
     background-size: cover;
 }
