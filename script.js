@@ -130,7 +130,7 @@ class FitnessHeroAnimations {
         const cards = gsap.utils.toArray(".classes_cards")
         const minVisibleNumber = Math.floor(visibleNumber)
         const visibleCards = cards.slice(0, Math.ceil(visibleNumber));
-        const cardContents = gsap.utils.toArray(".card__back")
+        // const cardContents = gsap.utils.toArray(".card__back")
         fullTimeline
             .to(".classes-container", {
                 x: 10,
@@ -211,7 +211,6 @@ class FitnessHeroAnimations {
                 })
             }
             gsap.set(".classes-container", {x: totalWidth, opacity: 0 });
-            gsap.set("#sliderIcons", {opacity: 0 });
             gsap.set(visibleCards, {x: 100, opacity: 0 });
     }
     gsapWithMobile(isMobile) { 
@@ -296,39 +295,176 @@ class FitnessHeroAnimations {
                     transformOrigin: "center"
                 });
             }
-            fullTimeline.to(".page-7", { yPercent: 0, duration: 0.5 })
-            .to(".page-8", { yPercent: 0, duration: 0.5 });
+            fullTimeline.to(".page-7", { yPercent: 0, duration: 1 })
+            .to(".page-8", { yPercent: 0, duration: 1 });
             if (isMobile) {
                 fullTimeline
                 .to("#events-1", { opacity: 1, duration: 0.5 })
                 .to("#event-1", { y: "-27vh", duration: 0.5 })
-                .to("#event-2", { y: "-30vh", x: "20vw", duration: 0.5 }, "<")
-                .to("#event-3", { y: "-3vh", x: "20vw", duration: 0.5 }, "<")
+                .to("#event-2", { y: "-30vh", x: "27vw", duration: 0.5 }, "<")
+                .to("#event-3", { y: "-3vh", x: "27vw", duration: 0.5 }, "<")
                 .to("#events-1", { opacity: 0, duration: 0.5 })
                 .to("#events-2", { opacity: 1, duration: 0.5 })
                 .to("#event-6", { y: "-27vh", duration: 0.5 })
-                .to("#event-7", { y: "-30vh", x: "20vw", duration: 0.5 }, "<")
-                .to("#event-8", { y: "-3vh", x: "20vw", duration: 0.5 }, "<")
+                .to("#event-7", { y: "-30vh", x: "27vw", duration: 0.5 }, "<")
+                .to("#event-8", { y: "-3vh", x: "27vw", duration: 0.5 }, "<")
 
             }
             else {
                 fullTimeline
                 .to("#events-1,#events-2", { opacity: 1, duration: 0.5 })
                 .to("#event-1, #event-6", { y: "-27vh", duration: 0.5 })
-                .to("#event-2, #event-7", { y: "-30vh", x: "20vw", duration: 0.5 }, "<")
-                .to("#event-3, #event-8", { y: "-3vh", x: "20vw", duration: 0.5 }, "<")
+                .to("#event-2, #event-7", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
+                .to("#event-3, #event-8", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
+            }
+            fullTimeline.to(".page-9", { yPercent: 0, duration: 1})
+            if (isMobile) {
+                fullTimeline.to("#auraElite", {scale: 1, y: 0, opacity: 1, duration: 0.5})
+                .to("#auraContentText", {opacity: 1, duration: 0.5})
+                .to("#auraContentText", {opacity: 0, duration: 0.5})
+                .to("#events-3", { opacity: 1, duration: 0.5 })
+                .to("#event-10", { y: "-27vh", duration: 0.5 })
+                .to("#event-11", { y: "-30vh", x: "27vw", duration: 0.5 }, "<")
+                .to("#event-12", { y: "-3vh", x: "27vw", duration: 0.5 }, "<")
+            }
+            else {
+                fullTimeline
+                .to("#auraElite", {scale: 1, xPercent: 0, y: 0, opacity: 1, duration: 0.5})
+                .to("#auraContent", {opacity: 1, duration: 0.5})
+                .to("#event-10", { y: "-27vh", duration: 0.5 })
+                .to("#event-11", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
+                .to("#event-12", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
 
+            fullTimeline.to(".page-11", {xPercent: 0, duration: 1})
+            if (isMobile) {
+                fullTimeline.to("#auraJunior", {scale: 1, y: 0, opacity: 1, duration: 0.5})
+                .to("#auraJuniorContentText", {opacity: 1, duration: 0.5})
+                .to("#auraJuniorContentText", {opacity: 0, duration: 0.5})
+                .to("#events-4", { opacity: 1, duration: 0.5 })
+                .to("#event-14", { y: "-27vh", duration: 0.5 })
+                .to("#event-15", { y: "-30vh", x: "27vw", duration: 0.5 }, "<")
+                .to("#event-16", { y: "-3vh", x: "27vw", duration: 0.5 }, "<")
+            }
+            else {
+                fullTimeline
+                .to("#auraJunior", {scale: 1, xPercent: 0, y: 0, opacity: 1, duration: 0.5})
+                .to("#auraJuniorContent", {opacity: 1, duration: 0.5})
+                .to("#event-14", { y: "-27vh", duration: 0.5 })
+                .to("#event-15", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
+                .to("#event-16", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
+            }
+            fullTimeline.to(".page-12", { yPercent: 0, duration: 0.5})
+            fullTimeline.to(".page-12", { yPercent: 0, duration: 0.5})
+            
+            // Page 12 Membership Animation
+            .set("#membership-intro", { opacity: 0 })
+            .set("#plan-button", { scale: 0, opacity: 0 })
+            .set("#title-container", { scale: 0, opacity: 0 })
+            .set("#subtitle", { scale: 0, opacity: 0 })
+            .set("#membership-table-wrapper", { opacity: 0, scale: 0.8 })
+            
+            // Show intro container
+            .to("#membership-intro", { opacity: 1, duration: 0.1 })
+            
+            // Animate intro elements scaling up
+            .to("#plan-button", { 
+                scale: 1, 
+                opacity: 1, 
+                duration: 0.5, 
+                ease: "back.out(1.7)" 
+            })
+            .to("#title-container", { 
+                scale: 1, 
+                opacity: 1, 
+                duration: 0.8, 
+                ease: "power3.out" 
+            }, "-=0.3")
+            .to("#subtitle", { 
+                scale: 1, 
+                opacity: 1, 
+                duration: 0.5, 
+                ease: "power2.out" 
+            }, "-=0.4")
+            
+            // Hold the intro for a moment
+            .to({}, { duration: 1 })
+            
+            // Scale up the intro text dramatically while fading out
+            .to("#plan-button", { 
+                scale: 3, 
+                opacity: 0, 
+                duration: 0.8, 
+                ease: "power2.in" 
+            })
+            .to("#title-container", { 
+                scale: 2.5, 
+                opacity: 0, 
+                duration: 0.8, 
+                ease: "power2.in" 
+            }, "-=0.8")
+            .to("#subtitle", { 
+                scale: 2, 
+                opacity: 0, 
+                duration: 0.8, 
+                ease: "power2.in" 
+            }, "-=0.8")
+            
+            // Hide intro completely
+            .set("#membership-intro", { display: "none" })
+            
+            // Reveal and animate the membership table
+            .to("#membership-table-wrapper", { 
+                opacity: 1, 
+                scale: 1, 
+                duration: 1, 
+                ease: "power3.out" 
+            })
+            
+            // Add stagger animation to membership cards
+            .from(".membership-plan-card", {
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0.2,
+                ease: "back.out(1.5)"
+            }, "-=0.5")
+            .to("#membership-table-wrapper", { 
+                opacity: 1, 
+                scale: 1, 
+                duration: 1, 
+                ease: "power3.out" 
+            })
+            
+            // // Add stagger animation to membership cards
+            // .from(".membership-plan-card", {
+            //     scale: 0.8,
+            //     opacity: 0,
+            //     duration: 0.5,
+            //     stagger: 0.2,
+            //     ease: "back.out(1.5)"
+            // }, "-=0.5");
+
+            
+
         gsap.set(".page-2", { xPercent: -100 });
-        gsap.set(".page-3", { xPercent: 100 });
-        gsap.set(".page-4,.page-5,.page-6,.page-7,.page-8", { yPercent: 100 });
+        gsap.set(".page-3, .page-11", { xPercent: 100 });
+        gsap.set(".page-4,.page-5,.page-6,.page-7,.page-8,.page-9,.page-12", { yPercent: 100 });
         gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
+        gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 150, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });
+        
+        if (isMobile) {
+            gsap.set("#auraContentText, #auraJuniorContentText, #events-3, #events-4", {opacity: 0})
+
+        } else {
+            gsap.set("#auraContent, #auraJuniorContent", {opacity: 0})
+        }
 
         ScrollTrigger.create({
             animation: fullTimeline,
             trigger: "#page-container",
             start: "top top",
-            end: "+=30000", // enough scroll space
+            end: "+=50000", // enough scroll space
             scrub: true,
             pin: true,
             anticipatePin: 1,
@@ -354,7 +490,7 @@ class FitnessHeroAnimations {
 
     setUpLenis() {
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 2.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smooth: true,
             smoothTouch: true // ⬅️ optional, useful for mobile/touchpad

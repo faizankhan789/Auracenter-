@@ -168,9 +168,46 @@ body {
     background-image: url("./assets/6.png");
     background-size: cover;
 }
+.page-11 {
+    background-image: url("./assets/26.png");
+    background-size: cover;
+}
 .page-5 {
     background: linear-gradient(to bottom,
         #f2eeeb 50%,
         #d9cec5 50%
     );
+}
+/* Membership Plan Card Hover Effects */
+.membership-plan-card {
+    transform-origin: center;
+    position: relative;
+    transition: transform 0.3s ease, z-index 0s, box-shadow 0.3s ease;
+}
+
+.membership-plan-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 20 !important;
+}
+
+/* Ensure table container allows overflow for scaling */
+.membership-table-container {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Corner border animation for title container */
+#title-container > div {
+    transition: all 0.3s ease;
+}
+
+#title-container:hover > div:nth-child(1),
+#title-container:hover > div:nth-child(2) {
+    transform: translate(0, -5px);
+}
+
+#title-container:hover > div:nth-child(3),
+#title-container:hover > div:nth-child(4) {
+    transform: translate(0, 5px);
 }
