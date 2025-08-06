@@ -167,7 +167,7 @@ class FitnessHeroAnimations {
 
                     // 3. Add a delay (hold the flip) before flipping back
                     // This is handled by a separate tween with a duration, making the timeline longer.
-                    fullTimeline.to({}, { duration: 3 }); // Adjust duration for the "hold" time
+                    fullTimeline.to({}, { duration: 5 }); // Adjust duration for the "hold" time
 
                     // 4. Flip the card back (rotationY: 0)
                     fullTimeline.to("#hover-card-" + (index + 1), {
@@ -299,26 +299,30 @@ class FitnessHeroAnimations {
             fullTimeline.to(".page-7", { yPercent: 0, duration: 0.5 })
             .to(".page-8", { yPercent: 0, duration: 0.5 });
             if (isMobile) {
-            }
-            else {
-                fullTimeline.to("#event-1", { y: "-27vh", duration: 0.5 })
+                fullTimeline
+                .to("#events-1", { opacity: 1, duration: 0.5 })
+                .to("#event-1", { y: "-27vh", duration: 0.5 })
                 .to("#event-2", { y: "-30vh", x: "20vw", duration: 0.5 }, "<")
                 .to("#event-3", { y: "-3vh", x: "20vw", duration: 0.5 }, "<")
-
+                .to("#events-1", { opacity: 0, duration: 0.5 })
+                .to("#events-2", { opacity: 1, duration: 0.5 })
                 .to("#event-6", { y: "-27vh", duration: 0.5 })
                 .to("#event-7", { y: "-30vh", x: "20vw", duration: 0.5 }, "<")
                 .to("#event-8", { y: "-3vh", x: "20vw", duration: 0.5 }, "<")
 
             }
+            else {
+                fullTimeline
+                .to("#events-1,#events-2", { opacity: 1, duration: 0.5 })
+                .to("#event-1, #event-6", { y: "-27vh", duration: 0.5 })
+                .to("#event-2, #event-7", { y: "-30vh", x: "20vw", duration: 0.5 }, "<")
+                .to("#event-3, #event-8", { y: "-3vh", x: "20vw", duration: 0.5 }, "<")
+            }
 
         gsap.set(".page-2", { xPercent: -100 });
         gsap.set(".page-3", { xPercent: 100 });
-        gsap.set(".page-4", { yPercent: 100 });
-        gsap.set(".page-5", { yPercent: 100 });
-        gsap.set(".page-6", { yPercent: 100 });
-        gsap.set(".visionMission", { opacity: 0 });
-        gsap.set(".page-7", { yPercent: 100 });
-        gsap.set(".page-8", { yPercent: 100 });
+        gsap.set(".page-4,.page-5,.page-6,.page-7,.page-8", { yPercent: 100 });
+        gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
 
         ScrollTrigger.create({
             animation: fullTimeline,
