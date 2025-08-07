@@ -1,7 +1,7 @@
 lucide.createIcons();
 class FitnessHeroAnimations {
     constructor() {
-            this.config = {
+        this.config = {
             heartRate: {
                 base: 128,
                 variation: 8,
@@ -182,15 +182,14 @@ class FitnessHeroAnimations {
         this.setUpLenis();
         this.observeFadeInElementsWithScrollTrigger();          
     }
+
     addTrainersCards() {
        this.trainers.forEach(trainer => this.addTrainerCard(trainer));
     }
     addClassesCard() {
         this.cards.forEach(card => this.addClassCard(card));
     }
-    setUpResize() {
-        window.addEventListener('resize', this.setViewportVars);
-    }
+
     setUpClassesCards(fullTimeline, isMobile) {
         const cardWidthVW = isMobile ? 45 : 30;
         const cardMarginPx = 16;
@@ -255,11 +254,11 @@ class FitnessHeroAnimations {
                 let flipped = 0
                 cards.forEach((card, index) => {
                 if (flipped == minVisibleNumber - 1) {
-                    // 1. Animate the classes container
+                    // 1. Animate the classes container - faster to match trainers
                     fullTimeline.to(".classes-container", {
                         x: -cardWidth * index + 20, // Move to the current card's position
                         ease: "power2.inOut",
-                        duration: 1.5// Adjust this duration to control scroll speed
+                        duration: 0.8// Adjust this duration to control scroll speed
                     });
                     flipped = 0
                     }
@@ -271,7 +270,7 @@ class FitnessHeroAnimations {
                 .to("#hover-card-content-" + itemIndex, {
                     x: "95%",
                     ease: "power2.out",
-                    duration: 0.5
+                    duration: 0.3
                 })
                 .set("#hover-card-content-" + itemIndex, { zIndex: 1 }, "-=0.4")
                 .set("#hover-card-img-" + itemIndex, { zIndex: 2, scale:1.05 }, "-=0.4")
@@ -286,12 +285,70 @@ class FitnessHeroAnimations {
                     .set('#hover-card-img-' + index, { zIndex: 1, scale: 1}, "-=0.3")
                     .set("#hover-card-container-" + index, { zIndex: 0}, "-=0.3")
                 }
-                fullTimeline.to({}, { duration:1 });
+                fullTimeline.to({}, { duration: 0.8 });
                 flipped = flipped + 1
                 })
             }
             gsap.set(".classes-container", {x: totalWidth, opacity: 0 });
             gsap.set(visibleCards, {x: 100, opacity: 0 });
+    }
+
+    setUpVideoCarousel(fullTimeline, isMobile) {
+        // Set up proper GSAP-based video carousel for the timeline
+        const videos = [
+            { id: "video-slide-1", videoId: "video-1", progressId: "progress-dot-1" },
+            { id: "video-slide-2", videoId: "video-2", progressId: "progress-dot-2" },
+            { id: "video-slide-3", videoId: "video-3", progressId: "progress-dot-3" },
+            { id: "video-slide-4", videoId: "video-4", progressId: "progress-dot-4" },
+            { id: "video-slide-5", videoId: "video-5", progressId: "progress-dot-5" }
+        ];
+        
+        // Initial states are already set in the main gsap.set section
+        
+        videos.forEach((video, index) => {
+            if (index === 0) {
+                // Play first video immediately
+                fullTimeline.call(() => {
+                    const firstVideo = document.getElementById(video.videoId);
+                    if (firstVideo) {
+                        firstVideo.play().catch(e => console.log("Video autoplay prevented:", e));
+                    }
+                });
+                return;
+            }
+            
+            // Animate to next video (slower)
+            fullTimeline
+                .to(".carousel-track", {
+                    x: `-${index * 100}vw`,
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                })
+                .to(`.video-slide[data-index='${index - 1}']`, {
+                    scale: 0.7,
+                    opacity: 0.5,
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                }, "-=0.8")
+                .to(`.video-slide[data-index='${index}']`, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 1.8,
+                    ease: "power2.inOut"
+                }, "-=0.8")
+                .call(() => {
+                    // Pause previous and play current video
+                    if (index > 0) {
+                        const prevVideo = document.getElementById(`video-${index}`);
+                        if (prevVideo) prevVideo.pause();
+                    }
+                    const currentVideo = document.getElementById(video.videoId);
+                    if (currentVideo) {
+                        currentVideo.currentTime = 0;
+                        currentVideo.play().catch(e => console.log("Video play failed:", e));
+                    }
+                })
+        });
     }
 
     setUpTrainersCards(fullTimeline, isMobile) {
@@ -356,43 +413,53 @@ class FitnessHeroAnimations {
         } else {
             // Desktop: Scroll through trainers with subtle animations
             trainers.forEach((card, index) => {                
-                // Scroll container to show next trainer(s)
-                if (index > 0 && index % 3 === 0) {
+                // Scroll container to show cards properly
+                if (index === 2) {
+                    // Show cards 3, 4, 5 (index 2, 3, 4)
                     fullTimeline.to(".trainers-container", {
-                        x: -cardWidth * (index - 1),
+                        x: -cardWidth * 1.5,
                         ease: "power2.inOut",
-                        duration: 1.5
+                        duration: 0.8
+                    });
+                } else if (index === 4) {
+                    // Show cards 5, 6 and ensure last card is fully visible
+                    fullTimeline.to(".trainers-container", {
+                        x: -cardWidth * 3,
+                        ease: "power2.inOut",
+                        duration: 0.8
                     });
                 }
                 
-                // Add subtle animation for focus
+                // Add subtle animation for focus - faster
                 fullTimeline
                     .to(`#trainer-card-container-${index + 1}`, {
                         y: -10,
                         boxShadow: "0 12px 30px rgba(0,0,0,0.2)",
-                        duration: 0.5,
+                        duration: 0.3,
                         ease: "power2.out"
                     })
                     .to(`#trainer-card-content-${index + 1}`, {
                         y: "90%",
                         zIndex: 1,
-                    }, "-=0.4");
+                        duration: 0.3
+                    }, "-=0.2");
                 
-                // Hold the focus
-                fullTimeline.to({}, { duration: 1.5 });
+                // Hold the focus - shorter for desktop
+                fullTimeline.to({}, { duration: 0.8 });
                 
-                // Reset for next card
+                // Reset for next card - faster
                 fullTimeline
                     .to(`#trainer-card-container-${index + 1}`, {
                         y: 0,
                         boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-                        duration: 0.3,
+                        duration: 0.2,
                         ease: "power2.in"
-                    }, "-=0.4")
+                    }, "-=0.3")
                 .to(`#trainer-card-content-${index + 1}`, {
                         y: 0,
                         zIndex: 0,
-                    }, "-=0.4");
+                        duration: 0.2
+                    }, "-=0.3");
             });
         }
 
@@ -404,8 +471,7 @@ class FitnessHeroAnimations {
 
     gsapWithMobile(isMobile) { 
         const fullTimeline = gsap.timeline();
-
-            fullTimeline
+        fullTimeline
             // Page 1 animation - slower fade out with better easing
             .to('#page1Img, #monitors, #learnMore', { 
                 opacity: 0, 
@@ -487,7 +553,7 @@ class FitnessHeroAnimations {
                 opacity: 1,
                 scale: 1,
                 rotation: 0,
-                duration: 1.5,
+                duration: 1,
                 stagger: 0.4,
                 ease: "back.out(1.2)"
             });
@@ -498,9 +564,9 @@ class FitnessHeroAnimations {
                 ease: "power2.out",
                 duration: 0.5
             })
-            .set("#missionImg", { zIndex: 2 }, "<")
+            .set("#missionImg, #missionCard", { zIndex: 2 }, "<")
             .set("#vision", { zIndex: 0, opacity: 0 }, "<")
-            .set("#visionImg", { zIndex: 0 }, "<")
+            .set("#visionImg, #visionCard", { zIndex: 0 }, "<")
             .to({}, { duration: 2 })
             .to("#vision", {
                 opacity: 1,
@@ -508,9 +574,9 @@ class FitnessHeroAnimations {
                 ease: "power2.out",
                 duration: 0.5
             })
-            .set("#visionImg", { zIndex: 2 }, "<")
+            .set("#visionImg, #visionCard", { zIndex: 2 }, "<")
             .set("#mission", { zIndex: 0, opacity: 0 }, "<")
-            .set("#missionImg", { zIndex: 0 }, "<");
+            .set("#missionImg, #missionCard", { zIndex: 0 }, "<");
             fullTimeline.to({}, { duration: 2 });
             }
             else {
@@ -518,35 +584,35 @@ class FitnessHeroAnimations {
                 // Rotate mission card to 180 after 0.5s
                 .to("#missionCard", {
                     rotationY: 180,
-                    duration: 1,
+                    duration: 0.5,
                     ease: "power2.out",
                     transformOrigin: "center"
                 })
 
                 // Wait 3 seconds (add a dummy tween)
-                .to({}, { duration: 5 })
+                .to({}, { duration: 2 })
 
                 // Rotate mission card back to 0
                 .to("#missionCard", {
                     rotationY: 0,
-                    duration: 1,
+                    duration: 0.5,
                     ease: "power2.out",
                     transformOrigin: "center"
                 })
                 // Rotate vision card to 180
                 .to("#visionCard", {
                     rotationY: 180,
-                    duration: 1,
+                    duration: 0.5,
                     ease: "power2.out",
                     transformOrigin: "center"
                 })
 
                 // Wait 3 seconds
-                .to({}, { duration: 5 })
+                .to({}, { duration: 2 })
                 // Rotate vision card back to 0
                 .to("#visionCard", {
                     rotationY: 0,
-                    duration: 1,
+                    duration: 0.5,
                     ease: "power2.out",
                     transformOrigin: "center"
                 });
@@ -562,7 +628,7 @@ class FitnessHeroAnimations {
                 opacity: 1,
                 x: 0,
                 filter: "blur(0px)",
-                duration: 1,
+                duration: 0.5,
                 ease: "power3.out"
             })
             // Slide in title with perspective effect
@@ -570,33 +636,63 @@ class FitnessHeroAnimations {
                 opacity: 1,
                 x: 0,
                 rotationY: 0,
-                duration: 1.2,
+                duration: 0.5,
                 ease: "power2.out"
-            }, "-=0.5")
+            })
             // Slide in paragraph with stagger
             .to(".page-7 p", {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: 0.8,
+                duration: 0.5,
                 ease: "power2.out"
-            }, "-=0.6")
+            })
             // Animate the image with parallax zoom and fade
             .to(".page-7 img", {
                 opacity: 1,
                 scale: 1,
                 filter: "brightness(1) contrast(1)",
-                duration: 1.5,
+                duration: 0.5,
                 ease: "power2.out"
-            }, "-=1")
-            .to({}, { duration: 1 })
+            })
+            .to({}, { duration: 0.5 })
             
-            // Page 10 - Events with cascade effect
-            .to(".page-10", { 
+            // Page 8 - Video Carousel Animation
+            .to(".page-8", { 
                 yPercent: 0, 
                 duration: 1.5,
                 ease: "power2.inOut"
             })
+            // First video entrance animation - scale up from 0 (slower)
+            .fromTo(".video-slide[data-index='0']", {
+                scale: 0,
+                opacity: 0,
+                rotationY: 180
+            }, {
+                scale: 1,
+                opacity: 1,
+                rotationY: 0,
+                duration: 2,
+                ease: "back.out(1.2)",
+                transformOrigin: "center center"
+            }, "-=1.2")
+            // Start first video playing
+            .call(() => {
+                const firstVideo = document.getElementById("video-1");
+                if (firstVideo) {
+                    firstVideo.play().catch(e => console.log("Video autoplay prevented:", e));
+                }
+            }, null, "-=0.5");
+            
+            // Video carousel transitions
+            this.setUpVideoCarousel(fullTimeline, isMobile);
+            
+            // Page 10 - Events with cascade effect
+            fullTimeline.to(".page-10", { 
+                yPercent: 0, 
+                duration: 1.5,
+                ease: "power2.inOut"
+            }, "<")
             .to(".page-10 button", {
                 opacity: 1,
                 y: 0,
@@ -633,7 +729,7 @@ class FitnessHeroAnimations {
                 .to("#event-3, #event-8", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
             fullTimeline            
-            .to({}, { duration: 2 })
+            .to({}, { duration: 0.5 })
             
             // Page 11 - Aura Elite with magnetic pull effect
             .to(".page-11", { 
@@ -649,7 +745,7 @@ class FitnessHeroAnimations {
                 rotationY: 0,
                 duration: 1.5,
                 ease: "power3.out"
-            })
+            });
             if (isMobile) {
                 fullTimeline.to("#auraElite", {scale: 1, y: 0, opacity: 1, duration: 0.5})
                 .to("#auraContentText", {opacity: 1, duration: 0.5})
@@ -669,8 +765,8 @@ class FitnessHeroAnimations {
                 .to("#event-11", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
                 .to("#event-12", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
-            fullTimeline.to({}, { duration: 1.5 })
-            .to(".page-12", { xPercent: 0, duration: 1})
+            fullTimeline.to({}, { duration: 1 })
+            .to(".page-12", { xPercent: 0, duration: 1.5, ease: "power2.inOut" })
             if (isMobile) {
                 fullTimeline.to("#auraLuxury", {scale: 1, y: 0, opacity: 1, duration: 0.5})
                 .to("#auraLuxuryContentText", {opacity: 1, duration: 0.5})
@@ -690,8 +786,8 @@ class FitnessHeroAnimations {
                 .to("#event-19", { y: "-30vh", x: "-17vw", duration: 0.5 }, "<")
                 .to("#event-20", { y: "-3vh", x: "-17vw", duration: 0.5 }, "<")
             }
-            fullTimeline.to({}, { duration: 1.5 })
-            .to(".page-13", {xPercent: 0, duration: 1})
+            fullTimeline.to({}, { duration: 1 })
+            .to(".page-13", { xPercent: 0, duration: 1.5, ease: "power2.inOut" })
             if (isMobile) {
                 fullTimeline.to("#auraJunior", {scale: 1, y: 0, opacity: 1, duration: 0.5})
                 .to("#auraJuniorContentText", {opacity: 1, duration: 0.5})
@@ -711,8 +807,8 @@ class FitnessHeroAnimations {
                 .to("#event-15", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
                 .to("#event-16", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
-            fullTimeline.to({}, { duration: 1.5 })
-            .to(".page-14", { yPercent: 0, duration: 1})
+            fullTimeline.to({}, { duration: 1 })
+            .to(".page-14", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
             
             // Page 14 - Professional Trainers Entrance Animation
             .to("#trainers-section h1:first-child", {
@@ -740,9 +836,8 @@ class FitnessHeroAnimations {
             // }, "-=0.4");
             
             this.setUpTrainersCards(fullTimeline, isMobile);
-            fullTimeline.to({}, { duration: 1.5 })
 
-            .to(".page-15", { yPercent: 0, duration: 0.5})
+            fullTimeline.to(".page-15", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
             
             // Page 12 Membership Animation
             .set("#membership-intro", { opacity: 0 })
@@ -838,13 +933,13 @@ class FitnessHeroAnimations {
                 })
             }
 
-            fullTimeline.to(".page-17", {yPercent: 0, duration: 1})
-            .to(".page-18", {yPercent: 0, duration: 1})
+            fullTimeline.to(".page-17", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
+            .to(".page-18", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
 
 
         gsap.set(".page-2, .page-12", { xPercent: -100 });
         gsap.set(".page-3, .page-11, .page-13", { xPercent: 100 });
-        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-10, .page-14, .page-15, .page-17, .page-18", { yPercent: 100 });
+        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-8, .page-10, .page-14, .page-15, .page-17, .page-18", { yPercent: 100 });
         gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
         gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 120, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
         gsap.set("#auraLuxury", { xPercent: 0, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
@@ -860,6 +955,11 @@ class FitnessHeroAnimations {
         gsap.set(".page-4 button, #about-us", { opacity: 0, scale: 0.8, rotationX: -45 })
         gsap.set("#classes-section", { opacity: 0, y: -100, skewY: 10 })
         gsap.set(".visionMission", { opacity: 0, scale: 0.5, rotation: -180 })
+        
+        // Page 8 - Video Carousel initial states
+        gsap.set(".carousel-track", { x: 0 })
+        gsap.set(".video-slide", { scale: 0.7, opacity: 0.5 })
+        gsap.set(".video-slide[data-index='0']", { scale: 0, opacity: 0, rotationY: 180 })
         
         // Page 14 - Professional Trainers initial states
         gsap.set("#trainers-section h1:first-child", { opacity: 0, scale: 0.7, y: -50, rotationX: -30 })
@@ -911,78 +1011,10 @@ class FitnessHeroAnimations {
 
     }
     
-
     // Function to smoothly scroll
     raf = (time) => {
         this.lenis.raf(time);
         requestAnimationFrame(this.raf);
-    }
-    /**
-        * Setup intersection observer for performance
-        */
-    observeFadeInElementsWithScrollTrigger() {
-        const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-            const el = entry.target;
-            const animation = el.getAttribute('data-animation-class');
-
-            // Common from-state
-            let fromVars = {
-                opacity: entry.isIntersecting ? 0 : 1,
-                ease: 'power3.out',
-                duration: 1
-            };
-
-            if (animation === 'fade-in-up') {
-                fromVars.y = 50;
-            } else if (animation === 'fade-in-down') {
-                fromVars.y = -50;
-            } else if (animation === 'fade-in-left') {
-                fromVars.x = -50;
-            } else if (animation === 'fade-in-right') {
-                fromVars.x = 50;
-            }
-
-            if (entry.isIntersecting) {
-                // Animate into view
-                gsap.to(el, {
-                    opacity: 1,
-                    x: 0,
-                    y: 0,
-                    duration: fromVars.duration,
-                    ease: fromVars.ease
-                });
-            } else {
-                // Animate out of view
-                gsap.to(el, {
-                    opacity: 0,
-                    x: fromVars.x || 0,
-                    y: fromVars.y || 0,
-                    duration: fromVars.duration,
-                    ease: fromVars.ease
-                });
-            }
-            });
-        },
-        {
-            threshold: 0.5 // Triggers when 30% in/out of view
-        }
-        );
-
-        // Attach observer to all animated elements
-        document.querySelectorAll('[data-animation-class]').forEach((el) => {
-            observer.observe(el);
-        });
-
-    }
-    
-    setViewportVars() {
-        const vh = window.innerHeight;
-        const vw = window.innerWidth;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        document.documentElement.style.setProperty('--vw', `${vw}px`);
-
     }
 
     /**

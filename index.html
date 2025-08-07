@@ -169,8 +169,8 @@
 
             <!-- Page 6: Vision/Mission -->
             <div class="flex flex-col lg:flex-row lg:justify-center items-center lg:items-start bg-no-repeat page page-6 bg-[#F2EEEB] lg:space-x-16" id="page-6">
-                  <div class='visionMission hover-card group relative w-[30vw] lg:w-[25vw] h-[50vh] lg:h-[70vh] lg:group-hover:z-[3]'>
-                    <div id="missionCard" class='card__content relative transition-transform duration-1000 w-full h-full'>    
+                  <div id="missionCard" class='visionMission hover-card group relative w-[30vw] lg:w-[25vw] h-[50vh] lg:h-[70vh] lg:group-hover:z-[3]'>
+                    <div  class='card__content relative transition-transform duration-1000 w-full h-full'>    
                       <img id="missionImg" src='./assets/page_6/mission.png' alt='vision' class="card__front w-[30vw] lg:w-[25vw] h-[45vh] lg:h-[70vh] object-fill cursor-pointer absolute top-0 left-0 lg:group-hover:z-[2]" style="box-shadow: 40px 85px 22px rgba(0, 0, 0, 0.25)"/>
                       <div id="mission" class="flex flex-col justify-center card__back w-[30vw] lg:w-[60vw] lg:py-10 h-full lg:h-[45vh] bottom-0 lg:bottom-[-5%] absolute bottom-0 left-0 bg-[#AAABAB] lg:opacity-0 transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[opacity] cursor-pointer lg:group-hover:opacity-100 lg:group-hover:z-[4]">
                         <div class="flex flex-col lg:w-1/2 px-[clamp(1rem,4vw,2rem)] self-end">
@@ -181,8 +181,8 @@
                     </div>
                   </div>
 
-                  <div class='visionMission hover-card group relative w-[30vw] lg:w-[25vw] h-[50vh] lg:h-[70vh] lg:group-hover:z-[3] mt-8 lg:mt-0'>
-                    <div id="visionCard" class='card__content relative transition-transform duration-1000 w-full h-full'>    
+                  <div id="visionCard" class='visionMission hover-card group relative w-[30vw] lg:w-[25vw] h-[50vh] lg:h-[70vh] lg:group-hover:z-[3] mt-8 lg:mt-0'>
+                    <div class='card__content relative transition-transform duration-1000 w-full h-full'>    
                       <img id="visionImg" src='./assets/page_6/vision.png' alt='vision' class="card__front w-[30vw] lg:w-[25vw] h-[45vh] lg:h-[70vh] object-fill cursor-pointer absolute top-0 left-0 lg:group-hover:z-[2]" style="box-shadow: 40px 85px 22px rgba(0, 0, 0, 0.25)"/>
                       <div id="vision" class="flex flex-col justify-center card__back w-[30vw] lg:w-[60vw] lg:py-10 h-full lg:h-[45vh] bottom-0 lg:bottom-[-5%] absolute bottom-0 left-0 lg:left-[-35vw] bg-[#AAABAB] lg:opacity-0 transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[opacity] cursor-pointer lg:group-hover:opacity-100 lg:group-hover:z-[1]">
                         <div class="flex flex-col lg:w-1/2 px-[clamp(1rem,4vw,2rem)]">
@@ -216,6 +216,58 @@
                 </div>
             </div>
             <!-- Page 8: Videos -->
+            <div class="page page-8 bg-black overflow-hidden min-h-screen w-full" id="page-8">
+                <div class="carousel-container relative w-full h-full">
+                    <!-- Video Slides Container -->
+                    <div class="carousel-track flex h-full transition-none" id="video-carousel">
+                        <!-- Video 1 -->
+                        <div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="0" id="video-slide-1">
+                            <div class="video-wrapper w-full h-full flex items-center justify-center">
+                                <video class="w-full h-full object-cover block" muted playsinline loop id="video-1">
+                                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Video 2 -->
+                        <div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="1" id="video-slide-2">
+                            <div class="video-wrapper w-full h-full flex items-center justify-center">
+                                <video class="w-full h-full object-cover block" muted playsinline loop id="video-2">
+                                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Video 3 -->
+                        <div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="2" id="video-slide-3">
+                            <div class="video-wrapper w-full h-full flex items-center justify-center">
+                                <video class="w-full h-full object-cover block" muted playsinline loop id="video-3">
+                                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Video 4 -->
+                        <div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="3" id="video-slide-4">
+                            <div class="video-wrapper w-full h-full flex items-center justify-center">
+                                <video class="w-full h-full object-cover block" muted playsinline loop id="video-4">
+                                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Video 5 -->
+                        <div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="4" id="video-slide-5">
+                            <div class="video-wrapper w-full h-full flex items-center justify-center">
+                                <video class="w-full h-full object-cover block" muted playsinline loop id="video-5">
+                                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
             <!-- Page 9: Schedule -->
 
