@@ -180,6 +180,7 @@ class FitnessHeroAnimations {
         this.addTrainersCards();
         this.setUpGSAP();
         this.setUpLenis();
+        this.observeFadeInElementsWithScrollTrigger();
     }
 
     addTrainersCards() {
@@ -1015,6 +1016,67 @@ class FitnessHeroAnimations {
         this.lenis.raf(time);
         requestAnimationFrame(this.raf);
     }
+
+ /**
+        * Setup intersection observer for performance
+        */
+    observeFadeInElementsWithScrollTrigger() {
+        const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+            const el = entry.target;
+            const animation = el.getAttribute('data-animation-class');
+
+            // Common from-state
+            let fromVars = {
+                opacity: entry.isIntersecting ? 0 : 1,
+                ease: 'power3.out',
+                duration: 1
+            };
+
+            if (animation === 'fade-in-up') {
+                fromVars.y = 50;
+            } else if (animation === 'fade-in-down') {
+                fromVars.y = -50;
+            } else if (animation === 'fade-in-left') {
+                fromVars.x = -50;
+            } else if (animation === 'fade-in-right') {
+                fromVars.x = 50;
+            }
+
+            if (entry.isIntersecting) {
+                // Animate into view
+                gsap.to(el, {
+                    opacity: 1,
+                    x: 0,
+                    y: 0,
+                    duration: fromVars.duration,
+                    ease: fromVars.ease
+                });
+            } else {
+                // Animate out of view
+                gsap.to(el, {
+                    opacity: 0,
+                    x: fromVars.x || 0,
+                    y: fromVars.y || 0,
+                    duration: fromVars.duration,
+                    ease: fromVars.ease
+                });
+            }
+            });
+        },
+        {
+            threshold: 0.5 // Triggers when 30% in/out of view
+        }
+        );
+
+        // Attach observer to all animated elements
+        document.querySelectorAll('[data-animation-class]').forEach((el) => {
+            observer.observe(el);
+        });
+
+    }
+    
 
     /**
         * Initialize ECG Animation
