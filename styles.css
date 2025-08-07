@@ -74,10 +74,14 @@
     width: 100vw;
     height: 100vh;
 }
-/* body, html {
-  overflow: hidden;
+html, body {
+  margin: 0;
+  padding: 0;
   height: 100%;
-} */
+  overflow: auto; /* important for ScrollTrigger to work */
+  overscroll-behavior: none; /* prevent pull-to-refresh on mobile */
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+}
 #page-container {
     width: 100%;
     min-height: 100vh; 

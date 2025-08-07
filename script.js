@@ -152,8 +152,8 @@ class FitnessHeroAnimations {
                     // 1. Animate the classes container
                     fullTimeline.to(".classes-container", {
                         x: -cardWidth * index, // Move to the current card's position
-                        ease: "none",
-                        duration: 2// Adjust this duration to control scroll speed
+                        ease: "power2.inOut",
+                        duration: 1.5// Adjust this duration to control scroll speed
                     });
                     flipped = 0
                     }
@@ -187,26 +187,35 @@ class FitnessHeroAnimations {
                     // 1. Animate the classes container
                     fullTimeline.to(".classes-container", {
                         x: -cardWidth * index, // Move to the current card's position
-                        ease: "none",
-                        duration: 1// Adjust this duration to control scroll speed
+                        ease: "power2.inOut",
+                        duration: 1.5// Adjust this duration to control scroll speed
                     });
                     flipped = 0
                     }
                 const itemIndex = index + 1  
-                fullTimeline.to("#hover-card-content-" + itemIndex, {
+                fullTimeline.set("#hover-card-content-" + itemIndex, { 
+                    force3D: true,
+                    backfaceVisibility: "hidden"
+                })
+                .to("#hover-card-content-" + itemIndex, {
                     x: "95%",
-                    zIndex: 1,
                     ease: "power2.out",
                     duration: 0.5
                 })
-                .set("#hover-card-img-" + itemIndex, { zIndex: 2 }, "<")
-                .set("#hover-card-container-" + itemIndex, { zIndex: 3 }, "<");
+                .set("#hover-card-content-" + itemIndex, { zIndex: 1 }, "-=0.4")
+                .set("#hovd-imger-car-" + itemIndex, { zIndex: 2 }, "-=0.4")
+                .set("#hover-card-container-" + itemIndex, { zIndex: 3 }, "-=0.4");
                 if (index > 0) {
-                    fullTimeline.set('#hover-card-img-' + index, { zIndex: 1}, "<" )
-                    .set("#hover-card-content-" + index, { zIndex: 0, x: 0}, "<" )
-                    .set("#hover-card-container-" + index, { zIndex: 0}, "<")
+                    fullTimeline.set("#hover-card-content-" + index, { 
+                        zIndex: 0, 
+                        x: 0,
+                        force3D: true,
+                        backfaceVisibility: "hidden"
+                    }, "-=0.3")
+                    .set('#hover-card-img-' + index, { zIndex: 1}, "-=0.3")
+                    .set("#hover-card-container-" + index, { zIndex: 0}, "-=0.3")
                 }
-                fullTimeline.to({}, { duration: 0.5 });
+                fullTimeline.to({}, { duration:1 });
                 flipped = flipped + 1
                 })
             }
@@ -217,35 +226,70 @@ class FitnessHeroAnimations {
         const fullTimeline = gsap.timeline();
 
             fullTimeline
-            // Page 1 animation
-            .to('#page1Img, #monitors, #learnMore', { opacity: 0, duration: 1 })
+            // Page 1 animation - slower fade out with better easing
+            .to('#page1Img, #monitors, #learnMore', { 
+                opacity: 0, 
+                duration: 2.5,
+                ease: "power2.inOut"
+            })
             .to('.pin-text', {
                 scale: 2,
-                duration: 1,
+                duration: 2.5,
+                ease: "power3.inOut",
                 ...(isMobile ? { y: "25vh" } : {})
             }, 
-            "-=0.5")
-            // Slide in page 2 and page 3
-            .to(".page-2", { xPercent: 0, duration: 1 })  // animate into view
-            .to(".page-3", { xPercent: 0, duration: 1 }) // animate into view
-            .to(".page-4", { yPercent: 0, duration: 1 }) // animate into view
-            .to(".page-5", { yPercent: 0, duration: 1 });
+            "-=2")
+            
+            // Add a pause for dramatic effect
+            .to({}, { duration: 0.5 })
+            
+            // Slide in page 2 with smoother easing and longer duration
+            .to(".page-2", { 
+                xPercent: 0, 
+                duration: 2.5,
+                ease: "power2.inOut"
+            })
+            
+            // Hold on page 2 for better viewing
+            .to({}, { duration: 1.5 })
+            
+            // Slide in page 3 with smooth transition
+            .to(".page-3", { 
+                xPercent: 0, 
+                duration: 2.5,
+                ease: "power2.inOut"
+            })
+            
+            // Hold on page 3
+            .to({}, { duration: 1.5 })
+            
+            // Page 4 and 5 with smoother transitions
+            .to(".page-4", { 
+                yPercent: 0, 
+                duration: 2,
+                ease: "power2.inOut"
+            })
+            .to({}, { duration: 1 })
+            .to(".page-5", { 
+                yPercent: 0, 
+                duration: 2,
+                ease: "power2.inOut"
+            });
 
             this.setUpClassesCards(fullTimeline, isMobile);
-
             fullTimeline.to(".page-6", { yPercent: 0, duration: 0.5 })
             .to(".visionMission", { opacity: 1, duration: 0.5 });
             if (!isMobile) {
-            fullTimeline.to("#mission", {
-                opacity: 1,
-                zIndex: 1,
-                ease: "power2.out",
-                duration: 0.5
-            })
+                fullTimeline.to("#mission", {
+                    opacity: 1,
+                    zIndex: 1,
+                    ease: "power2.out",
+                    duration: 0.5
+                })
             .set("#missionImg", { zIndex: 2 }, "<")
             .set("#vision", { zIndex: 0, opacity: 0 }, "<")
             .set("#visionImg", { zIndex: 0 }, "<")
-            .to({}, { duration: 0.5 })
+            .to({}, { duration: 2 })
             .to("#vision", {
                 opacity: 1,
                 zIndex: 1,
@@ -255,7 +299,7 @@ class FitnessHeroAnimations {
             .set("#visionImg", { zIndex: 2 }, "<")
             .set("#mission", { zIndex: 0, opacity: 0 }, "<")
             .set("#missionImg", { zIndex: 0 }, "<");
-            fullTimeline.to({}, { duration: 0.5 });
+            fullTimeline.to({}, { duration: 2 });
             }
             else {
                 fullTimeline
@@ -268,7 +312,7 @@ class FitnessHeroAnimations {
                 })
 
                 // Wait 3 seconds (add a dummy tween)
-                .to({}, { duration: 3 })
+                .to({}, { duration: 5 })
 
                 // Rotate mission card back to 0
                 .to("#missionCard", {
@@ -286,7 +330,7 @@ class FitnessHeroAnimations {
                 })
 
                 // Wait 3 seconds
-                .to({}, { duration: 3 })
+                .to({}, { duration: 5 })
                 // Rotate vision card back to 0
                 .to("#visionCard", {
                     rotationY: 0,
@@ -296,6 +340,7 @@ class FitnessHeroAnimations {
                 });
             }
             fullTimeline.to(".page-7", { yPercent: 0, duration: 1 })
+            .to({}, { duration: 1.5 })
             .to(".page-8", { yPercent: 0, duration: 1 });
             if (isMobile) {
                 fullTimeline
@@ -303,6 +348,7 @@ class FitnessHeroAnimations {
                 .to("#event-1", { y: "-27vh", duration: 0.5 })
                 .to("#event-2", { y: "-30vh", x: "27vw", duration: 0.5 }, "<")
                 .to("#event-3", { y: "-3vh", x: "27vw", duration: 0.5 }, "<")
+                .to({}, { duration: 2 })
                 .to("#events-1", { opacity: 0, duration: 0.5 })
                 .to("#events-2", { opacity: 1, duration: 0.5 })
                 .to("#event-6", { y: "-27vh", duration: 0.5 })
@@ -317,10 +363,13 @@ class FitnessHeroAnimations {
                 .to("#event-2, #event-7", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
                 .to("#event-3, #event-8", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
-            fullTimeline.to(".page-9", { yPercent: 0, duration: 1})
+            fullTimeline            
+            .to({}, { duration: 2 })
+            .to(".page-9", { yPercent: 0, duration: 1})
             if (isMobile) {
                 fullTimeline.to("#auraElite", {scale: 1, y: 0, opacity: 1, duration: 0.5})
                 .to("#auraContentText", {opacity: 1, duration: 0.5})
+                .to({}, { duration: 2 })
                 .to("#auraContentText", {opacity: 0, duration: 0.5})
                 .to("#events-3", { opacity: 1, duration: 0.5 })
                 .to("#event-10", { y: "-27vh", duration: 0.5 })
@@ -330,16 +379,39 @@ class FitnessHeroAnimations {
             else {
                 fullTimeline
                 .to("#auraElite", {scale: 1, xPercent: 0, y: 0, opacity: 1, duration: 0.5})
-                .to("#auraContent", {opacity: 1, duration: 0.5})
+                .to("#auraContentText", {opacity: 1, duration: 0.5})
+                .to("#events-3", { opacity:1, duration: 0.5 })
                 .to("#event-10", { y: "-27vh", duration: 0.5 })
                 .to("#event-11", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
                 .to("#event-12", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
-
-            fullTimeline.to(".page-11", {xPercent: 0, duration: 1})
+            fullTimeline.to({}, { duration: 1.5 })
+            .to(".page-10", { xPercent: 0, duration: 1})
+            if (isMobile) {
+                fullTimeline.to("#auraLuxury", {scale: 1, y: 0, opacity: 1, duration: 0.5})
+                .to("#auraLuxuryContentText", {opacity: 1, duration: 0.5})
+                .to({}, { duration: 2 })
+                .to("#auraLuxuryContentText", {opacity: 0, duration: 0.5})
+                .to("#events-5", { opacity: 1, duration: 0.5 })
+                .to("#event-18", { y: "-27vh", duration: 0.5 })
+                .to("#event-19", { y: "-30vh", x: "27vw", duration: 0.5 }, "<")
+                .to("#event-20", { y: "-3vh", x: "27vw", duration: 0.5 }, "<")
+            }
+            else {
+                fullTimeline
+                .to("#auraLuxury", {scale: 1, xPercent: 0, y: 0, opacity: 1, duration: 0.5})
+                .to("#auraLuxuryContentText", {opacity: 1, duration: 0.5})
+                .to("#events-5", { opacity:1, duration: 0.5 })
+                .to("#event-18", { y: "-27vh", duration: 0.5 })
+                .to("#event-19", { y: "-30vh", x: "-17vw", duration: 0.5 }, "<")
+                .to("#event-20", { y: "-3vh", x: "-17vw", duration: 0.5 }, "<")
+            }
+            fullTimeline.to({}, { duration: 1.5 })
+            .to(".page-11", {xPercent: 0, duration: 1})
             if (isMobile) {
                 fullTimeline.to("#auraJunior", {scale: 1, y: 0, opacity: 1, duration: 0.5})
                 .to("#auraJuniorContentText", {opacity: 1, duration: 0.5})
+                .to({}, { duration: 2 })
                 .to("#auraJuniorContentText", {opacity: 0, duration: 0.5})
                 .to("#events-4", { opacity: 1, duration: 0.5 })
                 .to("#event-14", { y: "-27vh", duration: 0.5 })
@@ -349,13 +421,15 @@ class FitnessHeroAnimations {
             else {
                 fullTimeline
                 .to("#auraJunior", {scale: 1, xPercent: 0, y: 0, opacity: 1, duration: 0.5})
-                .to("#auraJuniorContent", {opacity: 1, duration: 0.5})
+                .to("#auraJuniorContentText", {opacity: 1, duration: 0.5})
+                .to("#events-4", { opacity:1, duration: 0.5 })
                 .to("#event-14", { y: "-27vh", duration: 0.5 })
                 .to("#event-15", { y: "-30vh", x: "17vw", duration: 0.5 }, "<")
                 .to("#event-16", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
+            fullTimeline.to({}, { duration: 1.5 })
             fullTimeline.to(".page-12", { yPercent: 0, duration: 0.5})
-            fullTimeline.to(".page-12", { yPercent: 0, duration: 0.5})
+            .to(".page-12", { yPercent: 0, duration: 0.5})
             
             // Page 12 Membership Animation
             .set("#membership-intro", { opacity: 0 })
@@ -435,41 +509,38 @@ class FitnessHeroAnimations {
                 duration: 1, 
                 ease: "power3.out" 
             })
+            .to(".membership-table-container", { 
+                xPercent: -20, 
+                scale: 1, 
+                duration: 1, 
+                ease: "power3.out" 
+            })
+            if (isMobile)
+            fullTimeline.to(".membership-table-container", { 
+                xPercent: -50, 
+                scale: 1, 
+                duration: 1, 
+                ease: "power3.out" 
+            })
             
-            // // Add stagger animation to membership cards
-            // .from(".membership-plan-card", {
-            //     scale: 0.8,
-            //     opacity: 0,
-            //     duration: 0.5,
-            //     stagger: 0.2,
-            //     ease: "back.out(1.5)"
-            // }, "-=0.5");
 
-            
-
-        gsap.set(".page-2", { xPercent: -100 });
+        gsap.set(".page-2, .page-10", { xPercent: -100 });
         gsap.set(".page-3, .page-11", { xPercent: 100 });
         gsap.set(".page-4,.page-5,.page-6,.page-7,.page-8,.page-9,.page-12", { yPercent: 100 });
         gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
-        gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 150, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });
-        
-        if (isMobile) {
-            gsap.set("#auraContentText, #auraJuniorContentText, #events-3, #events-4", {opacity: 0})
+        gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 120, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
+        gsap.set("#auraLuxury", { xPercent: 0, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
+        gsap.set("#auraContentText, #auraJuniorContentText, #auraLuxuryContentText, #events-3, #events-4, #events-5", {opacity: 0})
 
-        } else {
-            gsap.set("#auraContent, #auraJuniorContent", {opacity: 0})
-        }
-
+        console.log((fullTimeline.duration() * (isMobile ? 2200: 300)))
         ScrollTrigger.create({
             animation: fullTimeline,
             trigger: "#page-container",
             start: "top top",
-            end: "+=50000", // enough scroll space
-            scrub: true,
+            end: () => "+=" + (fullTimeline.duration() * (isMobile ? 2000 : 1500)), // multiplier is tweakable
+            scrub: isMobile ? 0.3 : true,
             pin: true,
             anticipatePin: 1,
-            // scroller: '#page-container'
-            // markers: true
         });
         this.tl = fullTimeline
     }
@@ -489,8 +560,9 @@ class FitnessHeroAnimations {
     }
 
     setUpLenis() {
+        const isMobile = window.innerWidth < 1024;
         const lenis = new Lenis({
-            duration: 2.2,
+            duration: isMobile ? 3.5 : 2.2, // Slower duration for mobile
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smooth: true,
             smoothTouch: true // ⬅️ optional, useful for mobile/touchpad
