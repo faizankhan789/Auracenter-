@@ -9,6 +9,50 @@ class FitnessHeroAnimations {
             }
         };
         this.tl = null
+        this.trainers = [
+    {
+        imageSrc: './assets/31.png',
+        name: 'SARAH',
+        title: 'Fitness Trainer',
+        qualifications: ['FEA: exercise coaching', 'Physical education', 'Nutrition specialist'],
+        index: 1
+    },
+    {
+        imageSrc: './assets/32.png',
+        name: 'MARIE',
+        title: 'Yoga Expert',
+        qualifications: ['Certified Yoga Instructor', 'Meditation Coach', '10+ years experience'],
+        index: 2
+    },
+    {
+        imageSrc: './assets/33.png',
+        name: 'FATIMA',
+        title: 'Strength Coach',
+        qualifications: ['Powerlifting Certified', 'Sports Science Degree', 'Injury Prevention'],
+        index: 3
+    },
+    {
+        imageSrc: './assets/34.png',
+        name: 'NOOR',
+        title: 'Cardio Specialist',
+        qualifications: ['HIIT Certified', 'Marathon Runner', 'Group Fitness Expert'],
+        index: 4
+    },
+    {
+        imageSrc: './assets/35.png',
+        name: 'LAYLA',
+        title: 'Nutrition Coach',
+        qualifications: ['Registered Dietitian', 'Sports Nutrition', 'Meal Planning Expert'],
+        index: 5
+    },
+    {
+        imageSrc: './assets/36.png',
+        name: 'AISHA',
+        title: 'Dance Fitness',
+        qualifications: ['Zumba Certified', 'Contemporary Dance', 'Choreography Expert'],
+        index: 6
+    }
+        ];
         this.cards = [
         {
             imageSrc: './assets/page_5/power_yoga.jpg',
@@ -63,6 +107,33 @@ class FitnessHeroAnimations {
         this.init();
     }
     
+    addTrainerCard({ imageSrc, name, title, qualifications, index }) {
+        const container = document.querySelector('.trainers-container');
+        if (!container) return;
+
+        const card = document.createElement('div');
+        card.className = 'trainer-card trainer_cards w-[45vw] lg:w-[30vw] h-[45vh] lg:hover:z-[3] cursor-pointer group flex-shrink-0';
+        card.id = "trainer-card-container-"+index
+        card.innerHTML = `
+            <div id="trainer-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
+                <img id="trainer-card-img-${index}" src="${imageSrc}" alt="${title}" class="card__front object-contain absolute z-[1] w-full h-[45vh] object-cover object-center ease-in-out rounded-none transition-all duration-800">                
+                <div id="trainer-card-content-${index}" class="card__back h-[20vh] w-[45vw] px-4 py-2 lg:w-[30vw] absolute bottom-0 left-0 bg-[#c7b6a8] lg:translate-y-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-start items-start">
+                    <h2 class="text-lg font-bold uppercase tracking-wide" style="line-height: 1">${name}</h2>
+                    <p class="text-lg font-medium">${title}</p>
+                    <ul class="mt-2">
+                        ${qualifications.map(qual => `
+                            <li class="flex items-center">
+                                <span class="mx-3 text-[#182a41] text-lg">•</span>
+                                <span class="text-sm leading-relaxed">${qual}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+    }
+
     addClassCard({ imageSrc, title, listItems, index }) {
         const container = document.querySelector('.classes-container');
         if (!container) return;
@@ -73,7 +144,7 @@ class FitnessHeroAnimations {
         card.innerHTML = `
             <div id="hover-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
                 <img id="hover-card-img-${index}" src="${imageSrc}" alt="${title}" class="card__front absolute z-[1] w-full h-full object-cover object-center ease-in-out rounded-none transition-all duration-800 lg:group-hover:scale-[1.05] lg:group-hover:z-[2]">                
-                    <div id="hover-card-content-${index}" class="card__back h-full w-full absolute top-0 left-0 bg-[#c7b6a8] lg:translate-x-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-center items-center lg:group-hover:translate-x-[100%] lg:group-hover:z-[1]">
+                <div id="hover-card-content-${index}" class="card__back h-full w-full absolute top-0 left-0 bg-[#c7b6a8] lg:translate-x-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-center items-center lg:group-hover:translate-x-[100%] lg:group-hover:z-[1]">
                     <h3 class="text-center text-2xl font-bold mb-3 text-black">${title}</h3>
                     <ul class="space-y-2 text-lg text-black">
                     ${listItems.map(item => `
@@ -106,9 +177,13 @@ class FitnessHeroAnimations {
         this.startClockUpdate();
         this.initECGAnimation();
         this.addClassesCard();
+        this.addTrainersCards();
         this.setUpGSAP();
         this.setUpLenis();
         this.observeFadeInElementsWithScrollTrigger();          
+    }
+    addTrainersCards() {
+       this.trainers.forEach(trainer => this.addTrainerCard(trainer));
     }
     addClassesCard() {
         this.cards.forEach(card => this.addClassCard(card));
@@ -129,7 +204,7 @@ class FitnessHeroAnimations {
         // const cardContents = gsap.utils.toArray(".card__back")
         fullTimeline
             .to(".classes-container", {
-                x: 10,
+                x: 20,
                 opacity: 1,
                 duration: isMobile ? 1 : 1,
                 ease: "power2.out"
@@ -182,7 +257,7 @@ class FitnessHeroAnimations {
                 if (flipped == minVisibleNumber - 1) {
                     // 1. Animate the classes container
                     fullTimeline.to(".classes-container", {
-                        x: -cardWidth * index, // Move to the current card's position
+                        x: -cardWidth * index + 20, // Move to the current card's position
                         ease: "power2.inOut",
                         duration: 1.5// Adjust this duration to control scroll speed
                     });
@@ -199,7 +274,7 @@ class FitnessHeroAnimations {
                     duration: 0.5
                 })
                 .set("#hover-card-content-" + itemIndex, { zIndex: 1 }, "-=0.4")
-                .set("#hover-card-img-" + itemIndex, { zIndex: 2 }, "-=0.4")
+                .set("#hover-card-img-" + itemIndex, { zIndex: 2, scale:1.05 }, "-=0.4")
                 .set("#hover-card-container-" + itemIndex, { zIndex: 3 }, "-=0.4");
                 if (index > 0) {
                     fullTimeline.set("#hover-card-content-" + index, { 
@@ -208,7 +283,7 @@ class FitnessHeroAnimations {
                         force3D: true,
                         backfaceVisibility: "hidden"
                     }, "-=0.3")
-                    .set('#hover-card-img-' + index, { zIndex: 1}, "-=0.3")
+                    .set('#hover-card-img-' + index, { zIndex: 1, scale: 1}, "-=0.3")
                     .set("#hover-card-container-" + index, { zIndex: 0}, "-=0.3")
                 }
                 fullTimeline.to({}, { duration:1 });
@@ -217,6 +292,114 @@ class FitnessHeroAnimations {
             }
             gsap.set(".classes-container", {x: totalWidth, opacity: 0 });
             gsap.set(visibleCards, {x: 100, opacity: 0 });
+    }
+
+    setUpTrainersCards(fullTimeline, isMobile) {
+        const cardWidthVW = isMobile ? 45 : 30;
+        const cardMarginPx = 16; // 2rem gap
+        const vw = window.innerWidth / 100;
+        const cardWidth = (cardWidthVW * vw + cardMarginPx);
+        const trainers = gsap.utils.toArray(".trainer_cards");
+        const visibleNumber = window.innerWidth / cardWidth;
+        const minVisibleNumber = Math.floor(visibleNumber);
+        const visibleCards = trainers.slice(0, Math.ceil(visibleNumber));
+        
+        // Animate container and cards appearing
+        fullTimeline
+            .to(".trainers-container", {
+                x: 0,
+                opacity: 1,
+                duration: isMobile ? 1 : 0.5,
+                ease: "power2.out"
+            })
+            .from(visibleCards, {
+                y: 50,
+                opacity: 0,
+                scale: 0.95,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "back.out(1.7)"
+            }, "-=0.3");
+
+        if (isMobile) {
+            // Mobile: Flip cards (rotate) as we scroll through them
+            let flipped = 0;
+            trainers.forEach((card, index) => {
+                if (flipped === minVisibleNumber) {
+                    fullTimeline.to(".trainers-container", {
+                        x: -cardWidth * index,
+                        ease: "power2.inOut",
+                        duration: 1.5
+                    });
+                    flipped = 0;
+                }
+                
+                // Flip animation for mobile
+                fullTimeline.to(`#trainer-card-${index + 1}`, {
+                    rotationY: 180,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    transformOrigin: "center"
+                });
+                
+                fullTimeline.to({}, { duration: 3 }); // Hold
+                
+                fullTimeline.to(`#trainer-card-${index + 1}`, {
+                    rotationY: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    transformOrigin: "center"
+                }, "+=0.5");
+                
+                flipped++;
+            });
+        } else {
+            // Desktop: Scroll through trainers with subtle animations
+            trainers.forEach((card, index) => {                
+                // Scroll container to show next trainer(s)
+                if (index > 0 && index % 3 === 0) {
+                    fullTimeline.to(".trainers-container", {
+                        x: -cardWidth * (index - 1),
+                        ease: "power2.inOut",
+                        duration: 1.5
+                    });
+                }
+                
+                // Add subtle animation for focus
+                fullTimeline
+                    .to(`#trainer-card-container-${index + 1}`, {
+                        y: -10,
+                        boxShadow: "0 12px 30px rgba(0,0,0,0.2)",
+                        duration: 0.5,
+                        ease: "power2.out"
+                    })
+                    .to(`#trainer-card-content-${index + 1}`, {
+                        y: "90%",
+                        zIndex: 1,
+                    }, "-=0.4");
+                
+                // Hold the focus
+                fullTimeline.to({}, { duration: 1.5 });
+                
+                // Reset for next card
+                fullTimeline
+                    .to(`#trainer-card-container-${index + 1}`, {
+                        y: 0,
+                        boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+                        duration: 0.3,
+                        ease: "power2.in"
+                    }, "-=0.4")
+                .to(`#trainer-card-content-${index + 1}`, {
+                        y: 0,
+                        zIndex: 0,
+                    }, "-=0.4");
+            });
+        }
+
+        // Set initial states
+        gsap.set(".trainers-container", { x: -1000, opacity: 0 });
+        // gsap.set(visibleCards, {x: 100, opacity: 0 });
+
     }
 
     gsapWithMobile(isMobile) { 
@@ -529,6 +712,36 @@ class FitnessHeroAnimations {
                 .to("#event-16", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
             fullTimeline.to({}, { duration: 1.5 })
+            .to(".page-14", { yPercent: 0, duration: 1})
+            
+            // Page 14 - Professional Trainers Entrance Animation
+            .to("#trainers-section h1:first-child", {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                rotationX: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            }, "-=0.5")
+            .to("#trainers-section h1:last-child", {
+                opacity: 1,
+                scale: 1,
+                x: 0,
+                rotation: 0,
+                duration: 0.8,
+                ease: "back.out(1.5)"
+            }, "-=0.8")
+            // .to(".trainers-container", {
+            //     opacity: 1,
+            //     scale: 1,
+            //     y: 0,
+            //     duration: 1,
+            //     ease: "power2.out"
+            // }, "-=0.4");
+            
+            this.setUpTrainersCards(fullTimeline, isMobile);
+            fullTimeline.to({}, { duration: 1.5 })
+
             .to(".page-15", { yPercent: 0, duration: 0.5})
             
             // Page 12 Membership Animation
@@ -631,7 +844,7 @@ class FitnessHeroAnimations {
 
         gsap.set(".page-2, .page-12", { xPercent: -100 });
         gsap.set(".page-3, .page-11, .page-13", { xPercent: 100 });
-        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-10, .page-15, .page-17, .page-18", { yPercent: 100 });
+        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-10, .page-14, .page-15, .page-17, .page-18", { yPercent: 100 });
         gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
         gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 120, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
         gsap.set("#auraLuxury", { xPercent: 0, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
@@ -647,6 +860,11 @@ class FitnessHeroAnimations {
         gsap.set(".page-4 button, #about-us", { opacity: 0, scale: 0.8, rotationX: -45 })
         gsap.set("#classes-section", { opacity: 0, y: -100, skewY: 10 })
         gsap.set(".visionMission", { opacity: 0, scale: 0.5, rotation: -180 })
+        
+        // Page 14 - Professional Trainers initial states
+        gsap.set("#trainers-section h1:first-child", { opacity: 0, scale: 0.7, y: -50, rotationX: -30 })
+        gsap.set("#trainers-section h1:last-child", { opacity: 0, scale: 0.5, x: 100, rotation: 15 })
+        gsap.set(".trainers-container", { opacity: 0, scale: 0.9, y: 80 })
 
         ScrollTrigger.create({
             animation: fullTimeline,
