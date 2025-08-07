@@ -89,7 +89,7 @@ html, body {
     overflow: hidden;
 }
 .page-1 {
-    background-image: url("./assets/1.png");
+    background-image: url("./assets/page_1/background.png");
     background-size: 100% 100%;
 }
 body {
@@ -139,7 +139,7 @@ body {
     transform: scale(1.2) translateY(-3px);
 }
 .page-2 {
-    background-image: url("./assets/4.jpg");
+    background-image: url("./assets/page_2/background.jpg");
     background-size: cover;
     background-position: center 20%;
     background-repeat: no-repeat;
@@ -154,7 +154,7 @@ body {
     height: auto;
 }
 .page-3 {
-    background-image: url("./assets/5.jpg");
+    background-image: url("./assets/page_3/background.jpg");
     background-size: cover;
     background-position: center 15%;
     background-repeat: no-repeat;
@@ -168,12 +168,12 @@ body {
     width: 90svw;
     height: auto;
 }
-.page-4, .page-7, .page-8 {
-    background-image: url("./assets/6.png");
+.page-4, .page-7, .page-10, .page-18 {
+    background-image: url("./assets/background.png");
     background-size: cover;
 }
-.page-11 {
-    background-image: url("./assets/26.png");
+.page-13 {
+    background-image: url("./assets/page_13/background.png");
     background-size: cover;
 }
 .page-5 {
@@ -214,4 +214,10 @@ body {
 #title-container:hover > div:nth-child(3),
 #title-container:hover > div:nth-child(4) {
     transform: translate(0, 5px);
+}
+.page-17 { 
+    background-image: url("./assets/page_17/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

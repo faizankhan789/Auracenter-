@@ -11,37 +11,37 @@ class FitnessHeroAnimations {
         this.tl = null
         this.cards = [
         {
-            imageSrc: './assets/9.jpg',
+            imageSrc: './assets/page_5/power_yoga.jpg',
             title: 'Power Yoga',
             listItems: ['Flexibility', 'Breath Control', 'Stress Relief'],
             index: 1
         },
         {
-            imageSrc: './assets/10.jpg',
+            imageSrc: './assets/page_5/weight_lifting.jpg',
             title: 'Weight Lifting',
             listItems: ['Strength Training', 'Form Guidance', 'Women Focused'],
             index: 2
         },
         {
-            imageSrc: './assets/11.jpg',
+            imageSrc: './assets/page_5/personal_training.jpg',
             title: 'Personal Training',
             listItems: ['1-on-1 Coaching', 'Custom Plans', 'Goal Tracking'],
             index: 3
         },
         {
-            imageSrc: './assets/12.jpg',
+            imageSrc: './assets/page_5/cardio_strength.jpg',
             title: 'Cardio & Strength',
             listItems: ['Hit Sessions', 'Fat Burn', 'Endurance'],
             index: 4
         },
         {
-            imageSrc: './assets/13.jpg',
+            imageSrc: './assets/page_5/strength_recovery.jpg',
             title: 'Strength & Recovery',
             listItems: ['Deep Stretching', 'Muscle Release', 'Injury Prevention'],
             index: 5
         },
         {
-            imageSrc: './assets/14.jpg',
+            imageSrc: './assets/page_5/dance_fitness.jpg',
             title: 'Dance Fitness',
             listItems: ['Fun workouts', 'High energy', 'Cultural vibes'],
             index: 6
@@ -62,6 +62,7 @@ class FitnessHeroAnimations {
         // Initialize
         this.init();
     }
+    
     addClassCard({ imageSrc, title, listItems, index }) {
         const container = document.querySelector('.classes-container');
         if (!container) return;
@@ -85,8 +86,6 @@ class FitnessHeroAnimations {
         `;
         container.appendChild(card);
     }
-
-
     setupMobileMenu() {
         const btn = document.getElementById('mobileMenuBtn');
         const menu = document.querySelector('.mobile-menu');
@@ -109,10 +108,7 @@ class FitnessHeroAnimations {
         this.addClassesCard();
         this.setUpGSAP();
         this.setUpLenis();
-        this.observeFadeInElementsWithScrollTrigger();
-
-        // this.setViewportVars();
-        // this.setUpResize();                    
+        this.observeFadeInElementsWithScrollTrigger();          
     }
     addClassesCard() {
         this.cards.forEach(card => this.addClassCard(card));
@@ -135,7 +131,7 @@ class FitnessHeroAnimations {
             .to(".classes-container", {
                 x: 10,
                 opacity: 1,
-                duration: isMobile ? 1 : 0.5,
+                duration: isMobile ? 1 : 1,
                 ease: "power2.out"
             })
             .to(visibleCards , {
@@ -148,7 +144,7 @@ class FitnessHeroAnimations {
             if (isMobile) {
             let flipped = 0
             cards.forEach((card, index) => {
-                    if (flipped == minVisibleNumber) {
+                if (flipped == minVisibleNumber) {
                     // 1. Animate the classes container
                     fullTimeline.to(".classes-container", {
                         x: -cardWidth * index, // Move to the current card's position
@@ -203,7 +199,7 @@ class FitnessHeroAnimations {
                     duration: 0.5
                 })
                 .set("#hover-card-content-" + itemIndex, { zIndex: 1 }, "-=0.4")
-                .set("#hovd-imger-car-" + itemIndex, { zIndex: 2 }, "-=0.4")
+                .set("#hover-card-img-" + itemIndex, { zIndex: 2 }, "-=0.4")
                 .set("#hover-card-container-" + itemIndex, { zIndex: 3 }, "-=0.4");
                 if (index > 0) {
                     fullTimeline.set("#hover-card-content-" + index, { 
@@ -222,6 +218,7 @@ class FitnessHeroAnimations {
             gsap.set(".classes-container", {x: totalWidth, opacity: 0 });
             gsap.set(visibleCards, {x: 100, opacity: 0 });
     }
+
     gsapWithMobile(isMobile) { 
         const fullTimeline = gsap.timeline();
 
@@ -263,29 +260,61 @@ class FitnessHeroAnimations {
             // Hold on page 3
             .to({}, { duration: 1.5 })
             
-            // Page 4 and 5 with smoother transitions
+            // Page 4 - Your Strength intro animation
             .to(".page-4", { 
                 yPercent: 0, 
-                duration: 2,
+                duration: 1.5,
                 ease: "power2.inOut"
             })
-            .to({}, { duration: 1 })
+            // Page 4 intro sequence - rotating elements
+            .to(".page-4 button, #about-us", {
+                opacity: 1,
+                scale: 1,
+                rotationX: 0,
+                duration: 0.5,
+                stagger: 0.3,
+                ease: "back.out(1.7)"
+            })
+            .to({}, { duration: 1.5 })
+            // Page 5 - Our Classes intro animation with wave effect
             .to(".page-5", { 
                 yPercent: 0, 
-                duration: 2,
+                duration: 1.5,
                 ease: "power2.inOut"
+            })
+            // Page 5 intro sequence - wave reveal
+            .to("#classes-section", {
+                opacity: 1,
+                y: 0,
+                skewY: 0,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "elastic.out(1, 0.8)"
             });
 
             this.setUpClassesCards(fullTimeline, isMobile);
-            fullTimeline.to(".page-6", { yPercent: 0, duration: 0.5 })
-            .to(".visionMission", { opacity: 1, duration: 0.5 });
+            
+            // Page 6 - Vision/Mission intro with spiral effect
+            fullTimeline.to(".page-6", { 
+                yPercent: 0, 
+                duration: 1.5,
+                ease: "power2.inOut"
+            })
+            .to(".visionMission", {
+                opacity: 1,
+                scale: 1,
+                rotation: 0,
+                duration: 1.5,
+                stagger: 0.4,
+                ease: "back.out(1.2)"
+            });
             if (!isMobile) {
-                fullTimeline.to("#mission", {
-                    opacity: 1,
-                    zIndex: 1,
-                    ease: "power2.out",
-                    duration: 0.5
-                })
+            fullTimeline.to("#mission", {
+                opacity: 1,
+                zIndex: 1,
+                ease: "power2.out",
+                duration: 0.5
+            })
             .set("#missionImg", { zIndex: 2 }, "<")
             .set("#vision", { zIndex: 0, opacity: 0 }, "<")
             .set("#visionImg", { zIndex: 0 }, "<")
@@ -339,9 +368,66 @@ class FitnessHeroAnimations {
                     transformOrigin: "center"
                 });
             }
-            fullTimeline.to(".page-7", { yPercent: 0, duration: 1 })
-            .to({}, { duration: 1.5 })
-            .to(".page-8", { yPercent: 0, duration: 1 });
+            // Page 7 - Aura Store with typewriter and slide effect
+            fullTimeline.to(".page-7", { 
+                yPercent: 0, 
+                duration: 1.5,
+                ease: "power2.inOut"
+            })
+            // Create typewriter effect for button
+            .to(".page-7 button", {
+                opacity: 1,
+                x: 0,
+                filter: "blur(0px)",
+                duration: 1,
+                ease: "power3.out"
+            })
+            // Slide in title with perspective effect
+            .to(".page-7 h2", {
+                opacity: 1,
+                x: 0,
+                rotationY: 0,
+                duration: 1.2,
+                ease: "power2.out"
+            }, "-=0.5")
+            // Slide in paragraph with stagger
+            .to(".page-7 p", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.6")
+            // Animate the image with parallax zoom and fade
+            .to(".page-7 img", {
+                opacity: 1,
+                scale: 1,
+                filter: "brightness(1) contrast(1)",
+                duration: 1.5,
+                ease: "power2.out"
+            }, "-=1")
+            .to({}, { duration: 1 })
+            
+            // Page 10 - Events with cascade effect
+            .to(".page-10", { 
+                yPercent: 0, 
+                duration: 1.5,
+                ease: "power2.inOut"
+            })
+            .to(".page-10 button", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1.2,
+                ease: "elastic.out(1, 0.6)"
+            })
+            .to(".page-10 h1", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1.2,
+                ease: "elastic.out(1, 0.6)"
+            });
             if (isMobile) {
                 fullTimeline
                 .to("#events-1", { opacity: 1, duration: 0.5 })
@@ -365,7 +451,22 @@ class FitnessHeroAnimations {
             }
             fullTimeline            
             .to({}, { duration: 2 })
-            .to(".page-9", { yPercent: 0, duration: 1})
+            
+            // Page 11 - Aura Elite with magnetic pull effect
+            .to(".page-11", { 
+                xPercent: 0, 
+                duration: 1.5,
+                ease: "power2.inOut"
+            })
+            // Add magnetic intro effect
+            .set("#auraElite", { opacity: 0, x: -500, rotationY: 90, transformOrigin: "center" })
+            .to("#auraElite", {
+                opacity: 1,
+                x: 0,
+                rotationY: 0,
+                duration: 1.5,
+                ease: "power3.out"
+            })
             if (isMobile) {
                 fullTimeline.to("#auraElite", {scale: 1, y: 0, opacity: 1, duration: 0.5})
                 .to("#auraContentText", {opacity: 1, duration: 0.5})
@@ -386,7 +487,7 @@ class FitnessHeroAnimations {
                 .to("#event-12", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
             fullTimeline.to({}, { duration: 1.5 })
-            .to(".page-10", { xPercent: 0, duration: 1})
+            .to(".page-12", { xPercent: 0, duration: 1})
             if (isMobile) {
                 fullTimeline.to("#auraLuxury", {scale: 1, y: 0, opacity: 1, duration: 0.5})
                 .to("#auraLuxuryContentText", {opacity: 1, duration: 0.5})
@@ -407,7 +508,7 @@ class FitnessHeroAnimations {
                 .to("#event-20", { y: "-3vh", x: "-17vw", duration: 0.5 }, "<")
             }
             fullTimeline.to({}, { duration: 1.5 })
-            .to(".page-11", {xPercent: 0, duration: 1})
+            .to(".page-13", {xPercent: 0, duration: 1})
             if (isMobile) {
                 fullTimeline.to("#auraJunior", {scale: 1, y: 0, opacity: 1, duration: 0.5})
                 .to("#auraJuniorContentText", {opacity: 1, duration: 0.5})
@@ -428,8 +529,7 @@ class FitnessHeroAnimations {
                 .to("#event-16", { y: "-3vh", x: "17vw", duration: 0.5 }, "<")
             }
             fullTimeline.to({}, { duration: 1.5 })
-            fullTimeline.to(".page-12", { yPercent: 0, duration: 0.5})
-            .to(".page-12", { yPercent: 0, duration: 0.5})
+            .to(".page-15", { yPercent: 0, duration: 0.5})
             
             // Page 12 Membership Animation
             .set("#membership-intro", { opacity: 0 })
@@ -509,30 +609,45 @@ class FitnessHeroAnimations {
                 duration: 1, 
                 ease: "power3.out" 
             })
-            .to(".membership-table-container", { 
-                xPercent: -20, 
-                scale: 1, 
-                duration: 1, 
-                ease: "power3.out" 
-            })
-            if (isMobile)
-            fullTimeline.to(".membership-table-container", { 
-                xPercent: -50, 
-                scale: 1, 
-                duration: 1, 
-                ease: "power3.out" 
-            })
-            
+            if (isMobile) {
+                fullTimeline.to(".membership-table-container", { 
+                    xPercent: -20, 
+                    scale: 1, 
+                    duration: 1, 
+                    ease: "power3.out" 
+                })
 
-        gsap.set(".page-2, .page-10", { xPercent: -100 });
-        gsap.set(".page-3, .page-11", { xPercent: 100 });
-        gsap.set(".page-4,.page-5,.page-6,.page-7,.page-8,.page-9,.page-12", { yPercent: 100 });
+                fullTimeline.to(".membership-table-container", { 
+                    xPercent: -50, 
+                    scale: 1, 
+                    duration: 1, 
+                    ease: "power3.out" 
+                })
+            }
+
+            fullTimeline.to(".page-17", {yPercent: 0, duration: 1})
+            .to(".page-18", {yPercent: 0, duration: 1})
+
+
+        gsap.set(".page-2, .page-12", { xPercent: -100 });
+        gsap.set(".page-3, .page-11, .page-13", { xPercent: 100 });
+        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-10, .page-15, .page-17, .page-18", { yPercent: 100 });
         gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
         gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 120, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
         gsap.set("#auraLuxury", { xPercent: 0, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
         gsap.set("#auraContentText, #auraJuniorContentText, #auraLuxuryContentText, #events-3, #events-4, #events-5", {opacity: 0})
 
-        console.log((fullTimeline.duration() * (isMobile ? 2200: 300)))
+        // Additional initial states for enhanced animations
+        gsap.set(".page-5 h1", { opacity: 1, y: 0, skewY: 0 });
+        gsap.set(".page-7 button", { opacity: 0, x: -100, filter: "blur(10px)" })
+        gsap.set(".page-7 h2", { opacity: 0, x: 200, rotationY: 45, transformPerspective: 1000 })
+        gsap.set(".page-7 p", { opacity: 0, y: 50, scale: 0.9 })
+        gsap.set(".page-7 img", { opacity: 0, scale: 1.3, filter: "brightness(0.7) contrast(1.2)" })
+        gsap.set(".page-10 button, .page-10 h1", { opacity: 0, y: -200, scale: 1.5 })
+        gsap.set(".page-4 button, #about-us", { opacity: 0, scale: 0.8, rotationX: -45 })
+        gsap.set("#classes-section", { opacity: 0, y: -100, skewY: 10 })
+        gsap.set(".visionMission", { opacity: 0, scale: 0.5, rotation: -180 })
+
         ScrollTrigger.create({
             animation: fullTimeline,
             trigger: "#page-container",
