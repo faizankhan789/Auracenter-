@@ -180,7 +180,6 @@ class FitnessHeroAnimations {
         this.addTrainersCards();
         this.setUpGSAP();
         this.setUpLenis();
-        this.observeFadeInElementsWithScrollTrigger();          
     }
 
     addTrainersCards() {
