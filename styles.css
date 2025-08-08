@@ -3,6 +3,26 @@
     --text-white: #ffffff;
     --primary-green: #4ade80;
 }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 @keyframes blink {
     0%,
     100% {
@@ -68,6 +88,12 @@
     .card__front,
     .card__back { backface-visibility: hidden;}
     .card__back{ transform: rotateY(.5turn);}
+}
+.fade-in-left {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 .page {
     position: absolute;

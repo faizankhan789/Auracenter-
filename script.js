@@ -116,15 +116,15 @@ class FitnessHeroAnimations {
         card.id = "trainer-card-container-"+index
         card.innerHTML = `
             <div id="trainer-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
-                <img id="trainer-card-img-${index}" src="${imageSrc}" alt="${title}" class="card__front object-contain absolute z-[1] w-full h-[45vh] object-cover object-center ease-in-out rounded-none transition-all duration-800">                
-                <div id="trainer-card-content-${index}" class="card__back h-[20vh] w-[45vw] px-4 py-2 lg:w-[30vw] absolute bottom-0 left-0 bg-[#c7b6a8] lg:translate-y-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-start items-start">
-                    <h2 class="text-lg font-bold uppercase tracking-wide" style="line-height: 1">${name}</h2>
-                    <p class="text-lg font-medium">${title}</p>
+                <img id="trainer-card-img-${index}" src="${imageSrc}" alt="${title}" class="card__front object-contain absolute z-[1] w-full h-[45vh] object-cover object-center ease-in-out rounded-xl transition-all duration-800">                
+                <div id="trainer-card-content-${index}" class="rounded-xl card__back justify-center h-full lg:h-[22vh] w-[45vw] px-4 py-4 lg:w-[30vw] absolute bottom-0 left-0 bg-[#c7b6a8] lg:translate-y-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-start items-start">
+                    <h2 class="text-2xl font-bold uppercase tracking-wide" style="line-height: 1">${name}</h2>
+                    <p class="text-xl font-medium">${title}</p>
                     <ul class="mt-2">
                         ${qualifications.map(qual => `
                             <li class="flex items-center">
                                 <span class="mx-3 text-[#182a41] text-lg">•</span>
-                                <span class="text-sm leading-relaxed">${qual}</span>
+                                <span class="text-lg leading-relaxed">${qual}</span>
                             </li>
                         `).join('')}
                     </ul>
@@ -143,8 +143,8 @@ class FitnessHeroAnimations {
         card.id = "hover-card-container-"+index
         card.innerHTML = `
             <div id="hover-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
-                <img id="hover-card-img-${index}" src="${imageSrc}" alt="${title}" class="card__front absolute z-[1] w-full h-full object-cover object-center ease-in-out rounded-none transition-all duration-800 lg:group-hover:scale-[1.05] lg:group-hover:z-[2]">                
-                <div id="hover-card-content-${index}" class="card__back h-full w-full absolute top-0 left-0 bg-[#c7b6a8] lg:translate-x-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-center items-center lg:group-hover:translate-x-[100%] lg:group-hover:z-[1]">
+                <img id="hover-card-img-${index}" src="${imageSrc}" alt="${title}" class="card__front absolute z-[1] w-full h-full object-cover object-center ease-in-out rounded-xl transition-all duration-800 lg:group-hover:scale-[1.05] lg:group-hover:z-[2]">                
+                <div id="hover-card-content-${index}" class="rounded-xl card__back h-full w-full absolute top-0 left-0 bg-[#c7b6a8] lg:translate-x-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-center items-center lg:group-hover:translate-x-[100%] lg:group-hover:z-[1]">
                     <h3 class="text-center text-2xl font-bold mb-3 text-black">${title}</h3>
                     <ul class="space-y-2 text-lg text-black">
                     ${listItems.map(item => `
@@ -273,7 +273,7 @@ class FitnessHeroAnimations {
                     duration: 0.3
                 })
                 .set("#hover-card-content-" + itemIndex, { zIndex: 1 }, "-=0.4")
-                .set("#hover-card-img-" + itemIndex, { zIndex: 2, scale:1.05 }, "-=0.4")
+                .set("#hover-card-img-" + itemIndex, { zIndex: 2, scale: 1.05 }, "-=0.4")
                 .set("#hover-card-container-" + itemIndex, { zIndex: 3 }, "-=0.4");
                 if (index > 0) {
                     fullTimeline.set("#hover-card-content-" + index, { 
@@ -439,8 +439,8 @@ class FitnessHeroAnimations {
                         ease: "power2.out"
                     })
                     .to(`#trainer-card-content-${index + 1}`, {
-                        y: "90%",
-                        zIndex: 1,
+                        y: "100%",
+                        zIndex: 0,
                         duration: 0.3
                     }, "-=0.2");
                 
@@ -582,7 +582,7 @@ class FitnessHeroAnimations {
             else {
                 fullTimeline
                 // Rotate mission card to 180 after 0.5s
-                .to("#missionCard", {
+                .to("#missionCard .card__content", {
                     rotationY: 180,
                     duration: 0.5,
                     ease: "power2.out",
@@ -593,14 +593,14 @@ class FitnessHeroAnimations {
                 .to({}, { duration: 2 })
 
                 // Rotate mission card back to 0
-                .to("#missionCard", {
+                .to("#missionCard .card__content", {
                     rotationY: 0,
                     duration: 0.5,
                     ease: "power2.out",
                     transformOrigin: "center"
                 })
                 // Rotate vision card to 180
-                .to("#visionCard", {
+                .to("#visionCard .card__content", {
                     rotationY: 180,
                     duration: 0.5,
                     ease: "power2.out",
@@ -610,7 +610,7 @@ class FitnessHeroAnimations {
                 // Wait 3 seconds
                 .to({}, { duration: 2 })
                 // Rotate vision card back to 0
-                .to("#visionCard", {
+                .to("#visionCard .card__content", {
                     rotationY: 0,
                     duration: 0.5,
                     ease: "power2.out",
@@ -995,7 +995,7 @@ class FitnessHeroAnimations {
     setUpLenis() {
         const isMobile = window.innerWidth < 1024;
         const lenis = new Lenis({
-            duration: isMobile ? 3.5 : 2.2, // Slower duration for mobile
+            duration: isMobile ? 5 : 2.2, // Slower duration for mobile
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smooth: true,
             smoothTouch: true // ⬅️ optional, useful for mobile/touchpad
