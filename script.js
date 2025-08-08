@@ -686,7 +686,11 @@ class FitnessHeroAnimations {
             
             // Video carousel transitions
             this.setUpVideoCarousel(fullTimeline, isMobile);
-            
+            fullTimeline.to(".page-9",{
+                     yPercent: 0, 
+                duration: 1.5,
+                ease: "power2.inOut"
+            })
             // Page 10 - Events with cascade effect
             fullTimeline.to(".page-10", { 
                 yPercent: 0, 
@@ -700,6 +704,7 @@ class FitnessHeroAnimations {
                 duration: 1.2,
                 ease: "elastic.out(1, 0.6)"
             })
+
             .to(".page-10 h1", {
                 opacity: 1,
                 y: 0,
@@ -939,7 +944,7 @@ class FitnessHeroAnimations {
 
         gsap.set(".page-2, .page-12", { xPercent: -100 });
         gsap.set(".page-3, .page-11, .page-13", { xPercent: 100 });
-        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-8, .page-10, .page-14, .page-15, .page-17, .page-18", { yPercent: 100 });
+        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-8,.page-9, .page-10, .page-14, .page-15, .page-17, .page-18", { yPercent: 100 });
         gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
         gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 120, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
         gsap.set("#auraLuxury", { xPercent: 0, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
