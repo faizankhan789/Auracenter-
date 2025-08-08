@@ -687,7 +687,7 @@ class FitnessHeroAnimations {
             // Video carousel transitions
             this.setUpVideoCarousel(fullTimeline, isMobile);
             fullTimeline.to(".page-9",{
-                     yPercent: 0, 
+                yPercent: 0, 
                 duration: 1.5,
                 ease: "power2.inOut"
             })
@@ -696,7 +696,7 @@ class FitnessHeroAnimations {
                 yPercent: 0, 
                 duration: 1.5,
                 ease: "power2.inOut"
-            }, "<")
+            })
             .to(".page-10 button", {
                 opacity: 1,
                 y: 0,
