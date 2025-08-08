@@ -691,6 +691,18 @@ class FitnessHeroAnimations {
                 duration: 1.5,
                 ease: "power2.inOut"
             })
+            fullTimeline.to("#schedule, #schedule_title, #schedule_types, #schedule_heading", {
+                opacity: 1,
+                duration: 0.5  
+            })
+            fullTimeline.to({}, {
+                duration: 5
+            })
+
+            fullTimeline.to("#schedule, #schedule_title, #schedule_types, #schedule_heading", {
+                opacity: 0,
+                duration: 0.5  
+            })
             // Page 10 - Events with cascade effect
             fullTimeline.to(".page-10", { 
                 yPercent: 0, 
@@ -970,6 +982,7 @@ class FitnessHeroAnimations {
         gsap.set("#trainers-section h1:first-child", { opacity: 0, scale: 0.7, y: -50, rotationX: -30 })
         gsap.set("#trainers-section h1:last-child", { opacity: 0, scale: 0.5, x: 100, rotation: 15 })
         gsap.set(".trainers-container", { opacity: 0, scale: 0.9, y: 80 })
+        gsap.set("#schedule, #schedule_title, #schedule_types, #schedule_heading", { opacity: 0 })
 
         ScrollTrigger.create({
             animation: fullTimeline,

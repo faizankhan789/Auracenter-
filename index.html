@@ -271,25 +271,23 @@
 
             <!-- Page 9: Schedule -->
     
-            <div class="page page-9 flex items-center justify-center min-h-screen w-full bg-gray-100" id="page-9">
-                <!-- Header Section -->
-                <div class="max-w-7xl mx-auto px-4 py-8 w-full">
+            <div class="flex-col flex items-center bg-no-repeat page page-9 justify-center" id="page-9">
                     <!-- Schedule Badge -->
-                    <div class="text-center mb-8">
+                    <div id="schedule_heading" class="text-center mb-8">
                         <div data-animation-class="fade-in-up" class="inline-block bg-[#c8e6dc] px-8 py-3 rounded-full">
                             <span class="text-[#2c3e50] font-bold text-lg tracking-wider">SCHEDULE</span>
                         </div>
                     </div>
 
                     <!-- Main Title -->
-                    <div class="text-center mb-12">
+                    <div id="schedule_title" class="text-center mb-12">
                         <h1 data-animation-class="fade-in-up" class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
                             DISCIPLINE STARTS WITH A PLAN
                         </h1>
                     </div>
 
                     <!-- Navigation Section -->
-                    <div data-animation-class="fade-in-up" class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <div id="schedule_types" class="flex flex-col md:flex-row justify-between items-center mb-8">
                         <div class="mb-4 md:mb-0">
                             <h2 class="text-3xl font-bold text-gray-800">Obhur Brand Schedule</h2>
                         </div>
@@ -304,7 +302,7 @@
                     </div>
 
                     <!-- Weekly Schedule Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-6">
+                    <div id="schedule" class="h-[60vh] mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-6">
                         <!-- Monday -->
                         <div class="flex flex-col gap-2">
                             <div class="bg-[#c8e6dc] p-4 rounded-lg mb-2">
