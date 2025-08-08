@@ -194,7 +194,7 @@ body {
     width: 90svw;
     height: auto;
 }
-.page-4, .page-7, .page-10, .page-18 {
+.page-4, .page-7, .page-10, .page-18, .page-9 {
     background-image: url("./assets/background.png");
     background-size: cover;
 }
