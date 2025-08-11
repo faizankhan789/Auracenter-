@@ -60,7 +60,7 @@
             <!-- Page 1: Landing Page -->
             <div class="flex-col lg:flex-row flex justify-around bg-no-repeat page page-1 items-center" id="page-1">
                 <div class="flex flex-col lg:flex-row">
-                    <img id="page1Img" src="./assets/page_1/women.png" class="fade-in-left fixed self-center lg:relative w-auto h-[50vh] lg:w-[35vw] lg:h-auto opacity-80 object-contain" alt="Women Exercising">
+                    <img id="page1Img" src="./assets/page_1/women.png" class="fixed self-center lg:relative w-auto h-[50vh] lg:w-[35vw] lg:h-auto opacity-80 object-contain" alt="Women Exercising">
                     <div class="fade-in-up flex flex-col justify-center items-center lg:relative lg:right-[5%] lg:top-[-50px] mt-8 md-pt-0 ">
                         <h1 style="font-size: clamp(1rem, 4vw, 7rem)" class="font-bold text-white mb-4 text-center pin-text"> Auracenter - A New Era <br />of Fitness</h1>        
                         <button id="learnMore" class="bg-white hover:bg-white-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105">
@@ -223,7 +223,7 @@
                         <!-- Video 1 -->
                         <div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="0" id="video-slide-1">
                             <div class="video-wrapper w-full h-full flex items-center justify-center">
-                                <video class="w-full h-full object-cover block" muted playsinline loop id="video-1" poster="assets/page_1/women.png">
+                                <video class="w-full h-full object-cover block" muted playsinline loop id="video-1" poster="assets/page_8/thumbnail1.png">
                                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -271,454 +271,41 @@
 
             <!-- Page 9: Schedule -->
     
-            <div class="flex-col flex items-center bg-no-repeat page page-9 justify-center" id="page-9">
+            <div class="flex-col flex items-center bg-no-repeat page page-9 justify-start pt-6" id="page-9">
                     <!-- Schedule Badge -->
-                    <div id="schedule_heading" class="text-center mb-8">
-                        <div data-animation-class="fade-in-up" class="inline-block bg-[#c8e6dc] px-8 py-3 rounded-full">
-                            <span class="text-[#2c3e50] font-bold text-lg tracking-wider">SCHEDULE</span>
+                    <div id="schedule_heading" class="text-center mb-1">
+                        <div data-animation-class="fade-in-up" class="inline-block bg-[#c8e6dc] px-9 py-2 rounded-md">
+                            <span class="text-[#2c3e50] font-bold text-black tracking-wider">SCHEDULE</span>
                         </div>
                     </div>
 
                     <!-- Main Title -->
-                    <div id="schedule_title" class="text-center mb-12">
-                        <h1 data-animation-class="fade-in-up" class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                    <div id="schedule_title" class="text-center mb-2">
+                        <h1 data-animation-class="fade-in-up" class="text-3xl md:text-4xl font-bold text-black-800 leading-tight">
                             DISCIPLINE STARTS WITH A PLAN
                         </h1>
                     </div>
 
-                    <!-- Navigation Section -->
-                    <div id="schedule_types" class="flex flex-col md:flex-row justify-between items-center mb-8">
-                        <div class="mb-4 md:mb-0">
-                            <h2 class="text-3xl font-bold text-gray-800">Obhur Brand Schedule</h2>
+                    <!-- Navigation Section - Hidden on Mobile -->
+                    <div id="schedule_types" class="hidden md:flex flex-col md:flex-row justify-between items-center mb-2 md:mt-10 w-full px-[7%]">
+                        <div class="mb-2 md:mb-0">
+                            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Obhur Brand Schedule</h2>
                         </div>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <button class="bg-[#2c3e50] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#1e293b] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        <div class="flex flex-row gap-3 mr-[2%]">
+                            <button class="bg-[#2c3e50] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-semibold hover:bg-[#1e293b] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                                 Obhur Monthly Schedule
                             </button>
-                            <button class="bg-[#2c3e50] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#1e293b] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                            <button class="bg-[#2c3e50] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-semibold hover:bg-[#1e293b] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                                 Corniche Brand Schedule
                             </button>
                         </div>
                     </div>
 
-                    <!-- Weekly Schedule Grid -->
-                    <div id="schedule" class="h-[60vh] mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-6">
-                        <!-- Monday -->
-                        <div class="flex flex-col gap-2">
-                            <div class="bg-[#c8e6dc] p-4 rounded-lg mb-2">
-                                <h3 class="font-bold text-sm tracking-wider text-[#2c3e50] text-center">MONDAY</h3>
-                            </div>
-                            <div class="space-y-2">
-                                <!-- Block 1 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">06:00 - 07:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">MORNING STRENGTH</div>
-                                    </div>
-                                </div>
-                                <!-- Block 2 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">08:00 - 09:00</div>
-                                        <div class="text-sm font-semibold text-white">AQUA FITNESS</div>
-                                    </div>
-                                </div>
-                                <!-- Block 3 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">10:00 - 11:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">CARDIO BLAST</div>
-                                    </div>
-                                </div>
-                                <!-- Block 4 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">17:00 - 18:00</div>
-                                        <div class="text-sm font-semibold text-white">POWER LIFTING</div>
-                                    </div>
-                                </div>
-                                <!-- Block 5 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">18:30 - 19:30</div>
-                                        <div class="text-sm font-semibold text-gray-800">YOGA FLOW</div>
-                                    </div>
-                                </div>
-                                <!-- Block 6 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">20:00 - 21:00</div>
-                                        <div class="text-sm font-semibold text-white">EVENING STRETCH</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tuesday -->
-                        <div class="flex flex-col gap-2">
-                            <div class="bg-[#c8e6dc] p-4 rounded-lg mb-2">
-                                <h3 class="font-bold text-sm tracking-wider text-[#2c3e50] text-center">TUESDAY</h3>
-                            </div>
-                            <div class="space-y-2">
-                                <!-- Block 1 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">06:00 - 07:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">BOOT CAMP</div>
-                                    </div>
-                                </div>
-                                <!-- Block 2 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">08:00 - 09:00</div>
-                                        <div class="text-sm font-semibold text-white">WATER AEROBICS</div>
-                                    </div>
-                                </div>
-                                <!-- Block 3 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">10:30 - 11:30</div>
-                                        <div class="text-sm font-semibold text-gray-800">DANCE FITNESS</div>
-                                    </div>
-                                </div>
-                                <!-- Block 4 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">17:00 - 18:00</div>
-                                        <div class="text-sm font-semibold text-white">CIRCUIT TRAINING</div>
-                                    </div>
-                                </div>
-                                <!-- Block 5 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">18:30 - 19:30</div>
-                                        <div class="text-sm font-semibold text-gray-800">PILATES</div>
-                                    </div>
-                                </div>
-                                <!-- Block 6 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">20:00 - 21:00</div>
-                                        <div class="text-sm font-semibold text-white">STRENGTH & TONE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Wednesday -->
-                        <div class="flex flex-col gap-2">
-                            <div class="bg-[#c8e6dc] p-4 rounded-lg mb-2">
-                                <h3 class="font-bold text-sm tracking-wider text-[#2c3e50] text-center">WEDNESDAY</h3>
-                            </div>
-                            <div class="space-y-2">
-                                <!-- Block 1 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">06:00 - 07:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">AQUA ZUMBA</div>
-                                    </div>
-                                </div>
-                                <!-- Block 2 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">08:00 - 09:00</div>
-                                        <div class="text-sm font-semibold text-white">HIIT CARDIO</div>
-                                    </div>
-                                </div>
-                                <!-- Block 3 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">10:00 - 11:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">FUNCTIONAL FITNESS</div>
-                                    </div>
-                                </div>
-                                <!-- Block 4 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">17:00 - 18:00</div>
-                                        <div class="text-sm font-semibold text-white">VINYASA YOGA</div>
-                                    </div>
-                                </div>
-                                <!-- Block 5 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">18:30 - 19:30</div>
-                                        <div class="text-sm font-semibold text-gray-800">BODY SCULPT</div>
-                                    </div>
-                                </div>
-                                <!-- Block 6 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">20:00 - 21:00</div>
-                                        <div class="text-sm font-semibold text-white">MEDITATION</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Thursday -->
-                        <div class="flex flex-col gap-2">
-                            <div class="bg-[#c8e6dc] p-4 rounded-lg mb-2">
-                                <h3 class="font-bold text-sm tracking-wider text-[#2c3e50] text-center">THURSDAY</h3>
-                            </div>
-                            <div class="space-y-2">
-                                <!-- Block 1 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">06:00 - 07:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">MORNING PUMP</div>
-                                    </div>
-                                </div>
-                                <!-- Block 2 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">08:00 - 09:00</div>
-                                        <div class="text-sm font-semibold text-white">AQUA THERAPY</div>
-                                    </div>
-                                </div>
-                                <!-- Block 3 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">10:30 - 11:30</div>
-                                        <div class="text-sm font-semibold text-gray-800">CARDIO MIX</div>
-                                    </div>
-                                </div>
-                                <!-- Block 4 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">17:00 - 18:00</div>
-                                        <div class="text-sm font-semibold text-white">KETTLEBELL</div>
-                                    </div>
-                                </div>
-                                <!-- Block 5 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">18:30 - 19:30</div>
-                                        <div class="text-sm font-semibold text-gray-800">BARRE CLASS</div>
-                                    </div>
-                                </div>
-                                <!-- Block 6 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">20:00 - 21:00</div>
-                                        <div class="text-sm font-semibold text-white">CORE POWER</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Saturday -->
-                        <div class="flex flex-col gap-2">
-                            <div class="bg-[#c8e6dc] p-4 rounded-lg mb-2">
-                                <h3 class="font-bold text-sm tracking-wider text-[#2c3e50] text-center">SATURDAY</h3>
-                            </div>
-                            <div class="space-y-2">
-                                <!-- Block 1 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">08:00 - 09:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">WEEKEND WARRIOR</div>
-                                    </div>
-                                </div>
-                                <!-- Block 2 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">09:30 - 10:30</div>
-                                        <div class="text-sm font-semibold text-white">AQUA FUN</div>
-                                    </div>
-                                </div>
-                                <!-- Block 3 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">11:00 - 12:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">ZUMBA PARTY</div>
-                                    </div>
-                                </div>
-                                <!-- Block 4 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">16:00 - 17:00</div>
-                                        <div class="text-sm font-semibold text-white">STRENGTH BASICS</div>
-                                    </div>
-                                </div>
-                                <!-- Block 5 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">17:30 - 18:30</div>
-                                        <div class="text-sm font-semibold text-gray-800">RESTORATIVE YOGA</div>
-                                    </div>
-                                </div>
-                                <!-- Block 6 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">20:00 - 21:00</div>
-                                        <div class="text-sm font-semibold text-white">EVENING STRETCH</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                                <!-- Sunday -->
-                        <div class="flex flex-col gap-2">
-                            <div class="bg-[#c8e6dc] p-4 rounded-lg mb-2">
-                                <h3 class="font-bold text-sm tracking-wider text-[#2c3e50] text-center">SUNDAY</h3>
-                            </div>
-                            <div class="space-y-2">
-                                <!-- Block 1 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">09:00 - 10:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">SUNDAY SCULPT</div>
-                                    </div>
-                                </div>
-                                <!-- Block 2 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">10:30 - 11:30</div>
-                                        <div class="text-sm font-semibold text-white">WATER WELLNESS</div>
-                                    </div>
-                                </div>
-                                <!-- Block 3 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">12:00 - 13:00</div>
-                                        <div class="text-sm font-semibold text-gray-800">GENTLE CARDIO</div>
-                                    </div>
-                                </div>
-                                <!-- Block 4 - ./assets/page_9/dumbell.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/dumbell.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">16:00 - 17:00</div>
-                                        <div class="text-sm font-semibold text-white">FULL BODY</div>
-                                    </div>
-                                </div>
-                                <!-- Block 5 - ./assets/page_9/weight.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-white border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/weight.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-500">17:30 - 18:30</div>
-                                        <div class="text-sm font-semibold text-gray-800">SUNSET YOGA</div>
-                                    </div>
-                                </div>
-                                <!-- Block 6 - ./assets/page_9/heart.png -->
-                                <div class="flex items-center gap-3 p-3.5 rounded-lg min-h-14 bg-[#2c3e50] text-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-                                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-                                        <img src="./assets/page_9/heart.png" alt="Activity Icon" class="w-6 h-6 opacity-80">
-                                    </div>
-                                    <div class="flex-1 flex flex-col gap-1">
-                                        <div class="text-xs font-medium text-gray-300">19:00 - 20:00</div>
-                                        <div class="text-sm font-semibold text-white">RECOVERY SESSION</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Weekly Schedule - 2 columns on mobile, full grid on desktop -->
+                    <div id="schedule" class="h-[45vh] grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2 lg:gap-4 mt-16 md:mt-[3%]">
+                        <!-- Schedule days will be dynamically generated by JavaScript -->
                     </div>
                 </div>
-            </div>
 
             <!-- Page 10 OUR EVENTS -->
             <div class="flex-col flex items-center bg-no-repeat page page-10" id="page-10">
@@ -924,6 +511,313 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                 </div>
             </div>
 
+            <!-- Page 16: PODCAST -->
+            <div class="page page-16 min-h-screen w-full" id="page-16">
+                
+                <!-- Section 1: PODCAST  -->
+                <div class="flex h-screen w-full">
+                    <div class="h-screen flex w-full">
+                        <!-- Background: 80% #d9cec5, 20% #15273f -->
+                        <div class="w-4/5" style="background-color: #d9cec5;"></div>
+                        <div class="w-1/5" style="background-color: #15273f;"></div>
+                        
+                        <!-- Content overlay with 50-50 split -->
+                        <div class="absolute inset-0 flex">
+                            <!-- Left Side: 50% -->
+                            <div class="w-1/2 h-screen relative overflow-hidden">
+                                <!-- Header - PODCAST and Lift. Learn. Lead! with adjusted positioning -->
+                                <div class="absolute top-[10%] left-[20%] w-[35%] z-10 flex flex-col items-start justify-start">
+                                    <h1 class="text-7xl font-black text-slate-800 mb-4">PODCAST</h1>
+                                    <p class="text-xl font-black text-slate-700 w-full text-right">Lift. Learn. Lead!</p>
+                                </div>
+
+                                <!-- Background Image - Large, moved right and down, expanded 4% -->
+                                <img src="./assets/page_16/30.png" 
+                                     alt="Background" 
+                                     class="absolute top-[30%] left-[8%] w-[84%] h-[54%] object-cover">
+
+                                <!-- Four Images Side by Side with Text Overlays - Images: 28.png, 27.png, 29.png, 26.png -->
+                                <div class="absolute top-[30%] left-[12.5%] w-[70%] h-[30%] flex gap-0 items-start z-10">
+                                    <!-- Image 1 - 28.png with Charlie Kenter text - Text align right -->
+                                    <div class="flex-1 h-full relative">
+                                        <img src="./assets/page_16/28.png" 
+                                             alt="Charlie Kenter" class="w-full h-full object-cover">
+                                        <!-- Text overlay - Right aligned, no background -->
+                                        <div class="absolute bottom-0 right-0 text-white p-2 text-right">
+                                            <h3 class="font-bold text-sm leading-tight text-shadow">CHARLIE</h3>
+                                            <h3 class="font-bold text-sm leading-tight text-shadow">KENTER</h3>
+                                            <p class="text-gray-200 text-xs mt-1 text-shadow">GUEST</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Image 2 - 27.png with Tatiana Stanton text - Text align left, smaller, moved down -->
+                                    <div class="flex-1 h-full relative translate-y-4">
+                                        <img src="./assets/page_16/27.png" 
+                                             alt="Tatiana Stanton" class="w-full h-full object-cover">
+                                        <!-- Text overlay - Left aligned, smaller, no background -->
+                                        <div class="absolute bottom-0 left-0 text-white p-2 text-left">
+                                            <h3 class="font-bold text-xs leading-tight text-shadow">TATIANA</h3>
+                                            <h3 class="font-bold text-xs leading-tight text-shadow">STANTON</h3>
+                                            <p class="text-gray-200 text-[10px] mt-1 text-shadow">GIRLSPOD</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Image 3 - 29.png with Abram Workman text - Text align right -->
+                                    <div class="flex-1 h-full relative">
+                                        <img src="./assets/page_16/29.png" 
+                                             alt="Abram Workman" class="w-full h-full object-cover">
+                                        <!-- Text overlay - Right aligned, no background -->
+                                        <div class="absolute bottom-0 right-0 text-white p-2 text-right">
+                                            <h3 class="font-bold text-sm leading-tight text-shadow">ABRAM</h3>
+                                            <h3 class="font-bold text-sm leading-tight text-shadow">WORKMAN</h3>
+                                            <p class="text-gray-200 text-xs mt-1 text-shadow">SAUDI</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Image 4 - 26.png with Hanna Philips text - Text align left, smaller, moved down -->
+                                    <div class="flex-1 h-full relative translate-y-4">
+                                        <img src="./assets/page_16/26.png" 
+                                             alt="Hanna Philips" class="w-full h-full object-cover">
+                                        <!-- Text overlay - Left aligned, smaller, no background -->
+                                        <div class="absolute bottom-0 left-0 text-white p-2 text-left">
+                                            <h3 class="font-bold text-xs leading-tight text-shadow">HANNA</h3>
+                                            <h3 class="font-bold text-xs leading-tight text-shadow">PHILIPS</h3>
+                                            <p class="text-gray-200 text-[10px] mt-1 text-shadow">GUEST</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Image 31.png below the images block -->
+                                <div class="absolute top-[65%] left-[17.5%] w-[60%] z-10">
+                                    <img src="./assets/page_16/31.png" 
+                                         alt="Image 31" class="w-full object-cover">
+                                </div>
+
+                                <!-- Image 32.png below the 31.png (5% smaller) -->
+                                <div class="absolute top-[75%] left-[20%] w-[55%] z-10">
+                                    <img src="./assets/page_16/32.png" 
+                                         alt="Image 32" class="w-full object-cover">
+                                </div>
+
+                                <!-- Connect on Youtube Button - Centered with images -->
+                                <div class="absolute bottom-8 left-[12.5%] w-[70%] flex justify-center">
+                                    <button class="bg-slate-800 text-white px-6 py-3 rounded-lg flex items-center gap-3 hover:bg-slate-700 transition-colors">
+                                        <div class="w-10 h-10 flex items-center justify-center">
+                                            <img src="./assets/page_16/youtube.png" alt="YouTube logo" class="w-10 h-10 object-contain">
+                                        </div>
+                                        <span class="font-semibold">Connect on Youtube</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Right Side: 50% -->
+                            <div class="w-1/2 h-screen flex flex-col pt-24 px-6 gap-4 pb-8 overflow-y-auto">
+                                <!-- Episode 1 -->
+                                <div class="p-6 flex items-center gap-4" style="background-color: #e2e6eb;">
+                                    <div class="relative">
+                                        <img src="./assets/page_16/33.png" 
+                                             alt="Episode thumbnail" class="w-16 h-16 object-cover">
+                                        <button class="absolute inset-0 flex items-center justify-center">
+                                            <img src="./assets/page_16/button.png" alt="Play button" class="w-5 h-5">
+                                        </button>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 text-xs text-gray-600 mb-1">
+                                            <span class="font-semibold">PODCASMAS</span>
+                                            <span>•</span>
+                                            <span>•</span>
+                                            <span>EPISODE 2</span>
+                                        </div>
+                                        <h3 class="font-bold text-gray-800 mb-2 text-lg">How to build your personal resilience</h3>
+                                        <p class="text-gray-600 text-xs">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac neque sagittis, viverra ligula id, mattis ex. Sed sagittis ligula ac lacus auctor, quis blandit mi finibus.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Episode 2 -->
+                                <div class="p-6 flex items-center gap-4" style="background-color: #e2e6eb;">
+                                    <div class="relative">
+                                        <img src="./assets/page_16/34.png" 
+                                             alt="Episode thumbnail" class="w-16 h-16 object-cover">
+                                        <button class="absolute inset-0 flex items-center justify-center">
+                                            <img src="./assets/page_16/button.png" alt="Play button" class="w-5 h-5">
+                                        </button>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 text-xs text-gray-600 mb-1">
+                                            <span class="font-semibold">PODCASTMASTER</span>
+                                            <span>•</span>
+                                            <span>•</span>
+                                            <span>EPISODE 9</span>
+                                        </div>
+                                        <h3 class="font-bold text-gray-800 mb-2 text-lg">Imperfect hands don't reduce creativity</h3>
+                                        <p class="text-gray-600 text-xs">Quisque sit amet lacus luctus, ultrices eros ac, laoreet sem. Aliquam erat volutpat. Donec lobortis ex lorem, id consequat lectus sodales sed.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Episode 3 -->
+                                <div class="p-6 flex items-center gap-4" style="background-color: #e2e6eb;">
+                                    <div class="relative">
+                                        <img src="./assets/page_16/35.png" 
+                                             alt="Episode thumbnail" class="w-16 h-16 object-cover">
+                                        <button class="absolute inset-0 flex items-center justify-center">
+                                            <img src="./assets/page_16/button.png" alt="Play button" class="w-5 h-5">
+                                        </button>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 text-xs text-gray-600 mb-1">
+                                            <span class="font-semibold">PODCASTMASTER</span>
+                                            <span>•</span>
+                                            <span>•</span>
+                                            <span>EPISODE 2</span>
+                                        </div>
+                                        <h3 class="font-bold text-gray-800 mb-2 text-lg">How to build your personal resilience</h3>
+                                        <p class="text-gray-600 text-xs">Cras facilisis orci in arcu ullamcorper viverra. Maecenas vulputate risus augue, id suscipit nunc tincidunt sed. Quisque auctor scelerisque arcu.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Show More Episodes Button - Minimal gap from episodes -->
+                                <div class="text-center mt-6 mb-4">
+                                    <button class="bg-slate-800 text-white px-6 py-3 font-semibold hover:bg-slate-700 transition-colors text-base">
+                                        Show More Episodes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: FITNESS VIDEOS (from second page-14) -->
+                <div class="flex items-center justify-center min-h-screen w-full bg-slate-100">
+                    <div class="w-full min-h-screen p-4 md:p-6 flex items-start justify-center pt-[5vh]">
+                        <!-- Video Grid Layout - Responsive with Reduced Sizes -->
+                        <div data-animation-class="fade-in-up" class="w-full max-w-5xl">
+                            
+                            <!-- Mobile Layout (sm and below) - Reduced Sizes -->
+                            <div class="block md:hidden space-y-3">
+                                
+                                <!-- Classes Section -->
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                                    <div class="bg-gradient-to-br from-amber-50 to-stone-100 relative">
+                                        <img src="./assets/page_16/36.png" 
+                                             alt="Yoga Classes" 
+                                             class="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-105">
+                                        <div class="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                            <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110">
+                                                <div class="w-0 h-0 border-l-[10px] border-l-slate-700 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent ml-1"></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-white">
+                                        <h2 class="text-lg font-bold text-slate-800 mb-1">Classes</h2>
+                                        <p class="text-slate-600 text-sm">14 Videos</p>
+                                    </div>
+                                </div>
+
+                                <!-- Fitness Section -->
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                                    <div class="relative bg-gradient-to-br from-stone-200 to-stone-300">
+                                        <img src="./assets/page_16/13.jpg" 
+                                             alt="Fitness Training" 
+                                             class="w-full h-28 object-cover transition-transform duration-300 group-hover:scale-105">
+                                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                            <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110">
+                                                <div class="w-0 h-0 border-l-[10px] border-l-slate-700 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent ml-1"></div>
+                                            </button>
+                                        </div>
+                                        <div class="absolute top-2 right-2">
+                                            <div class="bg-white bg-opacity-90 rounded-lg px-2 py-1">
+                                                <span class="text-xs font-medium text-slate-700">AURA</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-[#182a41]">
+                                        <h3 class="text-base font-bold text-white mb-1">Fitness</h3>
+                                        <p class="text-slate-300 text-sm">14 Videos</p>
+                                    </div>
+                                </div>
+
+                                <!-- Yoga Section -->
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                                    <div class="relative">
+                                        <img src="./assets/page_16/9.jpg" 
+                                             alt="Yoga Sessions" 
+                                             class="w-full h-28 object-cover transition-transform duration-300 group-hover:scale-105">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                            <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110">
+                                                <div class="w-0 h-0 border-l-[10px] border-l-slate-700 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent ml-1"></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-white">
+                                        <h3 class="text-base font-bold text-slate-800 mb-1">Yoga</h3>
+                                        <p class="text-slate-600 text-sm">7 Videos</p>
+                                    </div>
+                                </div>
+
+                                <!-- Dance and Cardio - Side by side on mobile -->
+                                <div class="grid grid-cols-2 gap-3">
+                                    <!-- Dance Section -->
+                                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                                        <div class="relative">
+                                            <img src="./assets/page_16/37.png" 
+                                                 alt="Dance Fitness" 
+                                                 class="w-full h-20 object-cover transition-transform duration-300 group-hover:scale-105">
+                                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                                <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-6 h-6 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110">
+                                                    <div class="w-0 h-0 border-l-[6px] border-l-slate-700 border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent ml-0.5"></div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 bg-slate-200">
+                                            <h3 class="text-sm font-bold text-slate-800 mb-1">Dance</h3>
+                                            <p class="text-slate-600 text-xs">8 Videos</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cardio Section -->
+                                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                                        <div class="relative bg-gradient-to-br from-stone-100 to-stone-200">
+                                            <img src="./assets/page_16/14.jpg" 
+                                                 alt="Cardio Training" 
+                                                 class="w-full h-20 object-cover transition-transform duration-300 group-hover:scale-105">
+                                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                                <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-6 h-6 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110">
+                                                    <div class="w-0 h-0 border-l-[6px] border-l-slate-700 border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent ml-0.5"></div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 bg-white">
+                                            <h3 class="text-sm font-bold text-slate-800 mb-1">Cardio</h3>
+                                            <p class="text-slate-600 text-xs">14 Videos</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Show More Button -->
+                                <div class="pt-2">
+                                    <button class="w-full bg-[#182a41] hover:bg-[#1e3249] text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 hover:-translate-y-1">
+                                        Show More Category
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+
+
+            
+
+
+
+
+
+            
 
             <!--  PAGE 17: Contact/Get Appointment -->
             <div class="page page-17 flex items-center justify-center w-full" id="page-17">

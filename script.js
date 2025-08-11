@@ -91,6 +91,74 @@ class FitnessHeroAnimations {
             index: 6
         }
         ];
+        this.schedule = [
+            {
+                day: 'MONDAY',
+                activities: [
+                    { time: '06:00 - 07:00', name: 'MORNING STRENGTH', icon: './assets/page_9/dumbell.png', type: 'white' },
+                    { time: '08:00 - 09:00', name: 'AQUA FITNESS', icon: './assets/page_9/weight.png', type: '#24203c' },
+                    { time: '10:00 - 11:00', name: 'CARDIO BLAST', icon: './assets/page_9/heart.png', type: 'white' },
+                    { time: '17:00 - 18:00', name: 'POWER LIFTING', icon: './assets/page_9/dumbell.png', type: 'dark' },
+                    { time: '18:30 - 19:30', name: 'YOGA FLOW', icon: './assets/page_9/weight.png', type: 'white' },
+                    { time: '20:00 - 21:00', name: 'EVENING STRETCH', icon: './assets/page_9/heart.png', type: 'dark' }
+                ]
+            },
+            {
+                day: 'TUESDAY',
+                activities: [
+                    { time: '06:00 - 07:00', name: 'BOOT CAMP', icon: './assets/page_9/dumbell.png', type: 'white' },
+                    { time: '08:00 - 09:00', name: 'WATER AEROBICS', icon: './assets/page_9/weight.png', type: 'dark' },
+                    { time: '10:30 - 11:30', name: 'DANCE FITNESS', icon: './assets/page_9/heart.png', type: 'white' },
+                    { time: '17:00 - 18:00', name: 'CIRCUIT TRAINING', icon: './assets/page_9/dumbell.png', type: 'dark' },
+                    { time: '18:30 - 19:30', name: 'PILATES', icon: './assets/page_9/weight.png', type: 'white' },
+                    { time: '20:00 - 21:00', name: 'STRENGTH & TONE', icon: './assets/page_9/heart.png', type: 'dark' }
+                ]
+            },
+            {
+                day: 'WEDNESDAY',
+                activities: [
+                    { time: '06:00 - 07:00', name: 'AQUA ZUMBA', icon: './assets/page_9/dumbell.png', type: 'white' },
+                    { time: '08:00 - 09:00', name: 'HIIT CARDIO', icon: './assets/page_9/weight.png', type: 'dark' },
+                    { time: '10:00 - 11:00', name: 'FUNCTIONAL FITNESS', icon: './assets/page_9/heart.png', type: 'white' },
+                    { time: '17:00 - 18:00', name: 'VINYASA YOGA', icon: './assets/page_9/dumbell.png', type: 'dark' },
+                    { time: '18:30 - 19:30', name: 'BODY SCULPT', icon: './assets/page_9/weight.png', type: 'white' },
+                    { time: '20:00 - 21:00', name: 'MEDITATION', icon: './assets/page_9/heart.png', type: 'dark' }
+                ]
+            },
+            {
+                day: 'THURSDAY',
+                activities: [
+                    { time: '06:00 - 07:00', name: 'MORNING PUMP', icon: './assets/page_9/dumbell.png', type: 'white' },
+                    { time: '08:00 - 09:00', name: 'AQUA THERAPY', icon: './assets/page_9/weight.png', type: 'dark' },
+                    { time: '10:30 - 11:30', name: 'CARDIO MIX', icon: './assets/page_9/heart.png', type: 'white' },
+                    { time: '17:00 - 18:00', name: 'KETTLEBELL', icon: './assets/page_9/dumbell.png', type: 'dark' },
+                    { time: '18:30 - 19:30', name: 'BARRE CLASS', icon: './assets/page_9/weight.png', type: 'white' },
+                    { time: '20:00 - 21:00', name: 'CORE POWER', icon: './assets/page_9/heart.png', type: 'dark' }
+                ]
+            },
+            {
+                day: 'SATURDAY',
+                activities: [
+                    { time: '08:00 - 09:00', name: 'WEEKEND WARRIOR', icon: './assets/page_9/dumbell.png', type: 'white' },
+                    { time: '09:30 - 10:30', name: 'AQUA FUN', icon: './assets/page_9/weight.png', type: 'dark' },
+                    { time: '11:00 - 12:00', name: 'ZUMBA PARTY', icon: './assets/page_9/heart.png', type: 'white' },
+                    { time: '16:00 - 17:00', name: 'STRENGTH BASICS', icon: './assets/page_9/dumbell.png', type: 'dark' },
+                    { time: '17:30 - 18:30', name: 'RESTORATIVE YOGA', icon: './assets/page_9/weight.png', type: 'white' },
+                    { time: '20:00 - 21:00', name: 'EVENING STRETCH', icon: './assets/page_9/heart.png', type: 'dark' }
+                ]
+            },
+            {
+                day: 'SUNDAY',
+                activities: [
+                    { time: '09:00 - 10:00', name: 'SUNDAY SCULPT', icon: './assets/page_9/dumbell.png', type: 'white' },
+                    { time: '10:30 - 11:30', name: 'WATER WELLNESS', icon: './assets/page_9/weight.png', type: 'dark' },
+                    { time: '12:00 - 13:00', name: 'GENTLE CARDIO', icon: './assets/page_9/heart.png', type: 'white' },
+                    { time: '16:00 - 17:00', name: 'FULL BODY', icon: './assets/page_9/dumbell.png', type: 'dark' },
+                    { time: '17:30 - 18:30', name: 'SUNSET YOGA', icon: './assets/page_9/weight.png', type: 'white' },
+                    { time: '19:00 - 20:00', name: 'RECOVERY SESSION', icon: './assets/page_9/heart.png', type: 'dark' }
+                ]
+            }
+        ];
         this.lenis = null;
         this.state = {
             heartRate: this.config.heartRate.base,
@@ -157,6 +225,49 @@ class FitnessHeroAnimations {
         `;
         container.appendChild(card);
     }
+
+    addScheduleDay({ day, activities }) {
+        const container = document.querySelector('#schedule');
+        if (!container) return;
+
+        const dayColumn = document.createElement('div');
+        dayColumn.className = 'flex flex-col gap-1';
+        
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'bg-[#c8e6dc] p-3 rounded-lg mb-1';
+        const headerTextClass = this.isMobile ? 'text-xs' : 'text-sm';
+        dayHeader.innerHTML = `<h3 class="font-bold ${headerTextClass} tracking-wider text-[#2c3e50] text-center">${day}</h3>`;
+        
+        const activitiesContainer = document.createElement('div');
+        activitiesContainer.className = 'space-y-1';
+        
+        activities.forEach(activity => {
+            const activityBlock = document.createElement('div');
+            const bgColor = activity.type === 'white' ? 'bg-[#F0EDEB] border border-gray-200' : 'bg-[#24203c] text-white';
+            const textColor = activity.type === 'white' ? 'text-gray-600' : 'text-gray-300';
+            const nameColor = activity.type === 'white' ? 'text-gray-800' : 'text-white';
+            
+            const timeClass = this.isMobile ? 'text-[8px]' : 'text-xs';
+            const activityNameClass = this.isMobile ? 'text-[9px]' : 'text-sm';
+            
+            activityBlock.className = `flex items-center gap-3 p-3 rounded-lg h-12 ${bgColor} hover:-translate-y-0.5 hover:shadow-md transition-all duration-300`;
+            activityBlock.innerHTML = `
+                <div class="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <img src="${activity.icon}" alt="Activity Icon" class="w-5 h-5 opacity-80">
+                </div>
+                <div class="flex-1 flex flex-col gap-1 overflow-hidden">
+                    <div class="${timeClass} font-medium ${textColor} truncate">${activity.time}</div>
+                    <div class="${activityNameClass} font-semibold ${nameColor} leading-tight ${this.isMobile ? 'line-clamp-1' : ''}">${activity.name}</div>
+                </div>
+            `;
+            activitiesContainer.appendChild(activityBlock);
+        });
+        
+        dayColumn.appendChild(dayHeader);
+        dayColumn.appendChild(activitiesContainer);
+        container.appendChild(dayColumn);
+    }
+
     setupMobileMenu() {
         const btn = document.getElementById('mobileMenuBtn');
         const menu = document.querySelector('.mobile-menu');
@@ -178,6 +289,7 @@ class FitnessHeroAnimations {
         this.initECGAnimation();
         this.addClassesCard();
         this.addTrainersCards();
+        this.addScheduleGrid();
         this.setUpGSAP();
         this.setUpLenis();
         this.observeFadeInElementsWithScrollTrigger();
@@ -188,6 +300,136 @@ class FitnessHeroAnimations {
     }
     addClassesCard() {
         this.cards.forEach(card => this.addClassCard(card));
+    }
+    addScheduleGrid() {
+        // Initialize mobile pagination variables
+        this.currentMobilePage = 0;
+        this.currentMobileGroup = 0;
+        this.isMobile = window.innerWidth < 768;
+        this.columnsPerGroup = 2; // 2 columns per group on mobile
+        this.groupsPerPage = 3; // 3 groups (6 columns) per page on mobile
+        
+        if (this.isMobile) {
+            this.setupMobileScrollPagination();
+        }
+        
+        this.renderSchedulePage();
+    }
+
+
+
+    setupMobileScrollPagination() {
+        const scheduleContainer = document.querySelector('#schedule');
+        if (!scheduleContainer) return;
+        
+        let touchStartY = 0;
+        let isScrolling = false;
+        
+        // Touch events for mobile
+        scheduleContainer.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+            e.stopPropagation(); // Prevent interference with page scroll
+        }, { passive: false });
+        
+        scheduleContainer.addEventListener('touchend', (e) => {
+            if (isScrolling) return;
+            
+            const touchEndY = e.changedTouches[0].clientY;
+            const deltaY = touchStartY - touchEndY;
+            
+            if (Math.abs(deltaY) > 50) { // Minimum swipe distance
+                e.preventDefault(); // Prevent page scroll
+                e.stopPropagation(); // Prevent interference with page scroll
+                isScrolling = true;
+                
+                if (deltaY > 0) {
+                    // Swiped up - next group
+                    this.nextMobileGroup();
+                } else {
+                    // Swiped down - previous group  
+                    this.prevMobileGroup();
+                }
+                
+                setTimeout(() => { isScrolling = false; }, 500);
+            }
+        }, { passive: false });
+        
+        // Mouse wheel for testing on desktop
+        scheduleContainer.addEventListener('wheel', (e) => {
+            if (!this.isMobile) return; // Only on mobile
+            if (isScrolling) return;
+            
+            e.preventDefault();
+            isScrolling = true;
+            
+            if (e.deltaY > 0) {
+                // Scrolled down - next group
+                this.nextMobileGroup();
+            } else {
+                // Scrolled up - previous group
+                this.prevMobileGroup();
+            }
+            
+            setTimeout(() => { isScrolling = false; }, 500);
+        });
+    }
+    
+    nextMobileGroup() {
+        const totalColumns = this.schedule.length;
+        const totalPages = Math.ceil(totalColumns / (this.groupsPerPage * this.columnsPerGroup));
+        
+        this.currentMobileGroup++;
+        
+        // If we've gone through 3 groups (6 columns), move to next page
+        if (this.currentMobileGroup >= this.groupsPerPage) {
+            this.currentMobileGroup = 0;
+            this.currentMobilePage = (this.currentMobilePage + 1) % totalPages;
+        }
+        
+        this.renderSchedulePage();
+    }
+    
+    prevMobileGroup() {
+        const totalColumns = this.schedule.length;
+        const totalPages = Math.ceil(totalColumns / (this.groupsPerPage * this.columnsPerGroup));
+        
+        this.currentMobileGroup--;
+        
+        // If we've gone below 0, go to previous page's last group
+        if (this.currentMobileGroup < 0) {
+            this.currentMobileGroup = this.groupsPerPage - 1;
+            this.currentMobilePage = this.currentMobilePage - 1;
+            if (this.currentMobilePage < 0) this.currentMobilePage = totalPages - 1;
+        }
+        
+        this.renderSchedulePage();
+    }
+
+    renderSchedulePage() {
+        const container = document.querySelector('#schedule');
+        
+        if (!container) return;
+        
+        // Clear existing content
+        container.innerHTML = '';
+        
+        if (this.isMobile) {
+            // Mobile: Show only 2 columns at a time based on current group and page
+            const startIndex = (this.currentMobilePage * this.groupsPerPage * this.columnsPerGroup) + 
+                              (this.currentMobileGroup * this.columnsPerGroup);
+            const endIndex = Math.min(startIndex + this.columnsPerGroup, this.schedule.length);
+            const daysToShow = this.schedule.slice(startIndex, endIndex);
+            
+            daysToShow.forEach(day => this.addScheduleDay(day));
+        } else {
+            // Desktop: Show all days
+            this.schedule.forEach(day => this.addScheduleDay(day));
+        }
+        
+        // Refresh ScrollTrigger to ensure page transitions continue working
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+        }
     }
 
     setUpClassesCards(fullTimeline, isMobile) {
@@ -695,8 +937,8 @@ class FitnessHeroAnimations {
                 opacity: 1,
                 duration: 0.5  
             })
-            fullTimeline.to({}, {
-                duration: 5
+            .to({}, {
+                duration: 0.5  // Reduced from 5 to 0.5
             })
 
             fullTimeline.to("#schedule, #schedule_title, #schedule_types, #schedule_heading", {
@@ -856,7 +1098,7 @@ class FitnessHeroAnimations {
 
             fullTimeline.to(".page-15", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
             
-            // Page 12 Membership Animation
+            // Page 15 Membership Animation - happens immediately after page appears
             .set("#membership-intro", { opacity: 0 })
             .set("#plan-button", { scale: 0, opacity: 0 })
             .set("#title-container", { scale: 0, opacity: 0 })
@@ -941,22 +1183,27 @@ class FitnessHeroAnimations {
                     duration: 1, 
                     ease: "power3.out" 
                 })
-
-                fullTimeline.to(".membership-table-container", { 
+                .to(".membership-table-container", { 
                     xPercent: -50, 
                     scale: 1, 
                     duration: 1, 
                     ease: "power3.out" 
                 })
             }
+            
+            fullTimeline.to({}, { duration: 2 }) // Hold on page 15 to view membership content
+            
+            // Page 16 - Merged Content Animation (Podcast + Fitness Videos)
+            .to(".page-16", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
+            .to({}, { duration: 2 }) // Hold on page 16 to view merged content
 
-            fullTimeline.to(".page-17", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
+            .to(".page-17", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
             .to(".page-18", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
 
 
         gsap.set(".page-2, .page-12", { xPercent: -100 });
         gsap.set(".page-3, .page-11, .page-13", { xPercent: 100 });
-        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-8,.page-9, .page-10, .page-14, .page-15, .page-17, .page-18", { yPercent: 100 });
+        gsap.set(".page-4, .page-5, .page-6, .page-7, .page-8,.page-9, .page-10, .page-14, .page-15, .page-16, .page-17, .page-18", { yPercent: 100 });
         gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
         gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 120, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
         gsap.set("#auraLuxury", { xPercent: 0, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
@@ -984,11 +1231,16 @@ class FitnessHeroAnimations {
         gsap.set(".trainers-container", { opacity: 0, scale: 0.9, y: 80 })
         gsap.set("#schedule, #schedule_title, #schedule_types, #schedule_heading", { opacity: 0 })
 
+        console.log('Timeline duration:', fullTimeline.duration());
+        console.log('Is mobile:', isMobile);
+        const multiplier = isMobile ? 2200 : 1800; // Balanced multipliers
+        console.log('Scroll end calculation:', fullTimeline.duration() * multiplier);
+        
         ScrollTrigger.create({
             animation: fullTimeline,
             trigger: "#page-container",
             start: "top top",
-            end: () => "+=" + (fullTimeline.duration() * (isMobile ? 2000 : 1500)), // multiplier is tweakable
+            end: () => "+=" + (fullTimeline.duration() * multiplier),
             scrub: isMobile ? 0.3 : true,
             pin: true,
             anticipatePin: 1,
