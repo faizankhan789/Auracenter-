@@ -541,8 +541,6 @@ class FitnessHeroAnimations {
             { id: "video-slide-1", videoId: "video-1", progressId: "progress-dot-1" },
             { id: "video-slide-2", videoId: "video-2", progressId: "progress-dot-2" },
             { id: "video-slide-3", videoId: "video-3", progressId: "progress-dot-3" },
-            { id: "video-slide-4", videoId: "video-4", progressId: "progress-dot-4" },
-            { id: "video-slide-5", videoId: "video-5", progressId: "progress-dot-5" }
         ];
         
         // Initial states are already set in the main gsap.set section
@@ -1193,10 +1191,217 @@ class FitnessHeroAnimations {
             
             fullTimeline.to({}, { duration: 2 }) // Hold on page 15 to view membership content
             
-            // Page 16 - Merged Content Animation (Podcast + Fitness Videos)
-            .to(".page-16", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
-            .to({}, { duration: 2 }) // Hold on page 16 to view merged content
-
+            // Page 16 - Podcast Section with staggered animations  
+            // .to([".page-14", ".page-15"], { yPercent: -100, duration: 1.5, ease: "power2.inOut" }) // Hide previous pages
+            .to(".page-16", { yPercent: 0, duration: 1.5, ease: "power2.inOut" }, "-=1.5") // Show page 16
+            .to("#page16-heading", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            })
+            .to("#page16-tagline", {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to("#page16-bg-img", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.2")
+            .to(["#page16-guest-1", "#page16-guest-2", "#page16-guest-3", "#page16-guest-4"], {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.3,
+                ease: "power2.out"
+            }, "-=0.2")
+            .to(["#page16-guest-1-text", "#page16-guest-2-text", "#page16-guest-3-text", "#page16-guest-4-text"], {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.2,
+                ease: "power2.out"
+            }, "-=0.1")
+            .to("#page16-img-31", {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.1")
+            .to("#page16-img-32", {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to("#page16-youtube-btn", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.2")
+            .to("#page16-right-section", {
+                opacity: 1,
+                visibility: "visible",
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.1")
+            .to("#page16-episode-1", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.2")
+            .to("#page16-episode-2", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to("#page16-episode-3", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to("#page16-show-more-btn", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            
+            // Mobile-specific: Replace left section with mobile right section
+            if (isMobile) {
+                fullTimeline.to("#page16-mobile-right-section", {
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=2.5") // Show mobile right section earlier, replacing left
+                .to("#page16-mobile-episode-1", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "-=0.2")
+                .to("#page16-mobile-episode-2", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "-=0.3")
+                .to("#page16-mobile-episode-3", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "-=0.3")
+                .to("#page16-mobile-show-more-btn", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "-=0.2")
+            }
+            
+            fullTimeline.to({}, { duration: 1 }) // Hold to view sections
+            
+            // Hide podcast sections with dramatic scale-up effect (like membership page)
+            .to("#page16-podcast-container", {
+                scale: 2,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.in"
+            })
+            
+            // Hide podcast container completely  
+            .set("#page16-podcast-container", { display: "none" })
+            
+            // Show video section (like membership table replacement)
+            .to("#page16-video-section", {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "power3.out",
+                onStart: () => console.log("Video section replacing podcast content"),
+                onComplete: () => console.log("Video section replacement complete")
+            })
+            // Animate video grid elements one by one
+            .to("#video-grid-classes", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.5")
+            .to("#video-grid-dance", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to("#video-grid-cardio", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to("#video-grid-fitness", {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to("#video-grid-yoga", {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.3")
+            
+            // Mobile video animations (if mobile)
+            if (isMobile) {
+                fullTimeline
+                .to("#mobile-video-classes", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=2.0")
+                .to("#mobile-video-dance", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.3")
+                .to("#mobile-video-cardio", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.3")
+                .to("#mobile-video-fitness", {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.3")
+                .to("#mobile-video-yoga", {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.3")
+            }
+            
+            fullTimeline.to({}, { duration: 5 }) // Hold video section visible
+            .set(".page-13", { xPercent: 100 }) // Restore page-13 to original state for other animations
+            
+            // Continue with other pages after video section is shown
             .to(".page-17", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
             .to(".page-18", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
 
@@ -1224,6 +1429,55 @@ class FitnessHeroAnimations {
         gsap.set(".carousel-track", { x: 0 })
         gsap.set(".video-slide", { scale: 0.7, opacity: 0.5 })
         gsap.set(".video-slide[data-index='0']", { scale: 0, opacity: 0, rotationY: 180 })
+        
+        // Page 16 - Podcast section initial states - ALL ELEMENTS HIDDEN
+        gsap.set("#page16-heading", { opacity: 0, y: 50 });
+        gsap.set("#page16-tagline", { opacity: 0, x: 50 });
+        gsap.set("#page16-bg-img", { opacity: 0, y: 50 });
+        gsap.set("#page16-guest-1", { opacity: 0, x: -50 });
+        gsap.set("#page16-guest-2", { opacity: 0, y: 50 });
+        gsap.set("#page16-guest-3", { opacity: 0, x: 50 });
+        gsap.set("#page16-guest-4", { opacity: 0, y: -50 });
+        gsap.set("#page16-img-31", { opacity: 0, x: -50 });
+        gsap.set("#page16-img-32", { opacity: 0, x: 50 });
+        gsap.set("#page16-youtube-btn", { opacity: 0, y: 50 });
+        gsap.set("#page16-right-section", { opacity: 0, visibility: "hidden" }); // Keep right section hidden
+        
+        // Guest text overlays - hidden initially
+        gsap.set("#page16-guest-1-text", { opacity: 0, y: 20 });
+        gsap.set("#page16-guest-2-text", { opacity: 0, y: 20 });
+        gsap.set("#page16-guest-3-text", { opacity: 0, y: 20 });
+        gsap.set("#page16-guest-4-text", { opacity: 0, y: 20 });
+        
+        // Right section episode elements - hidden initially
+        gsap.set("#page16-episode-1", { opacity: 0, y: 30 });
+        gsap.set("#page16-episode-2", { opacity: 0, y: 30 });
+        gsap.set("#page16-episode-3", { opacity: 0, y: 30 });
+        gsap.set("#page16-show-more-btn", { opacity: 0, y: 30 });
+        
+        // Video section - hidden initially (must include scale: 0 to match timeline animation)
+        gsap.set("#page16-video-section", { opacity: 0, scale: 0 });
+        
+        // Video grid elements - hidden initially for scroll animations
+        gsap.set("#video-grid-classes", { opacity: 0, y: 50 });
+        gsap.set("#video-grid-fitness", { opacity: 0, x: -50 });
+        gsap.set("#video-grid-dance", { opacity: 0, y: 30 });
+        gsap.set("#video-grid-cardio", { opacity: 0, y: -30 });
+        gsap.set("#video-grid-yoga", { opacity: 0, x: 50 });
+        
+        // Mobile video grid elements - hidden initially for scroll animations
+        gsap.set("#mobile-video-classes", { opacity: 0, y: 50 });
+        gsap.set("#mobile-video-fitness", { opacity: 0, x: -50 });
+        gsap.set("#mobile-video-yoga", { opacity: 0, x: 50 });
+        gsap.set("#mobile-video-dance", { opacity: 0, y: 30 });
+        gsap.set("#mobile-video-cardio", { opacity: 0, y: -30 });
+        
+        // Mobile right section - hidden initially
+        gsap.set("#page16-mobile-right-section", { opacity: 0 });
+        gsap.set("#page16-mobile-episode-1", { opacity: 0, y: 30 });
+        gsap.set("#page16-mobile-episode-2", { opacity: 0, y: 30 });
+        gsap.set("#page16-mobile-episode-3", { opacity: 0, y: 30 });
+        gsap.set("#page16-mobile-show-more-btn", { opacity: 0, y: 30 });
         
         // Page 14 - Professional Trainers initial states
         gsap.set("#trainers-section h1:first-child", { opacity: 0, scale: 0.7, y: -50, rotationX: -30 })
@@ -1340,8 +1594,12 @@ class FitnessHeroAnimations {
         }
         );
 
-        // Attach observer to all animated elements
+        // Attach observer to all animated elements EXCEPT page 16 elements
         document.querySelectorAll('[data-animation-class]').forEach((el) => {
+            // Skip page 16 elements - they have their own timeline animations
+            if (el.id && el.id.startsWith('page16-')) {
+                return; // Skip page 16 elements
+            }
             observer.observe(el);
         });
 
@@ -1431,6 +1689,7 @@ class FitnessHeroAnimations {
         const element = document.getElementById(id);
         if (element) { element.textContent = value; }
     }
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
