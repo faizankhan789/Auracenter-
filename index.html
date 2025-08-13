@@ -61,6 +61,39 @@
             <div class="flex-col lg:flex-row flex justify-around bg-no-repeat page page-1 items-center" id="page-1">
                 <div class="flex flex-col lg:flex-row">
                     <img id="page1Img" src="./assets/page_1/women.png" class="fixed self-center lg:relative w-auto h-[50vh] lg:w-[35vw] lg:h-auto opacity-80 object-contain" alt="Women Exercising">
+<picture>
+  <!-- AVIF versions -->
+  <source 
+    type="image/avif"
+    srcset="
+      ./assets/page_1/background-640.avif 640w,
+      ./assets/page_1/background-768.avif 768w,
+      ./assets/page_1/background-1024.avif 1024w,
+      ./assets/page_1/background-1920.avif 1920w
+    "
+    sizes="(max-width: 640px) 640px,
+           (max-width: 768px) 768px,
+           (max-width: 1024px) 1024px,
+           1920px">
+  
+  <!-- JPEG fallback -->
+  <source 
+    type="image/jpeg"
+    srcset="
+      ./assets/page_1/background-640.jpg 640w,
+      ./assets/page_1/background-768.jpg 768w,
+      ./assets/page_1/background-1024.jpg 1024w,
+      ./assets/page_1/background-1920.jpg 1920w
+    "
+    sizes="(max-width: 640px) 640px,
+           (max-width: 768px) 768px,
+           (max-width: 1024px) 1024px,
+           1920px">
+  
+  <!-- Fallback img with lazy loading -->
+  <img id="page1Img" src="./assets/page_1/women.png" class="fixed self-center lg:relative w-auto h-[50vh] lg:w-[35vw] lg:h-auto opacity-80 object-contain" alt="Women Exercising" 
+    loading="lazy" >
+</picture>
                     <div class="fade-in-up flex flex-col justify-center items-center lg:relative lg:right-[5%] lg:top-[-50px] mt-8 md-pt-0 ">
                         <h1 style="font-size: clamp(1rem, 4vw, 7rem)" class="font-bold text-white mb-4 text-center pin-text"> Auracenter - A New Era <br />of Fitness</h1>        
                         <button id="learnMore" class="bg-white hover:bg-white-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105">
@@ -867,7 +900,7 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                                                 <p class="text-sm text-slate-600">7 Videos</p>
                                             </div>
                                         </div>
-                                                                                       <!-- Show More Button for Desktop -->
+                                         <!-- Show More Button for Desktop -->
                                 <div class="text-center mt-8">
                                     <button class="bg-[#182a41] hover:bg-[#1e3249] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
                                         Show More Categories
