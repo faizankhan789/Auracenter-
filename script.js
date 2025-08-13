@@ -211,7 +211,7 @@ class FitnessHeroAnimations {
         card.id = "hover-card-container-"+index
         card.innerHTML = `
             <div id="hover-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
-            <picture>
+            <picture id="hover-card-img-${index}" class="card__front">
                 <source 
                     type="image/avif"
                     srcset="
@@ -237,7 +237,7 @@ class FitnessHeroAnimations {
                         (max-width: 768px) 768px,
                         (max-width: 1024px) 1024px,
                         1920px">  
-                <img id="hover-card-img-${index}" src="${imageSrc}" alt="${title}" class="card__front absolute z-[1] w-full h-full object-cover object-center ease-in-out rounded-xl transition-all duration-800 lg:group-hover:scale-[1.05] lg:group-hover:z-[2]" loading="lazy" >
+                <img src="${imageSrc}" alt="${title}"  loading="lazy"  class="absolute z-[1] w-full h-full object-cover object-center ease-in-out rounded-xl transition-all duration-800 lg:group-hover:scale-[1.05] lg:group-hover:z-[2]">
             </picture>
                 <div id="hover-card-content-${index}" class="rounded-xl card__back h-full w-full absolute top-0 left-0 bg-[#c7b6a8] lg:translate-x-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-center items-center lg:group-hover:translate-x-[100%] lg:group-hover:z-[1]">
                     <h3 class="text-center text-2xl font-bold mb-3 text-black">${title}</h3>
