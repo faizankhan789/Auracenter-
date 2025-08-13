@@ -79,15 +79,44 @@
 @media (max-width: 640px) {
     .page-1 {
         background-size: 180% 100%;
+        background-image: image-set(
+            url("./assets/page_1/background-640.avif") type("image/avif"),
+            url("./assets/page_1/background-640.jpg") type("image/jpeg")
+        );
+    }
+    
+}
+@media (max-width: 767px) {
+    .page-1 {
+        background-image: image-set(
+            url("./assets/page_1/background-768.avif") type("image/avif"),
+            url("./assets/page_1/background-768.jpg") type("image/jpeg")
+        );
     }
 }
+
 @media (max-width: 1023px) {
+    .page-1 {
+        background-image: image-set(
+            url("./assets/page_1/background-1024.avif") type("image/avif"),
+            url("./assets/page_1/background-1024.jpg") type("image/jpeg")
+        );
+    }
     .hover-card, .trainer_card { perspective: 800px;}
     .card__content {transform-style: preserve-3d;}
     .hover-card:hover .card__content, .trainer_card:hover .card__content {transform: rotateY(.5turn);}
     .card__front,
     .card__back { backface-visibility: hidden;}
     .card__back{ transform: rotateY(.5turn);}
+}
+
+@media (max-width: 1920px) {
+    .page-1 {
+        background-image: image-set(
+            url("./assets/page_1/background-1920.avif") type("image/avif"),
+            url("./assets/page_1/background-1920.jpg") type("image/jpeg")
+        );
+    }
 }
 .fade-in-left {
   animation: fadeInLeft 0.8s ease-out forwards;
@@ -114,10 +143,11 @@ html, body {
     position: relative;
     overflow: hidden;
 }
+
 .page-1 {
-    background-image: url("./assets/page_1/background.png");
     background-size: 100% 100%;
 }
+
 body {
     font-family: "Almarai", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
