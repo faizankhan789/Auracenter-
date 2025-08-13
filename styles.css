@@ -76,30 +76,14 @@
         opacity: 0.5;
     }
 }
+
+/* Mobile ≤640px */
 @media (max-width: 640px) {
     .page-1 {
         background-size: 180% 100%;
         background-image: image-set(
             url("./assets/page_1/background-640.avif") type("image/avif"),
             url("./assets/page_1/background-640.jpg") type("image/jpeg")
-        );
-    }
-    
-}
-@media (max-width: 767px) {
-    .page-1 {
-        background-image: image-set(
-            url("./assets/page_1/background-768.avif") type("image/avif"),
-            url("./assets/page_1/background-768.jpg") type("image/jpeg")
-        );
-    }
-}
-
-@media (max-width: 1023px) {
-    .page-1 {
-        background-image: image-set(
-            url("./assets/page_1/background-1024.avif") type("image/avif"),
-            url("./assets/page_1/background-1024.jpg") type("image/jpeg")
         );
     }
     .hover-card, .trainer_card { perspective: 800px;}
@@ -110,7 +94,40 @@
     .card__back{ transform: rotateY(.5turn);}
 }
 
-@media (max-width: 1920px) {
+/* Small tablet ≤767px */
+@media (min-width: 641px) and (max-width: 767px) {
+    .page-1 {
+        background-image: image-set(
+            url("./assets/page_1/background-768.avif") type("image/avif"),
+            url("./assets/page_1/background-768.jpg") type("image/jpeg")
+        );
+    }
+     .hover-card, .trainer_card { perspective: 800px;}
+    .card__content {transform-style: preserve-3d;}
+    .hover-card:hover .card__content, .trainer_card:hover .card__content {transform: rotateY(.5turn);}
+    .card__front,
+    .card__back { backface-visibility: hidden;}
+    .card__back{ transform: rotateY(.5turn);}
+}
+
+/* Tablet ≤1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .page-1 {
+        background-image: image-set(
+            url("./assets/page_1/background-1024.avif") type("image/avif"),
+            url("./assets/page_1/background-1024.jpg") type("image/jpeg")
+        );
+    }
+     .hover-card, .trainer_card { perspective: 800px;}
+    .card__content {transform-style: preserve-3d;}
+    .hover-card:hover .card__content, .trainer_card:hover .card__content {transform: rotateY(.5turn);}
+    .card__front,
+    .card__back { backface-visibility: hidden;}
+    .card__back{ transform: rotateY(.5turn);}
+}
+
+/* Desktop ≤1920px */
+@media (min-width: 1024px) and (max-width: 1920px) {
     .page-1 {
         background-image: image-set(
             url("./assets/page_1/background-1920.avif") type("image/avif"),
@@ -118,6 +135,17 @@
         );
     }
 }
+
+/* Ultra-wide >1920px */
+@media (min-width: 1921px) {
+    .page-1 {
+        background-image: image-set(
+            url("./assets/page_1/background-ultra.avif") type("image/avif"),
+            url("./assets/page_1/background-ultra.jpg") type("image/jpeg")
+        );
+    }
+}
+
 .fade-in-left {
   animation: fadeInLeft 0.8s ease-out forwards;
 }
