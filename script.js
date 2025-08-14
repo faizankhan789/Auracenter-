@@ -9,7 +9,7 @@ lucide.createIcons();
  * @author AuraCenter Team
  * @version 1.0.0
  */
-class FitnessHeroAnimations {
+class AuraCenter {
     /**
      * Initialize the FitnessHeroAnimations controller with default configurations
      * and data sets for trainers, classes, and animation states.
@@ -341,9 +341,16 @@ class FitnessHeroAnimations {
         this.addClassesCard();
         this.addTrainersCards();
         this.addScheduleGrid();
+        this.removeLoader();
         this.setUpGSAP();
         this.setUpLenis();
-        this.observeFadeInElementsWithScrollTrigger();
+    }
+
+    removeLoader() {
+        document.body.classList.remove('bodyLoading');
+        document.getElementById('loader')?.classList.add('hidden');
+        document.getElementById('page-container')?.classList.remove('opacity-0');
+        document.getElementById('header')?.classList.remove('hidden');
     }
 
     /**
@@ -1676,74 +1683,6 @@ class FitnessHeroAnimations {
         this.lenis.raf(time);
         requestAnimationFrame(this.raf);
     }
-
-    /**
-     * Set up intersection observer for performance-optimized fade-in animations.
-     * Handles elements with data-animation-class attributes.
-     * 
-     * @public
-     * @method observeFadeInElementsWithScrollTrigger
-     */
-    observeFadeInElementsWithScrollTrigger() {
-        const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-            const el = entry.target;
-            const animation = el.getAttribute('data-animation-class');
-
-            // Common from-state
-            let fromVars = {
-                opacity: entry.isIntersecting ? 0 : 1,
-                ease: 'power3.out',
-                duration: 1
-            };
-
-            if (animation === 'fade-in-up') {
-                fromVars.y = 50;
-            } else if (animation === 'fade-in-down') {
-                fromVars.y = -50;
-            } else if (animation === 'fade-in-left') {
-                fromVars.x = -50;
-            } else if (animation === 'fade-in-right') {
-                fromVars.x = 50;
-            }
-
-            if (entry.isIntersecting) {
-                // Animate into view
-                gsap.to(el, {
-                    opacity: 1,
-                    x: 0,
-                    y: 0,
-                    duration: fromVars.duration,
-                    ease: fromVars.ease
-                });
-            } else {
-                // Animate out of view
-                gsap.to(el, {
-                    opacity: 0,
-                    x: fromVars.x || 0,
-                    y: fromVars.y || 0,
-                    duration: fromVars.duration,
-                    ease: fromVars.ease
-                });
-            }
-            });
-        },
-        {
-            threshold: 0.5 // Triggers when 30% in/out of view
-        }
-        );
-
-        // Attach observer to all animated elements EXCEPT page 16 elements
-        document.querySelectorAll('[data-animation-class]').forEach((el) => {
-            // Skip page 16 elements - they have their own timeline animations
-            if (el.id && el.id.startsWith('page16-')) {
-                return; // Skip page 16 elements
-            }
-            observer.observe(el);
-        });
-
-    }
     
 
     /**
@@ -1852,6 +1791,6 @@ class FitnessHeroAnimations {
  * @event DOMContentLoaded
  */
 document.addEventListener('DOMContentLoaded', () => {
-    const fitnessHero = new FitnessHeroAnimations();
-    window.fitnessHero = fitnessHero;
+    const auraCenter = new AuraCenter();
+    window.auraCenter = auraCenter
 });

@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.8/dist/lenis.css">
         <link rel="stylesheet" href="styles.css">
     </head>
-    <body class="bg-gray-900">
+    <body class="bg-gray-900 bodyLoading">
         <!-- Header -->
-        <header data-animation-class="fade-in-up" class="relative z-[1] opacity-0 w-full header-height">
+        <header id="header" class="relative z-[1] w-full header-height hidden">
             <div class="flex h-full">
                 <!-- Logo Section (20%) -->
                 <div class="logo-section flex items-center justify-center w-[15%]">
@@ -56,19 +56,19 @@
                 </nav>
             </div>
         </header>
-        <div id="page-container">
+        <div id="page-container" class="opacity-0">
             <!-- Page 1: Landing Page -->
             <div class="flex-col lg:flex-row flex justify-around bg-no-repeat page page-1 items-center" id="page-1">
                 <div class="flex flex-col lg:flex-row">
                     <img id="page1Img" src="./assets/page_1/women.png" class="fixed self-center lg:relative w-auto h-[50vh] lg:w-[35vw] lg:h-auto opacity-80 object-contain" alt="Women Exercising">
-                    <div class="fade-in-up flex flex-col justify-center items-center lg:relative lg:right-[5%] lg:top-[-50px] mt-8 md-pt-0 ">
+                    <div class="flex flex-col justify-center items-center lg:relative lg:right-[5%] lg:top-[-50px] mt-8 md-pt-0 ">
                         <h1 style="font-size: clamp(1rem, 4vw, 7rem)" class="font-bold text-white mb-4 text-center pin-text"> Auracenter - A New Era <br />of Fitness</h1>        
                         <button id="learnMore" class="bg-white hover:bg-white-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105">
                             Learn More
                         </button>
                     </div>
                 </div>
-                <div class="flex flex-col lg:relative items-center mr-2 fade-" id="monitors">
+                <div class="flex flex-col lg:relative items-center mr-2" id="monitors">
                     <div class="heart-monitor rounded-2xl bg-black shadow-2xl w-[200px]">
                         <div class=" px-4 pt-3">
                         <div class="flex items-center justify-between mb-2">
@@ -121,7 +121,7 @@
             <!-- Page 2: Welcome to Auracenter -->
             <div class="flex-col md:flex-row flex justify-around bg-no-repeat page page-2" id="page-2">
                 <div class="absolute inset-0 bg-white/50 pointer-events-none h-[80svh]"></div>
-                <div data-animation-class="fade-in-up" class="opacity-0 about-box z-[1] px-4 pt-4 pb-20 absolute bottom-10 left-0" style="color: #182A41;">
+                <div class="about-box z-[1] px-4 pt-4 pb-20 absolute bottom-10 left-0" style="color: #182A41;">
                     <h2 class="font-bold text-2xl md:text-4xl mb-2">Welcome to Auracenter</h2>
                     <p class="text-base md:text-xl">Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, and a supportive environment. As one of Jeddah's first luxury gyms for women </p>
                 </div>
@@ -130,7 +130,7 @@
             <!-- Page 3: Serve You Well -->
             <div class="flex-col md:flex-row flex justify-around bg-no-repeat page page-3" id="page-3">
                 <div class="absolute inset-0 bg-white/20 pointer-events-none h-[100svh]"></div>
-                <div data-animation-class="fade-in-up" class="opacity-0 classes-box px-4 py-10 absolute bottom-[15%] right-0" style="color:#F7F7F7">
+                <div class="classes-box px-4 py-10 absolute bottom-[15%] right-0" style="color:#F7F7F7">
                     <h2 class="font-bold text-xl md:text-4xl mb-2">We're Here to Serve You Well</h2>
                 </div>
             </div>
@@ -253,18 +253,17 @@
             </div>
 
             <!-- Page 9: Schedule -->
-    
             <div class="flex-col flex items-center bg-no-repeat page page-9 justify-start pt-6" id="page-9">
                     <!-- Schedule Badge -->
                     <div id="schedule_heading" class="text-center mb-1">
-                        <div data-animation-class="fade-in-up" class="inline-block bg-[#c8e6dc] px-9 py-2 rounded-md">
+                        <div class="inline-block bg-[#c8e6dc] px-9 py-2 rounded-md">
                             <span class="text-[#2c3e50] font-bold text-black tracking-wider">SCHEDULE</span>
                         </div>
                     </div>
 
                     <!-- Main Title -->
                     <div id="schedule_title" class="text-center mb-2">
-                        <h1 data-animation-class="fade-in-up" class="text-3xl md:text-4xl font-bold text-black-800 leading-tight">
+                        <h1  class="text-3xl md:text-4xl font-bold text-black-800 leading-tight">
                             DISCIPLINE STARTS WITH A PLAN
                         </h1>
                     </div>
@@ -288,7 +287,7 @@
                     <div id="schedule" class="h-[45vh] grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2 lg:gap-4 mt-16 md:mt-[3%]">
                         <!-- Schedule days will be dynamically generated by JavaScript -->
                     </div>
-                </div>
+            </div>
 
             <!-- Page 10 OUR EVENTS -->
             <div class="flex-col flex items-center bg-no-repeat page page-10" id="page-10">
@@ -513,23 +512,23 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                             <div class="w-full md:w-1/2 h-screen md:h-screen relative overflow-y-auto md:overflow-hidden">
                                 <!-- Header - Smaller and centered on mobile -->
                                 <div class="absolute top-[7%] md:top-[10%] left-1/2 md:left-[20%] w-[90%] md:w-[35%] z-10 flex flex-col items-center md:items-start justify-start transform -translate-x-1/2 md:translate-x-0">
-                                    <h1 style="font-size: 4rem;" class="font-black text-slate-800 mb-4 leading-none opacity-0" data-animation-class="fade-in-up" id="page16-heading">PODCAST</h1>
-                                    <p style="font-size: 1rem;" class="font-black text-slate-700 w-full text-center md:text-right leading-tight -mt-6 whitespace-nowrap opacity-0" data-animation-class="fade-in-right" id="page16-tagline">Lift. Learn. Lead!</p>
+                                    <h1 style="font-size: 4rem;" class="font-black text-slate-800 mb-4 leading-none" id="page16-heading">PODCAST</h1>
+                                    <p style="font-size: 1rem;" class="font-black text-slate-700 w-full text-center md:text-right leading-tight -mt-6 whitespace-nowrap" id="page16-tagline">Lift. Learn. Lead!</p>
                                 </div>
 
                                 <!-- Background Image - Centered and larger on mobile -->
                                 <img src="./assets/page_16/30.png" 
                                      alt="Background" 
-                                     class="absolute top-[25%] left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-[8%] w-[90%] md:w-[84%] h-[45%] md:h-[54%] object-cover opacity-0"
-                                     data-animation-class="fade-in-up" id="page16-bg-img">
+                                     class="absolute top-[25%] left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-[8%] w-[90%] md:w-[84%] h-[45%] md:h-[54%] object-cover"
+                                     id="page16-bg-img">
 
                                 <!-- Four Images Side by Side - Centered and larger on mobile -->
                                 <div class="absolute top-[27%] left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-[12.5%] w-[85%] md:w-[72%] h-[35%] md:h-[30%] flex gap-0 items-start z-10">
                                     <!-- Image 1 - Charlie Kenter -->
                                     <div class="h-full relative" style="flex: 1.02;">
                                         <img src="./assets/page_16/28.png" 
-                                             alt="Charlie Kenter" class="w-full h-full object-cover opacity-0"
-                                             data-animation-class="fade-in-left" id="page16-guest-1">
+                                             alt="Charlie Kenter" class="w-full h-full object-cover"
+                                             id="page16-guest-1">
                                         <!-- Text overlay - Responsive sizing -->
                                         <div class="absolute bottom-0 right-0 text-white p-1 md:p-2 text-right opacity-0" id="page16-guest-1-text">
                                             <h3 style="font-size: clamp(0.5rem, 1.5vw, 0.875rem);" class="font-bold leading-tight text-shadow">CHARLIE</h3>
@@ -541,8 +540,8 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                                     <!-- Image 2 - Tatiana Stanton -->
                                     <div class="flex-1 h-full relative translate-y-2 md:translate-y-3">
                                         <img src="./assets/page_16/27.png" 
-                                             alt="Tatiana Stanton" class="w-full h-full object-cover opacity-0"
-                                             data-animation-class="fade-in-up" id="page16-guest-2">
+                                             alt="Tatiana Stanton" class="w-full h-full object-cover"
+                                              id="page16-guest-2">
                                         <!-- Text overlay - Responsive sizing -->
                                         <div class="absolute bottom-0 left-0 text-white p-1 md:p-2 text-left opacity-0" id="page16-guest-2-text">
                                             <h3 style="font-size: clamp(0.45rem, 1.3vw, 0.75rem);" class="font-bold leading-tight text-shadow">TATIANA</h3>
@@ -554,8 +553,8 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                                     <!-- Image 3 - Abram Workman -->
                                     <div class="flex-1 h-full relative translate-y-2 md:translate-y-0">
                                         <img src="./assets/page_16/29.png" 
-                                             alt="Abram Workman" class="w-full h-full object-cover opacity-0"
-                                             data-animation-class="fade-in-right" id="page16-guest-3">
+                                             alt="Abram Workman" class="w-full h-full object-cover"
+                                              id="page16-guest-3">
                                         <!-- Text overlay - Responsive sizing -->
                                         <div class="absolute bottom-2 md:bottom-0 right-0 text-white p-1 md:p-2 text-right opacity-0" id="page16-guest-3-text">
                                             <h3 style="font-size: clamp(0.5rem, 1.5vw, 0.875rem);" class="font-bold leading-tight text-shadow">ABRAM</h3>
@@ -567,8 +566,8 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                                     <!-- Image 4 - Hanna Philips -->
                                     <div class="flex-1 h-full relative translate-y-2 md:translate-y-4">
                                         <img src="./assets/page_16/26.png" 
-                                             alt="Hanna Philips" class="w-full h-full object-cover opacity-0"
-                                             data-animation-class="fade-in-down" id="page16-guest-4">
+                                             alt="Hanna Philips" class="w-full h-full object-cover"
+                                              id="page16-guest-4">
                                         <!-- Text overlay - Responsive sizing -->
                                         <div class="absolute bottom-0 left-0 text-white p-1 md:p-2 text-left opacity-0" id="page16-guest-4-text">
                                             <h3 style="font-size: clamp(0.45rem, 1.3vw, 0.75rem);" class="font-bold leading-tight text-shadow">HANNA</h3>
@@ -581,19 +580,19 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                                 <!-- Image 31.png - Mobile repositioned, desktop original -->
                                 <div class="absolute top-[65%] md:top-[65%] left-[15%] md:left-[17.5%] w-[70%] md:w-[55%] z-10">
                                     <img src="./assets/page_16/31.png" 
-                                         alt="Image 31" class="w-full h-auto object-contain opacity-0"
-                                         data-animation-class="fade-in-left" id="page16-img-31">
+                                         alt="Image 31" class="w-full h-auto object-contain"
+                                          id="page16-img-31">
                                 </div>
 
                                 <!-- Image 32.png - Mobile repositioned, desktop original -->
                                 <div class="absolute top-[70%] md:top-[75%] left-[25%] md:left-[20%] w-[60%] md:w-[50%] z-10">
                                     <img src="./assets/page_16/32.png" 
-                                         alt="Image 32" class="w-full h-auto object-contain opacity-0"
-                                         data-animation-class="fade-in-right" id="page16-img-32">
+                                         alt="Image 32" class="w-full h-auto object-contain"
+                                          id="page16-img-32">
                                 </div>
 
                                 <!-- Connect on Youtube Button - Centered and larger on mobile -->
-                                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-[12.5%] w-[90%] md:w-[70%] flex justify-center opacity-0" data-animation-class="fade-in-up" id="page16-youtube-btn">
+                                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-[12.5%] w-[90%] md:w-[70%] flex justify-center opacity-0"  id="page16-youtube-btn">
                                     <button class="bg-slate-800 text-white px-8 py-4 md:px-6 md:py-3 rounded-lg flex items-center gap-3 hover:bg-slate-700 transition-colors">
                                         <div class="w-10 h-10 flex items-center justify-center">
                                             <img src="./assets/page_16/youtube.png" alt="YouTube logo" class="w-full h-full object-contain">
@@ -754,7 +753,7 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                     <!-- Desktop Layout Container -->
                     <div class="hidden md:flex w-full h-screen p-2 md:p-4 lg:p-6 items-start justify-center pt-[3vh]">
                         <!-- Video Grid Layout - Desktop Only -->
-                        <div data-animation-class="fade-in-up" class="w-full max-w-6xl">
+                        <div  class="w-full max-w-6xl">
                             
                             <!-- Desktop Layout (md and above) - Grid Layout -->
                             <div class="hidden md:block">
@@ -999,18 +998,6 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                     </div>
                 </div>
             </div>
-            
-
-
-
-
-            
-
-
-
-
-
-            
 
             <!--  PAGE 17: Contact/Get Appointment -->
             <div class="page page-17 flex items-center justify-center w-full" id="page-17">
@@ -1018,7 +1005,7 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                 <div class="hidden md:flex relative h-screen w-full">
                     <!-- Left Side - Text Content (No Background) -->
                     <div class="relative w-1/2 flex flex-col justify-end items-start p-6 lg:p-12 pb-16 lg:pb-24 z-10">
-                        <div data-animation-class="fade-in-up" class="relative z-20">
+                        <div  class="relative z-20">
                             <!-- JOIN US Button -->
                             <button class="px-6 lg:px-8 py-2 lg:py-3 rounded-lg font-semibold text-base lg:text-lg mb-8 lg:mb-12 hover:opacity-90 transition-colors" style="background-color: #cce5e1; color: #111B2A;">
                                 JOIN US
@@ -1042,7 +1029,7 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                     
                     <!-- Right Side - Appointment Form -->
                     <div class="w-1/2 flex items-center justify-center p-6 lg:p-12">
-                        <div data-animation-class="fade-in-up" class="w-full max-w-lg bg-white/10 backdrop-blur-sm rounded-2xl">
+                        <div  class="w-full max-w-lg bg-white/10 backdrop-blur-sm rounded-2xl">
                             <!-- Form Header -->
                             <div class="bg-slate-800/80 text-white p-4 lg:p-6 rounded-t-2xl backdrop-blur-sm">
                                 <h2 class="text-2xl lg:text-3xl font-bold text-left mb-4">
@@ -1103,7 +1090,7 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                 <div class="flex md:hidden flex-col min-h-screen w-full overflow-y-auto">
                     <!-- Top - Text Content (30% of screen) -->
                     <div class="relative flex flex-col justify-center items-center text-center p-4 py-6 z-10 min-h-[30vh] flex-shrink-0">
-                        <div data-animation-class="fade-in-up" class="relative z-20">
+                        <div  class="relative z-20">
                             <!-- JOIN US Button -->
                             <button class="px-6 py-2 rounded-lg font-semibold text-base mb-4 hover:opacity-90 transition-colors" style="background-color: #cce5e1; color: #111B2A;">
                                 JOIN US
@@ -1126,7 +1113,7 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
 
                     <!-- Bottom - Appointment Form (70% of screen with scroll) -->
                     <div class="flex-1 flex items-start justify-center p-4 pb-6 overflow-y-auto">
-                        <div data-animation-class="fade-in-up" class="w-full max-w-sm bg-white/10 backdrop-blur-sm rounded-2xl">
+                        <div  class="w-full max-w-sm bg-white/10 backdrop-blur-sm rounded-2xl">
                             <!-- Form Header -->
                             <div class="bg-slate-800/80 text-white p-4 rounded-t-2xl backdrop-blur-sm">
                                 <h2 class="text-xl font-bold text-left mb-2">
@@ -1178,7 +1165,6 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                     </div>
                 </div>
             </div>
-
 
             <!-- PAGE 18: Footer -->
             <div class="page page-18 flex flex-col min-h-screen w-full" id="page-18">
@@ -1406,7 +1392,47 @@ We bring to you a luxurious fitness center right in your neighborhood. Aura ladi
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="loader" class="loader-container w-screen h-screen flex flex-col justify-center align-center">
+            <!-- Background particles -->
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
 
+            <!-- Main spinner -->
+            <div class="spinner-wrapper">
+                <!-- Spinning rings -->
+                <div class="spinner-ring ring-1"></div>
+                <div class="spinner-ring ring-2"></div>
+                <div class="spinner-ring ring-3"></div>
+
+                <!-- Inner pulsing circles -->
+                <div class="inner-circles">
+                    <div class="pulse-circle circle-1"></div>
+                    <div class="pulse-circle circle-2"></div>
+                    <div class="pulse-circle circle-3"></div>
+                </div>
+
+                <!-- Orbiting dots -->
+                <div class="orbit-container">
+                    <div class="orbit-dot dot-1"></div>
+                    <div class="orbit-dot dot-2"></div>
+                    <div class="orbit-dot dot-3"></div>
+                    <div class="orbit-dot dot-4"></div>
+                </div>
+            </div>
+
+            <!-- Color-changing loading text -->
+            <div class="loading-text">
+                <span class="loading-word">L</span><span class="loading-word">O</span><span class="loading-word">A</span><span class="loading-word">D</span><span class="loading-word">I</span><span class="loading-word">N</span><span class="loading-word">G</span>
+                <span class="dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </span>
+            </div>
+        </div>
         <script src="https://unpkg.com/lenis@1.3.8/dist/lenis.min.js"></script> 
         <!-- Lucide Icons -->
         <script src="https://unpkg.com/lucide@latest"></script>
