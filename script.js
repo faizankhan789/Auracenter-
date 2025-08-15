@@ -27,43 +27,43 @@ class AuraCenter {
         this.tl = null
         this.trainers = [
     {
-        imageSrc: './assets/31.png',
-        name: 'SARAH',
+        imageSrc: './assets/page_14/MARIE',
+        name: 'MARIE',
         title: 'Fitness Trainer',
         qualifications: ['FEA: exercise coaching', 'Physical education', 'Nutrition specialist'],
         index: 1
     },
     {
-        imageSrc: './assets/32.png',
-        name: 'MARIE',
+        imageSrc: './assets/page_14/ABIR_LABIDHI',
+        name: 'ABIR LABIDHI',
         title: 'Yoga Expert',
         qualifications: ['Certified Yoga Instructor', 'Meditation Coach', '10+ years experience'],
         index: 2
     },
     {
-        imageSrc: './assets/33.png',
-        name: 'FATIMA',
+        imageSrc: './assets/page_14/SARAH_HOSNY',
+        name: 'SARAH HOSNY',
         title: 'Strength Coach',
         qualifications: ['Powerlifting Certified', 'Sports Science Degree', 'Injury Prevention'],
         index: 3
     },
     {
-        imageSrc: './assets/34.png',
-        name: 'NOOR',
+        imageSrc: './assets/page_14/ABEER_RAHIM',
+        name: 'ABEER RAHIM',
         title: 'Cardio Specialist',
         qualifications: ['HIIT Certified', 'Marathon Runner', 'Group Fitness Expert'],
         index: 4
     },
     {
-        imageSrc: './assets/35.png',
-        name: 'LAYLA',
+        imageSrc: './assets/page_14/HADEEL_YOUSSEF',
+        name: 'HADEEL YOUSSEF',
         title: 'Nutrition Coach',
         qualifications: ['Registered Dietitian', 'Sports Nutrition', 'Meal Planning Expert'],
         index: 5
     },
     {
-        imageSrc: './assets/36.png',
-        name: 'AISHA',
+        imageSrc: './assets/page_14/ROBA_SAMIR',
+        name: 'ROBA SAMIR',
         title: 'Dance Fitness',
         qualifications: ['Zumba Certified', 'Contemporary Dance', 'Choreography Expert'],
         index: 6
@@ -200,7 +200,34 @@ class AuraCenter {
         card.id = "trainer-card-container-"+index
         card.innerHTML = `
             <div id="trainer-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
-                <img id="trainer-card-img-${index}" src="${imageSrc}" alt="${title}" class="card__front object-contain absolute z-[1] w-full h-[45vh] object-cover object-center ease-in-out rounded-xl transition-all duration-800">                
+                <picture id="trainer-card-img-${index}" class="card__front">
+                <source 
+                    type="image/avif"
+                    srcset="
+                    ${imageSrc}-640.avif 640w,
+                    ${imageSrc}-768.avif 768w,
+                    ${imageSrc}-1024.avif 1024w,
+                    ${imageSrc}-1920.avif 1920w
+                    "
+                    sizes="(max-width: 640px) 640px,
+                        (max-width: 768px) 768px,
+                        (max-width: 1024px) 1024px,
+                        1920px">
+            
+                <source 
+                    type="image/jpeg"
+                    srcset="
+                    ${imageSrc}-640.jpg 640w,
+                    ${imageSrc}-768.jpg 768w,
+                    ${imageSrc}-1024.jpg 1024w,
+                    ${imageSrc}-1920.jpg 1920w
+                    "
+                    sizes="(max-width: 640px) 640px,
+                        (max-width: 768px) 768px,
+                        (max-width: 1024px) 1024px,
+                        1920px">  
+                <img src="${imageSrc}" alt="${title}"  loading="lazy"  class="absolute z-[1] w-full h-full object-cover object-center ease-in-out rounded-xl transition-all duration-800 lg:group-hover:scale-[1.05] lg:group-hover:z-[2]">
+            </picture>               
                 <div id="trainer-card-content-${index}" class="rounded-xl card__back justify-center h-full lg:h-[22vh] w-[45vw] px-4 py-4 lg:w-[30vw] absolute bottom-0 left-0 bg-[#c7b6a8] lg:translate-y-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-start items-start">
                     <h2 class="text-2xl font-bold uppercase tracking-wide" style="line-height: 1">${name}</h2>
                     <p class="text-xl font-medium">${title}</p>
