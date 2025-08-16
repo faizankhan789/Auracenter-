@@ -43,7 +43,7 @@
 		<!-- Page 1: Landing Page -->
 		<div class="flex-col lg:flex-row flex justify-around bg-no-repeat page page-1 items-center" id="page-1">
 			<div class="flex flex-col lg:flex-row">
-				<picture class="fixed self-center lg:relative w-auto h-[50vh] lg:w-[35vw] lg:h-auto opacity-80 object-contain">
+				<picture class="fixed self-center lg:relative opacity-80">
 					<!-- AVIF versions -->
 					<source type="image/avif" srcset="
       ./assets/page_1/women-640.avif 640w,
@@ -64,7 +64,8 @@
            (max-width: 768px) 768px,
            (max-width: 1024px) 1024px,
            1920px">
-					<!-- Fallback img with lazy loading --><img src="./assets/page_1/women.png" alt="Women Exercising" loading="lazy"> </picture>
+					<!-- Fallback img with lazy loading -->
+					 <img id="page1Img" src="./assets/page_1/women.png" class="w-auto h-[60vh] lg:w-[35vw] lg:h-auto object-contain" alt="Women Exercising" loading="lazy"> </picture>
 				<div class="flex flex-col justify-center items-center lg:relative lg:right-[5%] lg:top-[-50px] mt-8 md-pt-0 ">
 					<h1 style="font-size: clamp(1rem, 4vw, 7rem)" class="font-bold text-white mb-4 text-center pin-text"> Auracenter - A New Era <br />of Fitness</h1>
 					<button id="learnMore" class="bg-white hover:bg-white-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105"> Learn More </button>
@@ -129,7 +130,7 @@
 			<div id="about-us" class="flex flex-col lg:flex-row my-8 justify-center lg:justify-between items-center">
 				<div class="absolute lg:relative opacity-20 lg:opacity-100 w-full h-full flex justify-center lg:justify-start items-center">
 					<!-- <img src="./assets/page_4/women.png" alt="Woman Exercising" class="w-auto lg:max-w-max h-[100vh] lg:h-[90vh]"> -->
-					<picture class="w-auto lg:max-w-max h-[100vh] lg:h-[90vh]">
+					<picture >
 						<!-- AVIF versions -->
 						<source type="image/avif" srcset="
       ./assets/page_4/women-640.avif 640w,
@@ -150,7 +151,7 @@
            (max-width: 768px) 768px,
            (max-width: 1024px) 1024px,
            1920px">
-						<!-- Fallback img with lazy loading --><img src="./assets/page_4/women.png" alt="Women Exercising" loading="lazy"> </picture>
+						<!-- Fallback img with lazy loading --><img class="w-auto lg:max-w-max h-[100vh] lg:h-[90vh]" src="./assets/page_4/women.png" alt="Women Exercising" loading="lazy"> </picture>
 				</div>
 				<div class="px-10 flex-col flex justify-center">
 					<h2 class="font-bold mb-8 text-center md:text-4xl lg:text-4xl text-xl">Your Strength. Our Vision.</h2>
@@ -246,7 +247,7 @@
 			<div class="flex flex-col lg:flex-row my-8 justify-center h-full ">
 				<div class="absolute lg:relative lg:mr-20 opacity-20 lg:opacity-100 left-0 top-0 bottom-0 w-full h-full flex justify-center">
 					<!-- <img src="./assets/page_7/women.png" alt="Woman Exercising" class="w-auto h-[90vh] lg:h-[75vh]"> -->
-					<picture class="w-auto h-[90vh] lg:h-[75vh]">
+					<picture >
 						<!-- AVIF versions -->
 						<source type="image/avif" srcset="
       ./assets/page_7/women-640.avif 640w,
@@ -267,7 +268,7 @@
            (max-width: 768px) 768px,
            (max-width: 1024px) 1024px,
            1920px">
-						<!-- Fallback img with lazy loading --><img src="./assets/page_7/women.png" alt="vision" loading="lazy"> </picture>
+						<!-- Fallback img with lazy loading --><img class="w-auto h-[90vh] lg:h-[75vh]" src="./assets/page_7/women.png" alt="vision" loading="lazy"> </picture>
 				</div>
 				<div class="px-10 mt-10 justify-center flex flex-col">
 					<div class="px-4 lg:px-0">
@@ -285,35 +286,6 @@
 			<div class="carousel-container relative w-full h-full">
 				<!-- Video Slides Container -->
 				<div class="carousel-track flex h-full transition-none" id="video-carousel">
-					<!-- Video 1 -->
-					<div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="0" id="video-slide-1">
-						<div class="video-wrapper w-full h-full flex items-center justify-center">
-							<iframe 
-								id="video-1"
-								class="w-auto h-full object-cover block"
-								src="https://www.youtube.com/embed/W1WChNEbKLE"
-								title="YouTube video player"
-								frameborder="0"
-								allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen>
-							</iframe>
-						</div>
-					</div>
-					<!-- Video 2 -->
-					<div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="1" id="video-slide-2">
-						<div class="video-wrapper w-full h-full flex items-center justify-center">
-							<video class="w-full h-full object-cover block" muted playsinline loop id="video-2" poster="assets/page_8/thumbnail2.png">
-								<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4"> 
-							</video>
-						</div>
-					</div>
-					<!-- Video 3 -->
-					<div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="2" id="video-slide-3">
-						<div class="video-wrapper w-full h-full flex items-center justify-center">
-							<video class="w-full h-full object-cover block" muted playsinline loop id="video-3" poster="assets/page_8/thumbnail3.png">
-								<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4"> </video>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -324,19 +296,12 @@
 				<div class="inline-block bg-[#c8e6dc] px-9 py-2 rounded-md"> <span class="text-[#2c3e50] font-bold text-black tracking-wider">SCHEDULE</span> </div>
 			</div>
 			<!-- Main Title -->
-			<div id="schedule_title" class="text-center mb-2">
+			<div id="schedule_title" class="text-center mb-6">
 				<h1 class="text-3xl md:text-4xl font-bold text-black-800 leading-tight">
-                            DISCIPLINE STARTS WITH A PLAN
-                        </h1> </div>
-			<!-- Navigation Section - Hidden on Mobile -->
-			<div id="schedule_types" class="hidden md:flex flex-col md:flex-row justify-between items-center mb-2 md:mt-10 w-full px-[7%]">
-				<div class="mb-2 md:mb-0">
-					<h2 class="text-2xl md:text-3xl font-bold text-gray-800">Obhur Brand Schedule</h2> </div>
-				<div class="flex flex-row gap-3 mr-[2%]">
-					<button class="bg-[#2c3e50] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-semibold hover:bg-[#1e293b] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"> Obhur Monthly Schedule </button>
-					<button class="bg-[#2c3e50] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-semibold hover:bg-[#1e293b] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"> Corniche Brand Schedule </button>
-				</div>
+					DISCIPLINE STARTS WITH A PLAN
+				</h1> 
 			</div>
+
 			<!-- Weekly Schedule - 2 columns on mobile, full grid on desktop -->
 			<div id="schedule" class="h-[45vh] grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2 lg:gap-4 mt-16 md:mt-[3%]">
 				<!-- Schedule days will be dynamically generated by JavaScript -->
@@ -346,7 +311,7 @@
 		<div class="flex-col flex items-center bg-no-repeat page page-10" id="page-10">
 			<button class="bg-[#CCE5E1] px-4 py-2 rounded-lg font-semibold mt-8 lg:mt-20 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md text-black"> OUR EVENTS </button>
 			<h1 class="text-xl lg:text-4xl font-bold text-black mt-8 text-center">WE ORGANIZE THE BEST EVENTS</h1>
-			<div class="flex flex-col lg:flex-row justify-end mb-[10vh] items-center lg:items-end lg:mb-[10vh] lg:justify-between  px-8 mt-8 w-full h-full">
+			<div class="flex flex-col lg:flex-row justify-end mb-[10vh] items-center lg:items-end lg:mb-[10vh] lg:justify-around  px-8 mt-8 w-full h-full">
 				<div class="w-[40vw] relative flex" id="events-1">
 					<!-- <img id="event-1" src='./assets/page_10/event_1.png' alt='Event 1' class="w-[25vw] lg:w-[15vw] h-[25vh] absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8"/> -->
 					<picture id="event-1" class=" absolute left-[-25%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">

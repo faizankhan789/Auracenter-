@@ -69,6 +69,18 @@ class AuraCenter {
         index: 6
     }
         ];
+        this.videos = [
+            "https://www.youtube.com/embed/W1WChNEbKLE",
+            "https://www.youtube.com/embed/W1WChNEbKLE",
+            "https://www.youtube.com/embed/HfPzZseycQs",
+            "https://www.youtube.com/embed/HlrlPU4XSgA",
+            "https://www.youtube.com/embed/O7B2Bcdpzn4",
+            "https://www.youtube.com/embed/6FwJF7hKskA",
+            "https://www.youtube.com/embed/cj_dtXO5N60",
+            "https://www.youtube.com/embed/a4CyifxUPN8",
+            "https://www.youtube.com/embed/uTduDcQAmC0",
+            "https://www.youtube.com/embed/jXhuFe2AAIk"
+        ];
         this.cards = [
         {
             imageSrc: './assets/page_5/power_yoga',
@@ -190,7 +202,30 @@ class AuraCenter {
         // Initialize
         this.init();
     }
-    
+    addVideo(src, index) {
+        const container = document.querySelector('#video-carousel');
+        if (!container) return;
+
+        const video = document.createElement('div');
+        video.className = 'video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden';
+        video.setAttribute('data-index', index);
+        video.id="video-slide-" + index
+        video.innerHTML = `
+           <div class="video-wrapper w-full h-full flex items-center justify-center">
+                <iframe 
+                    id="video-${index}"
+                    class="w-auto h-full object-cover block"
+                    src="${src}?enablejsapi=1"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="clipboard-write; encrypted-media; gyroscope;"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        `;
+        container.appendChild(video);
+
+    }
     addTrainerCard({ imageSrc, name, title, qualifications, index }) {
         const container = document.querySelector('.trainers-container');
         if (!container) return;
@@ -366,6 +401,7 @@ class AuraCenter {
         this.startClockUpdate();
         this.initECGAnimation();
         this.addClassesCard();
+        this.addVideos()
         this.addTrainersCards();
         this.addScheduleGrid();
         this.removeLoader();
@@ -390,6 +426,11 @@ class AuraCenter {
        this.trainers.forEach(trainer => this.addTrainerCard(trainer));
     }
 
+    addVideos() {
+        this.videos.forEach((video, index) => {
+            this.addVideo(video, index);
+        });
+    }
     /**
      * Generate and append all class cards to the DOM.
      * 
@@ -881,35 +922,11 @@ class AuraCenter {
             ease: "back.out(1.2)",
             transformOrigin: "center center"
         }, "-=1.2")
-        .call(() => {
-            const firstVideo = document.getElementById("video-1");
-            if (firstVideo) {
-                firstVideo.play().catch(e => console.log("Video autoplay prevented:", e));
-            }
-        }, null, "-=0.5");
     }
 
     page9Animation(fullTimeline, isMobile) {
-        // Set up proper GSAP-based video carousel for the timeline
-        const videos = [
-            { id: "video-slide-1", videoId: "video-1", progressId: "progress-dot-1" },
-            { id: "video-slide-2", videoId: "video-2", progressId: "progress-dot-2" },
-            { id: "video-slide-3", videoId: "video-3", progressId: "progress-dot-3" },
-        ];
-        
         // Initial states are already set in the main gsap.set section   
-        videos.forEach((video, index) => {
-            if (index === 0) {
-                // Play first video immediately
-                fullTimeline.call(() => {
-                    const firstVideo = document.getElementById(video.videoId);
-                    if (firstVideo) {
-                        firstVideo.play().catch(e => console.log("Video autoplay prevented:", e));
-                    }
-                });
-                return;
-            }
-            
+        for(let index = 1; index < this.videos.length; index++ ) {
             // Animate to next video (slower)
             fullTimeline
                 .to(".carousel-track", {
@@ -922,26 +939,22 @@ class AuraCenter {
                     opacity: 0.5,
                     duration: 0.8,
                     ease: "power2.inOut"
-                }, "-=0.8")
+                }, "-=0.8").call(() => {
+                    // Stop previous video when moving to next
+                    if (index > 0) {
+                        const prevVideo = document.getElementById(`video-${index - 1}`);
+                        if (prevVideo && prevVideo.contentWindow) {
+                            prevVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                        }
+                    }
+                })
                 .to(`.video-slide[data-index='${index}']`, {
                     scale: 1,
                     opacity: 1,
                     duration: 1.8,
                     ease: "power2.inOut"
                 }, "-=0.8")
-                .call(() => {
-                    // Pause previous and play current video
-                    if (index > 0) {
-                        const prevVideo = document.getElementById(`video-${index}`);
-                        if (prevVideo) prevVideo.pause();
-                    }
-                    const currentVideo = document.getElementById(video.videoId);
-                    if (currentVideo) {
-                        currentVideo.currentTime = 0;
-                        currentVideo.play().catch(e => console.log("Video play failed:", e));
-                    }
-                })
-        });
+        }
         fullTimeline.to(".page-9",{
                 yPercent: 0, 
                 duration: 1.5,
@@ -952,7 +965,7 @@ class AuraCenter {
             duration: 0.5  
         })
         .to({}, {
-            duration: 0.5  // Reduced from 5 to 0.5
+            duration: 0.5
         })
     }
 
