@@ -376,7 +376,7 @@ class AuraCenter {
     removeLoader() {
         document.body.classList.remove('bodyLoading');
         document.getElementById('loader')?.classList.add('hidden');
-        document.getElementById('page-container')?.classList.remove('opacity-0');
+        document.getElementById('page-container')?.classList.remove('hidden');
         document.getElementById('header')?.classList.remove('hidden');
     }
 

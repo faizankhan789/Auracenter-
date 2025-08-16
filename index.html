@@ -39,7 +39,7 @@
 			<nav class="px-4 py-4 space-y-2"> <a href="#" class="nav-link block text-white hover:text-green-400 py-2 font-medium transition-colors" data-page="1">Home</a> <a href="#about" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="2">About</a> <a href="#classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="3">Classes</a> <a href="#strength" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="4">Strength</a> <a href="#our-classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="5">Our Classes</a> </nav>
 		</div>
 	</header>
-	<div id="page-container" class="opacity-0">
+	<div id="page-container" class="hidden">
 		<!-- Page 1: Landing Page -->
 		<div class="flex-col lg:flex-row flex justify-around bg-no-repeat page page-1 items-center" id="page-1">
 			<div class="flex flex-col lg:flex-row">
@@ -289,7 +289,8 @@
 					<div class="video-slide flex-none w-screen h-screen relative flex items-center justify-center overflow-hidden" data-index="0" id="video-slide-1">
 						<div class="video-wrapper w-full h-full flex items-center justify-center">
 							<video class="w-full h-full object-cover block" muted playsinline loop id="video-1" poster="assets/page_8/thumbnail1.png">
-								<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"> </video>
+								<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"> 
+							</video>
 						</div>
 					</div>
 					<!-- Video 2 -->
@@ -1605,7 +1606,7 @@
 				</div>
 			</div>     </div>
 	</div>
-	<div id="loader" class="loader-container w-screen h-screen flex flex-col justify-center align-center">
+	<div id="loader" class="loader-container">
 		<!-- Background particles -->
 		<div class="particle"></div>
 		<div class="particle"></div>
