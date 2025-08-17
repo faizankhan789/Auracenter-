@@ -340,7 +340,7 @@ class AuraCenter {
         
         const dayHeader = document.createElement('div');
         dayHeader.className = 'bg-[#c8e6dc] p-3 rounded-lg mb-1';
-        const headerTextClass = this.isMobile ? 'text-xs' : 'text-sm';
+        const headerTextClass = (this.isMobile || this.isSmallTablet) ? 'text-xs' : 'text-sm';
         dayHeader.innerHTML = `<h3 class="font-bold ${headerTextClass} tracking-wider text-[#2c3e50] text-center">${day}</h3>`;
         
         const activitiesContainer = document.createElement('div');
@@ -352,8 +352,8 @@ class AuraCenter {
             const textColor = activity.type === 'white' ? 'text-gray-600' : 'text-gray-300';
             const nameColor = activity.type === 'white' ? 'text-gray-800' : 'text-white';
             
-            const timeClass = this.isMobile ? 'text-[8px]' : 'text-xs';
-            const activityNameClass = this.isMobile ? 'text-[9px]' : 'text-sm';
+            const timeClass = (this.isMobile || this.isSmallTablet) ? 'text-[8px]' : 'text-xs';
+            const activityNameClass = (this.isMobile || this.isSmallTablet) ? 'text-[9px]' : 'text-sm';
             
             activityBlock.className = `flex items-center gap-3 p-3 rounded-lg h-12 ${bgColor} hover:-translate-y-0.5 hover:shadow-md transition-all duration-300`;
             activityBlock.innerHTML = `
@@ -362,7 +362,7 @@ class AuraCenter {
                 </div>
                 <div class="flex-1 flex flex-col gap-1 overflow-hidden">
                     <div class="${timeClass} font-medium ${textColor} truncate">${activity.time}</div>
-                    <div class="${activityNameClass} font-semibold ${nameColor} leading-tight ${this.isMobile ? 'line-clamp-1' : ''}">${activity.name}</div>
+                    <div class="${activityNameClass} font-semibold ${nameColor} leading-tight ${(this.isMobile || this.isSmallTablet) ? 'line-clamp-1' : ''}">${activity.name}</div>
                 </div>
             `;
             activitiesContainer.appendChild(activityBlock);
@@ -404,6 +404,7 @@ class AuraCenter {
         this.addVideos()
         this.addTrainersCards();
         this.addScheduleGrid();
+        this.setupResponsiveHandler();
         this.removeLoader();
         this.setUpGSAP();
         this.setUpLenis();
@@ -449,12 +450,27 @@ class AuraCenter {
     addScheduleGrid() {
         this.currentMobilePage = 0;
         this.currentMobileGroup = 0;
-        this.isMobile = window.innerWidth < 768;
-        this.columnsPerGroup = 2; // 2 columns per group on mobile
-        this.groupsPerPage = 3; // 3 groups (6 columns) per page on mobile
+        this.screenWidth = window.innerWidth;
         
-        if (this.isMobile) {
+        // Define breakpoints and corresponding behavior
+        this.isMobile = this.screenWidth < 640;
+        this.isSmallTablet = this.screenWidth >= 640 && this.screenWidth < 768;
+        this.isTablet = this.screenWidth >= 768 && this.screenWidth < 1024;
+        this.isDesktop = this.screenWidth >= 1024;
+        
+        // Set columns per group based on screen size
+        if (this.isMobile || this.isSmallTablet) {
+            this.columnsPerGroup = 2;
+            this.groupsPerPage = 3;
             this.setupMobileScrollPagination();
+        } else if (this.isTablet) {
+            this.columnsPerGroup = 3;
+            this.groupsPerPage = 2;
+            this.setupMobileScrollPagination();
+        } else {
+            // Desktop - show all columns
+            this.columnsPerGroup = 6;
+            this.groupsPerPage = 1;
         }
         
         this.renderSchedulePage();
@@ -498,7 +514,7 @@ class AuraCenter {
         
         // Mouse wheel for testing on desktop
         scheduleContainer.addEventListener('wheel', (e) => {
-            if (!this.isMobile) return; // Only on mobile
+            if (this.isDesktop) return; // Only on mobile and tablet
             if (isScrolling) return;
             
             e.preventDefault();
@@ -551,23 +567,41 @@ class AuraCenter {
         // Clear existing content
         container.innerHTML = '';
         
-        if (this.isMobile) {
-            // Mobile: Show only 2 columns at a time based on current group and page
+        if (this.isDesktop) {
+            // Desktop: Show all days
+            this.schedule.forEach(day => this.addScheduleDay(day));
+        } else {
+            // Mobile, Small Tablet, and Tablet: Show limited columns with pagination
             const startIndex = (this.currentMobilePage * this.groupsPerPage * this.columnsPerGroup) + 
                               (this.currentMobileGroup * this.columnsPerGroup);
             const endIndex = Math.min(startIndex + this.columnsPerGroup, this.schedule.length);
             const daysToShow = this.schedule.slice(startIndex, endIndex);
             
             daysToShow.forEach(day => this.addScheduleDay(day));
-        } else {
-            // Desktop: Show all days
-            this.schedule.forEach(day => this.addScheduleDay(day));
         }
         
         // Refresh ScrollTrigger to ensure page transitions continue working
         if (typeof ScrollTrigger !== 'undefined') {
             ScrollTrigger.refresh();
         }
+    }
+
+    setupResponsiveHandler() {
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Recalculate breakpoints and re-render schedule
+                const oldIsDesktop = this.isDesktop;
+                this.addScheduleGrid();
+                
+                // If switching between desktop and non-desktop, reset pagination
+                if (oldIsDesktop !== this.isDesktop) {
+                    this.currentMobilePage = 0;
+                    this.currentMobileGroup = 0;
+                }
+            }, 300);
+        });
     }
 
     /**
