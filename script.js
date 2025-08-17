@@ -1716,7 +1716,7 @@ class AuraCenter {
      * @method setUpGSAP
      */
     setUpGSAP () {
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
         gsap.defaults({ease: "none", duration: 2});
         
         let mm = gsap.matchMedia();
@@ -1750,6 +1750,9 @@ class AuraCenter {
             lenis.raf(time * 1000);
         });
 
+        // Store Lenis instance globally for navigation
+        this.lenis = lenis;
+        window.lenis = lenis;
     }
     
     // Function to smoothly scroll
@@ -1866,5 +1869,290 @@ class AuraCenter {
  */
 document.addEventListener('DOMContentLoaded', () => {
     const auraCenter = new AuraCenter();
-    window.auraCenter = auraCenter
+    window.auraCenter = auraCenter;
+    
+    // Navigation functionality
+    setupNavigation();
+    
+    // Add calibration helper for development
+    window.calibrateNavigation = calibrateNavigation;
+    
+    // Add debug helper for Get Started button
+    window.testGetStarted = () => {
+        console.log('🧪 Testing Get Started button navigation...');
+        const button = document.querySelector('button[data-page="17"]');
+        if (button) {
+            console.log('✅ Get Started button found');
+            button.click();
+        } else {
+            console.log('❌ Get Started button not found');
+        }
+    };
 });
+
+/**
+ * Calibration helper function to fine-tune navigation progress values
+ * Usage: calibrateNavigation(9, 0.52) - test page 9 with 0.52 progress
+ */
+function calibrateNavigation(pageNumber, testProgress) {
+    console.log(`🔧 Calibrating page ${pageNumber} with progress ${testProgress}`);
+    
+    if (window.auraCenter && window.auraCenter.tl) {
+        const scrollTriggers = ScrollTrigger.getAll();
+        const mainScrollTrigger = scrollTriggers.find(st => 
+            st.trigger && st.trigger.id === "page-container"
+        );
+        
+        if (mainScrollTrigger) {
+            const scrollRange = mainScrollTrigger.end - mainScrollTrigger.start;
+            const targetScrollPosition = mainScrollTrigger.start + (testProgress * scrollRange);
+            
+            console.log(`📍 Test scroll position: ${targetScrollPosition}`);
+            
+            const lenis = window.lenis;
+            if (lenis && lenis.scrollTo) {
+                lenis.scrollTo(targetScrollPosition, {
+                    duration: 1.5,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+                
+                // Log current timeline progress after animation
+                setTimeout(() => {
+                    console.log(`⏱️ Timeline progress after animation: ${window.auraCenter.tl.progress()}`);
+                    console.log(`📱 Current scroll position: ${window.scrollY}`);
+                }, 2000);
+            }
+        }
+    }
+}
+
+/**
+ * Setup navigation functionality for both desktop and mobile menus
+ * Handles click events on navigation links with data-page attributes
+ */
+function setupNavigation() {
+    // Get all navigation links and buttons
+    const navLinks = document.querySelectorAll('.nav-link[data-page]');
+    const navButtons = document.querySelectorAll('button[data-page]');
+    const allNavElements = [...navLinks, ...navButtons];
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    console.log('Setting up navigation for', navLinks.length, 'links and', navButtons.length, 'buttons');
+    
+    // Handle navigation link and button clicks
+    allNavElements.forEach(element => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pageNumber = element.getAttribute('data-page');
+            
+            console.log('Navigation clicked:', pageNumber);
+            console.log('Element type:', element.tagName, 'Classes:', element.className);
+            
+            // Only update active state for navigation links, not buttons
+            if (element.classList.contains('nav-link')) {
+                // Remove active class from all links
+                navLinks.forEach(nav => {
+                    nav.classList.remove('text-white');
+                    nav.classList.add('text-gray-300');
+                });
+                
+                // Add active class to clicked link
+                element.classList.remove('text-gray-300');
+                element.classList.add('text-white');
+            }
+            
+            // Wait a bit for animations to be ready, then navigate
+            setTimeout(() => {
+                console.log('About to navigate to page:', pageNumber);
+                navigateToPage(pageNumber);
+                
+                // Fallback: if navigation doesn't work after 3 seconds, try again
+                setTimeout(() => {
+                    const currentPage = getCurrentVisiblePage();
+                    console.log('Current page after navigation:', currentPage);
+                    if (currentPage != pageNumber) {
+                        console.log('Retrying navigation to page:', pageNumber, 'using alternative method');
+                        
+                        // If trying to go to contact page (17) and stopped at videos (8), force scroll to end
+                        if (pageNumber === '17' && currentPage === '8') {
+                            console.log('🔧 Detected stuck at video section, forcing scroll to contact page');
+                            const lenis = window.lenis;
+                            if (lenis) {
+                                // Scroll to near the end of the page
+                                lenis.scrollTo('bottom', { duration: 2, offset: -100 });
+                            } else {
+                                // Fallback: scroll to bottom using window
+                                window.scrollTo({ 
+                                    top: document.body.scrollHeight - window.innerHeight - 100, 
+                                    behavior: 'smooth' 
+                                });
+                            }
+                        } else {
+                            navigateToPage(pageNumber);
+                        }
+                    }
+                }, 3000);
+            }, 100);
+            
+            // Close mobile menu if open
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    });
+    
+    // Handle mobile menu toggle
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+}
+
+/**
+ * Get the currently visible page based on scroll position
+ * @returns {string} The current page number
+ */
+function getCurrentVisiblePage() {
+    if (!window.auraCenter?.tl) return '1';
+    
+    const progress = window.auraCenter.tl.progress();
+    const progressMap = {
+        1: 0.0,     // Page 1 - Landing Page (Hero section with heart monitor)
+        2: 0.055,   // Page 2 - Welcome to Auracenter (About intro)
+        3: 0.11,    // Page 3 - We're Here to Serve You Well
+        4: 0.295,   // Page 4 - Your Strength. Our Vision (Main about section)
+        5: 0.14,    // Page 5 - Classes (Fitness Classes for Every Goal)
+        6: 0.275,   // Page 6 - Vision/Mission (Interactive cards)
+        7: 0.33,    // Page 7 - Aura Store (Upgrade Your Style with Aura Wear)
+        8: 0.385,   // Page 8 - Videos (YouTube video carousel)
+        9: 0.52,    // Page 9 - Schedule (Discipline Starts with a Plan)
+        10: 0.555,  // Page 10 - Events (We Organize the Best Events)
+        11: 0.61,   // Page 11 - Aura Elite (Premium fitness center)
+        12: 0.650,  // Page 12 - Aura Luxury (Luxurious fitness experience)
+        13: 0.69,   // Page 13 - Aura Juniors (Children's fitness programs)
+        14: 0.725,  // Page 14 - Trainers (Our Professional Trainers)
+        15: 0.83,   // Page 15 - Pricing (Choose Your Level/Membership plans)
+        16: 0.885,  // Page 16 - Podcast (Lift. Learn. Lead!)
+        17: 0.99,   // Page 17 - Contact Form (Get Appointment/Contact page)
+        18: 0.995   // Page 18 - Footer (Final page with contact info)
+    };
+    
+    let closestPage = '1';
+    let closestDiff = 1;
+    
+    for (const [page, pageProgress] of Object.entries(progressMap)) {
+        const diff = Math.abs(progress - pageProgress);
+        if (diff < closestDiff) {
+            closestDiff = diff;
+            closestPage = page;
+        }
+    }
+    
+    return closestPage;
+}
+
+/**
+ * Navigate to a specific page using timeline progress calculation
+ * Works with pinned ScrollTrigger and Lenis smooth scrolling
+ * @param {string} pageNumber - The page number to navigate to
+ */
+function navigateToPage(pageNumber) {
+    console.log('navigateToPage called with:', pageNumber);
+    
+    const targetPage = document.getElementById(`page-${pageNumber}`);
+    console.log('Target page found:', !!targetPage);
+    console.log('AuraCenter instance:', !!window.auraCenter);
+    console.log('Timeline:', !!window.auraCenter?.tl);
+    
+    if (targetPage && window.auraCenter && window.auraCenter.tl) {
+        const targetIndex = parseInt(pageNumber) - 1;
+        const totalPages = 18; // Total number of pages
+        
+        // Calculate the progress for the target page
+        // Precise progress mapping for exact page landing
+        const progressMap = {
+            1: 0.0,     // Page 1 - Landing Page (Hero section with heart monitor)
+            2: 0.055,   // Page 2 - Welcome to Auracenter (About intro)
+            3: 0.11,    // Page 3 - We're Here to Serve You Well
+            4: 0.295,   // Page 4 - Your Strength. Our Vision (Main about section)
+            5: 0.14,    // Page 5 - Classes (Fitness Classes for Every Goal)
+            6: 0.275,   // Page 6 - Vision/Mission (Interactive cards)
+            7: 0.33,    // Page 7 - Aura Store (Upgrade Your Style with Aura Wear)
+            8: 0.385,   // Page 8 - Videos (YouTube video carousel)
+            9: 0.52,    // Page 9 - Schedule (Discipline Starts with a Plan)
+            10: 0.555,  // Page 10 - Events (We Organize the Best Events)
+            11: 0.61,   // Page 11 - Aura Elite (Premium fitness center)
+            12: 0.650,  // Page 12 - Aura Luxury (Luxurious fitness experience)
+            13: 0.688,   // Page 13 - Aura Juniors (Children's fitness programs)
+            14: 0.725,  // Page 14 - Trainers (Our Professional Trainers)
+            15: 0.83,   // Page 15 - Pricing (Choose Your Level/Membership plans)
+            16: 0.885,  // Page 16 - Podcast (Lift. Learn. Lead!)
+            17: 0.988,   // Page 17 - Contact Form (Get Appointment/Contact page)
+            18: 0.995   // Page 18 - Footer (Final page with contact info)
+        };
+        
+        const progress = progressMap[parseInt(pageNumber)] || (targetIndex / (totalPages - 1));
+        console.log('Calculated progress:', progress, 'for page', pageNumber);
+        
+        // Get the ScrollTrigger instance
+        const scrollTriggers = ScrollTrigger.getAll();
+        console.log('Found ScrollTriggers:', scrollTriggers.length);
+        
+        const mainScrollTrigger = scrollTriggers.find(st => 
+            st.trigger && st.trigger.id === "page-container"
+        );
+        console.log('Main ScrollTrigger found:', !!mainScrollTrigger);
+        
+        if (mainScrollTrigger) {
+            // Calculate the scroll position based on ScrollTrigger's end point
+            const scrollRange = mainScrollTrigger.end - mainScrollTrigger.start;
+            const targetScrollPosition = mainScrollTrigger.start + (progress * scrollRange);
+            
+            console.log('Scroll range:', scrollRange);
+            console.log('Target scroll position:', targetScrollPosition);
+            console.log('Current scroll position:', window.scrollY);
+            
+            // Use Lenis for smooth scrolling to maintain consistency
+            const lenis = window.lenis;
+            console.log('Lenis instance:', !!lenis);
+            
+            if (lenis && lenis.scrollTo) {
+                console.log('Using Lenis scrollTo');
+                // Use Lenis scrollTo method
+                lenis.scrollTo(targetScrollPosition, {
+                    duration: 1.5,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            } else {
+                console.log('Using GSAP scrollTo fallback');
+                // Fallback: use GSAP ScrollTo
+                gsap.to(window, {
+                    duration: 1.5,
+                    scrollTo: {
+                        y: targetScrollPosition,
+                        autoKill: false
+                    },
+                    ease: "power2.inOut",
+                    onStart: () => console.log('GSAP scroll animation started'),
+                    onComplete: () => console.log('GSAP scroll animation completed')
+                });
+            }
+        } else {
+            console.warn('ScrollTrigger instance not found for navigation');
+            console.log('Available ScrollTriggers:', scrollTriggers.map(st => ({ 
+                trigger: st.trigger?.id || st.trigger?.tagName, 
+                start: st.start, 
+                end: st.end 
+            })));
+        }
+    } else {
+        console.warn('Navigation failed: Timeline or target page not found');
+        console.log('Missing components:', {
+            targetPage: !!targetPage,
+            auraCenter: !!window.auraCenter,
+            timeline: !!window.auraCenter?.tl
+        });
+    }
+}
