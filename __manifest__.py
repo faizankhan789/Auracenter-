@@ -1,0 +1,52 @@
+{
+    'name': 'Custom Website',
+    'version': '15.0.1.0.0',
+    'category': 'Website',
+    'summary': 'Custom website module with HTML, CSS and JS',
+    'description': """
+Custom Website Module
+=====================
+
+This module creates a custom website page with custom styling and JavaScript functionality.
+    """,
+    'author': 'AuraCenter',
+    'website': '',
+    'depends': ['website'],
+    'data': [
+        'views/layout.xml',
+        'views/navbar.xml',
+        'views/footer.xml',
+        'views/loader.xml',
+        'views/page_1.xml',
+        'views/page_2.xml',
+        'views/page_3.xml',
+        'views/page_4.xml',
+        'views/page_5.xml',
+        'views/page_6.xml',
+        'views/page_7.xml',
+        'views/page_8.xml',
+        'views/page_9.xml',
+        'views/page_10.xml',
+        'views/page_11.xml',
+        'views/page_12.xml',
+        'views/page_13.xml',
+        'views/page_14.xml',
+        'views/page_15.xml',
+        'views/page_16.xml',
+        'views/page_17.xml',
+        'views/templates.xml',
+    ],
+    'assets': {
+        'web.assets_frontend': [
+            "custom_website/static/src/js/lenis.min.js",
+            "custom_website/static/src/js/lucide.min.js",
+            "custom_website/static/src/js/gsap.min.js",
+            "custom_website/static/src/js/ScrollTrigger.min.js",
+            "custom_website/static/src/js/ScrollToPlugin.min.js",
+            "custom_website/static/src/js/custom.js",
+        ],
+    },
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

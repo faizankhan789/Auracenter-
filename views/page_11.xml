@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 11: Aura Elite Section -->
+        <template id="aura_page_11" name="AuraCenter Page 11 - Aura Elite">
+            <div class="flex-col lg:flex-row flex bg-[#DAECE9] px-10 page page-11 items-center lg:items-center lg:justify-center" id="page-11">
+                <div class="flex flex-col justify-between">
+                    <h1 style="font-size: clamp(1.5rem, 3vw, 5rem)" id="auraElite" class="text-center mt-10 lg:text-start font-bold text-[#1D2F46] mb-20">AURA ELITE</h1>
+                    <div id="auraContentText" class="w-full lg:w-[55vw] items-center">
+                        <p style="font-size: clamp(1rem, 2vw, 2.5rem)" class="text-justify">We at Aura Elite strongly believe that physical activity for women is essential for their health and emotional well-being. For this reason, we offer a variety of programs for women in our well-equipped and hygienic fitness center. Located in the heart of Jeddah, at Corniche, Aura Elite has unique packages specially designed with the health and fitness needs of our members in mind. Our dedicated staff is professionally qualified to provide fitness training in a safe environment.</p>
+                        <div class="flex justify-center">
+                            <button class="bg-[#182a41] px-8 py-2 rounded-lg text-white font-semibold mt-8 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-xl text-center nav-link" data-page="17">JOIN US</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-[50vw] lg:relative lg:pr-10 absolute top-[50%] lg:top-0 left-[15%] lg:left-0" id="events-3">
+                    <picture id="event-9" class="absolute left-10 top-0">
+                        <!-- AVIF versions -->
+                        <source type="image/avif" srcset="
+                            /custom_website/static/src/img/page_11/elite_1-640.avif 640w,
+                            /custom_website/static/src/img/page_11/elite_1-768.avif 768w,
+                            /custom_website/static/src/img/page_11/elite_1-1024.avif 1024w,
+                            /custom_website/static/src/img/page_11/elite_1-1920.avif 1920w
+                            " sizes="(max-width: 640px) 640px,
+                            (max-width: 768px) 768px,
+                            (max-width: 1024px) 1024px,
+                            1920px" />
+                        <!-- PNG fallback -->
+                        <source type="image/png" srcset="
+                            /custom_website/static/src/img/page_11/elite_1-640.png 640w,
+                            /custom_website/static/src/img/page_11/elite_1-768.png 768w,
+                            /custom_website/static/src/img/page_11/elite_1-1024.png 1024w,
+                            /custom_website/static/src/img/page_11/elite_1-1920.png 1920w
+                            " sizes="(max-width: 640px) 640px,
+                            (max-width: 768px) 768px,
+                            (max-width: 1024px) 1024px,
+                            1920px" />
+                        <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_11/elite_1.png" alt="Elite 1" loading="lazy" />
+                    </picture>
+                    
+                    <picture id="event-10" class="absolute left-10 top-0">
+                        <!-- AVIF versions -->
+                        <source type="image/avif" srcset="
+                            /custom_website/static/src/img/page_11/elite_1-640.avif 640w,
+                            /custom_website/static/src/img/page_11/elite_1-768.avif 768w,
+                            /custom_website/static/src/img/page_11/elite_1-1024.avif 1024w,
+                            /custom_website/static/src/img/page_11/elite_1-1920.avif 1920w
+                            " sizes="(max-width: 640px) 640px,
+                            (max-width: 768px) 768px,
+                            (max-width: 1024px) 1024px,
+                            1920px" />
+                        <!-- PNG fallback -->
+                        <source type="image/png" srcset="
+                            /custom_website/static/src/img/page_11/elite_1-640.png 640w,
+                            /custom_website/static/src/img/page_11/elite_1-768.png 768w,
+                            /custom_website/static/src/img/page_11/elite_1-1024.png 1024w,
+                            /custom_website/static/src/img/page_11/elite_1-1920.png 1920w
+                            " sizes="(max-width: 640px) 640px,
+                            (max-width: 768px) 768px,
+                            (max-width: 1024px) 1024px,
+                            1920px" />
+                        <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_11/elite_1.png" alt="Elite 1" loading="lazy" />
+                    </picture>
+                    
+                    <picture id="event-11" class="absolute left-10 top-0">
+                        <!-- AVIF versions -->
+                        <source type="image/avif" srcset="
+                            /custom_website/static/src/img/page_11/elite_2-640.avif 640w,
+                            /custom_website/static/src/img/page_11/elite_2-768.avif 768w,
+                            /custom_website/static/src/img/page_11/elite_2-1024.avif 1024w,
+                            /custom_website/static/src/img/page_11/elite_2-1920.avif 1920w
+                            " sizes="(max-width: 640px) 640px,
+                            (max-width: 768px) 768px,
+                            (max-width: 1024px) 1024px,
+                            1920px" />
+                        <!-- PNG fallback -->
+                        <source type="image/png" srcset="
+                            /custom_website/static/src/img/page_11/elite_2-640.png 640w,
+                            /custom_website/static/src/img/page_11/elite_2-768.png 768w,
+                            /custom_website/static/src/img/page_11/elite_2-1024.png 1024w,
+                            /custom_website/static/src/img/page_11/elite_2-1920.png 1920w
+                            " sizes="(max-width: 640px) 640px,
+                            (max-width: 768px) 768px,
+                            (max-width: 1024px) 1024px,
+                            1920px" />
+                        <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_11/elite_2.png" alt="Elite 2" loading="lazy" />
+                    </picture>
+                    
+                    <picture id="event-12" class="absolute left-10 top-0">
+                        <!-- AVIF versions -->
+                        <source type="image/avif" srcset="
+                            /custom_website/static/src/img/page_11/elite_3-640.avif 640w,
+                            /custom_website/static/src/img/page_11/elite_3-768.avif 768w,
+                            /custom_website/static/src/img/page_11/elite_3-1024.avif 1024w,
+                            /custom_website/static/src/img/page_11/elite_3-1920.avif 1920w
+                            " sizes="(max-width: 640px) 640px,
+                            (max-width: 768px) 768px,
+                            (max-width: 1024px) 1024px,
+                            1920px" />
+                        <!-- PNG fallback -->
+                        <source type="image/png" srcset="
+                            /custom_website/static/src/img/page_11/elite_3-640.png 640w,
+                            /custom_website/static/src/img/page_11/elite_3-768.png 768w,
+                            /custom_website/static/src/img/page_11/elite_3-1024.png 1024w,
+                            /custom_website/static/src/img/page_11/elite_3-1920.png 1920w
+                            " sizes="(max-width: 640px) 640px,
+                            (max-width: 768px) 768px,
+                            (max-width: 1024px) 1024px,
+                            1920px" />
+                        <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_11/elite_3.png" alt="Elite 3" loading="lazy" />
+                    </picture>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_body_class" inherit_id="web.frontend_layout">
+        <xpath expr="//body" position="attributes">
+            <attribute name="t-attf-class">
+                bodyLoading bg-gray-900
+            </attribute>
+        </xpath>
+    </template>
+</odoo>

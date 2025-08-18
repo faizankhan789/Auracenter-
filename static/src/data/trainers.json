@@ -1,0 +1,44 @@
+[
+  {
+    "imageSrc": "/custom_website/static/src/img/page_14/MARIE",
+    "name": "MARIE",
+    "title": "Fitness Trainer",
+    "qualifications": ["FEA: exercise coaching", "Physical education", "Nutrition specialist"],
+    "index": 1
+  },
+  {
+    "imageSrc": "/custom_website/static/src/img/page_14/ABIR_LABIDHI",
+    "name": "ABIR LABIDHI",
+    "title": "Yoga Expert",
+    "qualifications": ["Certified Yoga Instructor", "Meditation Coach", "10+ years experience"],
+    "index": 2
+  },
+  {
+    "imageSrc": "/custom_website/static/src/img/page_14/SARAH_HOSNY",
+    "name": "SARAH HOSNY",
+    "title": "Strength Coach",
+    "qualifications": ["Powerlifting Certified", "Sports Science Degree", "Injury Prevention"],
+    "index": 3
+  },
+  {
+    "imageSrc": "/custom_website/static/src/img/page_14/ABEER_RAHIM",
+    "name": "ABEER RAHIM",
+    "title": "Cardio Specialist",
+    "qualifications": ["HIIT Certified", "Marathon Runner", "Group Fitness Expert"],
+    "index": 4
+  },
+  {
+    "imageSrc": "/custom_website/static/src/img/page_14/HADEEL_YOUSSEF",
+    "name": "HADEEL YOUSSEF",
+    "title": "Nutrition Coach",
+    "qualifications": ["Registered Dietitian", "Sports Nutrition", "Meal Planning Expert"],
+    "index": 5
+  },
+  {
+    "imageSrc": "/custom_website/static/src/img/page_14/ROBA_SAMIR",
+    "name": "ROBA SAMIR",
+    "title": "Dance Fitness",
+    "qualifications": ["Zumba Certified", "Contemporary Dance", "Choreography Expert"],
+    "index": 6
+  }
+]

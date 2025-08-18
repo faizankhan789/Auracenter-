@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 8: Videos Section -->
+        <template id="aura_page_8" name="AuraCenter Page 8 - Videos">
+            <div class="page page-8 bg-black overflow-hidden min-h-screen w-full" id="page-8">
+                <div class="carousel-container relative w-full h-full">
+                    <!-- Video Slides Container -->
+                    <div class="carousel-track flex h-full transition-none" id="video-carousel">
+                        <!-- Videos will be dynamically added by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 17: Contact/Appointment Form Section -->
+        <template id="aura_page_17" name="AuraCenter Page 17 - Contact Form">
+          <div class="page page-17 flex items-center justify-center w-full" id="page-17">
+				<!-- Desktop Layout -->
+				<div class="hidden md:flex relative h-screen w-full">
+					<!-- Left Side - Text Content (No Background) -->
+					<div class="relative w-1/2 flex flex-col justify-end items-start p-6 lg:p-12 pb-16 lg:pb-24 z-10">
+						<div class="relative z-20">
+							<!-- JOIN US Button -->
+							<button class="px-6 lg:px-8 py-2 lg:py-3 rounded-lg font-semibold text-base lg:text-lg mb-8 lg:mb-12 hover:opacity-90 transition-colors" style="background-color: #cce5e1; color: #111B2A;"> JOIN US </button>
+							<!-- Main Heading -->
+							<h1 class="text-white text-3xl lg:text-5xl font-bold leading-tight mb-4 lg:mb-6">
+									We Are Best In Our<br />
+									Classes
+								</h1>
+							<!-- Description Text -->
+							<p class="text-gray-300 text-sm lg:text-base leading-relaxed max-w-md"> Suspendisse blandit ornare eros vel vehicula.
+								<br /> Vestibulum ante ipsum primis in faucibus
+								<br /> orci luctus et ultrices posuere cubilia curae.
+								<br /> Sed ullamcorper ex eu lectus viverra efficitur. </p>
+						</div>
+					</div>
+					<!-- Right Side - Appointment Form -->
+					<div class="w-1/2 flex items-center justify-center p-6 lg:p-12">
+						<div class="w-full max-w-lg bg-white/10 backdrop-blur-sm rounded-2xl">
+							<!-- Form Header -->
+							<div class="bg-slate-800/80 text-white p-4 lg:p-6 rounded-t-2xl backdrop-blur-sm">
+								<h2 class="text-2xl lg:text-3xl font-bold text-left mb-4">
+										Get Appointment
+									</h2>
+								<!-- Arrow Below Title -->
+								<div class="flex justify-left">
+									<svg class="w-16 lg:w-20 h-6 lg:h-8" fill="none" stroke="#cce5e1" viewBox="0 0 100 24" stroke-width="5">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h85m0 0l-7-7m7 7l-7 7"></path>
+									</svg>
+								</div>
+							</div>
+							<!-- Form -->
+							<form class="bg-slate-800/80 p-4 lg:p-6 rounded-b-2xl space-y-4 backdrop-blur-sm">
+								<!-- Full Name -->
+								<div>
+									<input type="text" placeholder="Full Name" class="w-full px-4 py-3 lg:py-4 rounded-lg text-gray-700 placeholder-gray-500 border-none focus:outline-none focus:ring-2 focus:ring-slate-600" style="background-color: #f3eeec;" /> </div>
+								<!-- Email Address -->
+								<div>
+									<input type="email" placeholder="Email Address" class="w-full px-4 py-3 lg:py-4 rounded-lg text-gray-700 placeholder-gray-500 border-none focus:outline-none focus:ring-2 focus:ring-slate-600" style="background-color: #f3eeec;" /> </div>
+								<!-- Phone No. -->
+								<div>
+									<input type="tel" placeholder="Phone No." class="w-full px-4 py-3 lg:py-4 rounded-lg text-gray-700 placeholder-gray-500 border-none focus:outline-none focus:ring-2 focus:ring-slate-600" style="background-color: #f3eeec;" /> </div>
+								<!-- Message -->
+								<div>
+									<textarea placeholder="Message ..." rows="4" class="w-full px-4 py-3 lg:py-4 rounded-lg text-gray-700 placeholder-gray-500 border-none focus:outline-none focus:ring-2 focus:ring-slate-600 resize-none" style="background-color: #f3eeec;"></textarea>
+								</div>
+								<!-- Submit Button -->
+								<div class="pt-4">
+									<button type="submit" class="w-full py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:opacity-90 transition-colors" style="background-color: #cce5e1; color: #111B2A;"> SUBMIT NOW </button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- Mobile Layout -->
+				<div class="flex md:hidden flex-col min-h-screen w-full overflow-y-auto">
+					<!-- Top - Text Content (30% of screen) -->
+					<div class="relative flex flex-col justify-center items-center text-center p-4 py-6 z-10 min-h-[30vh] flex-shrink-0">
+						<div class="relative z-20">
+							<!-- JOIN US Button -->
+							<button class="px-6 py-0 md:py-1 rounded-lg font-semibold text-base mb-1 hover:opacity-90 transition-colors" style="background-color: #cce5e1; color: #111B2A;"> JOIN US </button>
+							<!-- Main Heading -->
+							<h1 class="text-black text-lg md:text-xl font-bold leading-tight mb-2">
+									We Are Best In Our<br />
+									Classes
+								</h1>
+							<!-- Description Text -->
+							<p class="text-black-300 text-sm leading-relaxed max-w-sm"> Suspendisse blandit ornare eros vel vehicula.
+								<br /> Vestibulum ante ipsum primis in faucibus
+								<br /> orci luctus et ultrices posuere cubilia curae. </p>
+						</div>
+					</div>
+					<!-- Bottom - Appointment Form (70% of screen with scroll) -->
+					<div class="flex-1 flex items-start justify-center p-4 pb-6 overflow-y-auto">
+						<div class="w-full max-w-sm bg-white/10 backdrop-blur-sm rounded-2xl">
+							<!-- Form Header -->
+							<div class="bg-slate-800/80 text-white p-4 rounded-t-2xl backdrop-blur-sm">
+								<h2 class="text-xl font-bold text-left mb-2">
+										Get Appointment
+									</h2>
+								<!-- Arrow Below Title -->
+								<div class="flex justify-left">
+									<svg class="w-16 h-6" fill="none" stroke="#cce5e1" viewBox="0 0 100 24" stroke-width="3">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h85m0 0l-7-7m7 7l-7 7"></path>
+									</svg>
+								</div>
+							</div>
+							<!-- Form -->
+							<form class="bg-slate-800/80 p-4 rounded-b-2xl space-y-3 backdrop-blur-sm">
+								<div>
+									<input type="text" placeholder="Full Name" class="w-full px-3 py-2.5 rounded-lg text-gray-700 placeholder-gray-500 border-none focus:outline-none focus:ring-2 focus:ring-slate-600 text-sm" style="background-color: #f3eeec;" /> </div>
+								<div>
+									<input type="email" placeholder="Email Address" class="w-full px-3 py-2.5 rounded-lg text-gray-700 placeholder-gray-500 border-none focus:outline-none focus:ring-2 focus:ring-slate-600 text-sm" style="background-color: #f3eeec;" /> </div>
+								<div>
+									<input type="tel" placeholder="Phone No." class="w-full px-3 py-2.5 rounded-lg text-gray-700 placeholder-gray-500 border-none focus:outline-none focus:ring-2 focus:ring-slate-600 text-sm" style="background-color: #f3eeec;" /> </div>
+								<div>
+									<textarea placeholder="Message ..." rows="3" class="w-full px-3 rounded-lg text-gray-700 placeholder-gray-500 border-none focus:outline-none focus:ring-2 focus:ring-slate-600 resize-none text-sm" style="background-color: #f3eeec;"></textarea>
+								</div>
+								<div class="pt-2">
+									<button type="submit" class="w-full py-1 rounded-lg font-bold text-sm hover:opacity-90 transition-colors" style="background-color: #cce5e1; color: #111B2A;"> SUBMIT NOW </button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+        </template>
+    </data>
+</odoo>

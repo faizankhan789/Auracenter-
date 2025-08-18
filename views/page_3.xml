@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 3: Serve You Well -->
+        <template id="aura_page_3" name="AuraCenter Page 3 - Serve You Well">
+           <div class="flex-col md:flex-row flex justify-around bg-no-repeat page page-3" id="page-3">
+                <div class="absolute inset-0 bg-white/20 pointer-events-none h-[100svh]"></div>
+                <div class="classes-box px-4 py-10 absolute bottom-[15%] right-0" style="color:#F7F7F7">
+                    <h2 class="font-bold text-xl md:text-4xl mb-2">We're Here to Serve You Well</h2> 
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_navbar" inherit_id="website.layout" name="Custom Navbar">
+        <xpath expr="//header" position="replace">
+            <header id="header" class="relative z-[1] w-full header-height hidden">
+                <div class="flex h-full">
+                    <!-- Logo Section -->
+                    <div class="logo-section flex items-center justify-center w-[15%]"> 
+                    <img src="/custom_website/static/src/img/logo.png" alt="Auracenter Logo" class="h-12 w-12 object-contain" /> 
+                    </div>
+
+                    <!-- Navigation Section -->
+                    <div class="nav-section flex justify-between items-center px-4 flex-1">
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden text-white p-2" id="mobileMenuBtn">
+                        <i data-lucide="menu" class="w-5 h-5"></i> 
+                    </button>
+
+                    <!-- Centered Navigation (>=768px) -->
+                    <div class="hidden md:flex flex-1 justify-center">
+                        <nav class="flex items-baseline space-x-4 lg:space-x-8">
+                        <a href="#" class="nav-link  text-lg text-white hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="1">Home</a> 
+                        <a href="#about" class="nav-link text-lg text-gray-300 hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="3">About</a> 
+                        <a href="#classes" class="nav-link text-lg text-gray-300 hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="5">Classes</a> 
+                        <a href="#schedule" class="nav-link text-lg text-gray-300 hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors" data-page="9">Schedule</a> 
+                        
+                        <!-- More Dropdown (always visible for >=768px) -->
+                            <div class="relative group py-6">
+                                <button class="text-gray-300 hover:text-green-400 px-2 py-2 text-sm font-medium transition-colors flex items-center">
+                                    More
+                                    <i data-lucide="chevron-down" class="ml-1 w-4 h-4"></i>
+                                </button>
+                                <!-- Important: use group-hover:block + group-focus-within:block -->
+                                <div class="absolute left-0 mt-2 w-40 bg-slate-800 text-white rounded-lg shadow-lg hidden group-hover:block group-focus-within:block">
+                                    <a href="#aura-elite" class="nav-link text-lg block px-4 py-2 hover:text-green-400" data-page="11">Aura Elite</a>
+                                    <a href="#aura-luxury" class="nav-link text-lg block px-4 py-2 hover:text-green-400" data-page="12">Aura Luxury</a>
+                                    <a href="#aura-juniors" class="nav-link text-lg block px-4 py-2 hover:text-green-400" data-page="13">Aura Juniors</a>
+                                    <a href="#trainers" class="nav-link text-lg block px-4 py-2 hover:text-green-400" data-page="14">Trainers</a>
+                                </div> 
+                            </div>
+                        </nav>
+                    </div>
+
+                    <!-- Get Started Button -->
+                    <button class="bg-[#CCE5E1] hover:bg-[#b8dcd6] text-[#111B2A] px-6 py-2 rounded-lg text-sm font-bold transition-colors" data-page="17"> Get Started </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu (<768px) -->
+                <div class="mobile-menu md:hidden absolute top-full left-0 w-full bg-slate-800 backdrop-blur-sm border-t border-gray-700 hidden">
+                    <nav class="px-4 py-4 space-y-2"> 
+                    <a href="#" class="nav-link block text-white hover:text-green-400 py-2 font-medium transition-colors" data-page="1">Home</a> 
+                    <a href="#about" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="3">About</a> 
+                    <a href="#classes" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="5">Classes</a> 
+                    <a href="#schedule" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="9">Schedule</a> 
+                    <a href="#aura-elite" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="11">Aura Elite</a> 
+                    <a href="#aura-luxury" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="12">Aura Luxury</a> 
+                    <a href="#aura-juniors" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="13">Aura Juniors</a> 
+                    <a href="#trainers" class="nav-link block text-gray-300 hover:text-green-400 py-2 font-medium transition-colors" data-page="14">Trainers</a> 
+                    </nav>
+                </div>
+                </header>
+
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 10: Events Section -->
+        <template id="aura_page_10" name="AuraCenter Page 10 - Events">
+            <div class="flex-col flex items-center bg-no-repeat page page-10" id="page-10">
+                <button class="bg-[#CCE5E1] px-4 py-2 rounded-lg font-semibold mt-8 lg:mt-20 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md text-black">OUR EVENTS</button>
+                <h1 class="text-xl lg:text-4xl font-bold text-black mt-8 text-center">WE ORGANIZE THE BEST EVENTS</h1>
+                
+                <div class="flex flex-col lg:flex-row justify-end mb-[10vh] items-center lg:items-end lg:mb-[10vh] lg:justify-around px-8 mt-8 w-full h-full">
+                    <div class="w-[40vw] relative flex" id="events-1">
+                        <picture id="event-1" class="absolute left-[-25%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_10/event_1-640.avif 640w,
+                                /custom_website/static/src/img/page_10/event_1-768.avif 768w,
+                                /custom_website/static/src/img/page_10/event_1-1024.avif 1024w,
+                                /custom_website/static/src/img/page_10/event_1-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- PNG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_10/event_1-640.png 640w,
+                                /custom_website/static/src/img/page_10/event_1-768.png 768w,
+                                /custom_website/static/src/img/page_10/event_1-1024.png 1024w,
+                                /custom_website/static/src/img/page_10/event_1-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_10/event_1.png" alt="Event 1" loading="lazy" />
+                        </picture>
+                        
+                        <picture id="event-2" class="absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_10/event_2-640.avif 640w,
+                                /custom_website/static/src/img/page_10/event_2-768.avif 768w,
+                                /custom_website/static/src/img/page_10/event_2-1024.avif 1024w,
+                                /custom_website/static/src/img/page_10/event_2-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- PNG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_10/event_2-640.png 640w,
+                                /custom_website/static/src/img/page_10/event_2-768.png 768w,
+                                /custom_website/static/src/img/page_10/event_2-1024.png 1024w,
+                                /custom_website/static/src/img/page_10/event_2-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_10/event_2.png" alt="Event 2" loading="lazy" />
+                        </picture>
+                        
+                        <picture id="event-3" class="absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_10/event_3-640.avif 640w,
+                                /custom_website/static/src/img/page_10/event_3-768.avif 768w,
+                                /custom_website/static/src/img/page_10/event_3-1024.avif 1024w,
+                                /custom_website/static/src/img/page_10/event_3-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- PNG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_10/event_3-640.png 640w,
+                                /custom_website/static/src/img/page_10/event_3-768.png 768w,
+                                /custom_website/static/src/img/page_10/event_3-1024.png 1024w,
+                                /custom_website/static/src/img/page_10/event_3-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_10/event_3.png" alt="Event 3" loading="lazy" />
+                        </picture>
+                        
+                        <picture id="event-4" class=" absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_10/event_4-640.avif 640w,
+                                /custom_website/static/src/img/page_10/event_4-768.avif 768w,
+                                /custom_website/static/src/img/page_10/event_4-1024.avif 1024w,
+                                /custom_website/static/src/img/page_10/event_4-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- JPEG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_10/event_4-640.png 640w,
+                                /custom_website/static/src/img/page_10/event_4-768.png 768w,
+                                /custom_website/static/src/img/page_10/event_4-1024.png 1024w,
+                                /custom_website/static/src/img/page_10/event_4-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- Fallback img with lazy loading -->
+                            <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_10/event_4.png" alt="Event 4" loading="lazy" /> 
+                        </picture>
+                    </div>
+                    
+                    <div class="w-[40vw] relative lg:pr-10" id="events-2">
+                        <picture id="event-5" class=" absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_10/event_1-640.avif 640w,
+                                /custom_website/static/src/img/page_10/event_1-768.avif 768w,
+                                /custom_website/static/src/img/page_10/event_1-1024.avif 1024w,
+                                /custom_website/static/src/img/page_10/event_1-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- JPEG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_10/event_1-640.png 640w,
+                                /custom_website/static/src/img/page_10/event_1-768.png 768w,
+                                /custom_website/static/src/img/page_10/event_1-1024.png 1024w,
+                                /custom_website/static/src/img/page_10/event_1-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- Fallback img with lazy loading -->
+                            <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_10/event_1.png" alt="Event 5" loading="lazy" /> 
+                        </picture>
+
+                        <picture id="event-6" class="absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_10/event_1-640.avif 640w,
+                                /custom_website/static/src/img/page_10/event_1-768.avif 768w,
+                                /custom_website/static/src/img/page_10/event_1-1024.avif 1024w,
+                                /custom_website/static/src/img/page_10/event_1-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- PNG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_10/event_1-640.png 640w,
+                                /custom_website/static/src/img/page_10/event_1-768.png 768w,
+                                /custom_website/static/src/img/page_10/event_1-1024.png 1024w,
+                                /custom_website/static/src/img/page_10/event_1-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_10/event_1.png" alt="Event 6" loading="lazy" />
+                        </picture>
+                        
+                        <picture id="event-7" class="absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_10/event_2-640.avif 640w,
+                                /custom_website/static/src/img/page_10/event_2-768.avif 768w,
+                                /custom_website/static/src/img/page_10/event_2-1024.avif 1024w,
+                                /custom_website/static/src/img/page_10/event_2-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- PNG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_10/event_2-640.png 640w,
+                                /custom_website/static/src/img/page_10/event_2-768.png 768w,
+                                /custom_website/static/src/img/page_10/event_2-1024.png 1024w,
+                                /custom_website/static/src/img/page_10/event_2-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_10/event_2.png" alt="Event 7" loading="lazy" />
+                        </picture>
+                        
+                        <picture id="event-8" class="absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_10/event_3-640.avif 640w,
+                                /custom_website/static/src/img/page_10/event_3-768.avif 768w,
+                                /custom_website/static/src/img/page_10/event_3-1024.avif 1024w,
+                                /custom_website/static/src/img/page_10/event_3-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- PNG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_10/event_3-640.png 640w,
+                                /custom_website/static/src/img/page_10/event_3-768.png 768w,
+                                /custom_website/static/src/img/page_10/event_3-1024.png 1024w,
+                                /custom_website/static/src/img/page_10/event_3-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <img class="w-[25vw] lg:w-[15vw] h-[25vh]" src="/custom_website/static/src/img/page_10/event_3.png" alt="Event 8" loading="lazy" />
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

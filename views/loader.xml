@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Website Loader  -->
+        <template id="loader" name="Loader for Website">
+            <div id="loader-parent">
+                <div id="loader" class="loader-container">
+                    <!-- Background particles -->
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <!-- Main spinner -->
+                    <div class="spinner-wrapper">
+                        <!-- Spinning rings -->
+                        <div class="spinner-ring ring-1"></div>
+                        <div class="spinner-ring ring-2"></div>
+                        <div class="spinner-ring ring-3"></div>
+                        <!-- Inner pulsing circles -->
+                        <div class="inner-circles">
+                            <div class="pulse-circle circle-1"></div>
+                            <div class="pulse-circle circle-2"></div>
+                            <div class="pulse-circle circle-3"></div>
+                        </div>
+                        <!-- Orbiting dots -->
+                        <div class="orbit-container">
+                            <div class="orbit-dot dot-1"></div>
+                            <div class="orbit-dot dot-2"></div>
+                            <div class="orbit-dot dot-3"></div>
+                            <div class="orbit-dot dot-4"></div>
+                        </div>
+                    </div>
+                    <!-- Color-changing loading text -->
+                    <div class="loading-text"> 
+                        <span class="loading-word">L</span>
+                        <span class="loading-word">O</span>
+                        <span class="loading-word">A</span>
+                        <span class="loading-word">D</span>
+                        <span class="loading-word">I</span>
+                        <span class="loading-word">N</span>
+                        <span class="loading-word">G</span> 
+                        <span class="dots">
+                            <span class="dot"></span> 
+                            <span class="dot"></span> 
+                            <span class="dot"></span> 
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

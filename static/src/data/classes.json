@@ -1,0 +1,38 @@
+[
+    {
+        "imageSrc": "/custom_website/static/src/img/page_5/power_yoga",
+        "title": "Power Yoga",
+        "listItems": ["Flexibility", "Breath Control", "Stress Relief"],
+        "index": 1
+    },
+    {
+        "imageSrc": "/custom_website/static/src/img/page_5/weight_lifting",
+        "title": "Weight Lifting",
+        "listItems": ["Strength Training", "Form Guidance", "Women Focused"],
+        "index": 2
+    },
+    {
+        "imageSrc": "/custom_website/static/src/img/page_5/personal_training",
+        "title": "Personal Training",
+        "listItems": ["1-on-1 Coaching", "Custom Plans", "Goal Tracking"],
+        "index": 3
+    },
+    {
+        "imageSrc": "/custom_website/static/src/img/page_5/cardio_strength",
+        "title": "Cardio & Strength",
+        "listItems": ["Hit Sessions", "Fat Burn", "Endurance"],
+        "index": 4
+    },
+    {
+        "imageSrc": "/custom_website/static/src/img/page_5/strength_recovery",
+        "title": "Strength & Recovery",
+        "listItems": ["Deep Stretching", "Muscle Release", "Injury Prevention"],
+        "index": 5
+    },
+    {
+        "imageSrc": "/custom_website/static/src/img/page_5/dance_fitness",
+        "title": "Dance Fitness",
+        "listItems": ["Fun workouts", "High energy", "Cultural vibes"],
+        "index": 6
+    }
+]

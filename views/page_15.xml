@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 15: Pricing Plans Section -->
+        <template id="aura_page_15" name="AuraCenter Page 15 - Pricing Plans">
+            <div class="page page-15 bg-[#f2eeeb] flex flex-col min-h-screen w-full" id="page-15">
+                <!-- Intro Section -->
+                <div id="membership-intro" class="absolute inset-0 flex flex-col items-center justify-center z-10 opacity-0">
+                    <!-- PLAN Button -->
+                    <button id="plan-button" class="bg-[#182a41] text-[#DAECE9] px-6 py-3 rounded-lg font-semibold tracking-wider mb-8">PLAN</button>
+                    
+                    <!-- Main Title with Border Design -->
+                    <div id="title-container" class="relative px-8 md:px-16 lg:px-32 text-center">
+                        <div class="absolute top-0 left-8 w-16 h-16 border-t-2 border-l-2 border-[#182a41]"></div>
+                        <div class="absolute top-0 right-8 w-16 h-16 border-t-2 border-r-2 border-[#182a41]"></div>
+                        <div class="absolute bottom-0 left-8 w-16 h-16 border-b-2 border-l-2 border-[#182a41]"></div>
+                        <div class="absolute bottom-0 right-8 w-16 h-16 border-b-2 border-r-2 border-[#182a41]"></div>
+                        <h1 id="main-title" class="text-[#182a41] font-bold px-12 py-8" style="font-size: clamp(1.5rem, 5vw, 4rem); line-height: 1.2;">
+                            Choose Your Level.<br/>
+                            Master Your Peak
+                        </h1>
+                    </div>
+                    
+                    <!-- Subtitle -->
+                    <h2 id="subtitle" class="text-[#182a41] font-semibold mt-8" style="font-size: clamp(0.875rem, 2vw, 1.5rem);">
+                        CHOOSE YOUR PRICING PLAN
+                    </h2>
+                </div>
+                
+                <!-- Membership Table Container -->
+                <div id="membership-table-wrapper" class="relative w-full h-full flex flex-col items-center justify-center opacity-0">
+                    <div class="w-full px-2 md:px-8 lg:px-16">
+                        <!-- Membership Table -->
+                        <div class="w-full max-w-7xl mx-auto overflow-hidden py-4">
+                            <div class="flex border-2 border-black bg-white membership-table-container" style=" min-height: 400px;">
+                                <!-- First Column - Header -->
+                                <div class="flex-1 flex flex-col border-r-2 border-black bg-gray-200">
+                                    <div class="flex-1 flex flex-col items-center justify-center text-center md:p-6 lg:p-8">
+                                        <h3 class="font-bold text-black" style="font-size: clamp(0.75rem, 2vw, 1.5rem); line-height: 1.2;">MEMBERSHIP<br/>PLAN</h3>
+                                    </div>
+                                    <div class="border-t-2 border-black flex flex-col items-center text-center" style="padding: clamp(0.75rem, 2vw, 1.5rem) 0px;">
+                                        <div class="flex flex-col gap-1 mb-3 w-full">
+                                            <span class="font-semibold text-black border-b border-black pt-2 w-full" style="font-size: clamp(0.5rem, 1.5vw, 1rem);">Additional Fee</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 mx-4 w-full">
+                                            <span class="border-b border-black pt-2 w-full font-semibold text-black" style="font-size: clamp(0.5rem, 1.5vw, 1rem);">Period 6 Months</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plan 1 - 800 SR -->
+                                <div class="membership-plan-card flex-1 flex flex-col border-r-2 border-black bg-slate-500 text-white hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer">
+                                    <div class="flex-1 flex flex-col items-center justify-center text-center p-1 md:p-6 lg:p-8">
+                                        <div class="font-bold mb-2 md:mb-4" style="font-size: clamp(1rem, 4vw, 3rem);">800 SR</div>
+                                        <div class="font-semibold mb-3 md:mb-6" style="font-size: clamp(0.65rem, 1.8vw, 1.25rem);">Aura VIP – 6 Months</div>
+                                        <ul class="list-none p-0 m-0 mb-4 md:mb-8 space-y-1" style="font-size: clamp(0.55rem, 1.5vw, 1rem);">
+                                            <li>Unlimited club access</li>
+                                            <li>Group attendance</li>
+                                            <li>Gym, fight club</li>
+                                        </ul>
+                                        <button class="px-1 md:px-8 py-1.5 md:py-2.5 border border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer whitespace-nowrap" style="font-size: clamp(0.45rem, 1.4vw, 0.875rem);">Get Membership</button>
+                                    </div>
+                                    <div class="border-t-2 border-white flex flex-col items-center text-center" style="padding: clamp(0.75rem, 2vw, 1.5rem) 0px;">
+                                        <div class="border-b border-white w-full pt-2 mb-3" style="font-size: clamp(0.5rem, 1.5vw, 1rem);">00</div>
+                                        <div class="border-b border-white pt-2 w-full" style="font-size: clamp(0.5rem, 1.5vw, 1rem);">6 Months</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plan 2 - 200 SR -->
+                                <div class="membership-plan-card flex-1 flex flex-col border-r-2 border-black bg-slate-800 text-white hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer">
+                                    <div class="flex-1 flex flex-col items-center justify-center text-center p-1 md:p-6 lg:p-8">
+                                        <div class="font-bold mb-2 md:mb-4" style="font-size: clamp(1rem, 4vw, 3rem);">200 SR</div>
+                                        <div class="font-semibold mb-3 md:mb-6" style="font-size: clamp(0.65rem, 1.8vw, 1.25rem);">Aura VIP – 6 Months</div>
+                                        <ul class="list-none p-0 m-0 mb-4 md:mb-8 space-y-1" style="font-size: clamp(0.55rem, 1.5vw, 1rem);">
+                                            <li>Unlimited club access</li>
+                                            <li>Group attendance</li>
+                                            <li>Gym, fight club</li>
+                                        </ul>
+                                        <button class="px-1 md:px-8 py-1.5 md:py-2.5 border border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer whitespace-nowrap" style="font-size: clamp(0.45rem, 1.4vw, 0.875rem);">Get Membership</button>
+                                    </div>
+                                    <div class="border-t-2 border-white flex flex-col items-center text-center" style="padding: clamp(0.75rem, 2vw, 1.5rem) 0px;">
+                                        <div class="border-b border-white w-full pt-2 mb-3" style="font-size: clamp(0.5rem, 1.5vw, 1rem);">00</div>
+                                        <div class="border-b border-white pt-2 w-full" style="font-size: clamp(0.5rem, 1.5vw, 1rem);">6 Months</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plan 3 - 600 SR -->
+                                <div class="membership-plan-card flex-1 flex flex-col border-r-2 border-black bg-slate-300 text-black hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer">
+                                    <div class="flex-1 flex flex-col items-center justify-center text-center p-1 md:p-6 lg:p-8">
+                                        <div class="font-bold mb-2 md:mb-4" style="font-size: clamp(1rem, 4vw, 3rem);">600 SR</div>
+                                        <div class="font-semibold mb-3 md:mb-6" style="font-size: clamp(0.65rem, 1.8vw, 1.25rem);">Aura VIP – 6 Months</div>
+                                        <ul class="list-none p-0 m-0 mb-4 md:mb-8 space-y-1" style="font-size: clamp(0.55rem, 1.5vw, 1rem);">
+                                            <li>Unlimited club access</li>
+                                            <li>Group attendance</li>
+                                            <li>Gym, fight club</li>
+                                        </ul>
+                                        <button class="px-1 md:px-8 py-1.5 md:py-2.5 border-2 border-slate-800 bg-transparent text-slate-800 hover:bg-slate-800 hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap" style="font-size: clamp(0.45rem, 1.4vw, 0.875rem);">Get Membership</button>
+                                    </div>
+                                    <div class="border-t-2 border-slate-800 flex flex-col items-center text-center" style="padding: clamp(0.75rem, 2vw, 1.5rem) 0px;">
+                                        <div class="border-b border-black w-full pt-2 mb-3" style="font-size: clamp(0.5rem, 1.5vw, 1rem);">00</div>
+                                        <div class="border-b border-black pt-2 w-full" style="font-size: clamp(0.5rem, 1.5vw, 1rem);">6 Months</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

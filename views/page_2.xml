@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 2: Welcome to Auracenter -->
+        <template id="aura_page_2" name="AuraCenter Page 2 - Welcome to Auracenter">
+           <div class="flex-col md:flex-row flex justify-around bg-no-repeat page page-2" id="page-2">
+                <div class="absolute inset-0 bg-white/50 pointer-events-none h-[80svh]"></div>
+                <div class="about-box z-[1] px-4 pt-4 pb-20 absolute bottom-10 left-0" style="color: #182A41;">
+                    <h2 class="font-bold text-2xl md:text-4xl mb-2">Welcome to Auracenter</h2>
+                    <p class="text-base md:text-xl">Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, and a supportive environment. As one of Jeddah's first luxury gyms for women </p>
+                </div>
+    		</div>
+        </template>
+    </data>
+</odoo>

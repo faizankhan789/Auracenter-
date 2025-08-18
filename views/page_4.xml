@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 4: About Us -->
+        <template id="aura_page_4" name="AuraCenter Page 4 - About Us">
+            <div class="flex-col flex items-center bg-no-repeat page page-4 justify-between" id="page-4">
+                <button class="bg-[#182a41] px-4 py-2 rounded-lg font-semibold mt-8 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md" style="color: #DAECE9"> ABOUT US </button>
+                
+                <!-- Text content -->
+                <div id="about-us" class="flex flex-col lg:flex-row my-8 justify-center lg:justify-between items-center">
+                    <div class="absolute lg:relative opacity-20 lg:opacity-100 w-full h-full flex justify-center lg:justify-start items-center">
+                        <picture>
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_4/women-640.avif 640w,
+                                /custom_website/static/src/img/page_4/women-768.avif 768w,
+                                /custom_website/static/src/img/page_4/women-1024.avif 1024w,
+                                /custom_website/static/src/img/page_4/women-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- PNG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_4/women-640.png 640w,
+                                /custom_website/static/src/img/page_4/women-768.png 768w,
+                                /custom_website/static/src/img/page_4/women-1024.png 1024w,
+                                /custom_website/static/src/img/page_4/women-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- Fallback img with lazy loading -->
+                            <img class="w-auto lg:max-w-max h-[100vh] lg:h-[90vh]" 
+                                 src="/custom_website/static/src/img/page_4/women.png" 
+                                 alt="Women Exercising" 
+                                 loading="lazy" />
+                        </picture>
+                    </div>
+                    <div class="px-10 flex-col flex justify-center">
+                        <h2 class="font-bold mb-8 text-center md:text-4xl lg:text-4xl text-xl">Your Strength. Our Vision.</h2>
+                        <p class="text-justify  md:mb-8 text-lg md:text-2xl lg:text-xl">
+                            Inspired by Saudi Arabia's Vision 2030, Aura Centers empower women through fitness by offering premium facilities, expert guidance, &amp; a supportive environment. As one of Jeddah's first luxury gyms for women, we promote a healthy lifestyle and positive social space. Our two branches – Aura Luxury (North Obhur) and Aura Elite (Corniche) – provide more than just fitness; they're a second home for our members.
+                        </p>
+                        <div class="flex justify-center">
+                            <button class="bg-[#182a41] px-4 py-2 rounded-lg text-white font-semibold mt-8 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md text-center nav-link" data-page="17">Explore More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:h-[15vh]"></div>
+            </div>
+        </template>
+    </data>
+</odoo>

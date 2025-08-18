@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- AuraCenter Assets Template -->
+        <template id="aura_assets" name="AuraCenter Assets">
+            <link rel="preconnect" href="https://fonts.googleapis.com"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+            <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&amp;display=swap" rel="stylesheet"/>
+            <script type="text/javascript" src="https://cdn.tailwindcss.com"></script>
+            <link rel="stylesheet" type="text/css" href="https://unpkg.com/lenis@1.3.8/dist/lenis.css"/>
+            <link rel="stylesheet" href="/custom_website/static/src/css/custom.css" /> 
+            <link rel="preload" as="image" href="/custom_website/static/src/img/logo.png" />
+            <link rel="preload" as="image" href="/custom_website/static/src/img/page_1/women.png" />
+        </template>
+
+        <!-- AuraCenter Fitness Website Page -->
+        <template id="custom_page" name="AuraCenter Fitness">
+            <!-- Custom Body Class -->
+            <t t-call="website.layout">
+
+                <!-- Page Title -->
+                <t t-set="title">Auracenter - A New Era of Fitness</t>
+                
+                <!-- Include Assets -->
+                <t t-set="head">
+                    <t t-call="custom_website.aura_assets"/>
+                </t>
+
+                <!-- Page Content -->
+            	<div id="page-container" class="hidden">
+                    <t t-call="custom_website.aura_page_1"/>
+                    <t t-call="custom_website.aura_page_2"/>
+                    <t t-call="custom_website.aura_page_3"/>
+                    <t t-call="custom_website.aura_page_4"/>
+                    <t t-call="custom_website.aura_page_5"/>
+                    <t t-call="custom_website.aura_page_6"/>
+                    <t t-call="custom_website.aura_page_7"/>
+                    <t t-call="custom_website.aura_page_8"/>
+                    <t t-call="custom_website.aura_page_9"/>
+                    <t t-call="custom_website.aura_page_10"/>
+                    <t t-call="custom_website.aura_page_11"/>
+                    <t t-call="custom_website.aura_page_12"/>
+                    <t t-call="custom_website.aura_page_13"/>
+                    <t t-call="custom_website.aura_page_14"/>
+                    <t t-call="custom_website.aura_page_15"/>
+                    <t t-call="custom_website.aura_page_16"/>
+                    <t t-call="custom_website.aura_page_17"/>                    
+                </div>
+            </t>
+            <t t-call="custom_website.loader"/>
+        </template>
+
+    </data>
+</odoo>

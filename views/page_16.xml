@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 16: Podcast Section -->
+        <template id="aura_page_16" name="AuraCenter Page 16 - Podcast">
+            <div class="page page-16 min-h-screen w-full" id="page-16">
+            <div class="flex absolute top-0 left-0 h-screen w-full">
+                <!-- Background: Full #d9cec5 on mobile, split on desktop -->
+                <div class="w-full  md:w-4/5" style="background-color: #d9cec5; "></div>
+                <div class="w-0 md:!w-1/5" style="background-color: #15273f;"></div>
+            </div>
+            <!-- Section 1: PODCAST  -->
+            <div class="flex h-screen w-full" id="page16-podcast-container">
+                <div class="h-screen flex w-full relative">
+                    <!-- Content overlay - only left section on mobile, split on desktop -->
+                    <div class="absolute inset-0 flex flex-col md:flex-row">
+                        <!-- Left Side: Full screen scrollable on mobile, half on desktop -->
+                        <div class="w-full md:w-1/2 h-screen md:h-screen relative overflow-hidden">
+                        <!-- Header - Smaller and centered on mobile -->
+                        <div class="absolute top-[7%] md:top-[10%] left-1/2 md:left-[20%] w-[90%] md:w-[35%] z-10 flex flex-col items-center md:items-start justify-start transform -translate-x-1/2 md:translate-x-0">
+                            <h1 style="font-size: 4rem;" class="font-black text-slate-800 mb-4 leading-none" id="page16-heading">PODCAST</h1>
+                            <p style="font-size: 1rem;" class="font-black text-slate-700 w-full text-center md:text-right leading-tight -mt-6 whitespace-nowrap" id="page16-tagline">Lift. Learn. Lead!</p>
+                        </div>
+                        <!-- Background Image - Centered and larger on mobile -->
+                        <picture class="absolute top-[25%] left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-[8%] w-[90%] md:w-[84%] h-[45%] md:h-[54%] object-cover" id="page16-bg-img">
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_16/background.avif 640w,
+                                /custom_website/static/src/img/page_16/background-768.avif 768w,
+                                /custom_website/static/src/img/page_16/background-1024.avif 1024w,
+                                /custom_website/static/src/img/page_16/background-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- JPEG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_16/background-640.png 640w,
+                                /custom_website/static/src/img/page_16/background-768.png 768w,
+                                /custom_website/static/src/img/page_16/background-1024.png 1024w,
+                                /custom_website/static/src/img/page_16/background-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- Fallback img with lazy loading -->
+                            <img 
+                                src="/custom_website/static/src/img/page_16/background.png" 
+                                alt="Background" 
+                                loading="lazy" /> 
+                        </picture>
+                        <!-- Four Images Side by Side - Centered and larger on mobile -->
+                        <div class="absolute top-[27%] left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-[12.5%] w-[85%] md:w-[72%] h-[35%] md:h-[30%] flex gap-0 items-start z-10">
+                            <!-- Image 1 - Charlie Kenter -->
+                            <div class="h-full relative" style="flex: 1.02;">
+                                <picture  id="page16-guest-1">
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_16/Charlie_Kenter-640.avif 640w,
+                                    /custom_website/static/src/img/page_16/Charlie_Kenter-768.avif 768w,
+                                    /custom_website/static/src/img/page_16/Charlie_Kenter-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_16/Charlie_Kenter-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_16/Charlie_Kenter-640.png 640w,
+                                    /custom_website/static/src/img/page_16/Charlie_Kenter-768.png 768w,
+                                    /custom_website/static/src/img/page_16/Charlie_Kenter-1024.png 1024w,
+                                    /custom_website/static/src/img/page_16/Charlie_Kenter-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img 
+                                    class="w-full h-full object-cover"
+                                    src="/custom_website/static/src/img/page_16/Charlie_Kenter.png" alt="Charlie Kenter" 
+                                    loading="lazy" /> 
+                                </picture>
+                                <!-- Text overlay - Responsive sizing -->
+                                <div class="absolute bottom-0 right-0 text-white p-1 md:p-2 text-right opacity-0" id="page16-guest-1-text">
+                                    <h3 style="font-size: clamp(0.5rem, 1.5vw, 0.875rem);" class="font-bold leading-tight text-shadow">CHARLIE</h3>
+                                    <h3 style="font-size: clamp(0.5rem, 1.5vw, 0.875rem);" class="font-bold leading-tight text-shadow">KENTER</h3>
+                                    <p style="font-size: clamp(0.375rem, 1vw, 0.75rem);" class="text-gray-200 mt-1 text-shadow">GUEST</p>
+                                </div>
+                            </div>
+                            <!-- Image 2 - Tatiana Stanton -->
+                            <div class="flex-1 h-full relative translate-y-2 md:translate-y-3">
+                                <picture  id="page16-guest-2">
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_16/Tatiana_Stanton-640.avif 640w,
+                                    /custom_website/static/src/img/page_16/Tatiana_Stanton-768.avif 768w,
+                                    /custom_website/static/src/img/page_16/Tatiana_Stanton-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_16/Tatiana_Stanton-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_16/Tatiana_Stanton-640.png 640w,
+                                    /custom_website/static/src/img/page_16/Tatiana_Stanton-768.png 768w,
+                                    /custom_website/static/src/img/page_16/Tatiana_Stanton-1024.png 1024w,
+                                    /custom_website/static/src/img/page_16/Tatiana_Stanton-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img 
+                                    class="w-full h-full object-cover "
+                                    src="/custom_website/static/src/img/page_16/Tatiana_Stanton.png" alt="Tatiana Stanton"
+                                    loading="lazy" /> 
+                                </picture>
+                                <!-- Text overlay - Responsive sizing -->
+                                <div class="absolute bottom-0 left-0 text-white p-1 md:p-2 text-left opacity-0" id="page16-guest-2-text">
+                                    <h3 style="font-size: clamp(0.45rem, 1.3vw, 0.75rem);" class="font-bold leading-tight text-shadow">TATIANA</h3>
+                                    <h3 style="font-size: clamp(0.45rem, 1.3vw, 0.75rem);" class="font-bold leading-tight text-shadow">STANTON</h3>
+                                    <p style="font-size: clamp(0.3rem, 0.8vw, 0.625rem);" class="text-gray-200 mt-1 text-shadow">GIRLSPOD</p>
+                                </div>
+                            </div>
+                            <!-- Image 3 - Abram Workman -->
+                            <div class="flex-1 h-full relative translate-y-2 md:translate-y-0">
+                                <picture  id="page16-guest-3">
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_16/Abram_Workman-640.avif 640w,
+                                    /custom_website/static/src/img/page_16/Abram_Workman-768.avif 768w,
+                                    /custom_website/static/src/img/page_16/Abram_Workman-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_16/Abram_Workman-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_16/Abram_Workman-640.png 640w,
+                                    /custom_website/static/src/img/page_16/Abram_Workman-768.png 768w,
+                                    /custom_website/static/src/img/page_16/Abram_Workman-1024.png 1024w,
+                                    /custom_website/static/src/img/page_16/Abram_Workman-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img 
+                                    class="w-full h-full object-cover"
+                                    src="/custom_website/static/src/img/page_16/Abram_Workman.png" alt="Abram Workman"
+                                    loading="lazy" /> 
+                                </picture>
+                                <!-- Text overlay - Responsive sizing -->
+                                <div class="absolute bottom-2 md:bottom-0 right-0 text-white p-1 md:p-2 text-right opacity-0" id="page16-guest-3-text">
+                                    <h3 style="font-size: clamp(0.5rem, 1.5vw, 0.875rem);" class="font-bold leading-tight text-shadow">ABRAM</h3>
+                                    <h3 style="font-size: clamp(0.5rem, 1.5vw, 0.875rem);" class="font-bold leading-tight text-shadow">WORKMAN</h3>
+                                    <p style="font-size: clamp(0.375rem, 1vw, 0.75rem);" class="text-gray-200 mt-1 text-shadow">SAUDI</p>
+                                </div>
+                            </div>
+                            <!-- Image 4 - Hanna Philips -->
+                            <div class="flex-1 h-full relative translate-y-2 md:translate-y-4">
+                                <!-- <img src="/custom_website/static/src/img/page_16/26.png" alt="Hanna Philips" class="w-full h-full object-cover" id="page16-guest-4"> -->
+                                <picture  id="page16-guest-4">
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_16/Hanna_Philips-640.avif 640w,
+                                    /custom_website/static/src/img/page_16/Hanna_Philips-768.avif 768w,
+                                    /custom_website/static/src/img/page_16/Hanna_Philips-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_16/Hanna_Philips-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_16/Hanna_Philips-640.png 640w,
+                                    /custom_website/static/src/img/page_16/Hanna_Philips-768.png 768w,
+                                    /custom_website/static/src/img/page_16/Hanna_Philips-1024.png 1024w,
+                                    /custom_website/static/src/img/page_16/Hanna_Philips-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img 
+                                    class="w-full h-full object-cover"
+                                    src="/custom_website/static/src/img/page_16/Hanna_Philips.png" alt="Hanna Philips"
+                                    loading="lazy" /> 
+                                </picture>
+                                <!-- Text overlay - Responsive sizing -->
+                                <div class="absolute bottom-0 left-0 text-white p-1 md:p-2 text-left opacity-0" id="page16-guest-4-text">
+                                    <h3 style="font-size: clamp(0.45rem, 1.3vw, 0.75rem);" class="font-bold leading-tight text-shadow">HANNA</h3>
+                                    <h3 style="font-size: clamp(0.45rem, 1.3vw, 0.75rem);" class="font-bold leading-tight text-shadow">PHILIPS</h3>
+                                    <p style="font-size: clamp(0.3rem, 0.8vw, 0.625rem);" class="text-gray-200 mt-1 text-shadow">GUEST</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Image 31.png - Mobile repositioned, desktop original -->
+                        <div class="absolute top-[65%] md:top-[65%] left-[15%] md:left-[17.5%] w-[70%] md:w-[55%] z-10"> 
+                            <img src="/custom_website/static/src/img/page_16/Top_podcaster.png" alt="Top_podcaster" class="w-full h-auto object-contain" id="page16-img-31" loading="lazy" /> 
+                        </div>
+                        <!-- Image 32.png - Mobile repositioned, desktop original -->
+                        <div class="absolute top-[70%] md:top-[75%] left-[25%] md:left-[20%] w-[60%] md:w-[50%] z-10"> <img src="/custom_website/static/src/img/page_16/Top_guest.png" alt="Top_guest" class="w-full h-auto object-contain" id="page16-img-32" loading="lazy" /> </div>
+                        <!-- Connect on Youtube Button - Centered and larger on mobile -->
+                        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-[12.5%] w-[90%] md:w-[70%] flex justify-center opacity-0" id="page16-youtube-btn">
+                            <button class="bg-slate-800 text-white px-8 py-4 md:px-6 md:py-3 rounded-lg flex items-center gap-3 hover:bg-slate-700 transition-colors">
+                                <div class="w-10 h-10 flex items-center justify-center"> <img src="/custom_website/static/src/img/page_16/youtube.png" alt="YouTube logo" class="w-full h-full object-contain" loading="lazy"/> </div>
+                                <span style="font-size: 1rem;" class="font-semibold">Connect on Youtube</span> 
+                            </button>
+                        </div>
+                        </div>
+                        <!-- Right Side: Hidden on mobile, half on desktop -->
+                        <div class="hidden md:flex md:w-1/2 h-screen flex-col pt-24 px-6 gap-4 pb-8 overflow-y-auto opacity-0" id="page16-right-section">
+                        <!-- Episode 1 -->
+                        <div class="p-3 md:p-6 flex items-center gap-2 md:gap-4 rounded-lg opacity-0" style="background-color: #e2e6eb;" id="page16-episode-1">
+                            <div class="relative flex-shrink-0"> 
+                                <img src="/custom_website/static/src/img/page_16/Episode_1.png" alt="Episode thumbnail" style="width: clamp(3rem, 8vw, 4rem); height: clamp(3rem, 8vw, 4rem);" class="object-cover rounded" loading="lazy"/>
+                                <button class="absolute inset-0 flex items-center justify-center"> <img src="/custom_website/static/src/img/page_16/button.png" alt="Play button" style="width: clamp(1rem, 2vw, 1.25rem); height: clamp(1rem, 2vw, 1.25rem);" loading="lazy"/> </button>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-1 md:gap-2 mb-1"> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="font-semibold text-gray-600">PODCASMAS</span> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600">•</span> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600">EPISODE 2</span> </div>
+                                <h3 style="font-size: clamp(0.875rem, 2.5vw, 1.125rem);" class="font-bold text-gray-800 mb-1 md:mb-2 leading-tight">How to build your personal resilience</h3>
+                                <p style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac neque sagittis, viverra ligula id, mattis ex.</p>
+                            </div>
+                        </div>
+                        <!-- Episode 2 -->
+                        <div class="p-3 md:p-6 flex items-center gap-2 md:gap-4 rounded-lg opacity-0" style="background-color: #e2e6eb;" id="page16-episode-2">
+                            <div class="relative flex-shrink-0"> <img src="/custom_website/static/src/img/page_16/Episode_2.png" alt="Episode thumbnail" style="width: clamp(3rem, 8vw, 4rem); height: clamp(3rem, 8vw, 4rem);" class="object-cover rounded" loading="lazy"/>
+                                <button class="absolute inset-0 flex items-center justify-center"> <img src="/custom_website/static/src/img/page_16/button.png" alt="Play button" style="width: clamp(1rem, 2vw, 1.25rem); height: clamp(1rem, 2vw, 1.25rem);" loading="lazy"/> </button>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-1 md:gap-2 mb-1"> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="font-semibold text-gray-600">PODCASTMASTER</span> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600">•</span> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600">EPISODE 9</span> </div>
+                                <h3 style="font-size: clamp(0.875rem, 2.5vw, 1.125rem);" class="font-bold text-gray-800 mb-1 md:mb-2 leading-tight">Imperfect hands don't reduce creativity</h3>
+                                <p style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600 leading-relaxed">Quisque sit amet lacus luctus, ultrices eros ac, laoreet sem. Aliquam erat volutpat.</p>
+                            </div>
+                        </div>
+                        <!-- Episode 3 -->
+                        <div class="p-3 md:p-6 flex items-center gap-2 md:gap-4 rounded-lg opacity-0" style="background-color: #e2e6eb;" id="page16-episode-3">
+                            <div class="relative flex-shrink-0"> <img src="/custom_website/static/src/img/page_16/Episode_3.png" alt="Episode thumbnail" style="width: clamp(3rem, 8vw, 4rem); height: clamp(3rem, 8vw, 4rem);" class="object-cover rounded" loading="lazy"/>
+                                <button class="absolute inset-0 flex items-center justify-center"> <img src="/custom_website/static/src/img/page_16/button.png" alt="Play button" style="width: clamp(1rem, 2vw, 1.25rem); height: clamp(1rem, 2vw, 1.25rem);" loading="lazy"/> </button>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-1 md:gap-2 mb-1"> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="font-semibold text-gray-600">PODCASTMASTER</span> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600">•</span> <span style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600">EPISODE 2</span> </div>
+                                <h3 style="font-size: clamp(0.875rem, 2.5vw, 1.125rem);" class="font-bold text-gray-800 mb-1 md:mb-2 leading-tight">How to build your personal resilience</h3>
+                                <p style="font-size: clamp(0.625rem, 1.5vw, 0.75rem);" class="text-gray-600 leading-relaxed">Cras facilisis orci in arcu ullamcorper viverra. Maecenas vulputate risus augue.</p>
+                            </div>
+                        </div>
+                        <!-- Show More Episodes Button - Responsive sizing -->
+                        <div class="text-center mt-3 md:mt-6 mb-2 md:mb-4 opacity-0" id="page16-show-more-btn">
+                            <button class="bg-slate-800 text-white px-4 py-2 md:px-6 md:py-3 font-semibold hover:bg-slate-700 transition-colors rounded-lg" style="font-size: clamp(0.875rem, 2vw, 1rem);"> Show More Episodes </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Right Section - Full screen episodes -->
+            <div class="md:hidden absolute inset-0 h-screen w-full flex flex-col pt-16 px-3 gap-2 pb-4 overflow-y-auto opacity-0 z-30" style="background-color: #d9cec5;" id="page16-mobile-right-section">
+                <!-- Episodes Title with rounded box -->
+                <div class="flex justify-center mb-4">
+                    <h2 class="text-white text-2xl font-bold px-6 py-3 rounded-md shadow-lg" style="background-color: #15273f;">Episodes</h2>
+                </div>
+                <!-- Episode 1 Mobile -->
+                <div class="p-4 flex items-center gap-3 rounded-lg opacity-0" style="background-color: #e2e6eb;" id="page16-mobile-episode-1">
+                    <div class="relative flex-shrink-0">
+                        <img src="/custom_website/static/src/img/page_16/Episode_1.png" alt="Episode thumbnail" class="w-16 h-16 object-cover rounded" loading="lazy" />
+                        <button class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-6 h-6 bg-white bg-opacity-80 rounded-full flex items-center justify-center">
+                            <div class="w-0 h-0 border-l-[6px] border-l-black border-y-[4px] border-y-transparent ml-1"></div>
+                        </div>
+                        </button>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-semibold text-gray-800 line-clamp-2 leading-tight">Building Resilience in the Modern Workplace</h3>
+                        <p class="text-xs text-gray-600 mt-1">Dr. Sarah Johnson • 24 min</p>
+                    </div>
+                </div>
+                <!-- Episode 2 Mobile -->
+                <div class="p-4 flex items-center gap-3 rounded-lg opacity-0" style="background-color: #e2e6eb;" id="page16-mobile-episode-2">
+                    <div class="relative flex-shrink-0">
+                        <img src="/custom_website/static/src/img/page_16/Episode_2.png" alt="Episode thumbnail" class="w-16 h-16 object-cover rounded" loading="lazy" />
+                        <button class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-6 h-6 bg-white bg-opacity-80 rounded-full flex items-center justify-center">
+                            <div class="w-0 h-0 border-l-[6px] border-l-black border-y-[4px] border-y-transparent ml-1"></div>
+                        </div>
+                        </button>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-semibold text-gray-800 line-clamp-2 leading-tight">Mental Health and Physical Fitness Connection</h3>
+                        <p class="text-xs text-gray-600 mt-1">Michael Chen • 31 min</p>
+                    </div>
+                </div>
+                <!-- Episode 3 Mobile -->
+                <div class="p-4 flex items-center gap-3 rounded-lg opacity-0" style="background-color: #e2e6eb;" id="page16-mobile-episode-3">
+                    <div class="relative flex-shrink-0">
+                        <img src="/custom_website/static/src/img/page_16/Episode_3.png" alt="Episode thumbnail" class="w-16 h-16 object-cover rounded" loading="lazy" />
+                        <button class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-6 h-6 bg-white bg-opacity-80 rounded-full flex items-center justify-center">
+                            <div class="w-0 h-0 border-l-[6px] border-l-black border-y-[4px] border-y-transparent ml-1"></div>
+                        </div>
+                        </button>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-semibold text-gray-800 line-clamp-2 leading-tight">Nutrition Strategies for Peak Performance</h3>
+                        <p class="text-xs text-gray-600 mt-1">Lisa Rodriguez • 28 min</p>
+                    </div>
+                </div>
+                <!-- Show More Button Mobile -->
+                <div class="mt-4 flex justify-center opacity-0" id="page16-mobile-show-more-btn">
+                    <button class="text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-colors" style="background-color: #15273f;"> Show More Episodes </button>
+                </div>
+            </div>
+            <!-- Section 2: FITNESS VIDEOS - Responsive Design -->
+            <div class="absolute inset-0 w-full opacity-0 z-50" style="background: linear-gradient(to bottom, #15273f 0%, #15273f 20%, #d9cec5 20%, #d9cec5 100%);" id="page16-video-section">
+                <!-- Desktop Layout Container -->
+                <div class="hidden md:flex w-full h-screen p-2 md:p-4 lg:p-6 items-start justify-center pt-[3vh]">
+                    <!-- Video Grid Layout - Desktop Only -->
+                    <div class="w-full max-w-6xl">
+                        <!-- Desktop Layout (md and above) - Grid Layout -->
+                        <div class="hidden md:block">
+                        <!-- Custom Video Grid Layout for Desktop -->
+                        <div class="grid grid-cols-12 gap-3 h-[15vh]">
+                            <!-- Left Column: Classes Section (Large) -->
+                            <div class="col-span-4 h-full" id="video-grid-classes">
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden  h-[93vh] flex flex-col">
+                                    <div class="bg-gradient-to-br from-amber-50 to-stone-100 relative flex">
+                                    <picture class="transform scale-105">
+                                        <!-- AVIF versions -->
+                                        <source type="image/avif" srcset="
+                                            /custom_website/static/src/img/page_16/Yoga_Classes-640.avif 640w,
+                                            /custom_website/static/src/img/page_16/Yoga_Classes-768.avif 768w,
+                                            /custom_website/static/src/img/page_16/Yoga_Classes-1024.avif 1024w,
+                                            /custom_website/static/src/img/page_16/Yoga_Classes-1920.avif 1920w
+                                            " sizes="(max-width: 640px) 640px,
+                                            (max-width: 768px) 768px,
+                                            (max-width: 1024px) 1024px,
+                                            1920px" />
+                                        <!-- JPEG fallback -->
+                                        <source type="image/png" srcset="
+                                            /custom_website/static/src/img/page_16/Yoga_Classes-640.png 640w,
+                                            /custom_website/static/src/img/page_16/Yoga_Classes-768.png 768w,
+                                            /custom_website/static/src/img/page_16/Yoga_Classes-1024.png 1024w,
+                                            /custom_website/static/src/img/page_16/Yoga_Classes-1920.png 1920w
+                                            " sizes="(max-width: 640px) 640px,
+                                            (max-width: 768px) 768px,
+                                            (max-width: 1024px) 1024px,
+                                            1920px" />
+                                        <!-- Fallback img with lazy loading -->
+                                        <img 
+                                            class="w-full h-[80vh] object-fill"
+                                            src="/custom_website/static/src/img/page_16/Yoga_Classes.png" alt="Yoga Classes"
+                                            loading="lazy" /> 
+                                    </picture>
+                                    <div class="absolute inset-0 bg-black opacity-10 "></div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                        <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-20 h-20 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 ">
+                                            <div class="w-0 h-0 border-l-[20px] border-l-slate-700 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                                        </button>
+                                    </div>
+                                    </div>
+                                    <div class="p-2 bg-white py-6">
+                                    <h2 class="text-lg font-bold text-slate-800">Classes</h2>
+                                    <p class="text-sm text-slate-600">14 Videos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Middle Column: Fitness (top) + Dance & Cardio (bottom) -->
+                            <div class="col-span-4 h-full flex flex-col gap-3">
+                                <!-- Fitness Section (Horizontal) -->
+                                <div class="h-1/2" id="video-grid-fitness">
+                                    <div class="bg-white rounded-xl shadow-lg overflow-hidden  h-full flex flex-col">
+                                    <div class="relative bg-gradient-to-br from-stone-200 to-stone-300 flex-1">
+                                        <!-- <img src="/custom_website/static/src/img/page_5/dance_fitness.jpg" alt="Fitness Training" class="w-full h-full object-cover transform scale-105"> -->
+                                        <picture class="transform scale-105">
+                                            <!-- AVIF versions -->
+                                            <source type="image/avif" srcset="
+                                                /custom_website/static/src/img/page_5/dance_fitness-640.avif 640w,
+                                                /custom_website/static/src/img/page_5/dance_fitness-768.avif 768w,
+                                                /custom_website/static/src/img/page_5/dance_fitness-1024.avif 1024w,
+                                                /custom_website/static/src/img/page_5/dance_fitness-1920.avif 1920w
+                                                " sizes="(max-width: 640px) 640px,
+                                                (max-width: 768px) 768px,
+                                                (max-width: 1024px) 1024px,
+                                                1920px" />
+                                            <!-- JPEG fallback -->
+                                            <source type="image/png" srcset="
+                                                /custom_website/static/src/img/page_5/dance_fitness-640.png 640w,
+                                                /custom_website/static/src/img/page_5/dance_fitness-768.png 768w,
+                                                /custom_website/static/src/img/page_5/dance_fitness-1024.png 1024w,
+                                                /custom_website/static/src/img/page_5/dance_fitness-1920.png 1920w
+                                                " sizes="(max-width: 640px) 640px,
+                                                (max-width: 768px) 768px,
+                                                (max-width: 1024px) 1024px,
+                                                1920px" />
+                                            <!-- Fallback img with lazy loading -->
+                                            <img 
+                                                class="w-full h-full object-cover"
+                                                src="/custom_website/static/src/img/page_5/dance_fitness.jpg" alt="Fitness Training"
+                                                loading="lazy" /> 
+                                        </picture>
+                                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                            <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-16 h-16 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 ">
+                                                <div class="w-0 h-0 border-l-[16px] border-l-slate-700 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent ml-1"></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-white">
+                                        <h3 class="text-sm font-bold text-slate-800">Fitness</h3>
+                                        <p class="text-xs text-slate-600">14 Videos</p>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- Dance & Cardio Side by Side (Bottom) -->
+                                <div class="h-1/2 grid grid-cols-2 gap-2">
+                                    <!-- Dance Section -->
+                                    <div class="bg-white rounded-xl shadow-lg overflow-hidden  h-[44vh] flex flex-col" id="video-grid-dance">
+                                    <div class="relative flex-1">
+                                        <!-- <img src="/custom_website/static/src/img/page_5/power_yoga.jpg" alt="Dance Fitness" class="w-full h-[35vh] object-cover transform scale-105"> -->
+                                        <picture class="transform scale-105">
+                                            <!-- AVIF versions -->
+                                            <source type="image/avif" srcset="
+                                                /custom_website/static/src/img/page_5/power_yoga-640.avif 640w,
+                                                /custom_website/static/src/img/page_5/power_yoga-768.avif 768w,
+                                                /custom_website/static/src/img/page_5/power_yoga-1024.avif 1024w,
+                                                /custom_website/static/src/img/page_5/power_yoga-1920.avif 1920w
+                                                " sizes="(max-width: 640px) 640px,
+                                                (max-width: 768px) 768px,
+                                                (max-width: 1024px) 1024px,
+                                                1920px" />
+                                            <!-- JPEG fallback -->
+                                            <source type="image/png" srcset="
+                                                /custom_website/static/src/img/page_5/power_yoga-640.png 640w,
+                                                /custom_website/static/src/img/page_5/power_yoga-768.png 768w,
+                                                /custom_website/static/src/img/page_5/power_yoga-1024.png 1024w,
+                                                /custom_website/static/src/img/page_5/power_yoga-1920.png 1920w
+                                                " sizes="(max-width: 640px) 640px,
+                                                (max-width: 768px) 768px,
+                                                (max-width: 1024px) 1024px,
+                                                1920px" />
+                                            <!-- Fallback img with lazy loading -->
+                                            <img class="w-full h-[35vh] object-cover"
+                                                src="/custom_website/static/src/img/page_5/power_yoga.jpg" alt="power_yoga"
+                                                loading="lazy" /> 
+                                        </picture>
+                                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                            <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 ">
+                                                <div class="w-0 h-0 border-l-[12px] border-l-slate-700 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-0.5"></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-white ">
+                                        <h3 class="text-sm font-bold text-slate-800 ">Dance</h3>
+                                        <p class="text-xs text-slate-600">8 Videos</p>
+                                    </div>
+                                    </div>
+                                    <!-- Cardio Section -->
+                                    <div class="bg-white rounded-xl shadow-lg overflow-hidden  h-[44vh] flex flex-col" id="video-grid-cardio">
+                                    <div class="relative bg-gradient-to-br from-stone-100 to-stone-200 flex-1">
+                                        <!-- <img src="/custom_website/static/src/img/page_16/37.png" alt="Cardio Training" class="w-full h-[35vh] object-cover transform scale-105"> -->
+                                        <picture class="transform scale-105">
+                                            <!-- AVIF versions -->
+                                            <source type="image/avif" srcset="
+                                                /custom_website/static/src/img/page_16/Cardio_Training-640.avif 640w,
+                                                /custom_website/static/src/img/page_16/Cardio_Training-768.avif 768w,
+                                                /custom_website/static/src/img/page_16/Cardio_Training-1024.avif 1024w,
+                                                /custom_website/static/src/img/page_16/Cardio_Training-1920.avif 1920w
+                                                " sizes="(max-width: 640px) 640px,
+                                                (max-width: 768px) 768px,
+                                                (max-width: 1024px) 1024px,
+                                                1920px" />
+                                            <!-- JPEG fallback -->
+                                            <source type="image/png" srcset="
+                                                /custom_website/static/src/img/page_16/Cardio_Training-640.png 640w,
+                                                /custom_website/static/src/img/page_16/Cardio_Training-768.png 768w,
+                                                /custom_website/static/src/img/page_16/Cardio_Training-1024.png 1024w,
+                                                /custom_website/static/src/img/page_16/Cardio_Training-1920.png 1920w
+                                                " sizes="(max-width: 640px) 640px,
+                                                (max-width: 768px) 768px,
+                                                (max-width: 1024px) 1024px,
+                                                1920px" />
+                                            <!-- Fallback img with lazy loading -->
+                                            <img class="w-full h-[35vh] object-cover "
+                                                src="/assets/page_16/Cardio_Training.png" alt="Cardio Training"
+                                                loading="lazy" /> 
+                                        </picture>
+                                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                            <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 ">
+                                                <div class="w-0 h-0 border-l-[12px] border-l-slate-700 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-0.5"></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-white">
+                                        <h3 class="text-sm font-bold text-slate-800">Cardio</h3>
+                                        <p class="text-xs text-slate-600">14 Videos</p>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right Column: Yoga Section (Same height as Classes) -->
+                            <div class="col-span-4 h-full" id="video-grid-yoga">
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden  h-[75vh] flex flex-col">
+                                    <div class="relative flex-1">
+                                    <!-- <img src="/custom_website/static/src/img/page_5/strength_recovery.jpg" alt="Yoga Sessions" class="w-full h-[65vh] object-cover transform scale-105"> -->
+                                    <picture >
+                                        <!-- AVIF versions -->
+                                        <source type="image/avif" srcset="
+                                            /custom_website/static/src/img/page_5/strength_recovery-640.avif 640w,
+                                            /custom_website/static/src/img/page_5/strength_recovery-768.avif 768w,
+                                            /custom_website/static/src/img/page_5/strength_recovery-1024.avif 1024w,
+                                            /custom_website/static/src/img/page_5/strength_recovery-1920.avif 1920w
+                                            " sizes="(max-width: 640px) 640px,
+                                            (max-width: 768px) 768px,
+                                            (max-width: 1024px) 1024px,
+                                            1920px" />
+                                        <!-- JPEG fallback -->
+                                        <source type="image/png" srcset="
+                                            /custom_website/static/src/img/page_5/strength_recovery-640.png 640w,
+                                            /custom_website/static/src/img/page_5/strength_recovery-768.png 768w,
+                                            /custom_website/static/src/img/page_5/strength_recovery-1024.png 1024w,
+                                            /custom_website/static/src/img/page_5/strength_recovery-1920.png 1920w
+                                            " sizes="(max-width: 640px) 640px,
+                                            (max-width: 768px) 768px,
+                                            (max-width: 1024px) 1024px,
+                                            1920px" />
+                                        <!-- Fallback img with lazy loading -->
+                                        <img class="w-full h-[65vh] object-cover transform scale-105"
+                                            src="/custom_website/static/src/img/page_5/strength_recovery.jpg" alt="Yoga Sessions" 
+                                            loading="lazy" /> 
+                                    </picture>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                        <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-20 h-20 flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 ">
+                                            <div class="w-0 h-0 border-l-[20px] border-l-slate-700 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                                        </button>
+                                    </div>
+                                    </div>
+                                    <div class="p-4 bg-white py-2">
+                                    <h3 class="text-lg font-bold text-slate-800">Yoga</h3>
+                                    <p class="text-sm text-slate-600">7 Videos</p>
+                                    </div>
+                                </div>
+                                <!-- Show More Button for Desktop -->
+                                <div class="text-center mt-8">
+                                    <button class="bg-[#182a41] hover:bg-[#1e3249] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"> Show More Categories </button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile Layout - Full Screen Scroll Container -->
+                <div class="block md:hidden w-full h-screen overflow-y-auto snap-y snap-mandatory" style="scroll-behavior: smooth;overflow: hidden;">
+                    <div style="height: 500vh;">
+                        <!-- Container for all sections -->
+                        <!-- Classes Section - Full Screen -->
+                        <div class="h-screen absolute w-full flex flex-col justify-center items-center p-6 snap-start" id="mobile-video-classes">
+                        <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden ">
+                            <div class="relative h-80">
+                            <!-- <img src="/custom_website/static/src/img/page_16/36.png" alt="Yoga Classes" class="w-full h-full object-cover transform scale-105"> -->
+                                <picture >
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_16/Yoga_Classes-640.avif 640w,
+                                    /custom_website/static/src/img/page_16/Yoga_Classes-768.avif 768w,
+                                    /custom_website/static/src/img/page_16/Yoga_Classes-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_16/Yoga_Classes-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_16/Yoga_Classes-640.png 640w,
+                                    /custom_website/static/src/img/page_16/Yoga_Classes-768.png 768w,
+                                    /custom_website/static/src/img/page_16/Yoga_Classes-1024.png 1024w,
+                                    /custom_website/static/src/img/page_16/Yoga_Classes-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img 
+                                    class="w-full h-full object-cover transform scale-105"
+                                    src="/custom_website/static/src/img/page_16/Yoga_Classes.png" alt="Yoga Classes"
+                                    loading="lazy" /> 
+                                </picture>
+                                <div class="absolute inset-0 bg-black opacity-10 "></div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-20 h-20 flex items-center justify-center shadow-xl transition-all duration-200 hover:scale-110 ">
+                                    <div class="w-0 h-0 border-l-[20px] border-l-slate-700 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-8 bg-white">
+                                <h2 class="text-3xl font-bold text-slate-800 mb-3">Yoga Classes</h2>
+                                <p class="text-xl text-slate-600">14 Videos</p>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- Dance Section - Full Screen -->
+                        <div class="h-screen absolute w-full flex flex-col justify-center items-center p-6 snap-start" id="mobile-video-dance">
+                        <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden ">
+                            <div class="relative h-80">
+                                <!-- <img src="/custom_website/static/src/img/page_5/power_yoga.jpg" alt="Dance Fitness" class="w-full h-full object-cover transform scale-105"> -->
+                                <picture >
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_5/power_yoga-640.avif 640w,
+                                    /custom_website/static/src/img/page_5/power_yoga-768.avif 768w,
+                                    /custom_website/static/src/img/page_5/power_yoga-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_5/power_yoga-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_5/power_yoga-640.png 640w,
+                                    /custom_website/static/src/img/page_5/power_yoga-768.png 768w,
+                                    /custom_website/static/src/img/page_5/power_yoga-1024.png 1024w,
+                                    /custom_website/static/src/img/page_5/power_yoga-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img class="w-full h-full object-cover lg:object-fill transform scale-105"
+                                    src="/custom_website/static/src/img/page_5/power_yoga.jpg" alt="power_yoga"
+                                    loading="lazy" /> 
+                                </picture>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-20 h-20 flex items-center justify-center shadow-xl transition-all duration-200 hover:scale-110 ">
+                                    <div class="w-0 h-0 border-l-[20px] border-l-slate-700 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-8 bg-slate-200">
+                                <h3 class="text-3xl font-bold text-slate-800 mb-3">Dance</h3>
+                                <p class="text-xl text-slate-600">8 Videos</p>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- Cardio Section - Full Screen -->
+                        <div class="h-screen absolute w-full flex flex-col justify-center items-center p-6 snap-start" id="mobile-video-cardio">
+                        <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden ">
+                            <div class="relative bg-gradient-to-br from-stone-100 to-stone-200 h-80">
+                                <!-- <img src="/custom_website/static/src/img/page_16/37.png" alt="Cardio Training" class="w-full h-full object-cover transform scale-105"> -->
+                                <picture >
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_16/Cardio_Training-640.avif 640w,
+                                    /custom_website/static/src/img/page_16/Cardio_Training-768.avif 768w,
+                                    /custom_website/static/src/img/page_16/Cardio_Training-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_16/Cardio_Training-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_16/Cardio_Training-640.png 640w,
+                                    /custom_website/static/src/img/page_16/Cardio_Training-768.png 768w,
+                                    /custom_website/static/src/img/page_16/Cardio_Training-1024.png 1024w,
+                                    /custom_website/static/src/img/page_16/Cardio_Training-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img class="w-full h-full object-cover transform scale-105"
+                                    src="/assets/page_16/Cardio_Training.png" alt="Cardio Training"
+                                    loading="lazy" /> 
+                                </picture>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-20 h-20 flex items-center justify-center shadow-xl transition-all duration-200 hover:scale-110 ">
+                                    <div class="w-0 h-0 border-l-[20px] border-l-slate-700 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-8 bg-white">
+                                <h3 class="text-3xl font-bold text-slate-800 mb-3">Cardio</h3>
+                                <p class="text-xl text-slate-600">14 Videos</p>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- Fitness Section - Full Screen -->
+                        <div class="h-screen absolute w-full flex flex-col justify-center items-center p-6 snap-start" id="mobile-video-fitness">
+                        <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden ">
+                            <div class="relative bg-gradient-to-br from-stone-200 to-stone-300 h-80">
+                                <!-- <img src="/custom_website/static/src/img/page_5/dance_fitness.jpg" alt="Fitness Training" class="w-full h-full object-cover transform scale-105"> -->
+                                <picture >
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_5/dance_fitness-640.avif 640w,
+                                    /custom_website/static/src/img/page_5/dance_fitness-768.avif 768w,
+                                    /custom_website/static/src/img/page_5/dance_fitness-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_5/dance_fitness-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_5/dance_fitness-640.png 640w,
+                                    /custom_website/static/src/img/page_5/dance_fitness-768.png 768w,
+                                    /custom_website/static/src/img/page_5/dance_fitness-1024.png 1024w,
+                                    /custom_website/static/src/img/page_5/dance_fitness-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img  class="w-full h-full object-cover transform scale-105"
+                                    src="/custom_website/static/src/img/page_5/dance_fitness.jpg" alt="Fitness Training"
+                                    loading="lazy" /> 
+                                </picture>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-20 h-20 flex items-center justify-center shadow-xl transition-all duration-200 hover:scale-110 ">
+                                    <div class="w-0 h-0 border-l-[20px] border-l-slate-700 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-8 bg-white">
+                                <h3 class="text-3xl font-bold text-slate-800 mb-3">Fitness</h3>
+                                <p class="text-xl text-slate-600">14 Videos</p>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- Yoga Section - Full Screen -->
+                        <div class="h-screen absolute w-full flex flex-col justify-center items-center p-6 snap-start" id="mobile-video-yoga">
+                        <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden ">
+                            <div class="relative h-80">
+                                <!-- <img src="/custom_website/static/src/img/page_5/strength_recovery.jpg" alt="Yoga Sessions" class="w-full h-full object-cover transform scale-105"> -->
+                                <picture >
+                                    <!-- AVIF versions -->
+                                    <source type="image/avif" srcset="
+                                    /custom_website/static/src/img/page_5/strength_recovery-640.avif 640w,
+                                    /custom_website/static/src/img/page_5/strength_recovery-768.avif 768w,
+                                    /custom_website/static/src/img/page_5/strength_recovery-1024.avif 1024w,
+                                    /custom_website/static/src/img/page_5/strength_recovery-1920.avif 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- JPEG fallback -->
+                                    <source type="image/png" srcset="
+                                    /custom_website/static/src/img/page_5/strength_recovery-640.png 640w,
+                                    /custom_website/static/src/img/page_5/strength_recovery-768.png 768w,
+                                    /custom_website/static/src/img/page_5/strength_recovery-1024.png 1024w,
+                                    /custom_website/static/src/img/page_5/strength_recovery-1920.png 1920w
+                                    " sizes="(max-width: 640px) 640px,
+                                    (max-width: 768px) 768px,
+                                    (max-width: 1024px) 1024px,
+                                    1920px" />
+                                    <!-- Fallback img with lazy loading -->
+                                    <img class="w-full h-full object-cover transform scale-105"
+                                    src="/custom_website/static/src/img/page_5/strength_recovery.jpg" alt="Yoga Sessions" 
+                                    loading="lazy" /> 
+                                </picture>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <button class="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full w-20 h-20 flex items-center justify-center shadow-xl transition-all duration-200 hover:scale-110 ">
+                                    <div class="w-0 h-0 border-l-[20px] border-l-slate-700 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-8 bg-white">
+                                <h3 class="text-3xl font-bold text-slate-800 mb-3">Yoga</h3>
+                                <p class="text-xl text-slate-600">7 Videos</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 5: Classes Section -->
+        <template id="aura_page_5" name="AuraCenter Page 5 - Classes">
+            <div class="flex-col flex bg-no-repeat page page-5 justify-around" id="page-5">
+                <div id="classes-section" class="flex flex-col items-center">
+                    <h1 class="bg-[#CCE5E1] text-xl font-bold text-black px-4 py-2 rounded-md mt-8">OUR CLASSES</h1>
+                    <h1 class="text-xl lg:text-4xl font-bold text-black mt-8 text-center">FITNESS CLASSES FOR EVERY GOAL</h1>
+                </div>
+                <div class="flex flex-nowrap w-max space-x-4 mt-8 classes-container space-x-4"></div>
+                <div class="h-[10vh]"></div>
+            </div>
+        </template>
+    </data>
+</odoo>

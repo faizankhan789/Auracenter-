@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Page 7: Aura Store Section -->
+        <template id="aura_page_7" name="AuraCenter Page 7 - Aura Store">
+            <div class="flex-col flex items-center bg-no-repeat page page-7 justify-center" id="page-7">
+                <button class="bg-[#CCE5E1] px-4 py-2 rounded-lg font-semibold mt-8 lg:mt-20 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md text-black">AURA STORE</button>
+                
+                <!-- Text content -->
+                <div class="flex flex-col lg:flex-row my-8 justify-center h-full">
+                    <div class="absolute lg:relative lg:mr-20 opacity-20 lg:opacity-100 left-0 top-0 bottom-0 w-full h-full flex justify-center">
+                        <picture>
+                            <!-- AVIF versions -->
+                            <source type="image/avif" srcset="
+                                /custom_website/static/src/img/page_7/women-640.avif 640w,
+                                /custom_website/static/src/img/page_7/women-768.avif 768w,
+                                /custom_website/static/src/img/page_7/women-1024.avif 1024w,
+                                /custom_website/static/src/img/page_7/women-1920.avif 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- PNG fallback -->
+                            <source type="image/png" srcset="
+                                /custom_website/static/src/img/page_7/women-640.png 640w,
+                                /custom_website/static/src/img/page_7/women-768.png 768w,
+                                /custom_website/static/src/img/page_7/women-1024.png 1024w,
+                                /custom_website/static/src/img/page_7/women-1920.png 1920w
+                                " sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px" />
+                            <!-- Fallback img with lazy loading -->
+                            <img class="w-auto h-[90vh] lg:h-[75vh]" 
+                                 src="/custom_website/static/src/img/page_7/women.png" 
+                                 alt="Woman Exercising" 
+                                 loading="lazy" />
+                        </picture>
+                    </div>
+                    <div class="px-10 mt-10 justify-center flex flex-col">
+                        <div class="px-4 lg:px-0">
+                            <h2 class="font-bold mb-10 text-center" style="font-size: clamp(1rem, 3vw, 5rem)">UPGRADE YOUR STYLE WITH AURA WEAR</h2>
+                            <p class="text-[clamp(0.5rem, 2.5vw, 5rem)] text-justify" style="font-size: clamp(0.75rem, 2vw, 3rem)">Nam ut hendrerit leo. Aenean vel ipsum nunc. Curabitur in tellus vitae nisi aliquet dapibus non et erat. Pellentesque porta sapien non accumsan dignissim curabitur sagittis nulla sit amet dolor feugiat.</p>
+                        </div>
+                        <div class="flex justify-center mt-10">
+                            <button class="self-center px-6 py-3 mt-8 lg:mt-10 bg-[#CCE5E1] hover:bg-[#B8DDD8] rounded-lg font-bold text-black transition-all duration-300 hover:-translate-y-1 nav-link" data-page="17">Explore More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>
