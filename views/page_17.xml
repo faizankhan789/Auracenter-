@@ -3,7 +3,7 @@
     <data>
         <!-- Page 17: Contact/Appointment Form Section -->
         <template id="aura_page_17" name="AuraCenter Page 17 - Contact Form">
-          <div class="page page-17 flex items-center justify-center w-full" id="page-17">
+          <div class="relative h-[100vh] w-[100vw] page-17 flex items-center justify-center w-full" id="page-17">
 				<!-- Desktop Layout -->
 				<div class="hidden md:flex relative h-screen w-full">
 					<!-- Left Side - Text Content (No Background) -->

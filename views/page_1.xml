@@ -3,11 +3,11 @@
     <data>
         <!-- Page 1: Landing Page -->
         <template id="aura_page_1" name="AuraCenter Page 1 - Landing">
-            <div class="flex-col lg:flex-row flex justify-around bg-no-repeat page page-1 items-center" id="page-1">
+            <div class="flex-col lg:flex-row flex justify-around bg-no-repeatp page-1 items-center absolute top-0 left-0 w-[100vw] h-[100vh]" id="page-1">
                 <div class="flex flex-col lg:flex-row">
 					 <img id="page1Img" src="/custom_website/static/src/img/page_1/women.png" class=" fixed self-center lg:relative opacity-80 w-auto h-[60vh] lg:w-[35vw] lg:h-auto object-contain" alt="Women Exercising" loading="lazy" /> 
                     <div class="flex flex-col justify-center items-center lg:relative lg:right-[5%] lg:top-[-50px] mt-8 md-pt-0 ">
-                        <h1 style="font-size: clamp(1rem, 4vw, 7rem)" class="font-bold text-white mb-4 text-center pin-text"> Auracenter - A New Era <br />of Fitness</h1>
+                        <h1 style="font-size: clamp(1rem, 4vw, 7rem)" class="font-bold text-white mb-4 text-center pin-text will-change-transform"> Auracenter - A New Era <br />of Fitness</h1>
                         <button id="learnMore" class="nav-link bg-white hover:bg-white-600 text-black px-6 lg:px-8 py-3 lg:py-4 rounded-lg text-sm lg:text-base font-semibold transition-all transform hover:scale-105" data-page="17"> Learn More </button>
                     </div>
                 </div>

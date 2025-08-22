@@ -3,7 +3,7 @@
     <template id="custom_body_class" inherit_id="web.frontend_layout">
         <xpath expr="//body" position="attributes">
             <attribute name="t-attf-class">
-                bodyLoading bg-gray-900
+                #{'bodyLoading bg-gray-900' if request.httprequest.path == '/' else ''} #{body_class or ''}
             </attribute>
         </xpath>
     </template>

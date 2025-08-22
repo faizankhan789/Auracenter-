@@ -3,7 +3,7 @@
     <data>
         <!-- Page 9: Schedule Section -->
         <template id="aura_page_9" name="AuraCenter Page 9 - Schedule">
-            <div class="flex-col flex items-center bg-no-repeat page page-9 justify-center" id="page-9">
+            <div class="flex-col flex items-center bg-no-repeat w-[100vw] h-[100vh] page-9 justify-center" id="page-9">
                 <!-- Schedule Badge -->
                 <div id="schedule_heading" class="text-center mb-1">
                     <div class="inline-block bg-[#c8e6dc] px-9 py-2 rounded-md">

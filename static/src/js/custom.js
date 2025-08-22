@@ -24,7 +24,8 @@ odoo.define('custom_website.aura_center', function (require) {
                     updateInterval: 1200
                 }
             };
-            this.tl = null
+            this.multiplier = 600;
+            this.tl = null;
             this.trainers = [];
             this.videos = [];
             this.cards = [];
@@ -140,7 +141,7 @@ odoo.define('custom_website.aura_center', function (require) {
             <div class="video-wrapper w-full h-full flex items-center justify-center">
                     <iframe 
                         id="video-${index}"
-                        class="w-auto h-full object-cover block"
+                        class="w-full h-full object-cover block"
                         src="${src}?enablejsapi=1"
                         title="YouTube video player"
                         frameborder="0"
@@ -158,7 +159,7 @@ odoo.define('custom_website.aura_center', function (require) {
             if (!container) return;
 
             const card = document.createElement('div');
-            card.className = 'trainer-card trainer_cards w-[45vw] lg:w-[30vw] h-[45vh] lg:hover:z-[3] cursor-pointer group flex-shrink-0';
+            card.className = 'trainer-card trainer_cards w-[50vw] lg:w-[30vw] h-[30vh] lg:hover:z-[3] cursor-pointer group flex-shrink-0';
             card.id = "trainer-card-container-"+index
             card.innerHTML = `
                 <div id="trainer-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
@@ -191,13 +192,13 @@ odoo.define('custom_website.aura_center', function (require) {
                     <img src="${imageSrc}.png" alt="${title}"  loading="lazy"  class="absolute z-[1] w-full h-full object-cover object-center ease-in-out rounded-xl transition-all duration-800 lg:group-hover:scale-[1.05] lg:group-hover:z-[2]" loading="lazy">
                 </picture>               
                     <div id="trainer-card-content-${index}" class="rounded-xl card__back justify-center h-full lg:h-[22vh] w-[45vw] px-4 py-4 lg:w-[30vw] absolute bottom-0 left-0 bg-[#c7b6a8] lg:translate-y-0 transition-transform transition-opacity duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] will-change-[opacity] cursor-pointer flex flex-col justify-start items-start">
-                        <h2 class="text-lg md:text-2xl font-bold uppercase tracking-wide" style="line-height: 1">${name}</h2>
-                        <p class="text-md md:text-xl font-medium">${title}</p>
+                        <h2 class="text-2xl md:text-2xl font-bold uppercase tracking-wide" style="line-height: 1">${name}</h2>
+                        <p class="text-lg md:text-xl font-medium">${title}</p>
                         <ul class="mt-2">
                             ${qualifications.map(qual => `
                                 <li class="flex items-center">
-                                    <span class="mx-3 text-[#182a41] text-sm md:text-lg">•</span>
-                                    <span class="text-sm md:text-lg leading-relaxed">${qual}</span>
+                                    <span class="mx-3 text-[#182a41] text-md md:text-lg">•</span>
+                                    <span class="text-md md:text-lg leading-relaxed">${qual}</span>
                                 </li>
                             `).join('')}
                         </ul>
@@ -212,7 +213,7 @@ odoo.define('custom_website.aura_center', function (require) {
             if (!container) return;
 
             const card = document.createElement('div');
-            card.className = 'hover-card classes_cards w-[45vw] lg:w-[30vw] h-[50vh] lg:hover:z-[3] cursor-pointer group flex-shrink-0';
+            card.className = 'hover-card classes_cards w-[50vw] lg:w-[30vw] h-[30vh] lg:h-[50vh] lg:hover:z-[3] cursor-pointer group flex-shrink-0';
             card.id = "hover-card-container-"+index
             card.innerHTML = `
                 <div id="hover-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
@@ -403,11 +404,6 @@ odoo.define('custom_website.aura_center', function (require) {
             container.innerHTML = '';
             
             this.schedule.forEach(day => this.addScheduleDay(day));
-
-            // Refresh ScrollTrigger to ensure page transitions continue working
-            if (typeof ScrollTrigger !== 'undefined') {
-                ScrollTrigger.refresh();
-            }
         }
 
         /**
@@ -426,14 +422,15 @@ odoo.define('custom_website.aura_center', function (require) {
                     ease: "power2.inOut"
                 })
                 .to('.pin-text', {
-                    scale: 2,
-                    duration: 1.5,
-                    ease: "power3.inOut",
-                    ...(isMobile ? { y: "25vh" } : {})
+                    scale: 2, // reduced scale for mobile
+                    y: isMobile ? "25vh" : 0, // move down on mobile
+                    transformOrigin: "center center", // prevents weird growth direction
+                    duration: isMobile ? 1 : 1.5, // shorter for mobile to avoid lag
+                    force3D: true, // ensures GPU acceleration
+                    ease: "power3.inOut"
                 }, "<")
                 .to({}, { duration: 1 });
         }
-
         /**
          * Animate page 2 slide-in transition.
          * 
@@ -446,10 +443,10 @@ odoo.define('custom_website.aura_center', function (require) {
             fullTimeline
                 .to(".page-2", { 
                     xPercent: 0, 
-                    duration: 2.5,
+                    duration: 1,
                     ease: "power2.inOut"
                 })        
-                .to({}, { duration: 1.5 });
+                .to({}, { duration: 1 });
         }
 
         /**
@@ -464,48 +461,23 @@ odoo.define('custom_website.aura_center', function (require) {
             fullTimeline
                 .to(".page-3", { 
                     xPercent: 0, 
-                    duration: 2.5,
-                    ease: "power2.inOut"
-                })
-                .to({}, { duration: 1.5 });
-        }
-
-        /**
-         * Animate page 4 "Your Strength" intro with rotating elements.
-         * 
-         * @private
-         * @method page4Animation
-         * @param {gsap.core.Timeline} fullTimeline - Main GSAP timeline
-         * @param {boolean} isMobile - Device type flag
-         */
-        page4Animation(fullTimeline, isMobile) {
-            fullTimeline
-                .to(".page-4", { 
-                    yPercent: 0, 
                     duration: 1,
                     ease: "power2.inOut"
                 })
-                .to(".page-4 button, #about-us", {
-                    opacity: 1,
-                    scale: 1,
-                    rotationX: 0,
-                    duration: 0.5,
-                    stagger: 0.3,
-                    ease: "back.out(1.7)"
-                })
-                .to({}, { duration: 1.5 });
+                .to({}, { duration: 1 });
         }
+
 
         /**
          * Animate page 5 classes section with card carousel and responsive interactions.
          * 
          * @private
-         * @method page5Animation
-         * @param {gsap.core.Timeline} fullTimeline - Main GSAP timeline
-         * @param {boolean} isMobile - Device type flag
+         * @method page52nimation
+         * @param {gsap.core.Timeline} fullTimelin2 - Main GSAP timeline
+         * @param {boolean} isMobile - Device t2pe flag
          */
         page5Animation(fullTimeline, isMobile) {
-            const cardWidthVW = isMobile ? 45 : 30;
+            const cardWidthVW = isMobile ? 50 : 30;
             const cardMarginPx = 16;
             const vw = window.innerWidth / 100;
             const cardWidth = (cardWidthVW * vw + cardMarginPx)
@@ -515,32 +487,17 @@ odoo.define('custom_website.aura_center', function (require) {
             const minVisibleNumber = Math.floor(visibleNumber)
             const visibleCards = cards.slice(0, Math.ceil(visibleNumber));
             fullTimeline
-                // Page 5 - Our Classes intro animation with wave effect
-                .to(".page-5", { 
-                    yPercent: 0, 
-                    duration: 1.5,
-                    ease: "power2.inOut"
-                })
-                // Page 5 intro sequence - wave reveal
-                .to("#classes-section", {
-                    opacity: 1,
-                    y: 0,
-                    skewY: 0,
-                    duration: 1.2,
-                    stagger: 0.2,
-                    ease: "elastic.out(1, 0.8)"
-                })
                 .to(".classes-container", {
                     x: 20,
                     opacity: 1,
-                    duration: isMobile ? 1 : 1,
-                    ease: "power2.out"
+                    duration: isMobile ? 0.8 : 1,
+                    ease: isMobile ? "power1.out" : "power2.out"
                 })
                 .to(visibleCards , {
                     x: 0,
                     opacity: 1,
-                    duration: 0.5,
-                    stagger: 0.6,
+                    duration: isMobile ? 0.3 : 0.5,
+                    stagger: isMobile ? 0.3 : 0.6,
                     ease: "power2.out"
                 }, "-=0.8");
                 if (isMobile) {
@@ -549,28 +506,26 @@ odoo.define('custom_website.aura_center', function (require) {
                     if (flipped == minVisibleNumber) {
                         fullTimeline.to(".classes-container", {
                             x: -cardWidth * index,
-                            ease: "power2.inOut",
-                            duration: 1.5
+                            ease: "power1.inOut",
+                            duration: 1
                         });
                         flipped = 0
-                        }
-                        fullTimeline.to("#hover-card-" + (index + 1), {
-                            rotationY: 180,
-                            duration: 0.8,
-                            ease: "power2.out",
-                            transformOrigin: "center"
-                        });
+                    }
+                        fullTimeline.fromTo("#hover-card-" + (index + 1),
+                            { rotationY: 0, transformOrigin: "center" }, // starting point
+                            { rotationY: 180, duration: 0.8, ease: "power2.out" } // ending point
+                        );
 
-                        fullTimeline.to({}, { duration: 5 });
-                        fullTimeline.to("#hover-card-" + (index + 1), {
-                            rotationY: 0,
-                            duration: 1,
-                            ease: "power2.out",
-                            transformOrigin: "center"
-                        }, "+=0.5");
-                        
+                        fullTimeline.to({}, { duration: 2 });
+                        fullTimeline.fromTo("#hover-card-" + (index + 1),
+                            { rotationY: 180, transformOrigin: "center" }, // starting point
+                            { rotationY: 0, duration: 0.8, ease: "power2.out" },
+                            "+=0.8" // ending point
+                        );
                         flipped = flipped + 1
                     }
+                    // Add completion buffer for mobile
+                    fullTimeline.to({}, { duration: 1 });
                 } else {
                     let flipped = 0
                     for (let index = 0; index < cards.length; index++) {
@@ -584,28 +539,27 @@ odoo.define('custom_website.aura_center', function (require) {
                         }
                         const itemIndex = index + 1  
                         fullTimeline.set("#hover-card-content-" + itemIndex, { 
-                            force3D: true,
+                            force3D: "auto",
                             backfaceVisibility: "hidden"
                         })
                         .to("#hover-card-content-" + itemIndex, {
                             x: "95%",
                             ease: "power2.out",
-                            duration: 0.3
+                            duration: 0.8
                         })
-                        .set("#hover-card-content-" + itemIndex, { zIndex: 1 }, "-=0.4")
-                        .set("#hover-card-img-" + itemIndex, { zIndex: 2, scale: 1.05 }, "-=0.4")
-                        .set("#hover-card-container-" + itemIndex, { zIndex: 3 }, "-=0.4");
+                        .set("#hover-card-content-" + itemIndex, { zIndex: 1 }, "<")
+                        .set("#hover-card-img-" + itemIndex, { zIndex: 2, scale: 1.05 }, "<")
+                        .set("#hover-card-container-" + itemIndex, { zIndex: 3 }, "<");
                         if (index > 0) {
                             fullTimeline.set("#hover-card-content-" + index, { 
                                 zIndex: 0, 
                                 x: 0,
-                                force3D: true,
+                                force3D: "auto",
                                 backfaceVisibility: "hidden"
-                            }, "-=0.3")
-                            .set('#hover-card-img-' + index, { zIndex: 1, scale: 1}, "-=0.3")
-                            .set("#hover-card-container-" + index, { zIndex: 0}, "-=0.3")
+                            }, "<")
+                            .set('#hover-card-img-' + index, { zIndex: 1, scale: 1}, "<")
+                            .set("#hover-card-container-" + index, { zIndex: 0}, "<")
                         }
-                        fullTimeline.to({}, { duration: 0.8 });
                         flipped = flipped + 1
                     }
                 }
@@ -627,16 +581,17 @@ odoo.define('custom_website.aura_center', function (require) {
                 duration: 1.5,
                 ease: "power2.inOut"
             })
-            .to(".visionMission", {
-                opacity: 1,
-                scale: 1,
-                rotation: 0,
-                duration: 1,
-                stagger: 0.4,
-                ease: "back.out(1.2)"
-            });
             if (!isMobile) {
-                fullTimeline.to("#mission", {
+                fullTimeline
+                .to(".visionMission", {
+                    opacity: 1,
+                    scale: 1,
+                    rotation: 0,
+                    duration: 1,
+                    stagger: 0.4,
+                    ease: "back.out(1.2)"
+                })
+                .to("#mission", {
                     opacity: 1,
                     zIndex: 1,
                     ease: "power2.out",
@@ -659,81 +614,81 @@ odoo.define('custom_website.aura_center', function (require) {
             }
             else {
                 fullTimeline
-                .to("#missionCard .card__content", {
-                    rotationY: 180,
-                    duration: 0.5,
+                .to("#missionCard", {
+                    opacity: 1,
                     ease: "power2.out",
-                    transformOrigin: "center"
+                    duration: 1
                 })
-
-                .to({}, { duration: 2 })
-                .to("#missionCard .card__content", {
-                    rotationY: 0,
-                    duration: 0.5,
+                .to({}, { duration: 1 })
+                .fromTo("#missionCard .card__content",
+                    { rotationY: 0, transformOrigin: "center" }, // starting point
+                    { rotationY: 180, duration: 0.8, ease: "power2.out" } // ending point
+                )
+                .to({}, { duration: 2.5 })
+                .to("#missionCard", {
+                    opacity: 0,
                     ease: "power2.out",
-                    transformOrigin: "center"
+                    duration: 0.5
                 })
-                .to("#visionCard .card__content", {
-                    rotationY: 180,
-                    duration: 0.5,
+                .to("#visionCard", {
+                    opacity: 1,
                     ease: "power2.out",
-                    transformOrigin: "center"
+                    duration: 0.5
                 })
-
-                .to({}, { duration: 2 })
-                .to("#visionCard .card__content", {
-                    rotationY: 0,
-                    duration: 0.5,
-                    ease: "power2.out",
-                    transformOrigin: "center"
-                });
+                .to({}, { duration: 1.5 })
+                .fromTo("#visionCard .card__content",
+                    { rotationY: 0, transformOrigin: "center" }, // starting point
+                    { rotationY: 180, duration: 0.8, ease: "power2.out" } // ending point
+                )
+                .to({}, { duration: 2.5 })
             }
         }
 
-        /**
-         * Animate page 7 Aura Store section with typewriter and slide effects.
-         * 
-         * @private
-         * @method page7Animation
-         * @param {gsap.core.Timeline} fullTimeline - Main GSAP timeline
-         * @param {boolean} isMobile - Device type flag
-         */
-        page7Animation(fullTimeline, isMobile) {
-            fullTimeline.to(".page-7", { 
-                yPercent: 0, 
-                duration: 1.5,
-                ease: "power2.inOut"
-            })
-            .to(".page-7 button", {
-                opacity: 1,
-                x: 0,
-                filter: "blur(0px)",
-                duration: 0.5,
-                ease: "power3.out"
-            })
-            .to(".page-7 h2", {
-                opacity: 1,
-                x: 0,
-                rotationY: 0,
-                duration: 0.5,
-                ease: "power2.out"
-            })
-            .to(".page-7 p", {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.5,
-                ease: "power2.out"
-            })
-            .to(".page-7 img", {
-                opacity: 1,
-                scale: 1,
-                filter: "brightness(1) contrast(1)",
-                duration: 0.5,
-                ease: "power2.out"
-            })
-            .to({}, { duration: 0.5 })
-        }
+/**
+     * Animate page 7 Aura Store section with typewriter and slide effects.
+     * 
+     * @private
+     * @method page7Animation
+     * @param {gsap.core.Timeline} fullTimeline - Main GSAP timeline
+     * @param {boolean} isMobile - Device type flag
+     */
+    page7Animation(fullTimeline, isMobile) {
+        gsap.set(".page-7 button", { opacity: 0, x: -100, filter: "blur(10px)" })
+        gsap.set(".page-7 h2", { opacity: 0, x: 200, rotationY: 45, transformPerspective: 1000 })
+        gsap.set(".page-7 p", { opacity: 0, y: 50, scale: 0.9 })
+        gsap.set(".page-7 img", { opacity: 0, scale: 1.3, filter: "brightness(0.7) contrast(1.2)" })
+
+        fullTimeline
+        .to(".page-7 button", {
+            opacity: 1,
+            x: 0,
+            filter: "blur(0px)",
+            duration: 0.5,
+            ease: "power3.out"
+        })
+        .to(".page-7 h2", {
+            opacity: 1,
+            x: 0,
+            rotationY: 0,
+            duration: 0.5,
+            ease: "power2.out"
+        })
+        .to(".page-7 p", {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: "power2.out"
+        })
+        .to(".page-7 img", {
+            opacity: 1,
+            scale: 1,
+            filter: "brightness(1) contrast(1)",
+            duration: 0.5,
+            ease: "power2.out"
+        })
+        .to({}, { duration: 0.5 })
+    }
 
         /**
          * Animate page 8 video carousel with entrance effects.
@@ -745,11 +700,6 @@ odoo.define('custom_website.aura_center', function (require) {
          */
         page8Animation(fullTimeline, isMobile) {
             fullTimeline
-            .to(".page-8", { 
-                yPercent: 0, 
-                duration: 1.5,
-                ease: "power2.inOut"
-            })
             .fromTo(".video-slide[data-index='0']", {
                 scale: 0,
                 opacity: 0,
@@ -760,12 +710,8 @@ odoo.define('custom_website.aura_center', function (require) {
                 rotationY: 0,
                 duration: 2,
                 ease: "back.out(1.2)",
-                transformOrigin: "center center"
+                transformOrigin: "center"
             }, "-=1.2")
-        }
-
-        page9Animation(fullTimeline, isMobile) {
-            // Initial states are already set in the main gsap.set section   
             for(let index = 1; index < this.videos.length; index++ ) {
                 // Animate to next video (slower)
                 fullTimeline
@@ -795,28 +741,12 @@ odoo.define('custom_website.aura_center', function (require) {
                         ease: "power2.inOut"
                     }, "-=0.8")
             }
-            fullTimeline
-            .to(".page-9",{
-                    yPercent: 0, 
-                    duration: 1.5,
-                    ease: "power2.inOut"
-                })
-            fullTimeline.to("#schedule, #schedule_title, #schedule_types, #schedule_heading", {
-                opacity: 1,
-                duration: 0.5  
-            })
-            .to({}, {
-                duration: 0.5
-            })
         }
+
 
         page10Animation(fullTimeline, isMobile) {
             // Page 10 - Events with cascade effect
-            fullTimeline.to(".page-10", { 
-                yPercent: 0, 
-                duration: 0.8,
-                ease: "power2.inOut"
-            })
+            fullTimeline
             .to(".page-10 button", {
                 opacity: 1,
                 y: 0,
@@ -945,8 +875,8 @@ odoo.define('custom_website.aura_center', function (require) {
             }
             fullTimeline.to({}, { duration: 1 })
         }
-            page14Animation(fullTimeline, isMobile) {
-            const cardWidthVW = isMobile ? 45 : 30;
+        page14Animation(fullTimeline, isMobile) {
+            const cardWidthVW = isMobile ? 50 : 30;
             const cardMarginPx = 16; // 2rem gap
             const vw = window.innerWidth / 100;
             const cardWidth = (cardWidthVW * vw + cardMarginPx);
@@ -993,7 +923,7 @@ odoo.define('custom_website.aura_center', function (require) {
             if (isMobile) {
                 // Mobile: Flip cards (rotate) as we scroll through them
                 let flipped = 0;
-                trainers.forEach((card, index) => {
+                for (let index = 0; index < trainers.length; index++) {
                     if (flipped === minVisibleNumber) {
                         fullTimeline.to(".trainers-container", {
                             x: -cardWidth * index,
@@ -1003,25 +933,20 @@ odoo.define('custom_website.aura_center', function (require) {
                         flipped = 0;
                     }
                     
-                    // Flip animation for mobile
-                    fullTimeline.to(`#trainer-card-${index + 1}`, {
-                        rotationY: 180,
-                        duration: 0.8,
-                        ease: "power2.out",
-                        transformOrigin: "center"
-                    });
-                    
-                    fullTimeline.to({}, { duration: 3 }); // Hold
-                    
-                    fullTimeline.to(`#trainer-card-${index + 1}`, {
-                        rotationY: 0,
-                        duration: 1,
-                        ease: "power2.out",
-                        transformOrigin: "center"
-                    }, "+=0.5");
+                    fullTimeline.fromTo("#trainer-card-" + (index + 1),
+                        { rotationY: 0, transformOrigin: "center" }, // starting point
+                        { rotationY: 180, duration: 0.8, ease: "power2.out" } // ending point
+                    );
+
+                    fullTimeline.to({}, { duration: 5 });
+                    fullTimeline.fromTo("#trainer-card-" + (index + 1),
+                        { rotationY: 180, transformOrigin: "center" }, // starting point
+                        { rotationY: 0, duration: 0.8, ease: "power2.out" },
+                        "+=0.5" // ending point
+                    );
                     
                     flipped++;
-                });
+                }
             } else {
                 // Desktop: Scroll through trainers with subtle animations
                 trainers.forEach((card, index) => {                
@@ -1074,6 +999,7 @@ odoo.define('custom_website.aura_center', function (require) {
                         }, "-=0.3");
                 });
             }
+            gsap.set(".trainers-container", { x: -1000, opacity: 0 });
         }
 
         page15Animation(fullTimeline, isMobile) {
@@ -1159,6 +1085,55 @@ odoo.define('custom_website.aura_center', function (require) {
             fullTimeline.to({}, { duration: 2 }) // Hold on page 15 to view membership content
         }
         page16Animation(fullTimeline, isMobile) {
+            // Page 16 - Podcast section initial states - ALL ELEMENTS HIDDEN
+            gsap.set("#page16-heading", { opacity: 0, y: 50 });
+            gsap.set("#page16-tagline", { opacity: 0, x: 50 });
+            gsap.set("#page16-bg-img", { opacity: 0, y: 50 });
+            gsap.set("#page16-guest-1", { opacity: 0, x: -50 });
+            gsap.set("#page16-guest-2", { opacity: 0, y: 50 });
+            gsap.set("#page16-guest-3", { opacity: 0, x: 50 });
+            gsap.set("#page16-guest-4", { opacity: 0, y: -50 });
+            gsap.set("#page16-img-31", { opacity: 0, x: -50 });
+            gsap.set("#page16-img-32", { opacity: 0, x: 50 });
+            gsap.set("#page16-youtube-btn", { opacity: 0, y: 50 });
+            gsap.set("#page16-right-section", { opacity: 0, visibility: "hidden" }); // Keep right section hidden
+            
+            // Guest text overlays - hidden initially
+            gsap.set("#page16-guest-1-text", { opacity: 0, y: 20 });
+            gsap.set("#page16-guest-2-text", { opacity: 0, y: 20 });
+            gsap.set("#page16-guest-3-text", { opacity: 0, y: 20 });
+            gsap.set("#page16-guest-4-text", { opacity: 0, y: 20 });
+            
+            // Right section episode elements - hidden initially
+            gsap.set("#page16-episode-1", { opacity: 0, y: 30 });
+            gsap.set("#page16-episode-2", { opacity: 0, y: 30 });
+            gsap.set("#page16-episode-3", { opacity: 0, y: 30 });
+            gsap.set("#page16-show-more-btn", { opacity: 0, y: 30 });
+            
+            // Video section - hidden initially (must include scale: 0 to match timeline animation)
+            gsap.set("#page16-video-section", { opacity: 0, scale: 0 });
+            
+            // Video grid elements - hidden initially for scroll animations
+            gsap.set("#video-grid-classes", { opacity: 0, y: 50 });
+            gsap.set("#video-grid-fitness", { opacity: 0, x: -50 });
+            gsap.set("#video-grid-dance", { opacity: 0, y: 30 });
+            gsap.set("#video-grid-cardio", { opacity: 0, y: -30 });
+            gsap.set("#video-grid-yoga", { opacity: 0, x: 50 });
+            
+            // Mobile video grid elements - hidden initially for scroll animations
+            gsap.set("#mobile-video-classes", { opacity: 0, y: 50 });
+            gsap.set("#mobile-video-fitness", { opacity: 0, x: -50 });
+            gsap.set("#mobile-video-yoga", { opacity: 0, x: 50 });
+            gsap.set("#mobile-video-dance", { opacity: 0, y: 30 });
+            gsap.set("#mobile-video-cardio", { opacity: 0, y: -30 });
+            
+            // Mobile right section - hidden initially
+            gsap.set("#page16-mobile-right-section", { opacity: 0 });
+            gsap.set("#page16-mobile-episode-1", { opacity: 0, y: 30 });
+            gsap.set("#page16-mobile-episode-2", { opacity: 0, y: 30 });
+            gsap.set("#page16-mobile-episode-3", { opacity: 0, y: 30 });
+            gsap.set("#page16-mobile-show-more-btn", { opacity: 0, y: 30 });
+
             fullTimeline
             .to(".page-16", { yPercent: 0, duration: 1.5, ease: "power2.inOut" }, "-=1.5") // Show page 16
             .to("#page16-heading", {
@@ -1342,123 +1317,135 @@ odoo.define('custom_website.aura_center', function (require) {
                 .to("#mobile-video-dance", {
                     opacity: 1,
                     y: 0,
-                    duration: 0.8,
+                    duration: 1,
                     ease: "power2.out"
-                }, "-=0.3")
+                })
                 .to("#mobile-video-cardio", {
                     opacity: 1,
                     y: 0,
-                    duration: 0.8,
+                    duration: 1,
                     ease: "power2.out"
-                }, "-=0.3")
+                })
                 .to("#mobile-video-fitness", {
                     opacity: 1,
                     x: 0,
-                    duration: 0.8,
+                    duration: 1,
                     ease: "power2.out"
-                }, "-=0.3")
+                })
                 .to("#mobile-video-yoga", {
                     opacity: 1,
                     x: 0,
-                    duration: 0.8,
+                    duration: 1,
                     ease: "power2.out"
-                }, "-=0.3")
+                })
             }
+            
         }
-        /**
-         * Set initial GSAP states for all animated elements.
-         * Configures starting positions, scales, and opacity values.
+
+        pageSection1Timeline(isMobile) {
+            const timeline = gsap.timeline();
+            // Initializations
+            gsap.set(".page-2", { xPercent: -100 });
+            gsap.set(".page-3", { xPercent: 100 });
+
+            // Animations
+            this.page1Animation(timeline, isMobile)
+            this.page2Animation(timeline, isMobile)
+            this.page3Animation(timeline, isMobile)
+            
+            ScrollTrigger.create({
+                animation: timeline,
+                trigger: "#page-section-1",
+                start: "top top",
+                end: () => "+=" + (timeline.duration() * this.multiplier),
+                scrub: true,
+                pin: true,
+                anticipatePin: 1,
+                refreshPriority: -1,
+            });
+        }
+
+        pageSection2Timeline(isMobile) {
+            const timeline = gsap.timeline();
+
+            // Initializations
+            gsap.set(".page-12", { xPercent: -100 });
+            gsap.set(".page-11, .page-13", { xPercent: 100 });
+            gsap.set("#events-1,#events-2", { opacity: 0 });
+            gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 50, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
+            gsap.set("#auraLuxury", { xPercent: 0, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
+            gsap.set("#auraContentText, #auraJuniorContentText, #auraLuxuryContentText, #events-3, #events-4, #events-5", {opacity: 0})
+            gsap.set(".page-10 button, .page-10 h1", { opacity: 0, y: -200, scale: 1.5 })
+
+            // Animations
+            this.page10Animation(timeline, isMobile)
+            this.page11Animation(timeline, isMobile)
+            this.page12Animation(timeline, isMobile)
+            this.page13Animation(timeline, isMobile)
+            
+            ScrollTrigger.create({
+                animation: timeline,
+                trigger: "#page-section-2",
+                start: "top top",
+                end: () => "+=" + (timeline.duration() * this.multiplier),
+                scrub: true,
+                pin: true,
+                anticipatePin: 1,
+                refreshPriority: -8
+            });
+        }
+
+        pageSection(isMobile, page, pageAnimation, refreshPriority) {
+            const timeline = gsap.timeline();
+            pageAnimation(timeline, isMobile)
+            
+            ScrollTrigger.create({
+                animation: timeline,
+                trigger: "#" + page,
+                start: "top top",
+                end: () => "+=" + (timeline.duration() * this.multiplier),
+                scrub: true,
+                pin: true,
+                anticipatePin: 1,
+                refreshPriority: refreshPriority
+            });
+        }
+                /**
+         * Animate page 4 "Your Strength" intro with rotating elements.
          * 
          * @private
-         * @method gsapInitialization
-         * @param {boolean} isMobile - Device type flag for responsive settings
+         * @method page4Animation
+         * @param {gsap.core.Timeline} fullTimeline - Main GSAP timeline
+         * @param {boolean} isMobile - Device type flag
          */
-        gsapInitialization(isMobile) {
-            gsap.set(".page-2, .page-12", { xPercent: -100 });
-            gsap.set(".page-3, .page-11, .page-13", { xPercent: 100 });
-            gsap.set(".page-4, .page-5, .page-6, .page-7,.page-9, .page-10, .page-14, .page-15, .page-16, .page-17", { yPercent: 100 });
-            gsap.set(".page-8", {yPercent: this.videos.length * 100})
+        page4Animation(fullTimeline, isMobile) {
+            gsap.set(".page-4 button, #about-us", { opacity: 0, scale: 0.8, rotationX: -45 })
+            fullTimeline
+                .to(".page-4 button, #about-us", {
+                    opacity: 1,
+                    scale: 1,
+                    rotationX: 0,
+                    duration: 0.5,
+                    stagger: 0.3,
+                    ease: "back.out(1.7)"
+                })
+                .to({}, { duration: 1.5 });
+        }
+
+        page9Animation(fullTimeline, isMobile) {
             gsap.set("#schedule, #schedule_title, #schedule_types, #schedule_heading", {
                 opacity: 0,
                 duration: 0.5  
             })
-            gsap.set(".visionMission,#events-1,#events-2", { opacity: 0 });
-            gsap.set("#auraElite, #auraJunior", { xPercent: isMobile ? 0 : 50, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
-            gsap.set("#auraLuxury", { xPercent: 0, scale: 2.5, y: isMobile ? "50vh" : "20vh", opacity: 0 });        
-            gsap.set("#auraContentText, #auraJuniorContentText, #auraLuxuryContentText, #events-3, #events-4, #events-5", {opacity: 0})
-            gsap.set(".trainers-container", { x: -1000, opacity: 0 });
-            // Additional initial states for enhanced animations
-            gsap.set(".page-5 h1", { opacity: 1, y: 0, skewY: 0 });
-            gsap.set(".page-7 button", { opacity: 0, x: -100, filter: "blur(10px)" })
-            gsap.set(".page-7 h2", { opacity: 0, x: 200, rotationY: 45, transformPerspective: 1000 })
-            gsap.set(".page-7 p", { opacity: 0, y: 50, scale: 0.9 })
-            gsap.set(".page-7 img", { opacity: 0, scale: 1.3, filter: "brightness(0.7) contrast(1.2)" })
-            gsap.set(".page-10 button, .page-10 h1", { opacity: 0, y: -200, scale: 1.5 })
-            gsap.set(".page-4 button, #about-us", { opacity: 0, scale: 0.8, rotationX: -45 })
-            gsap.set("#classes-section", { opacity: 0, y: -100, skewY: 10 })
-            gsap.set(".visionMission", { opacity: 0, scale: 0.5, rotation: -180 })
-            
-            // Page 8 - Video Carousel initial states
-            gsap.set(".carousel-track", { x: 0 })
-            gsap.set(".video-slide", { scale: 0.7, opacity: 0.5 })
-            gsap.set(".video-slide[data-index='0']", { scale: 0, opacity: 0, rotationY: 180 })
-            
-            // Page 16 - Podcast section initial states - ALL ELEMENTS HIDDEN
-            gsap.set("#page16-heading", { opacity: 0, y: 50 });
-            gsap.set("#page16-tagline", { opacity: 0, x: 50 });
-            gsap.set("#page16-bg-img", { opacity: 0, y: 50 });
-            gsap.set("#page16-guest-1", { opacity: 0, x: -50 });
-            gsap.set("#page16-guest-2", { opacity: 0, y: 50 });
-            gsap.set("#page16-guest-3", { opacity: 0, x: 50 });
-            gsap.set("#page16-guest-4", { opacity: 0, y: -50 });
-            gsap.set("#page16-img-31", { opacity: 0, x: -50 });
-            gsap.set("#page16-img-32", { opacity: 0, x: 50 });
-            gsap.set("#page16-youtube-btn", { opacity: 0, y: 50 });
-            gsap.set("#page16-right-section", { opacity: 0, visibility: "hidden" }); // Keep right section hidden
-            
-            // Guest text overlays - hidden initially
-            gsap.set("#page16-guest-1-text", { opacity: 0, y: 20 });
-            gsap.set("#page16-guest-2-text", { opacity: 0, y: 20 });
-            gsap.set("#page16-guest-3-text", { opacity: 0, y: 20 });
-            gsap.set("#page16-guest-4-text", { opacity: 0, y: 20 });
-            
-            // Right section episode elements - hidden initially
-            gsap.set("#page16-episode-1", { opacity: 0, y: 30 });
-            gsap.set("#page16-episode-2", { opacity: 0, y: 30 });
-            gsap.set("#page16-episode-3", { opacity: 0, y: 30 });
-            gsap.set("#page16-show-more-btn", { opacity: 0, y: 30 });
-            
-            // Video section - hidden initially (must include scale: 0 to match timeline animation)
-            gsap.set("#page16-video-section", { opacity: 0, scale: 0 });
-            
-            // Video grid elements - hidden initially for scroll animations
-            gsap.set("#video-grid-classes", { opacity: 0, y: 50 });
-            gsap.set("#video-grid-fitness", { opacity: 0, x: -50 });
-            gsap.set("#video-grid-dance", { opacity: 0, y: 30 });
-            gsap.set("#video-grid-cardio", { opacity: 0, y: -30 });
-            gsap.set("#video-grid-yoga", { opacity: 0, x: 50 });
-            
-            // Mobile video grid elements - hidden initially for scroll animations
-            gsap.set("#mobile-video-classes", { opacity: 0, y: 50 });
-            gsap.set("#mobile-video-fitness", { opacity: 0, x: -50 });
-            gsap.set("#mobile-video-yoga", { opacity: 0, x: 50 });
-            gsap.set("#mobile-video-dance", { opacity: 0, y: 30 });
-            gsap.set("#mobile-video-cardio", { opacity: 0, y: -30 });
-            
-            // Mobile right section - hidden initially
-            gsap.set("#page16-mobile-right-section", { opacity: 0 });
-            gsap.set("#page16-mobile-episode-1", { opacity: 0, y: 30 });
-            gsap.set("#page16-mobile-episode-2", { opacity: 0, y: 30 });
-            gsap.set("#page16-mobile-episode-3", { opacity: 0, y: 30 });
-            gsap.set("#page16-mobile-show-more-btn", { opacity: 0, y: 30 });
-            
-            // Page 14 - Professional Trainers initial states
-            gsap.set("#trainers-section h1:first-child", { opacity: 0, scale: 0.7, y: -50, rotationX: -30 })
-            gsap.set("#trainers-section h1:last-child", { opacity: 0, scale: 0.5, x: 100, rotation: 15 })
-            gsap.set(".trainers-container", { opacity: 0, scale: 0.9, y: 80 })
-            gsap.set("#schedule, #schedule_title, #schedule_types, #schedule_heading", { opacity: 0 })
+            fullTimeline
+            .to("#schedule, #schedule_title, #schedule_types, #schedule_heading", {
+                opacity: 1,
+                duration: 0.5  
+            })
+            .to({}, {
+                duration: 0.5
+            })
         }
-
         /**
          * Main GSAP animation orchestrator that coordinates all page animations.
          * Creates the master timeline and sets up ScrollTrigger configuration.
@@ -1468,37 +1455,23 @@ odoo.define('custom_website.aura_center', function (require) {
          * @param {boolean} isMobile - Device type flag for responsive animations
          */
         gsapWithMobile(isMobile) { 
-            const fullTimeline = gsap.timeline();
-            this.page1Animation(fullTimeline, isMobile);
-            this.page2Animation(fullTimeline, isMobile);
-            this.page3Animation(fullTimeline, isMobile);
-            this.page4Animation(fullTimeline, isMobile);
-            this.page5Animation(fullTimeline, isMobile);            
-            this.page6Animation(fullTimeline, isMobile);
-            this.page7Animation(fullTimeline, isMobile);
-            this.page8Animation(fullTimeline, isMobile);            
-            this.page9Animation(fullTimeline, isMobile);
-            this.page10Animation(fullTimeline, isMobile);
-            this.page11Animation(fullTimeline, isMobile);
-            this.page12Animation(fullTimeline, isMobile);
-            this.page13Animation(fullTimeline, isMobile);
-            this.page14Animation(fullTimeline, isMobile);
-            this.page15Animation(fullTimeline, isMobile);
-            this.page16Animation(fullTimeline, isMobile);
-            fullTimeline
-                .to(".page-17", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
-            this.gsapInitialization(isMobile)
-            const multiplier = isMobile ? 2200 : 1000;
-            ScrollTrigger.create({
-                animation: fullTimeline,
-                trigger: "#page-container",
-                start: "top top",
-                end: () => "+=" + (fullTimeline.duration() * multiplier),
-                scrub: isMobile ? 0.3 : true,
-                pin: true,
-                anticipatePin: 1,
-            });
-            this.tl = fullTimeline
+            this.pageSection1Timeline(isMobile);
+            this.pageSection(isMobile, "page-4", this.page4Animation, -2);
+            this.pageSection(isMobile, "page-5", this.page5Animation.bind(this), -3);
+
+            gsap.set(".visionMission", { opacity: 0, scale: isMobile ? 1 : 0.5, rotation: isMobile ? 0 : -180 })
+            this.pageSection(isMobile, "page-6", this.page6Animation, -4);
+            this.pageSection(isMobile, "page-7", this.page7Animation, -5);
+            gsap.set(".carousel-track", { x: 0 })
+            gsap.set(".video-slide", { scale: 0.7, opacity: 0.5 })
+            gsap.set(".video-slide[data-index='0']", { scale: 1, opacity: 1, rotationY: 0 })
+            this.pageSection(isMobile, "page-8", this.page8Animation.bind(this), -6);
+            this.pageSection(isMobile, "page-9", this.page9Animation, -7);
+
+            this.pageSection2Timeline(isMobile);
+            this.pageSection(isMobile, "page-14", this.page14Animation, -9);
+            this.pageSection(isMobile, "page-15", this.page15Animation, -10);
+            this.pageSection(isMobile, "page-16", this.page16Animation, -11);
         }
         
         /**
@@ -1510,16 +1483,19 @@ odoo.define('custom_website.aura_center', function (require) {
          */
         setUpGSAP () {
             gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-            gsap.defaults({ease: "none", duration: 2});
+            
+            // Mobile performance optimizations
+            const isMobile = window.innerWidth < 1024;
+            if (isMobile) {
+                ScrollTrigger.normalizeScroll(true)
+            } 
+              gsap.defaults({ease: "none", duration: 2});
+            
             
             let mm = gsap.matchMedia();
             mm.add("(max-width: 1023px)", () => this.gsapWithMobile(true));
             mm.add("(min-width: 1024px)", () => this.gsapWithMobile(false));
             
-            
-            window.addEventListener('load', () => {
-                ScrollTrigger.refresh();
-            });
         }
 
         /**
@@ -1531,24 +1507,53 @@ odoo.define('custom_website.aura_center', function (require) {
          */
         setUpLenis() {
             const isMobile = window.innerWidth < 1024;
+            
             this.lenis = new Lenis({
-                duration: isMobile ? 5 : 2.2,
+                duration: 2.0,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                 smooth: true,
-                smoothTouch: true
+                smoothTouch: true,
+                touchMultiplier: 1,
+                wheelMultiplier: 1,
+                normalizeWheel: true,
+                infinite: false,
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                syncTouch: false, // Disable redundant sync
+                touchInertiaMultiplier: 18, // Reduced
+                eventsTarget: window,
+                autoResize: true
             });
 
+            
+            // On desktop, keep it smooth
             this.lenis.on('scroll', ScrollTrigger.update);
+        
+            
+            // Better RAF integration with GSAP
             gsap.ticker.add((time) => {
                 this.lenis.raf(time * 1000);
             });
+            
+            // Disable GSAP ticker lag smoothing for better Lenis sync
+            gsap.ticker.lagSmoothing(0);
+            
+            // Handle resize events for responsive behavior
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    this.lenis.resize();
 
-        }
-        
-        // Function to smoothly scroll
-        raf = (time) => {
-            this.lenis.raf(time);
-            requestAnimationFrame(this.raf);
+                    // Optional: Recalculate ScrollTrigger only on non-mobile or less frequently on mobile
+                    if (this.isMobile) {
+                        ScrollTrigger.refresh(false);
+                    } else {
+                        ScrollTrigger.refresh();
+                    }
+                }, this.isMobile ? 300 : 150); // Increase delay for mobile to reduce refresh frequency
+            });
+
         }
         
 
@@ -1668,29 +1673,17 @@ odoo.define('custom_website.aura_center', function (require) {
         const allNavElements = [...navLinks, ...navButtons];
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.querySelector('.mobile-menu');
-        
         // Handle navigation link and button clicks
         allNavElements.forEach(element => {
             element.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageNumber = element.getAttribute('data-page');
-                
-                // Only update active state for navigation links, not buttons
-                if (element.classList.contains('nav-link')) {
-                    // Remove active class from all links
-                    navLinks.forEach(nav => {
-                        nav.classList.remove('text-white');
-                        nav.classList.add('text-gray-300');
-                    });
-                    
-                    // Add active class to clicked link
-                    element.classList.remove('text-gray-300');
-                    element.classList.add('text-white');
-                }
-                
+                const pageNumber = element.getAttribute('data-page')
+                const offset = element.getAttribute('data-page')
+                e.preventDefault();                
                 // Wait a bit for animations to be ready, then navigate
                 setTimeout(() => {
-                    navigateToPage(pageNumber);
+                    window.auraCenter.lenis.scrollTo("#page-" + pageNumber, {
+                        offset: offset
+                    })
                 }, 100);
                 
                 // Close mobile menu if open
@@ -1704,104 +1697,6 @@ odoo.define('custom_website.aura_center', function (require) {
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
-            });
-        }
-    }
-
-    /**
-     * Navigate to a specific page using timeline progress calculation
-     * Works with pinned ScrollTrigger and Lenis smooth scrolling
-     * @param {string} pageNumber - The page number to navigate to
-     */
-    function navigateToPage(pageNumber) {
-        const targetPage = document.getElementById(`page-${pageNumber}`);
-        
-        if (targetPage && window.auraCenter && window.auraCenter.tl) {
-            const targetIndex = parseInt(pageNumber) - 1;
-            const totalPages = 17; // Total number of pages
-            
-            // Calculate the progress for the target page
-            // Precise progress mapping for exact page landing
-            const progressMap = {
-                1: 0.0,     // Page 1 - Landing Page (Hero section with heart monitor)
-                2: 0.055,   // Page 2 - Welcome to Auracenter (About intro)
-                3: (window.auraCenter.isMobile || window.auraCenter.isSmallTablet || window.auraCenter.isTablet ) ? 0.065 : 0.11,    // Page 3 - We're Here to Serve You Well
-                4: 0.295,   // Page 4 - Your Strength. Our Vision (Main about section)
-                5: (window.auraCenter.isMobile || window.auraCenter.isSmallTablet || window.auraCenter.isTablet ) ? 0.12 : 0.17,    // Page 5 - Classes (Fitness Classes for Every Goal)
-                6: 0.275,   // Page 6 - Vision/Mission (Interactive cards)
-                7: 0.33,    // Page 7 - Aura Store (Upgrade Your Style with Aura Wear)
-                8: 0.385,   // Page 8 - Videos (YouTube video carousel)
-                9: (window.auraCenter.isMobile || window.auraCenter.isSmallTablet || window.auraCenter.isTablet ) ? 0.509 : 0.52,    // Page 9 - Schedule (Discipline Starts with a Plan)
-                10: 0.555,  // Page 10 - Events (We Organize the Best Events)
-                11: (window.auraCenter.isMobile || window.auraCenter.isSmallTablet || window.auraCenter.isTablet ) ? 0.57 : 0.61,   // Page 11 - Aura Elite (Premium fitness center)
-                12: (window.auraCenter.isMobile || window.auraCenter.isSmallTablet || window.auraCenter.isTablet ) ? 0.61: 0.65,  // Page 12 - Aura Luxury (Luxurious fitness experience)
-                13: (window.auraCenter.isMobile || window.auraCenter.isSmallTablet || window.auraCenter.isTablet ) ? 0.64 : 0.688,   // Page 13 - Aura Juniors (Children's fitness programs)
-                14: (window.auraCenter.isMobile || window.auraCenter.isSmallTablet || window.auraCenter.isTablet ) ? 0.7 : 0.735,  // Page 14 - Trainers (Our Professional Trainers)
-                15: 0.83,   // Page 15 - Pricing (Choose Your Level/Membership plans)
-                16: 0.885,  // Page 16 - Podcast (Lift. Learn. Lead!)
-                17: 1,   // Page 17 - Contact Form (Get Appointment/Contact page)
-            };
-            
-            const progress = progressMap[parseInt(pageNumber)] || (targetIndex / (totalPages - 1));
-            console.log('Calculated progress:', progress, 'for page', pageNumber);
-            
-            // Get the ScrollTrigger instance
-            const scrollTriggers = ScrollTrigger.getAll();
-            console.log('Found ScrollTriggers:', scrollTriggers.length);
-            
-            const mainScrollTrigger = scrollTriggers.find(st => 
-                st.trigger && st.trigger.id === "page-container"
-            );
-            console.log('Main ScrollTrigger found:', !!mainScrollTrigger);
-            
-            if (mainScrollTrigger) {
-                // Calculate the scroll position based on ScrollTrigger's end point
-                const scrollRange = mainScrollTrigger.end - mainScrollTrigger.start;
-                const targetScrollPosition = mainScrollTrigger.start + (progress * scrollRange);
-                
-                console.log('Scroll range:', scrollRange);
-                console.log('Target scroll position:', targetScrollPosition);
-                console.log('Current scroll position:', window.scrollY);
-                
-                // Use Lenis for smooth scrolling to maintain consistency
-                const lenis = window.lenis;
-                console.log('Lenis instance:', !!lenis);
-                
-                if (lenis && lenis.scrollTo) {
-                    console.log('Using Lenis scrollTo');
-                    // Use Lenis scrollTo method
-                    lenis.scrollTo(targetScrollPosition, {
-                        duration: 1.5,
-                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                    });
-                } else {
-                    console.log('Using GSAP scrollTo fallback');
-                    // Fallback: use GSAP ScrollTo
-                    gsap.to(window, {
-                        duration: 1.5,
-                        scrollTo: {
-                            y: targetScrollPosition,
-                            autoKill: false
-                        },
-                        ease: "power2.inOut",
-                        onStart: () => console.log('GSAP scroll animation started'),
-                        onComplete: () => console.log('GSAP scroll animation completed')
-                    });
-                }
-            } else {
-                console.warn('ScrollTrigger instance not found for navigation');
-                console.log('Available ScrollTriggers:', scrollTriggers.map(st => ({ 
-                    trigger: st.trigger?.id || st.trigger?.tagName, 
-                    start: st.start, 
-                    end: st.end 
-                })));
-            }
-        } else {
-            console.warn('Navigation failed: Timeline or target page not found');
-            console.log('Missing components:', {
-                targetPage: !!targetPage,
-                auraCenter: !!window.auraCenter,
-                timeline: !!window.auraCenter?.tl
             });
         }
     }

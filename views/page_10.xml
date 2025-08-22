@@ -3,13 +3,13 @@
     <data>
         <!-- Page 10: Events Section -->
         <template id="aura_page_10" name="AuraCenter Page 10 - Events">
-            <div class="flex-col flex items-center bg-no-repeat page page-10" id="page-10">
+            <div class="flex-col flex items-center bg-no-repeat absolute top-0 left-0 page-10 w-[100vw] h-[100vh]" id="page-10">
                 <button class="bg-[#CCE5E1] px-4 py-2 rounded-lg font-semibold mt-8 lg:mt-20 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md text-black">OUR EVENTS</button>
                 <h1 class="text-xl lg:text-4xl font-bold text-black mt-8 text-center">WE ORGANIZE THE BEST EVENTS</h1>
                 
                 <div class="flex flex-col lg:flex-row justify-end mb-[10vh] items-center lg:items-end lg:mb-[10vh] lg:justify-around px-8 mt-8 w-full h-full">
                     <div class="w-[40vw] relative flex" id="events-1">
-                        <picture id="event-1" class="absolute left-[-25%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
+                        <picture id="event-1" class="absolute left-[-15%] lg:left-0 lg:right-[25%] lg:left-[25%] bottom-8">
                             <!-- AVIF versions -->
                             <source type="image/avif" srcset="
                                 /custom_website/static/src/img/page_10/event_1-640.avif 640w,

@@ -3,7 +3,7 @@
     <data>
         <!-- Page 15: Pricing Plans Section -->
         <template id="aura_page_15" name="AuraCenter Page 15 - Pricing Plans">
-            <div class="page page-15 bg-[#f2eeeb] flex flex-col min-h-screen w-full" id="page-15">
+            <div class="relative h-[100vh] w-[100vw] page-15 bg-[#f2eeeb] flex flex-col min-h-screen w-full" id="page-15">
                 <!-- Intro Section -->
                 <div id="membership-intro" class="absolute inset-0 flex flex-col items-center justify-center z-10 opacity-0">
                     <!-- PLAN Button -->

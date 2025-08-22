@@ -38,6 +38,9 @@ This module creates a custom website page with custom styling and JavaScript fun
     ],
     'assets': {
         'web.assets_frontend': [
+            "custom_website/static/src/css/font.css",
+            "custom_website/static/src/css/custom.css",
+            "custom_website/static/src/js/tailwind.min.js",
             "custom_website/static/src/js/lenis.min.js",
             "custom_website/static/src/js/lucide.min.js",
             "custom_website/static/src/js/gsap.min.js",

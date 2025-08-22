@@ -28,23 +28,28 @@
 
                 <!-- Page Content -->
             	<div id="page-container" class="hidden">
-                    <t t-call="custom_website.aura_page_1"/>
-                    <t t-call="custom_website.aura_page_2"/>
-                    <t t-call="custom_website.aura_page_3"/>
+                    <div id="page-section-1" class="h-[100vh] w-[100vw] relative">
+                        <t t-call="custom_website.aura_page_1"/>
+                        <t t-call="custom_website.aura_page_2"/>
+                        <t t-call="custom_website.aura_page_3"/>
+                    </div>
                     <t t-call="custom_website.aura_page_4"/>
                     <t t-call="custom_website.aura_page_5"/>
                     <t t-call="custom_website.aura_page_6"/>
+                    
                     <t t-call="custom_website.aura_page_7"/>
                     <t t-call="custom_website.aura_page_8"/>
                     <t t-call="custom_website.aura_page_9"/>
-                    <t t-call="custom_website.aura_page_10"/>
-                    <t t-call="custom_website.aura_page_11"/>
-                    <t t-call="custom_website.aura_page_12"/>
-                    <t t-call="custom_website.aura_page_13"/>
+                    <div id="page-section-2" class="h-[100vh] w-[100vw] relative">
+                        <t t-call="custom_website.aura_page_10"/>
+                        <t t-call="custom_website.aura_page_11"/>
+                        <t t-call="custom_website.aura_page_12"/>
+                        <t t-call="custom_website.aura_page_13"/>
+                    </div>
                     <t t-call="custom_website.aura_page_14"/>
                     <t t-call="custom_website.aura_page_15"/>
                     <t t-call="custom_website.aura_page_16"/>
-                    <t t-call="custom_website.aura_page_17"/>                    
+                    <t t-call="custom_website.aura_page_17"/>
                 </div>
             </t>
             <t t-call="custom_website.loader"/>

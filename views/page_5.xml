@@ -3,7 +3,7 @@
     <data>
         <!-- Page 5: Classes Section -->
         <template id="aura_page_5" name="AuraCenter Page 5 - Classes">
-            <div class="flex-col flex bg-no-repeat page page-5 justify-around" id="page-5">
+            <div class="flex-col flex bg-no-repeat page-5 w-[100vw] h-[100vh] justify-around" id="page-5">
                 <div id="classes-section" class="flex flex-col items-center">
                     <h1 class="bg-[#CCE5E1] text-xl font-bold text-black px-4 py-2 rounded-md mt-8">OUR CLASSES</h1>
                     <h1 class="text-xl lg:text-4xl font-bold text-black mt-8 text-center">FITNESS CLASSES FOR EVERY GOAL</h1>

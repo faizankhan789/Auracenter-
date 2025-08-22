@@ -3,11 +3,11 @@
     <data>
         <!-- Page 11: Aura Elite Section -->
         <template id="aura_page_11" name="AuraCenter Page 11 - Aura Elite">
-            <div class="flex-col lg:flex-row flex bg-[#DAECE9] px-10 page page-11 items-center lg:items-center lg:justify-center" id="page-11">
+            <div class="flex-col lg:flex-row flex bg-[#DAECE9] px-10 absolute top-0 left-0 w-[100vw] h-[100vh] page-11 items-center lg:items-center lg:justify-center" id="page-11">
                 <div class="flex flex-col justify-between">
-                    <h1 style="font-size: clamp(1.5rem, 3vw, 5rem)" id="auraElite" class="text-center mt-10 lg:text-start font-bold text-[#1D2F46] mb-20">AURA ELITE</h1>
+                    <h1 style="font-size: clamp(1.5rem, 4vw, 5rem)" id="auraElite" class="text-center mt-10 lg:text-start font-bold text-[#1D2F46] mb-20">AURA ELITE</h1>
                     <div id="auraContentText" class="w-full lg:w-[55vw] items-center">
-                        <p style="font-size: clamp(1rem, 2vw, 2.5rem)" class="text-justify">We at Aura Elite strongly believe that physical activity for women is essential for their health and emotional well-being. For this reason, we offer a variety of programs for women in our well-equipped and hygienic fitness center. Located in the heart of Jeddah, at Corniche, Aura Elite has unique packages specially designed with the health and fitness needs of our members in mind. Our dedicated staff is professionally qualified to provide fitness training in a safe environment.</p>
+                        <p style="font-size: clamp(1rem, 3.2vw, 2.5rem)" class="text-justify">We at Aura Elite strongly believe that physical activity for women is essential for their health and emotional well-being. For this reason, we offer a variety of programs for women in our well-equipped and hygienic fitness center. Located in the heart of Jeddah, at Corniche, Aura Elite has unique packages specially designed with the health and fitness needs of our members in mind. Our dedicated staff is professionally qualified to provide fitness training in a safe environment.</p>
                         <div class="flex justify-center">
                             <button class="bg-[#182a41] px-8 py-2 rounded-lg text-white font-semibold mt-8 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-xl text-center nav-link" data-page="17">JOIN US</button>
                         </div>
