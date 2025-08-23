@@ -1,0 +1,62 @@
+[
+    {
+        "day": "الإثنين",
+        "classes": [
+            { "time": "08:00 - 09:00", "name": "يوجا الصباح", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "10:00 - 11:00", "name": "انفجار الكارديو", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": "رفع القوة", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "19:00 - 20:00", "name": "لياقة الرقص", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "تمدد المساء", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "الثلاثاء",  
+        "classes": [
+            { "time": "08:00 - 09:00", "name": "أيروبيك مائي", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:30 - 11:30", "name": "لياقة الرقص", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": "تدريب دائري", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "19:00 - 20:00", "name": "يوجا القوة", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "قوة ونحت", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "الأربعاء",
+        "classes": [
+            { "time": "08:00 - 09:00", "name": "كارديو عالي الكثافة", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:00 - 11:00", "name": "لياقة وظيفية", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": "يوجا فينياسا", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "19:00 - 20:00", "name": "تدريب شخصي", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "التأمل", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "الخميس",
+        "classes": [
+            { "time": "08:00 - 09:00", "name": "علاج مائي", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:30 - 11:30", "name": "خليط الكارديو", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": "الأثقال الكروية", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "19:00 - 20:00", "name": "رفع الأثقال", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "قوة العضلات الأساسية", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "الجمعة",
+        "classes": [
+            { "time": "09:30 - 10:30", "name": "متعة مائية", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "11:00 - 12:00", "name": "حفلة الزومبا", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "16:00 - 17:00", "name": "أساسيات القوة", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "18:00 - 19:00", "name": "تدريب مجموعات صغيرة", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "تمدد المساء", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "السبت",
+        "classes": [
+            { "time": "10:30 - 11:30", "name": "عافية مائية", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "12:00 - 13:00", "name": "كارديو لطيف", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "16:00 - 17:00", "name": "الجسم بالكامل", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "18:00 - 19:00", "name": "يوجا الاسترخاء", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "19:00 - 20:00", "name": "جلسة استشفاء", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    }
+]

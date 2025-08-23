@@ -38,6 +38,10 @@ class AuraCenter {
                 isVisible: true,
             };
 
+            // Translation system
+            this.currentLanguage = 'en';
+            this.translations = translations;
+
             // Animation controllers
             this.animations = {
                 ecg: null,
@@ -270,7 +274,7 @@ class AuraCenter {
             
             const dayHeader = document.createElement('div');
             dayHeader.className = 'bg-[#c8e6dc] py-3 md:p-3 rounded-lg mb-1 truncate';
-            dayHeader.innerHTML = `<h3 style="font-size: clamp(0.4rem, 1.4vw, 5rem)" class="font-bold  tracking-wider text-[#2c3e50] text-center">${day}</h3>`;
+            dayHeader.innerHTML = `<h3 style="font-size: clamp(0.4rem, 1.4vw, 5rem)" class="font-bold tracking-wider text-[#2c3e50] text-center schedule-day">${day}</h3>`;
             
             const activitiesContainer = document.createElement('div');
             activitiesContainer.className = 'space-y-1';
@@ -287,7 +291,7 @@ class AuraCenter {
                     </div>
                     <div class="flex-1 flex flex-col gap-1 overflow-hidden">
                         <div class="font-medium ${textColor} truncate" style="font-size: clamp(0.4rem, 0.8vw, 5rem)">${activity.time}</div>
-                        <div class="font-semibold ${nameColor} leading-tight truncate" style="font-size: clamp(0.5rem, 0.9vw, 5rem)">${activity.name}</div>
+                        <div class="font-semibold ${nameColor} leading-tight truncate schedule-class-name" style="font-size: clamp(0.5rem, 0.9vw, 5rem)">${activity.name}</div>
                     </div>
                 `;
                 activitiesContainer.appendChild(activityBlock);
@@ -323,6 +327,7 @@ class AuraCenter {
          */
         async init() {
             this.setupMobileMenu();
+            this.setupLanguageToggle();
             this.startClockUpdate();
             this.initECGAnimation();
             await this.loadCardsData();
@@ -342,6 +347,205 @@ class AuraCenter {
             document.getElementById('page-container')?.classList.remove('hidden');
             document.getElementById('header')?.classList.remove('hidden');
             document.querySelector('footer')?.classList.remove('hidden');
+        }
+
+        /**
+         * Setup language toggle functionality
+         */
+        setupLanguageToggle() {
+            const toggleButton = document.querySelector('#languageToggle');
+            if (toggleButton) {
+                toggleButton.addEventListener('click', () => {
+                    this.toggleLanguage();
+                });
+            }
+        }
+
+        /**
+         * Toggle between English and Arabic languages
+         */
+        toggleLanguage() {
+            this.currentLanguage = this.currentLanguage === 'en' ? 'ar' : 'en';
+            const button = document.querySelector('#languageToggle');
+            
+            if (button) {
+                button.textContent = this.currentLanguage === 'en' ? 'عربي' : 'English';
+            }
+            
+            this.translateContent();
+        }
+
+        /**
+         * Translate all content on the page
+         */
+        translateContent() {
+            const lang = this.currentLanguage;
+            
+            // Only change language attribute, keep layout the same
+            document.documentElement.lang = lang;
+            
+            // Translate elements with data-translate attributes
+            const translatableElements = document.querySelectorAll('[data-translate]');
+            translatableElements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (this.translations[lang] && this.translations[lang][key]) {
+                    element.innerHTML = this.translations[lang][key];
+                }
+            });
+            
+            // Translate schedule data
+            this.translateScheduleData();
+            
+            // Translate dynamic content (classes, trainers)
+            this.translateDynamicContent();
+            
+            // Translate form placeholders
+            this.translatePlaceholders();
+        }
+
+        /**
+         * Translate dynamically loaded content
+         */
+        translateDynamicContent() {
+            const lang = this.currentLanguage;
+            
+            // Translate class cards
+            if (this.cards && this.cards.length > 0) {
+                this.cards.forEach((card, index) => {
+                    const titleElement = document.querySelector(`#hover-card-content-${index + 1} h3`);
+                    const listItems = document.querySelectorAll(`#hover-card-content-${index + 1} li`);
+                    
+                    if (titleElement) {
+                        const classKey = this.getClassKey(card.title);
+                        if (this.translations[lang][classKey]) {
+                            titleElement.textContent = this.translations[lang][classKey];
+                        }
+                    }
+                    
+                    if (listItems && card.listItems) {
+                        const itemsKey = this.getClassKey(card.title) + 'Items';
+                        if (this.translations[lang][itemsKey]) {
+                            listItems.forEach((li, liIndex) => {
+                                if (this.translations[lang][itemsKey][liIndex]) {
+                                    li.textContent = this.translations[lang][itemsKey][liIndex];
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+            
+            // Translate trainer cards
+            if (this.trainers && this.trainers.length > 0) {
+                this.trainers.forEach((trainer) => {
+                    const nameElement = document.querySelector(`#trainer-card-content-${trainer.index} h2`);
+                    const titleElement = document.querySelector(`#trainer-card-content-${trainer.index} p:first-of-type`);
+                    const qualificationElements = document.querySelectorAll(`#trainer-card-content-${trainer.index} ul li span:last-child`);
+                    
+                    if (nameElement && trainerTranslations[lang] && trainerTranslations[lang][trainer.name]) {
+                        nameElement.textContent = trainerTranslations[lang][trainer.name];
+                    }
+                    
+                    if (titleElement && trainerTitleTranslations[lang] && trainerTitleTranslations[lang][trainer.title]) {
+                        titleElement.textContent = trainerTitleTranslations[lang][trainer.title];
+                    }
+                    
+                    // Translate qualifications
+                    if (qualificationElements.length > 0 && trainerQualificationsTranslations[lang]) {
+                        qualificationElements.forEach((element, index) => {
+                            const originalText = trainer.qualifications[index];
+                            if (originalText && trainerQualificationsTranslations[lang][originalText]) {
+                                element.textContent = trainerQualificationsTranslations[lang][originalText];
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        /**
+         * Translate form placeholders
+         */
+        translatePlaceholders() {
+            const lang = this.currentLanguage;
+            const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
+            
+            placeholderElements.forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                if (this.translations[lang] && this.translations[lang][key]) {
+                    element.placeholder = this.translations[lang][key];
+                }
+            });
+        }
+
+        /**
+         * Translate schedule data
+         */
+        translateScheduleData() {
+            if (!this.schedule || this.schedule.length === 0) return;
+            
+            const lang = this.currentLanguage;
+            
+            // Translate day names
+            const dayElements = document.querySelectorAll('.schedule-day');
+            dayElements.forEach(dayEl => {
+                const dayText = dayEl.textContent.trim(); // Get original text (e.g., "MONDAY")
+                const dayKey = dayText.toLowerCase(); // Convert to lowercase key (e.g., "monday")
+                
+                // First try direct translation with lowercase key
+                if (this.translations[lang][dayKey]) {
+                    dayEl.textContent = this.translations[lang][dayKey];
+                    return;
+                }
+                
+                // If direct translation fails, try reverse lookup (for switching back to English)
+                const fromLang = lang === 'en' ? 'ar' : 'en';
+                if (this.translations[fromLang]) {
+                    // Find the original English key by looking through the opposite language translations
+                    const originalKey = Object.keys(this.translations[fromLang]).find(key => 
+                        this.translations[fromLang][key] === dayText
+                    );
+                    
+                    if (originalKey && this.translations[lang] && this.translations[lang][originalKey]) {
+                        dayEl.textContent = this.translations[lang][originalKey];
+                    }
+                }
+            });
+            
+            // Translate class names in schedule
+            const classElements = document.querySelectorAll('.schedule-class-name');
+            classElements.forEach(classEl => {
+                const className = classEl.textContent.trim();
+                
+                // First try direct translation
+                if (scheduleTranslations[lang] && scheduleTranslations[lang][className]) {
+                    classEl.textContent = scheduleTranslations[lang][className];
+                    return;
+                }
+                
+                // If direct translation fails, try reverse lookup (for switching back to English)
+                const fromLang = lang === 'en' ? 'ar' : 'en';
+                if (scheduleTranslations[fromLang]) {
+                    // Find the original English key by looking through the opposite language translations
+                    const originalKey = Object.keys(scheduleTranslations[fromLang]).find(key => 
+                        scheduleTranslations[fromLang][key] === className
+                    );
+                    
+                    if (originalKey && scheduleTranslations[lang] && scheduleTranslations[lang][originalKey]) {
+                        classEl.textContent = scheduleTranslations[lang][originalKey];
+                    }
+                }
+            });
+        }
+
+        /**
+         * Helper method to convert class title to translation key
+         */
+        getClassKey(title) {
+            return title.toLowerCase()
+                .replace(/\s+/g, '')
+                .replace(/&/g, '')
+                .replace(/[^\w]/g, '');
         }
 
 
@@ -900,6 +1104,12 @@ class AuraCenter {
             const minVisibleNumber = Math.floor(visibleNumber);
             const visibleCards = trainers.slice(0, Math.ceil(visibleNumber));
             
+            // Set initial states for page 14 elements
+            gsap.set(".page-14", { yPercent: 100 });
+            gsap.set(".trainers-container", { x: -1000, opacity: 0 });
+            gsap.set("#trainers-section h1:first-child", { opacity: 0, scale: 0.5, y: -50, rotationX: -45 });
+            gsap.set("#trainers-section h1:last-child", { opacity: 0, scale: 0.5, x: -100, rotation: -15 });
+            
             // Animate container and cards appearing
             fullTimeline
             .to(".page-14", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
@@ -1019,7 +1229,6 @@ class AuraCenter {
                         }, "-=0.3");
                 });
             }
-            gsap.set(".trainers-container", { x: -1000, opacity: 0 });
         }
 
         page15Animation(fullTimeline, isMobile) {
@@ -1402,6 +1611,7 @@ class AuraCenter {
             this.page11Animation(timeline, isMobile)
             this.page12Animation(timeline, isMobile)
             this.page13Animation(timeline, isMobile)
+            this.page14Animation(timeline, isMobile)
             
             ScrollTrigger.create({
                 animation: timeline,
@@ -1507,9 +1717,122 @@ class AuraCenter {
             this.pageSection(isMobile, "page-9", this.page9Animation, -7);
 
             this.pageSection2Timeline(isMobile);
-            this.pageSection(isMobile, "page-14", this.page14Animation, -9);
             this.pageSection(isMobile, "page-15", this.page15Animation, -10);
             this.pageSection(isMobile, "page-16", this.page16Animation, -11);
+            this.pageSection(isMobile, "page-17", this.page17Animation, -12);
+        }
+
+        page17Animation(fullTimeline, isMobile) {
+            // Set initial states for Page 17 elements
+            gsap.set(".page-17", { yPercent: 100 });
+            
+            // Desktop elements
+            gsap.set(".page-17 .hidden.md\\:flex button", { opacity: 0, y: 50, scale: 0.8 });
+            gsap.set(".page-17 .hidden.md\\:flex h1", { opacity: 0, x: -100, rotationX: -45 });
+            gsap.set(".page-17 .hidden.md\\:flex p", { opacity: 0, y: 30, scale: 0.9 });
+            gsap.set(".page-17 .bg-slate-800\\/80.text-white", { opacity: 0, scale: 0.8, rotationY: 15 });
+            gsap.set(".page-17 form", { opacity: 0, y: 50 });
+            gsap.set(".page-17 form input", { opacity: 0, y: 20, scale: 0.95 });
+            gsap.set(".page-17 form textarea", { opacity: 0, y: 20, scale: 0.95 });
+            gsap.set(".page-17 form button[type='submit']", { opacity: 0, scale: 0.8, rotationZ: -5 });
+            
+            // Mobile elements
+            gsap.set(".page-17 .flex.md\\:hidden button", { opacity: 0, y: -30, scale: 0.9 });
+            gsap.set(".page-17 .flex.md\\:hidden h1", { opacity: 0, x: -50, rotationX: -30 });
+            gsap.set(".page-17 .flex.md\\:hidden p", { opacity: 0, y: 20 });
+            
+            // Page entrance animation
+            fullTimeline
+            .to(".page-17", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
+            
+            // Desktop animations
+            .to(".page-17 .hidden.md\\:flex button", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }, "-=1")
+            .to(".page-17 .hidden.md\\:flex h1", {
+                opacity: 1,
+                x: 0,
+                rotationX: 0,
+                duration: 1,
+                ease: "power3.out"
+            }, "-=0.6")
+            .to(".page-17 .hidden.md\\:flex p", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.8")
+            
+            // Mobile animations
+            .to(".page-17 .flex.md\\:hidden button", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.5)"
+            }, "-=1.2")
+            .to(".page-17 .flex.md\\:hidden h1", {
+                opacity: 1,
+                x: 0,
+                rotationX: 0,
+                duration: 1,
+                ease: "power3.out"
+            }, "-=0.8")
+            .to(".page-17 .flex.md\\:hidden p", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.6")
+            
+            // Form header animation
+            .to(".page-17 .bg-slate-800\\/80.text-white", {
+                opacity: 1,
+                scale: 1,
+                rotationY: 0,
+                duration: 0.8,
+                ease: "back.out(1.3)"
+            }, "-=0.5")
+            
+            // Form body animation
+            .to(".page-17 form", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            
+            // Form inputs stagger animation
+            .to(".page-17 form input", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "back.out(1.7)"
+            }, "-=0.2")
+            .to(".page-17 form textarea", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.5)"
+            }, "-=0.1")
+            .to(".page-17 form button[type='submit']", {
+                opacity: 1,
+                scale: 1,
+                rotationZ: 0,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.8)"
+            }, "-=0.2")
+            
+            // Hold the final state
+            .to({}, { duration: 1 });
         }
         
         /**
