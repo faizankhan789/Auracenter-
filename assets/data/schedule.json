@@ -1,0 +1,68 @@
+[
+    {
+        "day": "MONDAY",
+        "activities": [
+            { "time": "06:00 - 07:00", "name": "MORNING STRENGTH", "icon": "./assets/page_9/dumbell.png", "type": "white" },
+            { "time": "08:00 - 09:00", "name": "AQUA FITNESS", "icon": "./assets/page_9/weight.png", "type": "#24203c" },
+            { "time": "10:00 - 11:00", "name": "CARDIO BLAST", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": "POWER LIFTING", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "18:30 - 19:30", "name": "YOGA FLOW", "icon": "./assets/page_9/weight.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "EVENING STRETCH", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "TUESDAY",
+        "activities": [
+            { "time": "06:00 - 07:00", "name": "BOOT CAMP", "icon": "./assets/page_9/dumbell.png", "type": "white" },
+            { "time": "08:00 - 09:00", "name": "WATER AEROBICS", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:30 - 11:30", "name": "DANCE FITNESS", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": "CIRCUIT TRAINING", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "18:30 - 19:30", "name": "PILATES", "icon": "./assets/page_9/weight.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "STRENGTH & TONE", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "WEDNESDAY",
+        "activities": [
+            { "time": "06:00 - 07:00", "name": "AQUA ZUMBA", "icon": "./assets/page_9/dumbell.png", "type": "white" },
+            { "time": "08:00 - 09:00", "name": "HIIT CARDIO", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:00 - 11:00", "name": "FUNCTIONAL FITNESS", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": "VINYASA YOGA", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "18:30 - 19:30", "name": "BODY SCULPT", "icon": "./assets/page_9/weight.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "MEDITATION", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "THURSDAY",
+        "activities": [
+            { "time": "06:00 - 07:00", "name": "MORNING PUMP", "icon": "./assets/page_9/dumbell.png", "type": "white" },
+            { "time": "08:00 - 09:00", "name": "AQUA THERAPY", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:30 - 11:30", "name": "CARDIO MIX", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": "KETTLEBELL", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "18:30 - 19:30", "name": "BARRE CLASS", "icon": "./assets/page_9/weight.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "CORE POWER", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "SATURDAY",
+        "activities": [
+            { "time": "08:00 - 09:00", "name": "WEEKEND WARRIOR", "icon": "./assets/page_9/dumbell.png", "type": "white" },
+            { "time": "09:30 - 10:30", "name": "AQUA FUN", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "11:00 - 12:00", "name": "ZUMBA PARTY", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "16:00 - 17:00", "name": "STRENGTH BASICS", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "17:30 - 18:30", "name": "RESTORATIVE YOGA", "icon": "./assets/page_9/weight.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": "EVENING STRETCH", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    },
+    {
+        "day": "SUNDAY",
+        "activities": [
+            { "time": "09:00 - 10:00", "name": "SUNDAY SCULPT", "icon": "./assets/page_9/dumbell.png", "type": "white" },
+            { "time": "10:30 - 11:30", "name": "WATER WELLNESS", "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "12:00 - 13:00", "name": "GENTLE CARDIO", "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "16:00 - 17:00", "name": "FULL BODY", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "17:30 - 18:30", "name": "SUNSET YOGA", "icon": "./assets/page_9/weight.png", "type": "white" },
+            { "time": "19:00 - 20:00", "name": "RECOVERY SESSION", "icon": "./assets/page_9/heart.png", "type": "dark" }
+        ]
+    }
+]
