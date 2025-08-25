@@ -330,13 +330,11 @@ class AuraCenter {
             this.setupLanguageToggle();
             this.startClockUpdate();
             this.initECGAnimation();
-            await this.loadCardsData();
-            await this.loadVideosData();
-            await this.loadScheduleData();
-            await this.loadTrainersData();
+            // await this.loadCardsData();
+            // await this.loadVideosData();
+            // await this.loadScheduleData();
+            // await this.loadTrainersData();
             this.setupResponsiveHandler();
-
-            this.setUpGSAP();
             this.setUpLenis();
             this.removeLoader();
         }
@@ -369,7 +367,7 @@ class AuraCenter {
             const button = document.querySelector('#languageToggle');
             
             if (button) {
-                button.textContent = this.currentLanguage === 'en' ? 'عربي' : 'English';
+                button.textContent = this.currentLanguage === 'en' ? 'English': 'عربي';
             }
             
             this.translateContent();
@@ -786,82 +784,89 @@ class AuraCenter {
          * @param {gsap.core.Timeline} fullTimeline - Main GSAP timeline
          * @param {boolean} isMobile - Device type flag
          */
-        page6Animation(fullTimeline, isMobile) {
-            fullTimeline.to(".page-6", { 
-                yPercent: 0, 
-                duration: 1.5,
-                ease: "power2.inOut"
-            })
-            if (!isMobile) {
-                fullTimeline
-                .to(".visionMission", {
-                    opacity: 1,
-                    scale: 1,
-                    rotation: 0,
-                    duration: 1,
-                    stagger: 0.4,
-                    ease: "back.out(1.2)"
-                })
-                .to("#mission", {
-                    opacity: 1,
-                    zIndex: 1,
-                    ease: "power2.out",
-                    duration: 0.5
-                })
-                .set("#missionImg, #missionCard", { zIndex: 2 }, "<")
-                .set("#vision", { zIndex: 0, opacity: 0 }, "<")
-                .set("#visionImg, #visionCard", { zIndex: 0 }, "<")
-                .to({}, { duration: 2 })
-                .to("#vision", {
-                    opacity: 1,
-                    zIndex: 1,
-                    ease: "power2.out",
-                    duration: 0.5
-                })
-                .set("#visionImg, #visionCard", { zIndex: 2 }, "<")
-                .set("#mission", { zIndex: 0, opacity: 0 }, "<")
-                .set("#missionImg, #missionCard", { zIndex: 0 }, "<");
-                fullTimeline.to({}, { duration: 2 });
-            }
-            else {
-                fullTimeline
-                .to("#missionCard", {
-                    opacity: 1,
-                    ease: "power2.out",
-                    duration: 1
-                })
-                .to({}, { duration: 1 })
-                .set("#missionCard .card__content", { 
-                    force3D: true,
-                    backfaceVisibility: "hidden"
-                })
-                .fromTo("#missionCard .card__content",
-                    { rotationY: 0, transformOrigin: "center" }, // starting point
-                    { rotationY: 180, duration: 0.8, ease: "power2.out", force3D: true } // ending point
-                )
-                .to({}, { duration: 2.5 })
-                .to("#missionCard", {
-                    opacity: 0,
-                    ease: "power2.out",
-                    duration: 0.5
-                })
-                .to("#visionCard", {
-                    opacity: 1,
-                    ease: "power2.out",
-                    duration: 0.5
-                })
-                .to({}, { duration: 1.5 })
-                .set("#visionCard .card__content", { 
-                    force3D: true,
-                    backfaceVisibility: "hidden"
-                })
-                .fromTo("#visionCard .card__content",
-                    { rotationY: 0, transformOrigin: "center" }, // starting point
-                    { rotationY: 180, duration: 0.8, ease: "power2.out", force3D: true } // ending point
-                )
-                .to({}, { duration: 2.5 })
-            }
+    page6Animation(fullTimeline, isMobile) {
+      if (isMobile) {
+        gsap.set("#visionCard", {
+          opacity: 0,
+        });
+      } else {
+         gsap.set(".visionMission", {
+          opacity: 0,
+          scale: isMobile ? 1 : 0.5,
+          rotation: isMobile ? 0 : -180,
+        });
+      }
+      if (!isMobile) {
+        fullTimeline
+          .to(".visionMission", {
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            duration: 1,
+            stagger: 0.4,
+            ease: "back.out(1.2)",
+          })
+          .to("#mission", {
+            opacity: 1,
+            zIndex: 1,
+            ease: "power2.out",
+            duration: 0.5,
+          })
+          .set("#missionImg, #missionCard", { zIndex: 2 }, "<")
+          .set("#vision", { zIndex: 0, opacity: 0 }, "<")
+          .set("#visionImg, #visionCard", { zIndex: 0 }, "<")
+          .to({}, { duration: 2 })
+          .to("#vision", {
+            opacity: 1,
+            zIndex: 1,
+            ease: "power2.out",
+            duration: 0.5,
+          })
+          .set("#visionImg, #visionCard", { zIndex: 2 }, "<")
+          .set("#mission", { zIndex: 0, opacity: 0 }, "<")
+          .set("#missionImg, #missionCard", { zIndex: 0 }, "<");
+        fullTimeline.to({}, { duration: 2 });
+      } else {
+        fullTimeline.to("#missionCard .card__content", {
+        rotationY: 180,
+        duration: 1.0,
+        ease: "back.inOut(1.7)", // Smooth bounce effect
+        transformOrigin: "center center",
+        force3D: true,
+    })
+  .to("#missionCard", {
+    opacity: 0,
+    y: -20,
+    scale: 0.95, // Slight scale for smoothness
+    ease: "power2.inOut",
+    duration: 1.0,
+  }, "+=1.5")
+  .fromTo(
+    "#visionCard",
+    { 
+      opacity: 0, 
+      y: 20, 
+      scale: 0.95 
+    },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      ease: "power2.inOut",
+      duration: 0.5,
+    },
+    "<0.4",
+  )
+  .to("#visionCard .card__content", {
+    rotationY: 180,
+    duration: 1.0,
+    ease: "back.inOut(1.7)",
+    transformOrigin: "center center",
+    force3D: true,
+  }, "+=1.5");
         }
+    
+    }
 
 /**
      * Animate page 7 Aura Store section with typewriter and slide effects.
@@ -1707,7 +1712,6 @@ class AuraCenter {
             this.pageSection(isMobile, "page-4", this.page4Animation, -2);
             this.pageSection(isMobile, "page-5", this.page5Animation.bind(this), -3);
 
-            gsap.set(".visionMission", { opacity: 0, scale: isMobile ? 1 : 0.5, rotation: isMobile ? 0 : -180 })
             this.pageSection(isMobile, "page-6", this.page6Animation, -4);
             this.pageSection(isMobile, "page-7", this.page7Animation, -5);
             gsap.set(".carousel-track", { x: 0 })
@@ -1723,9 +1727,6 @@ class AuraCenter {
         }
 
         page17Animation(fullTimeline, isMobile) {
-            // Set initial states for Page 17 elements
-            gsap.set(".page-17", { yPercent: 100 });
-            
             // Desktop elements
             gsap.set(".page-17 .hidden.md\\:flex button", { opacity: 0, y: 50, scale: 0.8 });
             gsap.set(".page-17 .hidden.md\\:flex h1", { opacity: 0, x: -100, rotationX: -45 });
