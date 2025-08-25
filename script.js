@@ -70,6 +70,8 @@ class AuraCenter {
                 console.error('Error loading classes data:', error);
             }
             this.cards.forEach(card => this.addClassCard(card));
+            // Initialize slider functionality after cards are added
+            setTimeout(() => this.initializeClassesSlider(), 500);
         }
 
         /**
@@ -263,6 +265,270 @@ class AuraCenter {
                 </div>
             `;
             container.appendChild(card);
+
+            // Also add to mobile container
+            const mobileContainer = document.querySelector('.classes-container-mobile');
+            if (mobileContainer) {
+                const mobileCard = document.createElement('div');
+                mobileCard.className = 'hover-card classes_cards_mobile w-[85vw] h-[30vh] hover:z-[3] cursor-pointer group flex-shrink-0';
+                mobileCard.id = "mobile-hover-card-container-"+index;
+                mobileCard.innerHTML = `
+                    <div id="mobile-hover-card-${index}" class="card__content relative transition-transform duration-1000 w-full h-full">    
+                    <picture id="mobile-hover-card-img-${index}" class="card__front">
+                        <source 
+                            type="image/avif"
+                            srcset="
+                            ${imageSrc}-640.avif 640w,
+                            ${imageSrc}-768.avif 768w,
+                            ${imageSrc}-1024.avif 1024w,
+                            ${imageSrc}-1920.avif 1920w
+                            "
+                            sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px">
+                    
+                        <source 
+                            type="image/jpeg"
+                            srcset="
+                            ${imageSrc}-640.jpg 640w,
+                            ${imageSrc}-768.jpg 768w,
+                            ${imageSrc}-1024.jpg 1024w,
+                            ${imageSrc}-1920.jpg 1920w
+                            "
+                            sizes="(max-width: 640px) 640px,
+                                (max-width: 768px) 768px,
+                                (max-width: 1024px) 1024px,
+                                1920px">  
+                        <img src="${imageSrc}.jpg" alt="${title}" loading="lazy" class="absolute z-[1] w-full h-full object-cover object-center ease-in-out rounded-xl transition-all duration-800" loading="lazy">
+                    </picture>
+                        <div id="mobile-hover-card-content-${index}" class="rounded-xl card__back h-full w-full absolute top-0 left-0 bg-[#C7B6A8] transition-transform duration-[600ms] ease-out shadow-[0_20px_40px_rgba(0,0,0,0.3)] will-change-[transform] cursor-pointer flex flex-col justify-center items-center z-[10]">
+                            <h3 class="text-center text-xl font-bold mb-2 text-black">${title}</h3>
+                            <ul class="space-y-1 text-sm text-black">
+                            ${listItems.map(item => `
+                                <li class="flex items-start">
+                                <span class="w-2 h-2 bg-black rounded-full mt-1 mr-2"></span> ${item}
+                                </li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                mobileContainer.appendChild(mobileCard);
+            }
+        }
+
+        // Initialize slider functionality for Page 5
+        initializeClassesSlider() {
+            let desktopCurrentIndex = 0;
+            let mobileCurrentIndex = 0;
+            let mobileShowingCard = false; // Track whether we're showing card or image
+            const totalCards = this.cards.length;
+
+            // Desktop slider functionality
+            const desktopPrevBtn = document.getElementById('desktop-prev-btn');
+            const desktopNextBtn = document.getElementById('desktop-next-btn');
+            const desktopWrapper = document.getElementById('desktop-classes-wrapper');
+            const desktopDotsContainer = document.getElementById('desktop-dots');
+
+            // Mobile slider functionality
+            const mobilePrevBtn = document.getElementById('mobile-prev-btn');
+            const mobileNextBtn = document.getElementById('mobile-next-btn');
+            const mobileWrapper = document.getElementById('mobile-classes-wrapper');
+            const mobileDotsContainer = document.getElementById('mobile-dots');
+
+            // Create dots for both desktop and mobile
+            const createDots = (container, total, currentIndex = 0) => {
+                container.innerHTML = '';
+                for (let i = 0; i < total; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = `w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                        i === currentIndex ? 'bg-black scale-110' : 'bg-gray-400 hover:bg-gray-500'
+                    }`;
+                    dot.addEventListener('click', () => {
+                        if (container === desktopDotsContainer) {
+                            desktopCurrentIndex = i;
+                            updateDesktopSlider();
+                        } else if (container === mobileDotsContainer) {
+                            mobileCurrentIndex = i;
+                            updateMobileSlider();
+                            showMobileCard(i, false);
+                            mobileShowingCard = false;
+                        }
+                    });
+                    container.appendChild(dot);
+                }
+            };
+
+            const updateDots = (container, currentIndex) => {
+                const dots = container.querySelectorAll('div');
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.className = 'w-3 h-3 rounded-full transition-all duration-300 cursor-pointer bg-black scale-110';
+                    } else {
+                        dot.className = 'w-3 h-3 rounded-full transition-all duration-300 cursor-pointer bg-gray-400 hover:bg-gray-500';
+                    }
+                });
+            };
+
+            // Desktop navigation
+            if (desktopPrevBtn && desktopNextBtn && desktopWrapper) {
+                const updateDesktopSlider = () => {
+                    const cardWidth = window.innerWidth * 0.30 + 16; // 30vw + margin
+                    const translateX = -(desktopCurrentIndex * cardWidth);
+                    desktopWrapper.style.transform = `translateX(${translateX}px)`;
+                    
+                    // Update dots
+                    if (desktopDotsContainer) updateDots(desktopDotsContainer, desktopCurrentIndex);
+                    
+                    // Update button states
+                    desktopPrevBtn.disabled = desktopCurrentIndex === 0;
+                    desktopNextBtn.disabled = desktopCurrentIndex === totalCards - 1;
+                };
+
+                desktopPrevBtn.addEventListener('click', () => {
+                    if (desktopCurrentIndex > 0) {
+                        desktopCurrentIndex--;
+                        updateDesktopSlider();
+                    }
+                });
+
+                desktopNextBtn.addEventListener('click', () => {
+                    if (desktopCurrentIndex < totalCards - 1) {
+                        desktopCurrentIndex++;
+                        updateDesktopSlider();
+                    }
+                });
+
+                // Initialize desktop dots
+                if (desktopDotsContainer) createDots(desktopDotsContainer, totalCards, 0);
+                
+                updateDesktopSlider();
+            }
+
+            // Mobile navigation with card-first behavior
+            if (mobilePrevBtn && mobileNextBtn && mobileWrapper) {
+                const mobileCards = document.querySelectorAll('.classes_cards_mobile');
+                
+                const updateMobileSlider = () => {
+                    const cardWidth = window.innerWidth * 0.85 + 16; // 85vw + margin
+                    const translateX = -(mobileCurrentIndex * cardWidth);
+                    mobileWrapper.style.transform = `translateX(${translateX}px)`;
+                    
+                    // Update dots
+                    if (mobileDotsContainer) updateDots(mobileDotsContainer, mobileCurrentIndex);
+                    
+                    // Update button states
+                    mobilePrevBtn.disabled = mobileCurrentIndex === 0;
+                    mobileNextBtn.disabled = mobileCurrentIndex === totalCards - 1;
+                    
+                    // Hide all card backs first
+                    mobileCards.forEach(card => {
+                        const cardBack = card.querySelector('.card__back');
+                        if (cardBack) {
+                            cardBack.style.opacity = '0';
+                            cardBack.style.transform = 'translateX(100%)';
+                        }
+                    });
+                };
+
+                const showMobileCard = (index, showCardFirst = false) => {
+                    const currentCard = mobileCards[index];
+                    if (currentCard) {
+                        // Use the actual JSON index from the card data instead of array index
+                        const cardIndex = this.cards[index].index;
+                        const cardBack = currentCard.querySelector(`#mobile-hover-card-content-${cardIndex}`);
+                        if (cardBack) {
+                            if (showCardFirst) {
+                                // Show the card content by making it visible and on top
+                                cardBack.style.display = 'flex';
+                                cardBack.style.opacity = '1';
+                                cardBack.style.transform = 'translateX(0%)';
+                                cardBack.style.zIndex = '20';
+                            } else {
+                                // Hide the card to show image
+                                cardBack.style.opacity = '0';
+                                cardBack.style.transform = 'translateX(100%)';
+                                cardBack.style.zIndex = '10';
+                            }
+                        }
+                    }
+                };
+
+                mobilePrevBtn.addEventListener('click', () => {
+                    if (!mobileShowingCard) {
+                        // Currently showing image, show the card
+                        console.log('Showing current card for index:', mobileCurrentIndex);
+                        showMobileCard(mobileCurrentIndex, true);
+                        mobileShowingCard = true;
+                    } else {
+                        // Currently showing card
+                        if (mobileCurrentIndex > 0) {
+                            // Move to previous image if not at the beginning
+                            console.log('Moving to previous image');
+                            mobileCurrentIndex--;
+                            updateMobileSlider();
+                            showMobileCard(mobileCurrentIndex, false);
+                            mobileShowingCard = false;
+                        } else {
+                            // At the first image, just hide the card to show the image
+                            console.log('At first image, hiding card to show image');
+                            showMobileCard(mobileCurrentIndex, false);
+                            mobileShowingCard = false;
+                        }
+                    }
+                });
+
+                mobileNextBtn.addEventListener('click', () => {
+                    if (!mobileShowingCard) {
+                        // Currently showing image, show the card
+                        console.log('Showing current card for index:', mobileCurrentIndex);
+                        showMobileCard(mobileCurrentIndex, true);
+                        mobileShowingCard = true;
+                    } else {
+                        // Currently showing card
+                        if (mobileCurrentIndex < totalCards - 1) {
+                            // Move to next image if not at the end
+                            console.log('Moving to next image');
+                            mobileCurrentIndex++;
+                            updateMobileSlider();
+                            showMobileCard(mobileCurrentIndex, false);
+                            mobileShowingCard = false;
+                        } else {
+                            // At the last image, just hide the card to show the image
+                            console.log('At last image, hiding card to show image');
+                            showMobileCard(mobileCurrentIndex, false);
+                            mobileShowingCard = false;
+                        }
+                    }
+                });
+
+                // Initialize mobile dots
+                if (mobileDotsContainer) createDots(mobileDotsContainer, totalCards, 0);
+                
+                updateMobileSlider();
+                // Show first card on load - just image
+                showMobileCard(0, false);
+                
+                
+                // Add tap functionality for mobile cards to flip on touch
+                console.log('Adding event listeners to mobile cards...');
+                mobileCards.forEach((card, index) => {
+                    console.log('Adding listener to card:', index, card);
+                    card.addEventListener('click', (e) => {
+                        console.log('Card clicked:', index, 'current:', mobileCurrentIndex);
+                        if (index === mobileCurrentIndex) {
+                            e.preventDefault();
+                            if (!mobileShowingCard) {
+                                showMobileCard(index, true);
+                                mobileShowingCard = true;
+                            } else {
+                                showMobileCard(index, false);
+                                mobileShowingCard = false;
+                            }
+                        }
+                    });
+                });
+            }
         }
 
         addScheduleDay({ day, activities }) {
@@ -330,7 +596,7 @@ class AuraCenter {
             this.setupLanguageToggle();
             this.startClockUpdate();
             this.initECGAnimation();
-            // await this.loadCardsData();
+            await this.loadCardsData();
             // await this.loadVideosData();
             // await this.loadScheduleData();
             // await this.loadTrainersData();
