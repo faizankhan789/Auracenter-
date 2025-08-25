@@ -170,33 +170,33 @@
                 <div class="h-[10vh]"></div>
             </div>
 		<!-- Page 6: Vision/Mission -->
-		 <div class="relative flex flex-col lg:flex-row lg:justify-center items-center lg:items-start bg-no-repeat h-full py-10 lg:py-0 w-[100vw] page-6 bg-[#F2EEEB] lg:space-x-16" id="page-6">
-                <div id="missionCard" class="visionMission hover-card group lg:relative w-[80vw] lg:w-[25vw] h-[80vh] lg:h-[70vh] lg:group-hover:z-[3]">
+        <div class="flex flex-col lg:flex-row lg:justify-center items-center lg:items-start bg-no-repeat h-full py-10 lg:pt-0 w-[100vw] page-6 bg-[#F2EEEB] lg:space-x-16" id="page-6">
+                <div id="missionCard" class="visionMission hover-card group w-[80vw] lg:w-[25vw] h-[80vh]  lg:group-hover:z-[3]">
                     <div class="card__content relative transition-transform duration-1000 w-full h-full">
                         <picture id="missionImg" class="card__front cursor-pointer absolute top-0 left-0 lg:group-hover:z-[2]" style="box-shadow: 40px 85px 22px rgba(0, 0, 0, 0.25)">
                             <!-- AVIF versions -->
                             <source type="image/avif" srcset="
-                                /custom_website/static/src/img/page_6/mission-640.avif 640w,
-                                /custom_website/static/src/img/page_6/mission-768.avif 768w,
-                                /custom_website/static/src/img/page_6/mission-1024.avif 1024w,
-                                /custom_website/static/src/img/page_6/mission-1920.avif 1920w
+                                ./assets/page_6/mission-640.avif 640w,
+                                ./assets/page_6/mission-768.avif 768w,
+                                ./assets/page_6/mission-1024.avif 1024w,
+                                ./assets/page_6/mission-1920.avif 1920w
                                 " sizes="(max-width: 640px) 640px,
                                 (max-width: 768px) 768px,
                                 (max-width: 1024px) 1024px,
                                 1920px" />
                             <!-- PNG fallback -->
                             <source type="image/png" srcset="
-                                /custom_website/static/src/img/page_6/mission-640.png 640w,
-                                /custom_website/static/src/img/page_6/mission-768.png 768w,
-                                /custom_website/static/src/img/page_6/mission-1024.png 1024w,
-                                /custom_website/static/src/img/page_6/mission-1920.png 1920w
+                                ./assets/page_6/mission-640.png 640w,
+                                ./assets/page_6/mission-768.png 768w,
+                                ./assets/page_6/mission-1024.png 1024w,
+                                ./assets/page_6/mission-1920.png 1920w
                                 " sizes="(max-width: 640px) 640px,
                                 (max-width: 768px) 768px,
                                 (max-width: 1024px) 1024px,
                                 1920px" />
                             <!-- Fallback img with lazy loading -->
                             <img class="w-[80vw] lg:w-[25vw] h-[80vh] lg:h-[80vh] object-fill" 
-                                 src="/custom_website/static/src/img/page_6/mission.png" 
+                                 src="./assets/page_6/mission.png" 
                                  alt="mission" 
                                  loading="lazy" />
                         </picture>
@@ -215,27 +215,27 @@
                         <picture id="visionImg" class="card__front cursor-pointer absolute top-0 left-0 lg:group-hover:z-[2]" style="box-shadow: 40px 85px 22px rgba(0, 0, 0, 0.25)">
                             <!-- AVIF versions -->
                             <source type="image/avif" srcset="
-                                /custom_website/static/src/img/page_6/vision-640.avif 640w,
-                                /custom_website/static/src/img/page_6/vision-768.avif 768w,
-                                /custom_website/static/src/img/page_6/vision-1024.avif 1024w,
-                                /custom_website/static/src/img/page_6/vision-1920.avif 1920w
+                                ./assets/page_6/vision-640.avif 640w,
+                                ./assets/page_6/vision-768.avif 768w,
+                                ./assets/page_6/vision-1024.avif 1024w,
+                                ./assets/page_6/vision-1920.avif 1920w
                                 " sizes="(max-width: 640px) 640px,
                                 (max-width: 768px) 768px,
                                 (max-width: 1024px) 1024px,
                                 1920px" loading="lazy"/>
                             <!-- PNG fallback -->
                             <source type="image/png" srcset="
-                                /custom_website/static/src/img/page_6/vision-640.png 640w,
-                                /custom_website/static/src/img/page_6/vision-768.png 768w,
-                                /custom_website/static/src/img/page_6/vision-1024.png 1024w,
-                                /custom_website/static/src/img/page_6/vision-1920.png 1920w
+                                ./assets/page_6/vision-640.png 640w,
+                                ./assets/page_6/vision-768.png 768w,
+                                ./assets/page_6/vision-1024.png 1024w,
+                                ./assets/page_6/vision-1920.png 1920w
                                 " sizes="(max-width: 640px) 640px,
                                 (max-width: 768px) 768px,
                                 (max-width: 1024px) 1024px,
                                 1920px" />
                             <!-- Fallback img with lazy loading -->
                             <img class="w-[80vw] lg:w-[25vw] h-[80vh] lg:h-[80vh] object-fill" 
-                                 src="/custom_website/static/src/img/page_6/vision.png" 
+                                 src="./assets/page_6/vision.png" 
                                  alt="vision" 
                                  loading="lazy" />
                         </picture>
@@ -249,7 +249,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
 		<!-- Page 7: AURA STORE -->
 		<div class="relative flex-col flex items-center bg-no-repeat page-7 w-[100vw] h-[100vh] justify-center" id="page-7">
                 <button class="bg-[#CCE5E1] px-4 py-2 rounded-lg font-semibold mt-8 lg:mt-20 tracking-wider cursor-pointer transition-all duration-300 ease-in-out text-md text-black" data-translate="auraStore">AURA STORE</button>
