@@ -5,36 +5,8 @@
 }
 
 /* Arabic font support - no layout changes */
-[lang="ar"] body {
-	font-family: 'Almarai', Arial, sans-serif;
-}
-
-/* Keep center alignment for main title */
-[lang="ar"] .pin-text {
-	text-align: center;
-}
-
-/* Keep center alignment for centered elements */
-[lang="ar"] .text-center {
-	text-align: center;
-}
-
-/* Class cards - right align bullets and text */
-.hover-card .card__back ul {
-	text-align: right;
+html[lang="ar"] .card__back {
 	direction: rtl;
-}
-
-.hover-card .card__back li {
-	justify-content: flex-end;
-	text-align: right;
-	direction: rtl;
-}
-
-.hover-card .card__back li span {
-	margin-right: 0;
-	margin-left: 0.75rem;
-	order: 2;
 }
 
 /* Language toggle button styling */
@@ -248,7 +220,7 @@
         );
 	}
 
-	.page-4, .page-7, .page-10, .page-18, .page-9 {
+	.page-4, .page-7, .page-10, .page-9 {
 		background-size: 180% 100%;
 		background-image: image-set(
             url("./assets/background-640.avif") type("image/avif"),
@@ -317,7 +289,7 @@
         );
 	}
 
-	.page-4, .page-7, .page-10, .page-18, .page-9 {
+	.page-4, .page-7, .page-10, .page-9 {
 		background-image: image-set(
             url("./assets/background-768.avif") type("image/avif"),
             url("./assets/background-768.jpg") type("image/jpeg")
@@ -383,7 +355,7 @@
         );
 	}
 
-	.page-4, .page-7, .page-10, .page-18, .page-9 {
+	.page-4, .page-7, .page-10, .page-9 {
 		background-image: image-set(
             url("./assets/background-1024.avif") type("image/avif"),
             url("./assets/background-1024.jpg") type("image/jpeg")
@@ -411,7 +383,11 @@
 	.card__content {
 		transform-style: preserve-3d;
 	}
-    /* .hover-card:hover .card__content, .trainer_card:hover .card__content {transform: rotateY(.5turn);} */
+
+	.hover-card:hover .card__content, .trainer_card:hover .card__content {
+		transform: rotateY(.5turn);
+	}
+
 	.card__front,
     .card__back {
 		backface-visibility: hidden;
@@ -420,6 +396,7 @@
 	.card__back {
 		transform: rotateY(.5turn);
 	}
+
 }
 
 /* Desktop ≤1920px */
@@ -445,7 +422,7 @@
         );
 	}
 
-	.page-4, .page-7, .page-10, .page-18, .page-9 {
+	.page-4, .page-7, .page-10, .page-9 {
 		background-image: image-set(
             url("./assets/background-1920.avif") type("image/avif"),
             url("./assets/background-1920.jpg") type("image/jpeg")
@@ -490,7 +467,7 @@
         );
 	}
 
-	.page-4, .page-7, .page-10, .page-18, .page-9 {
+	.page-4, .page-7, .page-10, .page-9 {
 		background-image: image-set(
             url("./assets/background-ultra.avif") type("image/avif"),
             url("./assets/background-ultra.jpg") type("image/jpeg")
@@ -527,12 +504,6 @@
 	.card__back {
 		transform: rotateY(.5turn);
 	}
-}
-
-.page {
-	position: absolute;
-	width: 100vw;
-	height: 100vh;
 }
 
 html, body {
@@ -654,7 +625,7 @@ body {
 	height: auto;
 }
 
-.page-4, .page-7, .page-10, .page-18, .page-9 {
+.page-4, .page-7, .page-10, .page-9 {
 	background-size: cover;
 }
 
@@ -668,6 +639,15 @@ body {
         #d9cec5 50%
     );
 }
+/* Hiding Scroll */
+.scroll-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scroll-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 /* Membership Plan Card Hover Effects */
 .membership-plan-card {
 	transform-origin: center;
