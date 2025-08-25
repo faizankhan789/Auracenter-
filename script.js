@@ -270,8 +270,8 @@ class AuraCenter {
         container.appendChild(card);
         }
 
-        addScheduleDay({ day, activities }) {
-            const container = document.querySelector('#schedule');
+        addScheduleDay({ day, activities }, targetContainer = null) {
+            const container = targetContainer || document.querySelector('#schedule');
             if (!container) return;
 
             const dayColumn = document.createElement('div');
@@ -337,7 +337,7 @@ class AuraCenter {
             this.initECGAnimation();
             await this.loadCardsData();
             // await this.loadVideosData();
-            // await this.loadScheduleData();
+            await this.loadScheduleData();
             // await this.loadTrainersData();
             this.setupResponsiveHandler();
             this.setUpGSAP();
@@ -606,14 +606,37 @@ class AuraCenter {
         }
 
         renderSchedulePage() {
-            const container = document.querySelector('#schedule');
+            // Render for desktop
+            const desktopContainer = document.querySelector('#schedule');
+            if (desktopContainer) {
+                desktopContainer.innerHTML = '';
+                this.schedule.forEach(day => this.addScheduleDay(day, desktopContainer));
+            }
             
-            if (!container) return;
+            // Render for mobile - distribute across 3 separate pages
+            this.renderMobileSchedule();
+        }
+        
+        renderMobileSchedule() {
+            const pages = [
+                document.querySelector('#schedule-page-1'),
+                document.querySelector('#schedule-page-2'),
+                document.querySelector('#schedule-page-3')
+            ];
             
-            // Clear existing content
-            container.innerHTML = '';
+            pages.forEach(page => {
+                if (page) page.innerHTML = '';
+            });
             
-            this.schedule.forEach(day => this.addScheduleDay(day));
+            // Distribute schedule across 3 pages (2 days per page)
+            this.schedule.forEach((day, index) => {
+                const pageIndex = Math.floor(index / 2);
+                const targetPage = pages[pageIndex];
+                
+                if (targetPage && pageIndex < 3) {
+                    this.addScheduleDay(day, targetPage);
+                }
+            });
         }
 
         /**
@@ -1325,173 +1348,59 @@ class AuraCenter {
             fullTimeline.to({}, { duration: 2 }) // Hold on page 15 to view membership content
         }
         page16Animation(fullTimeline, isMobile) {
-            // Page 16 - Podcast section initial states - ALL ELEMENTS HIDDEN
-            gsap.set("#page16-heading", { opacity: 0, y: 50 });
-            gsap.set("#page16-tagline", { opacity: 0, x: 50 });
-            gsap.set("#page16-bg-img", { opacity: 0, y: 50 });
-            gsap.set("#page16-guest-1", { opacity: 0, x: -50 });
-            gsap.set("#page16-guest-2", { opacity: 0, y: 50 });
-            gsap.set("#page16-guest-3", { opacity: 0, x: 50 });
-            gsap.set("#page16-guest-4", { opacity: 0, y: -50 });
-            gsap.set("#page16-img-31", { opacity: 0, x: -50 });
-            gsap.set("#page16-img-32", { opacity: 0, x: 50 });
-            gsap.set("#page16-youtube-btn", { opacity: 0, y: 50 });
-            gsap.set("#page16-right-section", { opacity: 0, visibility: "hidden" }); // Keep right section hidden
+            // Page 16 - NO ANIMATIONS - All elements visible immediately
+            gsap.set("#page16-heading", { opacity: 1, y: 0 });
+            gsap.set("#page16-tagline", { opacity: 1, x: 0 });
+            gsap.set("#page16-bg-img", { opacity: 1, y: 0 });
+            gsap.set("#page16-guest-1", { opacity: 1, x: 0 });
+            gsap.set("#page16-guest-2", { opacity: 1, y: 0 });
+            gsap.set("#page16-guest-3", { opacity: 1, x: 0 });
+            gsap.set("#page16-guest-4", { opacity: 1, y: 0 });
+            gsap.set("#page16-img-31", { opacity: 1, x: 0 });
+            gsap.set("#page16-img-32", { opacity: 1, x: 0 });
+            gsap.set("#page16-youtube-btn", { opacity: 1, y: 0 });
+            gsap.set("#page16-right-section", { opacity: 1, visibility: "visible" });
             
-            // Guest text overlays - hidden initially
-            gsap.set("#page16-guest-1-text", { opacity: 0, y: 20 });
-            gsap.set("#page16-guest-2-text", { opacity: 0, y: 20 });
-            gsap.set("#page16-guest-3-text", { opacity: 0, y: 20 });
-            gsap.set("#page16-guest-4-text", { opacity: 0, y: 20 });
+            // Guest text overlays - visible immediately
+            gsap.set("#page16-guest-1-text", { opacity: 1, y: 0 });
+            gsap.set("#page16-guest-2-text", { opacity: 1, y: 0 });
+            gsap.set("#page16-guest-3-text", { opacity: 1, y: 0 });
+            gsap.set("#page16-guest-4-text", { opacity: 1, y: 0 });
             
-            // Right section episode elements - hidden initially
-            gsap.set("#page16-episode-1", { opacity: 0, y: 30 });
-            gsap.set("#page16-episode-2", { opacity: 0, y: 30 });
-            gsap.set("#page16-episode-3", { opacity: 0, y: 30 });
-            gsap.set("#page16-show-more-btn", { opacity: 0, y: 30 });
+            // Right section episode elements - visible immediately
+            gsap.set("#page16-episode-1", { opacity: 1, y: 0 });
+            gsap.set("#page16-episode-2", { opacity: 1, y: 0 });
+            gsap.set("#page16-episode-3", { opacity: 1, y: 0 });
+            gsap.set("#page16-show-more-btn", { opacity: 1, y: 0 });
             
-            // Video section - hidden initially (must include scale: 0 to match timeline animation)
+            // Video section - hidden initially (will show later in animation)
             gsap.set("#page16-video-section", { opacity: 0, scale: 0 });
             
-            // Video grid elements - hidden initially for scroll animations
-            gsap.set("#video-grid-classes", { opacity: 0, y: 50 });
-            gsap.set("#video-grid-fitness", { opacity: 0, x: -50 });
-            gsap.set("#video-grid-dance", { opacity: 0, y: 30 });
-            gsap.set("#video-grid-cardio", { opacity: 0, y: -30 });
-            gsap.set("#video-grid-yoga", { opacity: 0, x: 50 });
+            // Video grid elements - visible immediately when video section shows
+            gsap.set("#video-grid-classes", { opacity: 1, y: 0 });
+            gsap.set("#video-grid-fitness", { opacity: 1, x: 0 });
+            gsap.set("#video-grid-dance", { opacity: 1, y: 0 });
+            gsap.set("#video-grid-cardio", { opacity: 1, y: 0 });
+            gsap.set("#video-grid-yoga", { opacity: 1, x: 0 });
             
-            // Mobile video grid elements - hidden initially for scroll animations
-            gsap.set("#mobile-video-classes", { opacity: 0, y: 50 });
-            gsap.set("#mobile-video-fitness", { opacity: 0, x: -50 });
-            gsap.set("#mobile-video-yoga", { opacity: 0, x: 50 });
-            gsap.set("#mobile-video-dance", { opacity: 0, y: 30 });
-            gsap.set("#mobile-video-cardio", { opacity: 0, y: -30 });
+            // Mobile video grid elements - visible immediately
+            gsap.set("#mobile-video-classes", { opacity: 1, y: 0 });
+            gsap.set("#mobile-video-fitness", { opacity: 1, x: 0 });
+            gsap.set("#mobile-video-yoga", { opacity: 1, x: 0 });
+            gsap.set("#mobile-video-dance", { opacity: 1, y: 0 });
+            gsap.set("#mobile-video-cardio", { opacity: 1, y: 0 });
             
-            // Mobile right section - hidden initially
-            gsap.set("#page16-mobile-right-section", { opacity: 0 });
-            gsap.set("#page16-mobile-episode-1", { opacity: 0, y: 30 });
-            gsap.set("#page16-mobile-episode-2", { opacity: 0, y: 30 });
-            gsap.set("#page16-mobile-episode-3", { opacity: 0, y: 30 });
-            gsap.set("#page16-mobile-show-more-btn", { opacity: 0, y: 30 });
+            // Mobile right section - visible immediately
+            gsap.set("#page16-mobile-right-section", { opacity: 1 });
+            gsap.set("#page16-mobile-episode-1", { opacity: 1, y: 0 });
+            gsap.set("#page16-mobile-episode-2", { opacity: 1, y: 0 });
+            gsap.set("#page16-mobile-episode-3", { opacity: 1, y: 0 });
+            gsap.set("#page16-mobile-show-more-btn", { opacity: 1, y: 0 });
 
+            // Simple page transition - no element animations
             fullTimeline
             .to(".page-16", { yPercent: 0, duration: 1.5, ease: "power2.inOut" }, "-=1.5") // Show page 16
-            .to("#page16-heading", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            })
-            .to("#page16-tagline", {
-                opacity: 1,
-                x: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.3")
-            .to("#page16-bg-img", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.2")
-            .to(["#page16-guest-1", "#page16-guest-2", "#page16-guest-3", "#page16-guest-4"], {
-                opacity: 1,
-                x: 0,
-                y: 0,
-                duration: 0.6,
-                stagger: 0.3,
-                ease: "power2.out"
-            }, "-=0.2")
-            .to(["#page16-guest-1-text", "#page16-guest-2-text", "#page16-guest-3-text", "#page16-guest-4-text"], {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                stagger: 0.2,
-                ease: "power2.out"
-            }, "-=0.1")
-            .to("#page16-img-31", {
-                opacity: 1,
-                x: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.1")
-            .to("#page16-img-32", {
-                opacity: 1,
-                x: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.3")
-            .to("#page16-youtube-btn", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.2")
-            .to("#page16-right-section", {
-                opacity: 1,
-                visibility: "visible",
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.1")
-            .to("#page16-episode-1", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.2")
-            .to("#page16-episode-2", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.3")
-            .to("#page16-episode-3", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.3")
-            .to("#page16-show-more-btn", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.3")
-            
-            // Mobile-specific: Replace left section with mobile right section
-            if (isMobile) {
-                fullTimeline.to("#page16-mobile-right-section", {
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: "power2.out"
-                }, "-=2.5") // Show mobile right section earlier, replacing left
-                .to("#page16-mobile-episode-1", {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    ease: "power2.out"
-                }, "-=0.2")
-                .to("#page16-mobile-episode-2", {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    ease: "power2.out"
-                }, "-=0.3")
-                .to("#page16-mobile-episode-3", {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    ease: "power2.out"
-                }, "-=0.3")
-                .to("#page16-mobile-show-more-btn", {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    ease: "power2.out"
-                }, "-=0.2")
-            }
-            
-            fullTimeline.to({}, { duration: 1 }) // Hold to view sections
+            .to({}, { duration: 1 }) // Brief hold to view content
             
             // Hide podcast sections with dramatic scale-up effect (like membership page)
             .to("#page16-podcast-container", {
@@ -1509,76 +1418,8 @@ class AuraCenter {
                 opacity: 1,
                 scale: 1,
                 duration: 1,
-                ease: "power3.out",
-                onStart: () => console.log("Video section replacing podcast content"),
-                onComplete: () => console.log("Video section replacement complete")
+                ease: "power3.out"
             })
-            // Animate video grid elements one by one
-            .to("#video-grid-classes", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.5")
-            .to("#video-grid-dance", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.3")
-            .to("#video-grid-cardio", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.3")
-            .to("#video-grid-fitness", {
-                opacity: 1,
-                x: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.3")
-            .to("#video-grid-yoga", {
-                opacity: 1,
-                x: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.3")
-            
-            // Mobile video animations (if mobile)
-            if (isMobile) {
-                fullTimeline
-                .to("#mobile-video-classes", {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: "power2.out"
-                }, "-=2.0")
-                .to("#mobile-video-dance", {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: "power2.out"
-                })
-                .to("#mobile-video-cardio", {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: "power2.out"
-                })
-                .to("#mobile-video-fitness", {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1,
-                    ease: "power2.out"
-                })
-                .to("#mobile-video-yoga", {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1,
-                    ease: "power2.out"
-                })
-            }
             
         }
 
@@ -2350,7 +2191,120 @@ function navigateToPage(pageNumber) {
         console.log('Missing components:', {
             targetPage: !!targetPage,
             auraCenter: !!window.auraCenter,
-            timeline: !!window.auraCenter?.tl
+            timeline: !!window.auraCenter?.timeline
         });
     }
 }
+
+// Video Slider Functionality for Page 16d
+class VideoSlider {
+    constructor() {
+        this.currentSlide = 0;
+        this.totalSlides = 5;
+        this.slider = document.querySelector('.video-slider-wrapper');
+        this.prevBtn = document.getElementById('video-prev-btn');
+        this.nextBtn = document.getElementById('video-next-btn');
+        this.indicators = document.querySelectorAll('.video-indicator');
+        
+        this.init();
+    }
+    
+    init() {
+        if (!this.slider) return;
+        
+        // Add event listeners
+        if (this.prevBtn) {
+            this.prevBtn.addEventListener('click', () => this.prevSlide());
+        }
+        
+        if (this.nextBtn) {
+            this.nextBtn.addEventListener('click', () => this.nextSlide());
+        }
+        
+        // Add indicator click events
+        this.indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => this.goToSlide(index));
+        });
+        
+        // Touch events for swipe functionality
+        this.addTouchEvents();
+        
+        // Update initial state
+        this.updateSlider();
+    }
+    
+    addTouchEvents() {
+        let startX = 0;
+        let startY = 0;
+        let endX = 0;
+        let endY = 0;
+        
+        this.slider.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+        
+        this.slider.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            endY = e.changedTouches[0].clientY;
+            
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+            
+            // Only process horizontal swipes that are greater than vertical swipes
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    // Swipe left - next slide
+                    this.nextSlide();
+                } else {
+                    // Swipe right - previous slide
+                    this.prevSlide();
+                }
+            }
+        });
+    }
+    
+    nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        this.updateSlider();
+    }
+    
+    prevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+        this.updateSlider();
+    }
+    
+    goToSlide(index) {
+        this.currentSlide = index;
+        this.updateSlider();
+    }
+    
+    updateSlider() {
+        if (!this.slider) return;
+        
+        // Move slider
+        const translateX = -this.currentSlide * 100;
+        this.slider.style.transform = `translateX(${translateX}%)`;
+        
+        // Update indicators
+        this.indicators.forEach((indicator, index) => {
+            if (index === this.currentSlide) {
+                indicator.classList.add('active');
+                indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+            } else {
+                indicator.classList.remove('active');
+                indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+            }
+        });
+    }
+}
+
+// Initialize video slider when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Small delay to ensure all elements are rendered
+    setTimeout(() => {
+        if (document.getElementById('page-16d')) {
+            new VideoSlider();
+        }
+    }, 100);
+});

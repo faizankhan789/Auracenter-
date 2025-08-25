@@ -193,7 +193,10 @@ const translations = {
     ourLinks: "Our Links",
     contactUs: "Contact Us",
     ourNewsletter: "Our Newsletter",
-    copyright: "© 2024 Auracenter. All rights reserved."
+    copyright: "© 2024 Auracenter. All rights reserved.",
+    
+    // Mobile Schedule Navigation
+    swipeToNavigate: "Swipe to navigate"
   },
   
   ar: {
@@ -390,7 +393,10 @@ const translations = {
     ourLinks: "روابطنا",
     contactUs: "اتصل بنا",
     ourNewsletter: "نشرتنا الإخبارية",
-    copyright: "© 2024 أوراسنتر. جميع الحقوق محفوظة."
+    copyright: "© 2024 أوراسنتر. جميع الحقوق محفوظة.",
+    
+    // Mobile Schedule Navigation - Arabic
+    swipeToNavigate: "اسحب للتنقل"
   }
 };
 
