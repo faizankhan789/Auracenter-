@@ -83,15 +83,34 @@ class AuraCenter {
                 const response = await fetch('./assets/data/videos.json');
                 if (response.ok) {
                     this.videos = await response.json();
+                    console.log('Videos loaded from JSON:', this.videos.length);
                 } else {
                     console.error('Failed to load videos data, using fallback');
+                    // Fallback videos for testing
+                    this.videos = [
+                        'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                        'https://www.youtube.com/embed/9bZkp7q19f0',
+                        'https://www.youtube.com/embed/kJQP7kiw5Fk'
+                    ];
                 }
             } catch (error) {
                 console.error('Error loading videos data:', error);
+                // Fallback videos for testing
+                this.videos = [
+                    'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                    'https://www.youtube.com/embed/9bZkp7q19f0',
+                    'https://www.youtube.com/embed/kJQP7kiw5Fk'
+                ];
             }
-            this.videos.forEach((video, index) => {
-                this.addVideo(video, index);
-            });
+            
+            if (this.videos && this.videos.length > 0) {
+                this.videos.forEach((video, index) => {
+                    this.addVideo(video, index);
+                });
+                console.log('Added videos to DOM:', this.videos.length);
+            } else {
+                console.error('No videos to load!');
+            }
         }
 
         /**
@@ -324,6 +343,252 @@ class AuraCenter {
         }
 
         /**
+         * Setup video navigation functionality for page 8
+         */
+        setupVideoNavigation() {
+            console.log('Setting up video navigation...');
+            this.currentVideoIndex = 0;
+            this.isAnimating = false;
+            
+            const forwardBtn = document.getElementById('video-nav-forward');
+            const backwardBtn = document.getElementById('video-nav-backward');
+            const carouselTrack = document.querySelector('.carousel-track');
+            const videoSlides = document.querySelectorAll('.video-slide');
+            
+            console.log('Navigation elements found:', {
+                forwardBtn: !!forwardBtn,
+                backwardBtn: !!backwardBtn,
+                carouselTrack: !!carouselTrack,
+                videoSlides: videoSlides.length
+            });
+            
+            if (!forwardBtn || !backwardBtn || !carouselTrack) {
+                console.error('Missing navigation elements!');
+                return;
+            }
+            
+            if (videoSlides.length === 0) {
+                console.warn('No video slides found, retrying in 1 second...');
+                setTimeout(() => this.setupVideoNavigation(), 1000);
+                return;
+            }
+            
+            const updateVideoVisibility = () => {
+                // Get total videos from DOM instead of this.videos array
+                const totalVideos = document.querySelectorAll('.video-slide').length;
+                if (totalVideos === 0) return;
+                
+                console.log(`🔄 Updating visibility: Current video: ${this.currentVideoIndex}, Total videos: ${totalVideos}`);
+                
+                // Update button states - don't disable, just change opacity
+                const isFirst = this.currentVideoIndex === 0;
+                const isLast = this.currentVideoIndex === totalVideos - 1;
+                
+                backwardBtn.style.opacity = isFirst ? '0.4' : '0.9';
+                forwardBtn.style.opacity = isLast ? '0.4' : '0.9';
+                
+                // Remove disabled attribute completely - we'll handle this in the click handlers
+                backwardBtn.removeAttribute('disabled');
+                forwardBtn.removeAttribute('disabled');
+                
+                console.log(`🔄 Button states: backward=${isFirst ? 'disabled' : 'enabled'}, forward=${isLast ? 'disabled' : 'enabled'}`);
+            };
+            
+            const navigateToVideo = (index, direction = 'forward') => {
+                const totalVideos = document.querySelectorAll('.video-slide').length;
+                
+                if (this.isAnimating || index < 0 || index >= totalVideos) {
+                    console.log(`Navigation blocked: isAnimating=${this.isAnimating}, index=${index}, totalVideos=${totalVideos}`);
+                    return;
+                }
+                
+                console.log(`Navigating to video ${index}`);
+                this.isAnimating = true;
+                const previousIndex = this.currentVideoIndex;
+                this.currentVideoIndex = index;
+                
+                // Pause current video
+                const currentVideo = document.getElementById(`video-${previousIndex}`);
+                if (currentVideo && currentVideo.contentWindow) {
+                    currentVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+                
+                // Create timeline for synchronized animations
+                const timeline = gsap.timeline({
+                    onComplete: () => {
+                        this.isAnimating = false;
+                        updateVideoVisibility();
+                        console.log(`Animation complete, current video: ${this.currentVideoIndex}`);
+                    }
+                });
+                
+                // Animate carousel track movement
+                timeline.to(carouselTrack, {
+                    x: `-${index * 100}vw`,
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                }, 0);
+                
+                // Animate previous video: scale down from big to small and fade out
+                timeline.to(`.video-slide[data-index='${previousIndex}']`, {
+                    scale: 0.3,
+                    opacity: 0.2,
+                    duration: 0.5,
+                    ease: "power2.in"
+                }, 0);
+                
+                // Set initial state for incoming video (small and transparent)
+                timeline.set(`.video-slide[data-index='${index}']`, {
+                    scale: 0.3,
+                    opacity: 0.2
+                }, 0);
+                
+                // Animate incoming video: scale up from small to big and fade in
+                timeline.to(`.video-slide[data-index='${index}']`, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: "back.out(1.2)",
+                    delay: 0.2
+                }, 0.2);
+                
+                // Add a subtle bounce effect for the incoming video
+                timeline.to(`.video-slide[data-index='${index}'] .video-wrapper`, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: "power2.out"
+                }, 0.6)
+                .to(`.video-slide[data-index='${index}'] .video-wrapper`, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.inOut"
+                }, 0.8);
+            };
+            
+            // Setup click handlers for desktop and mobile
+            console.log('Setting up navigation handlers...');
+            
+            forwardBtn.onclick = (e) => {
+                console.log('🟢 Forward button clicked via onclick!');
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const totalVideos = document.querySelectorAll('.video-slide').length;
+                console.log(`Forward clicked: current=${this.currentVideoIndex}, total=${totalVideos}, isAnimating=${this.isAnimating}`);
+                
+                if (this.isAnimating) {
+                    console.log('❌ Animation in progress, ignoring click');
+                    return;
+                }
+                
+                if (this.currentVideoIndex < totalVideos - 1) {
+                    console.log('✅ Navigating forward');
+                    navigateToVideo(this.currentVideoIndex + 1, 'forward');
+                } else {
+                    console.log('❌ Already at last video');
+                }
+            };
+            
+            backwardBtn.onclick = (e) => {
+                console.log('🔴 Backward button clicked via onclick!');
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const totalVideos = document.querySelectorAll('.video-slide').length;
+                console.log(`Backward clicked: current=${this.currentVideoIndex}, total=${totalVideos}, isAnimating=${this.isAnimating}`);
+                
+                if (this.isAnimating) {
+                    console.log('❌ Animation in progress, ignoring click');
+                    return;
+                }
+                
+                if (this.currentVideoIndex > 0) {
+                    console.log('✅ Navigating backward');
+                    navigateToVideo(this.currentVideoIndex - 1, 'backward');
+                } else {
+                    console.log('❌ Already at first video');
+                }
+            };
+            
+            // Enhanced mobile touch support
+            const addMobileTouchSupport = () => {
+                // Remove any existing touch listeners to avoid duplicates
+                forwardBtn.removeEventListener('touchstart', forwardBtn._touchStartHandler);
+                forwardBtn.removeEventListener('touchend', forwardBtn._touchEndHandler);
+                backwardBtn.removeEventListener('touchstart', backwardBtn._touchStartHandler);
+                backwardBtn.removeEventListener('touchend', backwardBtn._touchEndHandler);
+                
+                // Create touch handlers
+                forwardBtn._touchStartHandler = (e) => {
+                    e.preventDefault();
+                    forwardBtn.style.transform = 'scale(0.95)';
+                    console.log('🟢 Forward touch start');
+                };
+                
+                forwardBtn._touchEndHandler = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    forwardBtn.style.transform = 'scale(1)';
+                    console.log('🟢 Forward touch end - executing navigation');
+                    
+                    // Execute navigation directly instead of triggering click
+                    const totalVideos = document.querySelectorAll('.video-slide').length;
+                    if (!this.isAnimating && this.currentVideoIndex < totalVideos - 1) {
+                        navigateToVideo(this.currentVideoIndex + 1, 'forward');
+                    }
+                };
+                
+                backwardBtn._touchStartHandler = (e) => {
+                    e.preventDefault();
+                    backwardBtn.style.transform = 'scale(0.95)';
+                    console.log('🔴 Backward touch start');
+                };
+                
+                backwardBtn._touchEndHandler = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    backwardBtn.style.transform = 'scale(1)';
+                    console.log('🔴 Backward touch end - executing navigation');
+                    
+                    // Execute navigation directly instead of triggering click
+                    if (!this.isAnimating && this.currentVideoIndex > 0) {
+                        navigateToVideo(this.currentVideoIndex - 1, 'backward');
+                    }
+                };
+                
+                // Add touch listeners
+                forwardBtn.addEventListener('touchstart', forwardBtn._touchStartHandler, { passive: false });
+                forwardBtn.addEventListener('touchend', forwardBtn._touchEndHandler, { passive: false });
+                backwardBtn.addEventListener('touchstart', backwardBtn._touchStartHandler, { passive: false });
+                backwardBtn.addEventListener('touchend', backwardBtn._touchEndHandler, { passive: false });
+                
+                console.log('✅ Mobile touch support enhanced');
+            };
+            
+            // Apply mobile touch support
+            addMobileTouchSupport();
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                const page8 = document.querySelector('.page-8');
+                if (page8 && page8.getBoundingClientRect().top <= 100 && 
+                    page8.getBoundingClientRect().bottom >= 100) {
+                    const totalVideos = document.querySelectorAll('.video-slide').length;
+                    if (e.key === 'ArrowLeft' && this.currentVideoIndex > 0) {
+                        navigateToVideo(this.currentVideoIndex - 1, 'backward');
+                    } else if (e.key === 'ArrowRight' && this.currentVideoIndex < totalVideos - 1) {
+                        navigateToVideo(this.currentVideoIndex + 1, 'forward');
+                    }
+                }
+            });
+            
+            // Initialize button states
+            setTimeout(updateVideoVisibility, 1000);
+            
+            console.log('✅ Video navigation setup complete');
+        }
+
+        /**
          * Initialize all animation components, UI elements, and event listeners.
          * This is the main entry point that sets up the entire animation system.
          * 
@@ -336,12 +601,14 @@ class AuraCenter {
             this.startClockUpdate();
             this.initECGAnimation();
             await this.loadCardsData();
-            // await this.loadVideosData();
+            await this.loadVideosData();
             await this.loadScheduleData();
             // await this.loadTrainersData();
             this.setupResponsiveHandler();
             this.setUpGSAP();
             this.setUpLenis();
+            // Setup video navigation after everything is loaded
+            setTimeout(() => this.setupVideoNavigation(), 2000);
             this.removeLoader();
         }
 
@@ -1266,86 +1533,62 @@ class AuraCenter {
         }
 
         page15Animation(fullTimeline, isMobile) {
-            fullTimeline.to(".page-15", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
-            // Page 15 Membership Animation - happens immediately after page appears
-            .set("#membership-intro", { opacity: 0 })
-            .set("#plan-button", { scale: 0, opacity: 0 })
-            .set("#title-container", { scale: 0, opacity: 0 })
-            .set("#subtitle", { scale: 0, opacity: 0 })
-            .set("#membership-table-wrapper", { opacity: 0, scale: 0.8 })
+            // Initialize elements to be invisible
+            gsap.set("#membership-intro", { opacity: 0, y: -50 });
+            gsap.set("#plan-button", { scale: 0, opacity: 0 });
+            gsap.set("#title-container", { scale: 0, opacity: 0 });
+            gsap.set("#subtitle", { scale: 0, opacity: 0 });
+            gsap.set("#membership-table-wrapper", { opacity: 0, y: 50 });
+            gsap.set(".membership-plan-card", { scale: 0.8, opacity: 0 });
             
-            // Show intro container
-            .to("#membership-intro", { opacity: 1, duration: 0.1 })
+            fullTimeline
+            .to(".page-15", { yPercent: 0, duration: 1.5, ease: "power2.inOut" })
             
-            // Animate intro elements scaling up
-            .to("#plan-button", { 
-                scale: 1, 
+            // Animate intro section entrance
+            .to("#membership-intro", { 
                 opacity: 1, 
-                duration: 0.5, 
-                ease: "back.out(1.7)" 
-            })
-            .to("#title-container", { 
-                scale: 1, 
-                opacity: 1, 
+                y: 0, 
                 duration: 0.8, 
-                ease: "power3.out" 
-            }, "-=0.3")
-            .to("#subtitle", { 
-                scale: 1, 
-                opacity: 1, 
-                duration: 0.5, 
                 ease: "power2.out" 
-            }, "-=0.4")
-            
-            // Hold the intro for a moment
-            .to({}, { duration: 1 })
-            
-            // Scale up the intro text dramatically while fading out
-            .to("#plan-button", { 
-                scale: 3, 
-                opacity: 0, 
-                duration: 0.8, 
-                ease: "power2.in" 
-            })
-            .to("#title-container", { 
-                scale: 2.5, 
-                opacity: 0, 
-                duration: 0.8, 
-                ease: "power2.in" 
-            }, "-=0.8")
-            .to("#subtitle", { 
-                scale: 2, 
-                opacity: 0, 
-                duration: 0.8, 
-                ease: "power2.in" 
-            }, "-=0.8")
-            
-            // Hide intro completely
-            .set("#membership-intro", { display: "none" })
-            
-            // Reveal and animate the membership table
-            .to("#membership-table-wrapper", { 
-                opacity: 1, 
-                scale: 1, 
-                duration: 1, 
-                ease: "power3.out" 
-            })
-            
-            // Add stagger animation to membership cards
-            .from(".membership-plan-card", {
-                scale: 0.8,
-                opacity: 0,
-                duration: 0.5,
-                stagger: 0.2,
-                ease: "back.out(1.5)"
             }, "-=0.5")
+            .to("#plan-button", { 
+                scale: 1, 
+                opacity: 1, 
+                duration: 0.6, 
+                ease: "back.out(1.7)" 
+            }, "-=0.6")
+            .to("#title-container", { 
+                scale: 1, 
+                opacity: 1, 
+                duration: 0.8, 
+                ease: "power3.out" 
+            }, "-=0.4")
+            .to("#subtitle", { 
+                scale: 1, 
+                opacity: 1, 
+                duration: 0.6, 
+                ease: "power2.out" 
+            }, "-=0.6")
+            
+            // Simultaneously animate membership table entrance
             .to("#membership-table-wrapper", { 
                 opacity: 1, 
-                scale: 1, 
+                y: 0, 
                 duration: 1, 
                 ease: "power3.out" 
-            })
-            fullTimeline.to({}, { duration: 2 }) // Hold on page 15 to view membership content
+            }, "-=0.8")
+            
+            // Stagger animation for membership cards
+            .to(".membership-plan-card", {
+                scale: 1,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.15,
+                ease: "back.out(1.5)"
+            }, "-=0.6")
+            
+            // Hold the page to view content (extended for 200vh page)
+            .to({}, { duration: 4 })
         }
         page16Animation(fullTimeline, isMobile) {
             // Page 16 - NO ANIMATIONS - All elements visible immediately

@@ -317,6 +317,15 @@
                     <div class="carousel-track flex h-full transition-none" id="video-carousel">
                         <!-- Videos will be dynamically added by JavaScript -->
                     </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <button id="video-nav-backward" class="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-50 p-2 md:p-0 hover:scale-110 transition-all duration-300 opacity-90 hover:opacity-100 touch-manipulation">
+                        <img src="assets/page_8/backward.png" alt="Previous Video" class="w-10 h-10 md:w-16 md:h-16 lg:w-20 lg:h-20 pointer-events-none" loading="lazy">
+                    </button>
+                    
+                    <button id="video-nav-forward" class="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-50 p-2 md:p-0 hover:scale-110 transition-all duration-300 opacity-90 hover:opacity-100 touch-manipulation">
+                        <img src="assets/page_8/forward.png" alt="Next Video" class="w-10 h-10 md:w-16 md:h-16 lg:w-20 lg:h-20 pointer-events-none" loading="lazy">
+                    </button>
                 </div>
             </div>
 		<!-- Page 9: Schedule -->
@@ -909,9 +918,9 @@
             </div>
 		</div>
 		<!-- Page 15 PRICING TABLE -->
-		<div class="relative h-[100vh] w-[100vw] page-15 bg-[#f2eeeb] flex flex-col min-h-screen w-full" id="page-15">
+		<div class="relative h-[200vh] w-[100vw] page-15 bg-[#f2eeeb] flex flex-col w-full" id="page-15">
                 <!-- Intro Section -->
-                <div id="membership-intro" class="absolute inset-0 flex flex-col items-center justify-center z-10 opacity-0">
+                <div id="membership-intro" class="relative flex flex-col items-center justify-center py-8 md:py-16 px-4">
                     <!-- PLAN Button -->
                     <button id="plan-button" class="bg-[#182a41] text-[#DAECE9] px-6 py-3 rounded-lg font-semibold tracking-wider mb-8" data-translate="plan">PLAN</button>
                     
@@ -928,13 +937,13 @@
                     </div>
                     
                     <!-- Subtitle -->
-                    <h2 id="subtitle" class="text-[#182a41] font-semibold mt-8" style="font-size: clamp(0.875rem, 2vw, 1.5rem);" data-translate="chooseYourPricingPlan">
+                    <h2 id="subtitle" class="text-[#182a41] font-semibold mt-4 md:mt-8 mb-4 md:mb-8" style="font-size: clamp(0.875rem, 2vw, 1.5rem);" data-translate="chooseYourPricingPlan">
                         CHOOSE YOUR PRICING PLAN
                     </h2>
                 </div>
                 
                 <!-- Membership Table Container -->
-                <div id="membership-table-wrapper" class="relative w-full h-full flex flex-col items-center justify-center opacity-0">
+                <div id="membership-table-wrapper" class="relative w-full flex-1 flex flex-col items-center justify-start pt-4 md:pt-8 pb-16 md:pb-32">
                     <div class="w-full px-2 md:px-8 lg:px-16">
                         <!-- Membership Table -->
                         <div class="w-full max-w-7xl mx-auto overflow-hidden py-4">
@@ -1013,7 +1022,7 @@
                 </div>
             </div>
 		<!-- Page 16: PODCAST -->
-		 <div class="relative h-[100vh] w-[100vw] page-16 min-h-screen w-full" id="page-16">
+		 <div class="relative h-[100vh] w-[100vw] page-16 min-h-screen w-full" id="page-16" style="margin-top: 0;">
             <div class="flex absolute top-0 left-0 h-screen w-full">
                 <!-- Background: Full #d9cec5 on mobile, split on desktop -->
                 <div class="w-full  lg:w-4/5" style="background-color: #d9cec5; "></div>
