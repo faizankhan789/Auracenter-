@@ -1,38 +1,74 @@
 [
     {
         "imageSrc": "./assets/page_5/power_yoga",
-        "title": "Power Yoga",
-        "listItems": ["Flexibility", "Breath Control", "Stress Relief"],
+        "title": {
+            "en": "Power Yoga",
+            "ar": "يوجا القوة"
+        },
+        "listItems": {
+            "en": ["Flexibility", "Breath Control", "Stress Relief"],
+            "ar": ["المرونة", "التحكم بالتنفس", "تخفيف التوتر"]
+        },
         "index": 1
     },
     {
         "imageSrc": "./assets/page_5/weight_lifting",
-        "title": "Weight Lifting",
-        "listItems": ["Strength Training", "Form Guidance", "Women Focused"],
+        "title": {
+            "en": "Weight Lifting",
+            "ar": "رفع الأثقال"
+        },
+        "listItems": {
+            "en": ["Strength Training", "Form Guidance", "Women Focused"],
+            "ar": ["تدريب القوة", "توجيه الأداء", "تركيز نسائي"]
+        },
         "index": 2
     },
     {
         "imageSrc": "./assets/page_5/personal_training",
-        "title": "Personal Training",
-        "listItems": ["1-on-1 Coaching", "Custom Plans", "Goal Tracking"],
+        "title": {
+            "en": "Personal Training",
+            "ar": "التدريب الشخصي"
+        },
+        "listItems": {
+            "en": ["1-on-1 Coaching", "Custom Plans", "Goal Tracking"],
+            "ar": ["تدريب فردي", "خطط مخصصة", "تتبع الأهداف"]
+        },
         "index": 3
     },
     {
         "imageSrc": "./assets/page_5/cardio_strength",
-        "title": "Cardio & Strength",
-        "listItems": ["HIIT Sessions", "Fat Burn", "Endurance"],
+        "title": {
+            "en": "Cardio & Strength",
+            "ar": "كارديو والقوة"
+        },
+        "listItems": {
+            "en": ["HIIT Sessions", "Fat Burn", "Endurance"],
+            "ar": ["تدريبات عالية الكثافة", "حرق الدهون", "التحمل"]
+        },
         "index": 4
     },
     {
         "imageSrc": "./assets/page_5/strength_recovery",
-        "title": "Strength & Recovery",
-        "listItems": ["Deep Stretching", "Muscle Release", "Injury Prevention"],
+        "title": {
+            "en": "Strength & Recovery",
+            "ar": "القوة والاستشفاء"
+        },
+        "listItems": {
+            "en": ["Deep Stretching", "Muscle Release", "Injury Prevention"],
+            "ar": ["تمدد عميق", "إراحة العضلات", "منع الإصابات"]
+        },
         "index": 5
     },
     {
         "imageSrc": "./assets/page_5/dance_fitness",
-        "title": "Dance Fitness",
-        "listItems": ["Fun workouts", "High energy", "Cultural vibes"],
+        "title": {
+            "en": "Dance Fitness",
+            "ar": "لياقة الرقص"
+        },
+        "listItems": {
+            "en": ["Fun workouts", "High energy", "Cultural vibes"],
+            "ar": ["تدريبات ممتعة", "طاقة عالية", "أجواء ثقافية"]
+        },
         "index": 6
     }
 ]

@@ -1,12 +1,34 @@
 [
-    "https://www.youtube.com/embed/W1WChNEbKLE",
-    "https://www.youtube.com/embed/W1WChNEbKLE",
-    "https://www.youtube.com/embed/HfPzZseycQs",
-    "https://www.youtube.com/embed/HlrlPU4XSgA",
-    "https://www.youtube.com/embed/O7B2Bcdpzn4",
-    "https://www.youtube.com/embed/6FwJF7hKskA",
-    "https://www.youtube.com/embed/cj_dtXO5N60",
-    "https://www.youtube.com/embed/a4CyifxUPN8",
-    "https://www.youtube.com/embed/uTduDcQAmC0",
-    "https://www.youtube.com/embed/jXhuFe2AAIk"
+    {
+        "src": "/custom_website/static/src/videos/video1.mp4",
+        "poster": "/custom_website/static/src/img/page_8/video1-min.png"
+    },
+    {
+        "src": "/custom_website/static/src/videos/video2.mp4",
+        "poster": "/custom_website/static/src/img/page_8/video2-min.png"
+    },
+    {
+        "src": "/custom_website/static/src/videos/video3.mp4",
+        "poster": "/custom_website/static/src/img/page_8/video3-min.png"
+    },
+    {
+        "src": "/custom_website/static/src/videos/video4.mp4",
+        "poster": "/custom_website/static/src/img/page_8/video4-min.png"
+    },
+    {
+        "src": "/custom_website/static/src/videos/video5.mp4",
+        "poster": "/custom_website/static/src/img/page_8/video5-min.png"
+    },
+    {
+        "src": "/custom_website/static/src/videos/video6.mp4",
+        "poster": "/custom_website/static/src/img/page_8/video6-min.png"
+    },
+    {
+        "src": "/custom_website/static/src/videos/video7.mp4",
+        "poster": "/custom_website/static/src/img/page_8/video7-min.png"
+    },
+    {
+        "src": "/custom_website/static/src/videos/video8.mp4",
+        "poster": "/custom_website/static/src/img/page_8/video8-min.png"
+    }
 ]

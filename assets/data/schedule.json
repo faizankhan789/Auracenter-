@@ -1,68 +1,80 @@
 [
     {
-        "day": "MONDAY",
+        "day": {
+            "en": "MONDAY",
+            "ar": "الإثنين"
+        },
         "activities": [
-            { "time": "06:00 - 07:00", "name": "MORNING STRENGTH", "icon": "./assets/page_9/dumbell.png", "type": "white" },
-            { "time": "08:00 - 09:00", "name": "AQUA FITNESS", "icon": "./assets/page_9/weight.png", "type": "#24203c" },
-            { "time": "10:00 - 11:00", "name": "CARDIO BLAST", "icon": "./assets/page_9/heart.png", "type": "white" },
-            { "time": "17:00 - 18:00", "name": "POWER LIFTING", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
-            { "time": "18:30 - 19:30", "name": "YOGA FLOW", "icon": "./assets/page_9/weight.png", "type": "white" },
-            { "time": "20:00 - 21:00", "name": "EVENING STRETCH", "icon": "./assets/page_9/heart.png", "type": "dark" }
+            { "time": "08:00 - 09:00", "name": { "en": "MORNING YOGA", "ar": "يوجا الصباح" }, "icon": "./assets/page_9/heart.png", "type": "dark" },
+            { "time": "10:00 - 11:00", "name": { "en": "CARDIO BLAST", "ar": "انفجار الكارديو" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": { "en": "POWER LIFTING", "ar": "رفع القوة" }, "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "19:00 - 20:00", "name": { "en": "DANCE FITNESS", "ar": "لياقة الرقص" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": { "en": "EVENING STRETCH", "ar": "تمدد المساء" }, "icon": "./assets/page_9/heart.png", "type": "dark" }
         ]
     },
     {
-        "day": "TUESDAY",
+        "day": {
+            "en": "TUESDAY",
+            "ar": "الثلاثاء"
+        },
         "activities": [
-            { "time": "06:00 - 07:00", "name": "BOOT CAMP", "icon": "./assets/page_9/dumbell.png", "type": "white" },
-            { "time": "08:00 - 09:00", "name": "WATER AEROBICS", "icon": "./assets/page_9/weight.png", "type": "dark" },
-            { "time": "10:30 - 11:30", "name": "DANCE FITNESS", "icon": "./assets/page_9/heart.png", "type": "white" },
-            { "time": "17:00 - 18:00", "name": "CIRCUIT TRAINING", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
-            { "time": "18:30 - 19:30", "name": "PILATES", "icon": "./assets/page_9/weight.png", "type": "white" },
-            { "time": "20:00 - 21:00", "name": "STRENGTH & TONE", "icon": "./assets/page_9/heart.png", "type": "dark" }
+            { "time": "08:00 - 09:00", "name": { "en": "WATER AEROBICS", "ar": "أيروبيك مائي" }, "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:30 - 11:30", "name": { "en": "DANCE FITNESS", "ar": "لياقة الرقص" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": { "en": "CIRCUIT TRAINING", "ar": "تدريب دائري" }, "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "19:00 - 20:00", "name": { "en": "POWER YOGA", "ar": "يوجا القوة" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": { "en": "STRENGTH & TONE", "ar": "قوة ونحت" }, "icon": "./assets/page_9/heart.png", "type": "dark" }
         ]
     },
     {
-        "day": "WEDNESDAY",
+        "day": {
+            "en": "WEDNESDAY",
+            "ar": "الأربعاء"
+        },
         "activities": [
-            { "time": "06:00 - 07:00", "name": "AQUA ZUMBA", "icon": "./assets/page_9/dumbell.png", "type": "white" },
-            { "time": "08:00 - 09:00", "name": "HIIT CARDIO", "icon": "./assets/page_9/weight.png", "type": "dark" },
-            { "time": "10:00 - 11:00", "name": "FUNCTIONAL FITNESS", "icon": "./assets/page_9/heart.png", "type": "white" },
-            { "time": "17:00 - 18:00", "name": "VINYASA YOGA", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
-            { "time": "18:30 - 19:30", "name": "BODY SCULPT", "icon": "./assets/page_9/weight.png", "type": "white" },
-            { "time": "20:00 - 21:00", "name": "MEDITATION", "icon": "./assets/page_9/heart.png", "type": "dark" }
+            { "time": "08:00 - 09:00", "name": { "en": "HIIT CARDIO", "ar": "كارديو عالي الكثافة" }, "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:00 - 11:00", "name": { "en": "FUNCTIONAL FITNESS", "ar": "لياقة وظيفية" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": { "en": "VINYASA YOGA", "ar": "يوجا فينياسا" }, "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "19:00 - 20:00", "name": { "en": "PERSONAL TRAINING", "ar": "تدريب شخصي" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": { "en": "MEDITATION", "ar": "التأمل" }, "icon": "./assets/page_9/heart.png", "type": "dark" }
         ]
     },
     {
-        "day": "THURSDAY",
+        "day": {
+            "en": "THURSDAY",
+            "ar": "الخميس"
+        },
         "activities": [
-            { "time": "06:00 - 07:00", "name": "MORNING PUMP", "icon": "./assets/page_9/dumbell.png", "type": "white" },
-            { "time": "08:00 - 09:00", "name": "AQUA THERAPY", "icon": "./assets/page_9/weight.png", "type": "dark" },
-            { "time": "10:30 - 11:30", "name": "CARDIO MIX", "icon": "./assets/page_9/heart.png", "type": "white" },
-            { "time": "17:00 - 18:00", "name": "KETTLEBELL", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
-            { "time": "18:30 - 19:30", "name": "BARRE CLASS", "icon": "./assets/page_9/weight.png", "type": "white" },
-            { "time": "20:00 - 21:00", "name": "CORE POWER", "icon": "./assets/page_9/heart.png", "type": "dark" }
+            { "time": "08:00 - 09:00", "name": { "en": "AQUA THERAPY", "ar": "علاج مائي" }, "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "10:30 - 11:30", "name": { "en": "CARDIO MIX", "ar": "خليط الكارديو" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "17:00 - 18:00", "name": { "en": "KETTLEBELL", "ar": "الأثقال الكروية" }, "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "19:00 - 20:00", "name": { "en": "WEIGHT LIFTING", "ar": "رفع الأثقال" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": { "en": "CORE POWER", "ar": "قوة العضلات الأساسية" }, "icon": "./assets/page_9/heart.png", "type": "dark" }
         ]
     },
     {
-        "day": "SATURDAY",
+        "day": {
+            "en": "FRIDAY",
+            "ar": "الجمعة"
+        },
         "activities": [
-            { "time": "08:00 - 09:00", "name": "WEEKEND WARRIOR", "icon": "./assets/page_9/dumbell.png", "type": "white" },
-            { "time": "09:30 - 10:30", "name": "AQUA FUN", "icon": "./assets/page_9/weight.png", "type": "dark" },
-            { "time": "11:00 - 12:00", "name": "ZUMBA PARTY", "icon": "./assets/page_9/heart.png", "type": "white" },
-            { "time": "16:00 - 17:00", "name": "STRENGTH BASICS", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
-            { "time": "17:30 - 18:30", "name": "RESTORATIVE YOGA", "icon": "./assets/page_9/weight.png", "type": "white" },
-            { "time": "20:00 - 21:00", "name": "EVENING STRETCH", "icon": "./assets/page_9/heart.png", "type": "dark" }
+            { "time": "09:30 - 10:30", "name": { "en": "AQUA FUN", "ar": "متعة مائية" }, "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "11:00 - 12:00", "name": { "en": "ZUMBA PARTY", "ar": "حفلة الزومبا" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "16:00 - 17:00", "name": { "en": "STRENGTH BASICS", "ar": "أساسيات القوة" }, "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "18:00 - 19:00", "name": { "en": "SMALL GROUP TRAINING", "ar": "تدريب مجموعات صغيرة" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "20:00 - 21:00", "name": { "en": "EVENING STRETCH", "ar": "تمدد المساء" }, "icon": "./assets/page_9/heart.png", "type": "dark" }
         ]
     },
     {
-        "day": "SUNDAY",
+        "day": {
+            "en": "SATURDAY",
+            "ar": "السبت"
+        },
         "activities": [
-            { "time": "09:00 - 10:00", "name": "SUNDAY SCULPT", "icon": "./assets/page_9/dumbell.png", "type": "white" },
-            { "time": "10:30 - 11:30", "name": "WATER WELLNESS", "icon": "./assets/page_9/weight.png", "type": "dark" },
-            { "time": "12:00 - 13:00", "name": "GENTLE CARDIO", "icon": "./assets/page_9/heart.png", "type": "white" },
-            { "time": "16:00 - 17:00", "name": "FULL BODY", "icon": "./assets/page_9/dumbell.png", "type": "dark" },
-            { "time": "17:30 - 18:30", "name": "SUNSET YOGA", "icon": "./assets/page_9/weight.png", "type": "white" },
-            { "time": "19:00 - 20:00", "name": "RECOVERY SESSION", "icon": "./assets/page_9/heart.png", "type": "dark" }
+            { "time": "10:30 - 11:30", "name": { "en": "WATER WELLNESS", "ar": "عافية مائية" }, "icon": "./assets/page_9/weight.png", "type": "dark" },
+            { "time": "12:00 - 13:00", "name": { "en": "GENTLE CARDIO", "ar": "كارديو لطيف" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "16:00 - 17:00", "name": { "en": "FULL BODY", "ar": "الجسم بالكامل" }, "icon": "./assets/page_9/dumbell.png", "type": "dark" },
+            { "time": "18:00 - 19:00", "name": { "en": "RELAXATION YOGA", "ar": "يوجا الاسترخاء" }, "icon": "./assets/page_9/heart.png", "type": "white" },
+            { "time": "19:00 - 20:00", "name": { "en": "RECOVERY SESSION", "ar": "جلسة استشفاء" }, "icon": "./assets/page_9/heart.png", "type": "dark" }
         ]
     }
 ]

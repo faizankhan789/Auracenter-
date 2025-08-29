@@ -1,44 +1,98 @@
 [
-  {
-    "imageSrc": "./assets/page_14/MARIE",
-    "name": "MARIE",
-    "title": "Fitness Trainer",
-    "qualifications": ["FEA: exercise coaching", "Physical education", "Nutrition specialist"],
-    "index": 1
-  },
-  {
-    "imageSrc": "./assets/page_14/ABIR_LABIDHI",
-    "name": "ABIR LABIDHI",
-    "title": "Yoga Expert",
-    "qualifications": ["Certified Yoga Instructor", "Meditation Coach", "10+ years experience"],
-    "index": 2
-  },
-  {
-    "imageSrc": "./assets/page_14/SARAH_HOSNY",
-    "name": "SARAH HOSNY",
-    "title": "Strength Coach",
-    "qualifications": ["Powerlifting Certified", "Sports Science Degree", "Injury Prevention"],
-    "index": 3
-  },
-  {
-    "imageSrc": "./assets/page_14/ABEER_RAHIM",
-    "name": "ABEER RAHIM",
-    "title": "Cardio Specialist",
-    "qualifications": ["HIIT Certified", "Marathon Runner", "Group Fitness Expert"],
-    "index": 4
-  },
-  {
-    "imageSrc": "./assets/page_14/HADEEL_YOUSSEF",
-    "name": "HADEEL YOUSSEF",
-    "title": "Nutrition Coach",
-    "qualifications": ["Registered Dietitian", "Sports Nutrition", "Meal Planning Expert"],
-    "index": 5
-  },
-  {
-    "imageSrc": "./assets/page_14/ROBA_SAMIR",
-    "name": "ROBA SAMIR",
-    "title": "Dance Fitness",
-    "qualifications": ["Zumba Certified", "Contemporary Dance", "Choreography Expert"],
-    "index": 6
-  }
+    {
+        "imageSrc": "./assets/page_14/ABEER_RAHIM",
+        "name": {
+            "en": "ABEER RAHIM",
+            "ar": "عبير رحيم"
+        },
+        "title": {
+            "en": "Certified Fitness Trainer",
+            "ar": "مدربة لياقة بدنية معتمدة"
+        },
+        "qualifications": {
+            "en": ["HIIT Certified", "Marathon Runner", "Group Fitness Expert"],
+            "ar": ["معتمد في التدريب عالي الكثافة", "عداء الماراثون", "خبير اللياقة الجماعية"]
+        },
+        "index": 1
+    },
+    {
+        "imageSrc": "./assets/page_14/ABIR_LABIDHI",
+        "name": {
+            "en": "ABIR LABIDHI",
+            "ar": "عبير العبيدي"
+        },
+        "title": {
+            "en": "Yoga Expert",
+            "ar": "مدربة يوجا"
+        },
+        "qualifications": {
+            "en": ["Certified Yoga Instructor", "Meditation Coach", "10+ years experience"],
+            "ar": ["مدربة يوجا معتمدة", "مدربة تأمل", "خبرة أكثر من 10 سنوات"]
+        },
+        "index": 2
+    },
+    {
+        "imageSrc": "./assets/page_14/HADEEL_YOUSSEF",
+        "name": {
+            "en": "HADEEL YOUSSEF",
+            "ar": "هديل يوسف"
+        },
+        "title": {
+            "en": "Dance & Zumba Trainer",
+            "ar": "مدربة رقص وزومبا"
+        },
+        "qualifications": {
+            "en": ["Zumba Certified", "Contemporary Dance", "Choreography Expert"],
+            "ar": ["معتمدة في الزومبا", "رقص معاصر", "خبيرة في التصميم الحركي"]
+        },
+        "index": 3
+    },
+    {
+        "imageSrc": "./assets/page_14/MARIE",
+        "name": {
+            "en": "MARIE",
+            "ar": "ماري"
+        },
+        "title": {
+            "en": "Nutrition Specialist",
+            "ar": "أخصائية تغذية"
+        },
+        "qualifications": {
+            "en": ["FEA: exercise coaching", "Physical education", "Nutrition specialist"],
+            "ar": ["تدريب التمارين المعتمد", "التربية البدنية", "أخصائية تغذية"]
+        },
+        "index": 4
+    },
+    {
+        "imageSrc": "./assets/page_14/ROBA_SAMIR",
+        "name": {
+            "en": "ROBA SAMIR",
+            "ar": "ربا سمير"
+        },
+        "title": {
+            "en": "Personal Trainer",
+            "ar": "مدربة شخصية"
+        },
+        "qualifications": {
+            "en": ["Registered Dietitian", "Sports Nutrition", "Meal Planning Expert"],
+            "ar": ["أخصائية تغذية مسجلة", "التغذية الرياضية", "خبيرة تخطيط الوجبات"]
+        },
+        "index": 5
+    },
+    {
+        "imageSrc": "./assets/page_14/SARAH_HOSNY",
+        "name": {
+            "en": "SARAH HOSNY",
+            "ar": "سارة حسني"
+        },
+        "title": {
+            "en": "Aqua Fitness Trainer",
+            "ar": "مدربة تمارين مائية"
+        },
+        "qualifications": {
+            "en": ["Powerlifting Certified", "Sports Science Degree", "Injury Prevention"],
+            "ar": ["معتمدة في رفع الأثقال", "درجة علوم الرياضة", "الوقاية من الإصابات"]
+        },
+        "index": 6
+    }
 ]
