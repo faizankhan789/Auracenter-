@@ -232,7 +232,7 @@ class CardSlider {
             if (e.key === 'ArrowRight') this.nextSlide();
         });
         
-        // Pause autoplay on hover - matching page16Slide pattern
+        // Pause autoplay on hover - matching page17Slide pattern
         const sliderContainer = document.querySelector(this.type == 'classes' ? "#page-5-slider" : "#page-14-slider");
         if (sliderContainer) {
             sliderContainer.addEventListener('mouseenter', () => this.stopAutoplay());
@@ -378,7 +378,7 @@ class CardSlider {
     }
     
     /**
-     * Start automatic sliding - matching page16Slide pattern
+     * Start automatic sliding - matching page17Slide pattern
      */
     startAutoplay() {
         // Only start autoplay if in viewport and on mobile
@@ -395,7 +395,7 @@ class CardSlider {
     }
     
     /**
-     * Stop automatic sliding - matching page16Slide pattern
+     * Stop automatic sliding - matching page17Slide pattern
      */
     stopAutoplay() {
         if (this.autoplayInterval) {

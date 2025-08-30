@@ -1,6 +1,6 @@
 class VideoSlider {
     constructor(type, totalSlides) {
-        const page = type == 'videos' ? 'page-8' : 'page-16';
+        const page = type == 'videos' ? 'page-8' : 'page-17';
         this.type = type;
         this.slider = document.getElementById(`${page}-slider`);
         this.prevBtn = document.getElementById(`${page}-prevBtn`);
@@ -142,7 +142,7 @@ class VideoSlider {
      * Setup intersection observer to start autoplay only when page is in viewport
      */
     setupIntersectionObserver() {
-        const targetElement = document.querySelector(this.type == 'videos' ? '.page-8' : '.page-16');
+        const targetElement = document.querySelector(this.type == 'videos' ? '.page-8' : '.page-17');
         if (!targetElement) return;
         
         this.observer = new IntersectionObserver((entries) => {

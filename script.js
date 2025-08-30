@@ -711,25 +711,91 @@ class AuraCenterWebsite {
         }
 
         page16Animation(fullTimeline) {
+            const pageElement = ".page-16";
+            gsap.set(pageElement, { yPercent: 100 });
+            
+            fullTimeline.to(pageElement, {
+                yPercent: 0,
+                duration: 0.8,
+                ease: "power1.out",
+            })
+            .fromTo("#page-16 h2", {
+                opacity: 0,
+                y: 50
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            .fromTo(".logo-item", {
+                opacity: 0,
+                x: -100,
+                scale: 0.8
+            }, {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "back.out(1.7)"
+            }, "-=0.2")
+            .to({}, { duration: 8.0 }); // Much longer duration for scrollable content
+        }
+
+        page19Animation(fullTimeline) {
+            const pageElement = ".page-19";
+            gsap.set(pageElement, { yPercent: 100 });
+            
+            fullTimeline.to(pageElement, {
+                yPercent: 0,
+                duration: 0.8,
+                ease: "power1.out",
+            })
+            .fromTo("#page-19 h2", {
+                opacity: 0,
+                y: 50
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+            .fromTo("#page-19 .logo-item", {
+                opacity: 0,
+                x: -100,
+                scale: 0.8
+            }, {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "back.out(1.7)"
+            }, "-=0.2")
+            .to({}, { duration: 4.0 }); // Reduced duration for 200vh content
+        }
+
+        page17Animation(fullTimeline) {
     // Helper: apply initial states to multiple elements
     const setInitialStates = (elements, props) => elements.forEach(el => gsap.set(el, props));
 
     // Initial states configuration
     const initialStates = [
-        { els: ["#page16-heading"], props: { opacity: 0, y: 50 } },
-        { els: ["#page16-tagline"], props: { opacity: 0, x: 50 } },
-        { els: ["#page16-bg-img"], props: { opacity: 0, y: 50 } },
-        { els: ["#page16-guest-1"], props: { opacity: 0, x: -50 } },
-        { els: ["#page16-guest-2"], props: { opacity: 0, y: 50 } },
-        { els: ["#page16-guest-3"], props: { opacity: 0, x: 50 } },
-        { els: ["#page16-guest-4"], props: { opacity: 0, y: -50 } },
-        { els: ["#page16-img-31"], props: { opacity: 0, x: -50 } },
-        { els: ["#page16-img-32"], props: { opacity: 0, x: 50 } },
-        { els: ["#page16-youtube-btn"], props: { opacity: 0, y: 50 } },
-        { els: ["#page16-right-section"], props: { opacity: 0, visibility: "hidden" } },
-        { els: ["#page16-guest-1-text", "#page16-guest-2-text", "#page16-guest-3-text", "#page16-guest-4-text"], props: { opacity: 0, y: 20 } },
-        { els: ["#page16-episode-1", "#page16-episode-2", "#page16-episode-3", "#page16-show-more-btn"], props: { opacity: 0, y: 30 } },
-        { els: ["#page16-video-section"], props: { opacity: 0, scale: 0 } },
+        { els: ["#page17-heading"], props: { opacity: 0, y: 50 } },
+        { els: ["#page17-tagline"], props: { opacity: 0, x: 50 } },
+        { els: ["#page17-bg-img"], props: { opacity: 0, y: 50 } },
+        { els: ["#page17-guest-1"], props: { opacity: 0, x: -50 } },
+        { els: ["#page17-guest-2"], props: { opacity: 0, y: 50 } },
+        { els: ["#page17-guest-3"], props: { opacity: 0, x: 50 } },
+        { els: ["#page17-guest-4"], props: { opacity: 0, y: -50 } },
+        { els: ["#page17-img-31"], props: { opacity: 0, x: -50 } },
+        { els: ["#page17-img-32"], props: { opacity: 0, x: 50 } },
+        { els: ["#page17-youtube-btn"], props: { opacity: 0, y: 50 } },
+        { els: ["#page17-right-section"], props: { opacity: 0, visibility: "hidden" } },
+        { els: ["#page17-guest-1-text", "#page17-guest-2-text", "#page17-guest-3-text", "#page17-guest-4-text"], props: { opacity: 0, y: 20 } },
+        { els: ["#page17-episode-1", "#page17-episode-2", "#page17-episode-3", "#page17-show-more-btn"], props: { opacity: 0, y: 30 } },
+        { els: ["#page17-video-section"], props: { opacity: 0, scale: 0 } },
         { els: ["#video-grid-classes"], props: { opacity: 0, y: 50 } },
         { els: ["#video-grid-fitness"], props: { opacity: 0, x: -50 } },
         { els: ["#video-grid-dance"], props: { opacity: 0, y: 30 } },
@@ -740,33 +806,33 @@ class AuraCenterWebsite {
         { els: ["#mobile-video-yoga"], props: { opacity: 0, x: 50 } },
         { els: ["#mobile-video-dance"], props: { opacity: 0, y: 30 } },
         { els: ["#mobile-video-cardio"], props: { opacity: 0, y: -30 } },
-        { els: ["#page16-mobile-right-section"], props: { opacity: 0 } },
-        { els: ["#page16-mobile-episode-1", "#page16-mobile-episode-2", "#page16-mobile-episode-3", "#page16-mobile-show-more-btn"], props: { opacity: 0, y: 30 } }
+        { els: ["#page17-mobile-right-section"], props: { opacity: 0 } },
+        { els: ["#page17-mobile-episode-1", "#page17-mobile-episode-2", "#page17-mobile-episode-3", "#page17-mobile-show-more-btn"], props: { opacity: 0, y: 30 } }
     ];
 
     initialStates.forEach(({ els, props }) => setInitialStates(els, props));
 
     // Timeline animations
     fullTimeline
-        .to("#page16-heading", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
-        .to("#page16-tagline", { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }, "-=0.3")
-        .to("#page16-bg-img", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.2")
-        .to(["#page16-guest-1", "#page16-guest-2", "#page16-guest-3", "#page16-guest-4"], {
+        .to("#page17-heading", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
+        .to("#page17-tagline", { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }, "-=0.3")
+        .to("#page17-bg-img", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.2")
+        .to(["#page17-guest-1", "#page17-guest-2", "#page17-guest-3", "#page17-guest-4"], {
             opacity: 1, x: 0, y: 0, duration: 0.6, stagger: 0.3, ease: "power2.out"
         }, "-=0.2")
-        .to(["#page16-guest-1-text", "#page16-guest-2-text", "#page16-guest-3-text", "#page16-guest-4-text"], {
+        .to(["#page17-guest-1-text", "#page17-guest-2-text", "#page17-guest-3-text", "#page17-guest-4-text"], {
             opacity: 1, y: 0, duration: 0.5, stagger: 0.2, ease: "power2.out"
         }, "-=0.1")
-        .to(["#page16-img-31", "#page16-img-32"], { opacity: 1, x: 0, duration: 0.6, ease: "power2.out", stagger: 0.2 }, "-=0.2")
-        .to("#page16-youtube-btn", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.2")
-        .to("#page16-right-section", { opacity: 1, visibility: "visible", duration: 0.8, ease: "power2.out" }, "-=0.1")
-        .to(["#page16-episode-1", "#page16-episode-2", "#page16-episode-3", "#page16-show-more-btn"], {
+        .to(["#page17-img-31", "#page17-img-32"], { opacity: 1, x: 0, duration: 0.6, ease: "power2.out", stagger: 0.2 }, "-=0.2")
+        .to("#page17-youtube-btn", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.2")
+        .to("#page17-right-section", { opacity: 1, visibility: "visible", duration: 0.8, ease: "power2.out" }, "-=0.1")
+        .to(["#page17-episode-1", "#page17-episode-2", "#page17-episode-3", "#page17-show-more-btn"], {
             opacity: 1, y: 0, duration: 0.6, stagger: 0.2, ease: "power2.out"
         }, "-=0.3")
         .to({}, { duration: 1 }) // Hold to view sections
-        .to("#page16-podcast-container", { scale: 2, opacity: 0, duration: 0.8, ease: "power2.in" })
-        .set("#page16-podcast-container", { display: "none" })
-        .to("#page16-video-section", {
+        .to("#page17-podcast-container", { scale: 2, opacity: 0, duration: 0.8, ease: "power2.in" })
+        .set("#page17-podcast-container", { display: "none" })
+        .to("#page17-video-section", {
             opacity: 1, scale: 1, duration: 1, ease: "power3.out",
             onStart: () => console.log("Video section replacing podcast content"),
             onComplete: () => console.log("Video section replacement complete")
@@ -777,8 +843,8 @@ class AuraCenterWebsite {
 }
 
 
-        page17Animation(fullTimeline) {
-            const pageElement = ".page-17";
+        page18Animation(fullTimeline) {
+            const pageElement = ".page-18";
             // Batch set initial state with performance optimizations
             gsap.set(pageElement, {
                 yPercent: 100
@@ -788,7 +854,30 @@ class AuraCenterWebsite {
                 duration: 0.8, // Faster on mobile
                 ease: "power1.out",
             })
+            .to({}, { duration: 6.0 }); // Hold the contact form page longer
         }
+
+        page20Animation(fullTimeline) {
+            const pageElement = ".page-20";
+            gsap.set(pageElement, { yPercent: 100 });
+            
+            fullTimeline.to(pageElement, {
+                yPercent: 0,
+                duration: 0.8,
+                ease: "power1.out",
+            })
+            .fromTo("footer", {
+                opacity: 0,
+                y: 50
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to({}, { duration: 12.0 }); // Hold the footer visible longer for complete viewing
+        }
+
         pageSection1Timeline() {
             const timeline = gsap.timeline();
 
@@ -865,7 +954,6 @@ class AuraCenterWebsite {
             const timeline = gsap.timeline();
             // Animations
             this.page16Animation(timeline);
-            this.page17Animation(timeline);
             ScrollTrigger.create({
                 animation: timeline,
                 trigger: "#page-section-5",
@@ -875,6 +963,56 @@ class AuraCenterWebsite {
                 pin: true,
                 anticipatePin: 1,
                 refreshPriority: -5,
+                pinSpacing: true, // Allow space for pinned content
+            });
+        }
+        
+        pageSection6Timeline() {
+            const timeline = gsap.timeline();
+            // Animations for page-19
+            this.page19Animation(timeline);
+            ScrollTrigger.create({
+                animation: timeline,
+                trigger: "#page-section-6",
+                start: "top top",
+                end: () => "+=" + timeline.duration() * this.multiplier,
+                scrub: true,
+                pin: true,
+                anticipatePin: 1,
+                refreshPriority: -6,
+            });
+        }
+        
+        pageSection7Timeline() {
+            const timeline = gsap.timeline();
+            // Animations for pages 17 and 18
+            this.page17Animation(timeline);
+            this.page18Animation(timeline);
+            ScrollTrigger.create({
+                animation: timeline,
+                trigger: "#page-section-7",
+                start: "top top",
+                end: () => "+=" + timeline.duration() * this.multiplier,
+                scrub: true,
+                pin: true,
+                anticipatePin: 1,
+                refreshPriority: -7,
+            });
+        }
+        
+        pageSection8Timeline() {
+            const timeline = gsap.timeline();
+            // Animation for footer page
+            this.page20Animation(timeline);
+            ScrollTrigger.create({
+                animation: timeline,
+                trigger: "#page-section-8",
+                start: "top top",
+                end: () => "+=" + timeline.duration() * this.multiplier,
+                scrub: true,
+                pin: true,
+                anticipatePin: 1,
+                refreshPriority: -8,
             });
         }
 
@@ -884,6 +1022,9 @@ class AuraCenterWebsite {
             this.pageSection3Timeline();
             this.pageSection4Timeline();
             this.pageSection5Timeline();
+            this.pageSection6Timeline();
+            this.pageSection7Timeline();
+            this.pageSection8Timeline();
         }
         gsapWithMobile() {
             const timeline = gsap.timeline({
@@ -979,7 +1120,7 @@ class AuraCenterWebsite {
             // Initialize trainers slider for page-14
             this.trainersSlider =  new CardSlider('trainers', this.trainers);
 
-            // Initialize video slider for page-16
+            // Initialize video slider for page-17
             new VideoSlider('episodes', 5);
         }
 
@@ -1077,4 +1218,29 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
     const auraCenter = new AuraCenterWebsite();
     window.auraCenter = auraCenter;
+    
+    // Initialize sponsor slider
+    setTimeout(() => {
+        window.sponsorSlider = new SponsorSlider();
+        
+        // Initialize partner slider with additional delay to ensure page-19 elements are ready
+        setTimeout(() => {
+            console.log('Attempting to initialize PartnerSlider...');
+            const partnerDotsContainer = document.getElementById('partner-dots');
+            const partnerLogo = document.getElementById('current-partner-logo');
+            console.log('partner-dots element:', partnerDotsContainer);
+            console.log('current-partner-logo element:', partnerLogo);
+            
+            if (partnerDotsContainer && partnerLogo) {
+                window.partnerSlider = new PartnerSlider();
+                console.log('PartnerSlider initialized successfully');
+            } else {
+                console.error('PartnerSlider elements not found, retrying...');
+                // Retry after additional delay
+                setTimeout(() => {
+                    window.partnerSlider = new PartnerSlider();
+                }, 1000);
+            }
+        }, 500);
+    }, 500);
 });
